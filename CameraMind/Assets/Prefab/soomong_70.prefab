@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4542273694483090}
   - component: {fileID: 212201672588867822}
   - component: {fileID: 114911484890498176}
+  - component: {fileID: 114601175537609800}
   - component: {fileID: 60127468779562574}
   m_Layer: 0
   m_Name: soomong_70
@@ -132,6 +133,17 @@ PolygonCollider2D:
       - {x: 2.03, y: -3.4299998}
       - {x: 2.31, y: -3.3899999}
       - {x: 2.54, y: -3.31}
+--- !u!114 &114601175537609800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1380938309550406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd145b396b105844a9f09c1b3c88a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114911484890498176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,7 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b75595b2345487498c7b33f05ecef0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCollision: 0
 --- !u!212 &212201672588867822
 SpriteRenderer:
   m_ObjectHideFlags: 1

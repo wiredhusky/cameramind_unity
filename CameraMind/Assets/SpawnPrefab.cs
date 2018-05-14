@@ -71,7 +71,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 1:
                 _obj = Instantiate(soomong_25) as GameObject;
-                originScale = soomong_15.transform.localScale;
+                originScale = soomong_25.transform.localScale;
                 _obj.transform.localScale = originScale;
 
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
@@ -83,7 +83,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 2:
                 _obj = Instantiate(soomong_35) as GameObject;
-                originScale = soomong_15.transform.localScale;
+                originScale = soomong_35.transform.localScale;
                 _obj.transform.localScale = originScale;
 
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
@@ -95,7 +95,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 3:
                 _obj = Instantiate(soomong_50) as GameObject;
-                originScale = soomong_15.transform.localScale;
+                originScale = soomong_50.transform.localScale;
                 _obj.transform.localScale = originScale;
 
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
@@ -107,7 +107,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 4:
                 _obj = Instantiate(soomong_70) as GameObject;
-                originScale = soomong_15.transform.localScale;
+                originScale = soomong_70.transform.localScale;
                 _obj.transform.localScale = originScale;
 
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
@@ -428,6 +428,11 @@ public class SpawnPrefab : MonoBehaviour {
                         allThingsDone = true;
                         //isSearched = true;
                         Debug.Log("15 is removed");
+                        /*
+                        for(int i3=0;i3 < objType.Count; i3++)
+                        {
+                            Debug.Log(objType[i3]);
+                        }*/
                         break;
                     case 1:
                         case1 = 1;

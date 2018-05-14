@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counter: {fileID: 851056749}
-  indicator: {fileID: 576493375}
+  indicator: {fileID: 0}
 --- !u!1 &1575772627
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,8 +484,9 @@ GameObject:
   - component: {fileID: 1575772629}
   - component: {fileID: 1575772632}
   - component: {fileID: 1575772631}
+  - component: {fileID: 1575772633}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Level Transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -571,6 +572,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1575772633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1575772627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ef971deef0c5443993d564ffcabe5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instance: {fileID: 0}
 --- !u!1 &1597869034
 GameObject:
   m_ObjectHideFlags: 0
