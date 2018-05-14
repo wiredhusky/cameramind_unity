@@ -12,7 +12,8 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject soomong_70;
     public List<Vector2> posList = new List<Vector2>();
     public List<int> objType = new List<int>();
-    public LevelCounter level;
+    //public LevelCounter level;
+    public GameObject levelTransition;
     
     bool allThingsDone = false;
     //float objPosX;
@@ -65,7 +66,8 @@ public class SpawnPrefab : MonoBehaviour {
 
                 _obj.transform.position = spawnPos;
                 index++;
-                level.counter.text = "Level " + (index + 1).ToString();
+                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 1:
                 _obj = Instantiate(soomong_25) as GameObject;
@@ -76,7 +78,8 @@ public class SpawnPrefab : MonoBehaviour {
 
                 _obj.transform.position = spawnPos;
                 index++;
-                level.counter.text = "Level " + (index + 1).ToString();
+                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 2:
                 _obj = Instantiate(soomong_35) as GameObject;
@@ -87,7 +90,8 @@ public class SpawnPrefab : MonoBehaviour {
 
                 _obj.transform.position = spawnPos;
                 index++;
-                level.counter.text = "Level " + (index + 1).ToString();
+                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 3:
                 _obj = Instantiate(soomong_50) as GameObject;
@@ -98,7 +102,8 @@ public class SpawnPrefab : MonoBehaviour {
 
                 _obj.transform.position = spawnPos;
                 index++;
-                level.counter.text = "Level " + (index + 1).ToString();
+                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 4:
                 _obj = Instantiate(soomong_70) as GameObject;
@@ -109,7 +114,8 @@ public class SpawnPrefab : MonoBehaviour {
 
                 _obj.transform.position = spawnPos;
                 index++;
-                level.counter.text = "Level " + (index + 1).ToString();
+                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
         }
 
@@ -458,8 +464,12 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Start()
     {
-        level = FindObjectOfType<LevelCounter>();
-        level.counter.text = "Level " + (index + 1).ToString();
+        levelTransition.SetActive(true);
+        //level = FindObjectOfType<LevelCounter>();
+        //level.counter.text = "Level " + (index + 1).ToString();
+        
+        //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+
         while (!allThingsDone)
         {
             PosSearch();
