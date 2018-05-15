@@ -469,7 +469,7 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Start()
     {
-        levelTransition.SetActive(true);
+        levelTransition.SetActive(true);        
         //level = FindObjectOfType<LevelCounter>();
         //level.counter.text = "Level " + (index + 1).ToString();
         
@@ -481,6 +481,11 @@ public class SpawnPrefab : MonoBehaviour {
         }
         // SpawnObj();
         //Invoke("SpawnObj", 1.0f);
+    }
+
+    public Vector2 PosReturn()
+    {
+        return posList[index];
     }
 
     /*

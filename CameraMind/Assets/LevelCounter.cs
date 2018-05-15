@@ -17,11 +17,17 @@ public class LevelCounter : MonoBehaviour {
         indicator = FindObjectOfType<SpawnPrefab>();
                 
         counter = gameObject.GetComponent<TextMeshProUGUI>();
-        
+
         //Debug.Log(indicator.index);
+        CountLevel();
         
-        counter.text = "Level " + (indicator.index+1).ToString();
+        
         
 	}
+
+    public void CountLevel()
+    {
+        counter.text = "Level " + (indicator.index + 1).ToString();
+    }
 	
 }

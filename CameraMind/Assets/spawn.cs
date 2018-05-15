@@ -17,5 +17,10 @@ public class spawn : MonoBehaviour {
     {
         instance.SpawnObj();
     }
+
+    public void SetObj()
+    {
+        gameObject.SetActive(false);
+    }
 	
 }
