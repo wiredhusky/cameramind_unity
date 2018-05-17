@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SpawnPrefab : MonoBehaviour {
 
       
@@ -485,7 +486,12 @@ public class SpawnPrefab : MonoBehaviour {
 
     public Vector2 PosReturn()
     {
-        return posList[index];
+        return posList[index-1];
+    }
+
+    public void Restart()
+    {
+        
     }
 
     /*
@@ -499,21 +505,21 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log("Y: " + randPosY);
     }*/
 
- 
-/*
-    private void Update()
-    {        
-       if(Time.time > nextTime)
-        {
-            nextTime = Time.time + TimeLeft;
-            
-            if (!allThingsDone)
+
+    /*
+        private void Update()
+        {        
+           if(Time.time > nextTime)
             {
-                SpawnObj();
-            }            
-            //RandomTest();
+                nextTime = Time.time + TimeLeft;
+
+                if (!allThingsDone)
+                {
+                    SpawnObj();
+                }            
+                //RandomTest();
+            }
         }
-    }
-    */
+        */
 
 }

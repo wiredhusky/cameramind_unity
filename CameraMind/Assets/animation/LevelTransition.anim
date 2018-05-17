@@ -23,24 +23,24 @@ AnimationClip:
         time: 0
         value: 10.12
         inSlope: 0
-        outSlope: 0
-        tangentMode: 9
+        outSlope: -29.386917
+        tangentMode: 1
       - serializedVersion: 2
         time: 0.5
         value: 0
-        inSlope: 0
+        inSlope: -2.4237223
         outSlope: 0
-        tangentMode: 129
+        tangentMode: 1
       - serializedVersion: 2
         time: 1
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 137
+        outSlope: -38.72697
+        tangentMode: 1
       - serializedVersion: 2
         time: 1.5
         value: -10.18
-        inSlope: -2.1687152
+        inSlope: -1.2101483
         outSlope: 0
         tangentMode: 1
       m_PreInfinity: 2
@@ -70,13 +70,13 @@ AnimationClip:
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 1
       - serializedVersion: 2
         time: 1.5
         value: -0.000000029802
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 1
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -135,24 +135,24 @@ AnimationClip:
         time: 0
         value: 10.12
         inSlope: 0
-        outSlope: 0
-        tangentMode: 9
+        outSlope: -29.386917
+        tangentMode: 1
       - serializedVersion: 2
         time: 0.5
         value: 0
-        inSlope: 0
+        inSlope: -2.4237223
         outSlope: 0
-        tangentMode: 129
+        tangentMode: 1
       - serializedVersion: 2
         time: 1
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 137
+        outSlope: -38.72697
+        tangentMode: 1
       - serializedVersion: 2
         time: 1.5
         value: -10.18
-        inSlope: -2.1687152
+        inSlope: -1.2101483
         outSlope: 0
         tangentMode: 1
       m_PreInfinity: 2
@@ -182,13 +182,13 @@ AnimationClip:
         value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 1
       - serializedVersion: 2
         time: 1.5
         value: -0.000000029802
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 1
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -201,8 +201,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.5
+  - time: 1
     functionName: objCreator
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: DeactiveGameOver
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

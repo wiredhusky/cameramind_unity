@@ -15,8 +15,8 @@ public class Clicked : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        Debug.Log(ComparePos());
-        /*
+        //Debug.Log(ComparePos());
+        
         if (ComparePos())
         {
             transitionType.DoTransition(0);
@@ -24,7 +24,7 @@ public class Clicked : MonoBehaviour {
         else
         {
             transitionType.DoTransition(1);
-        }*/
+        }
         
         //Debug.Log("Success");
     }
@@ -33,8 +33,8 @@ public class Clicked : MonoBehaviour {
     {
         Vector3 tempPos;
         tempPos = level.PosReturn();
-        Debug.Log(tempPos.x);
-        Debug.Log(gameObject.transform.position.x); // obj가 하나 생성되면 index는 1개 올라갔기 때문에 2번째 값을 보내줌
+        //Debug.Log(tempPos.x);
+        //Debug.Log(gameObject.transform.position.x); // obj가 하나 생성되면 index는 1개 올라갔기 때문에 2번째 값을 보내줌
         if(gameObject.transform.position == tempPos)
         {
             return true;

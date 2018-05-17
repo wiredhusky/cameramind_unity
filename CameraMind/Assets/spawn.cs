@@ -5,6 +5,8 @@ using UnityEngine;
 public class spawn : MonoBehaviour {
 
     public SpawnPrefab instance;
+    public GameObject gameOver;
+    
 
     // Use this for initialization
     void Start ()
@@ -21,6 +23,11 @@ public class spawn : MonoBehaviour {
     public void SetObj()
     {
         gameObject.SetActive(false);
+    }
+
+    public void DeactiveGameOver()
+    {
+        gameOver.SetActive(false);
     }
 	
 }

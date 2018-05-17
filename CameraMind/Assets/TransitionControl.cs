@@ -13,10 +13,7 @@ public class TransitionControl : MonoBehaviour {
         display = FindObjectOfType<LevelCounter>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
     public void DoTransition(int type)
     {
