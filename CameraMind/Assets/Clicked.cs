@@ -25,8 +25,10 @@ public class Clicked : MonoBehaviour {
         {
             transitionType.DoTransition(1);
         }
-        
+
         //Debug.Log("Success");
+
+        
     }
 
     private bool ComparePos()

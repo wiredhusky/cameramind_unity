@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114786037884315204}
   m_Layer: 0
   m_Name: soomong_25
-  m_TagString: Untagged
+  m_TagString: soomong
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd145b396b105844a9f09c1b3c88a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionType: {fileID: 0}
+  level: {fileID: 0}
 --- !u!212 &212537317307560446
 SpriteRenderer:
   m_ObjectHideFlags: 1

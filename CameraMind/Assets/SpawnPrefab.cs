@@ -32,18 +32,26 @@ public class SpawnPrefab : MonoBehaviour {
 
     public int index = 0;
 
-    //int count = 0;
+    Vector2 onScreenScale_20;
+    Vector2 onScreenScale_25;
+    Vector2 onScreenScale_30;
+    Vector2 onScreenScale_35;
+    Vector2 onScreenScale_40;
 
+    Vector2 xLimit_20;
+    Vector2 xLimit_25;
+    Vector2 xLimit_30;
+    Vector2 xLimit_35;
+    Vector2 xLimit_40;
+    
+    //int count = 0;
     //int temp = 0;
-    
-    
+
     //public GameObject temp;
     //Vector3 mousePos;
     Vector3 originScale;
 
-    //Vector3 screenPos;
-
-    
+    //Vector3 screenPos;    
 
     public void SpawnObj()
     {
@@ -470,11 +478,16 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Start()
     {
-        levelTransition.SetActive(true);        
+        setScale();
+        levelTransition.SetActive(true);
+
         //level = FindObjectOfType<LevelCounter>();
         //level.counter.text = "Level " + (index + 1).ToString();
-        
+
         //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+
+
+
 
         while (!allThingsDone)
         {
@@ -482,6 +495,8 @@ public class SpawnPrefab : MonoBehaviour {
         }
         // SpawnObj();
         //Invoke("SpawnObj", 1.0f);
+
+        
     }
 
     public Vector2 PosReturn()
@@ -489,9 +504,66 @@ public class SpawnPrefab : MonoBehaviour {
         return posList[index-1];
     }
 
-    public void Restart()
+    public void setScale()
     {
+        Vector3 temp;
+        Vector3 worldPos;
+        RectTransform rt;
+
+        float localscale_20 = soomong_15.transform.localScale.x;
+        float localscale_25 = soomong_25.transform.localScale.x;
+        float localscale_30 = soomong_35.transform.localScale.x;
+        float localscale_35 = soomong_50.transform.localScale.x;
+        float localscale_40 = soomong_70.transform.localScale.x;        
+
+        rt = (RectTransform)soomong_70.transform;
+                
+        temp.x = Screen.width;
+        temp.y = Screen.height;
+        temp.z = 0;
+
+        worldPos = Camera.main.ScreenToWorldPoint(temp);
+
         
+        onScreenScale_20.x = rt.rect.x * localscale_20;
+        onScreenScale_20.y = rt.rect.y * localscale_20;
+
+        onScreenScale_25.x = rt.rect.x * localscale_25;
+        onScreenScale_25.y = rt.rect.y * localscale_25;
+
+        onScreenScale_30.x = rt.rect.x * localscale_30;
+        onScreenScale_30.y = rt.rect.y * localscale_30;
+
+        onScreenScale_35.x = rt.rect.x * localscale_35;
+        onScreenScale_35.y = rt.rect.y * localscale_35;
+
+        onScreenScale_40.x = rt.rect.x * localscale_40;
+        onScreenScale_40.y = rt.rect.y * localscale_40;
+
+        xLimit_20.x = worldPos.x - onScreenScale_20.x;
+        xLimit_20.y = worldPos.y * -1.0f + onScreenScale_20.y;
+
+        xLimit_25.x = worldPos.x - onScreenScale_25.x;
+        xLimit_25.y = worldPos.y * -1.0f + onScreenScale_25.y;
+
+        xLimit_30.x = worldPos.x - onScreenScale_30.x;
+        xLimit_30.y = worldPos.y * -1.0f + onScreenScale_30.y;
+
+        xLimit_35.x = worldPos.x - onScreenScale_35.x;
+        xLimit_35.y = worldPos.y * -1.0f + onScreenScale_35.y;
+
+        xLimit_40.x = worldPos.x - onScreenScale_40.x;
+        xLimit_40.y = worldPos.y * -1.0f + onScreenScale_40.y;
+
+        Debug.Log("Soomong localscale x: " + soomong_15.transform.localScale.x);
+        Debug.Log("Rect rect x: " + rt.rect.x);
+        Debug.Log(onScreenScale_20.x);
+        Debug.Log(onScreenScale_20.y);
+        Debug.Log(worldPos.x);
+        Debug.Log(worldPos.y);
+        Debug.Log(xLimit_20.x);
+        Debug.Log(xLimit_20.y);
+
     }
 
     /*
