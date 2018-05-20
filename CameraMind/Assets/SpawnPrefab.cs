@@ -43,6 +43,8 @@ public class SpawnPrefab : MonoBehaviour {
     Vector2 xLimit_30;
     Vector2 xLimit_35;
     Vector2 xLimit_40;
+
+    Vector3 worldPos;
     
     //int count = 0;
     //int temp = 0;
@@ -202,8 +204,15 @@ public class SpawnPrefab : MonoBehaviour {
         float comPosY = 0f;
         bool overraped = false;
         int randObj=4;
-        
+
+        float wLimitLeft;
+        float hLimitTop;
+        float margin = 0.1f;
+
         Vector2 _objPos;
+
+        wLimitLeft = worldPos.x * -1.0f + margin;
+        hLimitTop = worldPos.y - margin;
 
         while (!allThingsDone)
         {
@@ -233,35 +242,35 @@ public class SpawnPrefab : MonoBehaviour {
 
         switch (randObj)
         {
-            case 0:
-                randPosX = Random.Range(-9.2f, 7.6f);
-                randPosY = Random.Range(-4.4f, 4.6f);
-                comPosX = randPosX + 0.6f;
-                comPosY = randPosY - 0.52f;
+            case 0: //soomong 20
+                randPosX = Random.Range(wLimitLeft, xLimit_20.x-margin);
+                randPosY = Random.Range(xLimit_20.y + margin, hLimitTop);
+                comPosX = randPosX + onScreenScale_20.x;
+                comPosY = randPosY - onScreenScale_20.y;
                 break;
-            case 1:
-                randPosX = Random.Range(-9.2f, 7.3f);
-                randPosY = Random.Range(-4.1f, 4.6f);
-                comPosX = randPosX + 1.0f;
-                comPosY = randPosY - 0.9f;
+            case 1: //soomong 25
+                randPosX = Random.Range(wLimitLeft, xLimit_25.x-margin);
+                randPosY = Random.Range(xLimit_25.y + margin, hLimitTop);
+                comPosX = randPosX + onScreenScale_25.x;
+                comPosY = randPosY - onScreenScale_25.y;
                 break;
-            case 2:
-                randPosX = Random.Range(-9.2f, 6.8f);
-                randPosY = Random.Range(-3.8f, 4.6f);
-                comPosX = randPosX + 1.4f;
-                comPosY = randPosY - 1.3f;
+            case 2: //soomong 30
+                randPosX = Random.Range(wLimitLeft, xLimit_30.x-margin);
+                randPosY = Random.Range(xLimit_30.y + margin, hLimitTop);
+                comPosX = randPosX + onScreenScale_30.x;
+                comPosY = randPosY - onScreenScale_30.y;
                 break;
-            case 3:
-                randPosX = Random.Range(-9.2f, 6.3f);
-                randPosY = Random.Range(-3.3f, 4.6f);
-                comPosX = randPosX + 1.9f;
-                comPosY = randPosY - 1.8f;
+            case 3: //soomong 35
+                randPosX = Random.Range(wLimitLeft, xLimit_35.x-margin);
+                randPosY = Random.Range(xLimit_35.y + margin, hLimitTop);
+                comPosX = randPosX + onScreenScale_35.x;
+                comPosY = randPosY - onScreenScale_35.y;
                 break;
-            case 4:
-                randPosX = Random.Range(-9.2f, 5.4f);
-                randPosY = Random.Range(-2.5f, 4.6f);
-                comPosX = randPosX + 2.7f;
-                comPosY = randPosY - 2.5f;
+            case 4: //soomong 40
+                randPosX = Random.Range(wLimitLeft, xLimit_40.x-margin);
+                randPosY = Random.Range(xLimit_40.y + margin, hLimitTop);
+                comPosX = randPosX + onScreenScale_40.x;
+                comPosY = randPosY - onScreenScale_40.y;
                 break;
         }
         
@@ -284,50 +293,49 @@ public class SpawnPrefab : MonoBehaviour {
                     case 0:
                         if (overraped)
                         {
-                            randPosX = Random.Range(-9.2f, 7.6f);
-                            randPosY = Random.Range(-4.4f, 4.6f);
-                            comPosX = randPosX + 0.6f;
-                            comPosY = randPosY - 0.52f;
+                            randPosX = Random.Range(wLimitLeft, xLimit_20.x - margin);
+                            randPosY = Random.Range(xLimit_20.y + margin, hLimitTop);
+                            comPosX = randPosX + onScreenScale_20.x;
+                            comPosY = randPosY - onScreenScale_20.y;
                             overraped = false;
                         }
                         break;
                     case 1:
                         if (overraped)
                         {
-                            randPosX = Random.Range(-9.2f, 7.3f);
-                            randPosY = Random.Range(-4.1f, 4.6f);
-                            comPosX = randPosX + 1.0f;
-                            comPosY = randPosY - 0.9f;
+                            randPosX = Random.Range(wLimitLeft, xLimit_25.x - margin);
+                            randPosY = Random.Range(xLimit_25.y + margin, hLimitTop);
+                            comPosX = randPosX + onScreenScale_25.x;
+                            comPosY = randPosY - onScreenScale_25.y;
                             overraped = false;
                         }
                         break;
                     case 2:
                         if (overraped)
                         {
-                            randPosX = Random.Range(-9.2f, 6.8f);
-                            randPosY = Random.Range(-3.8f, 4.6f);
-                            comPosX = randPosX + 1.4f;
-                            comPosY = randPosY - 1.3f;
-                            overraped = false;
+                            randPosX = Random.Range(wLimitLeft, xLimit_30.x - margin);
+                            randPosY = Random.Range(xLimit_30.y + margin, hLimitTop);
+                            comPosX = randPosX + onScreenScale_30.x;
+                            comPosY = randPosY - onScreenScale_30.y;
                         }
                         break;
                     case 3:
                         if (overraped)
                         {
-                            randPosX = Random.Range(-9.2f, 6.3f);
-                            randPosY = Random.Range(-3.3f, 4.6f);
-                            comPosX = randPosX + 1.9f;
-                            comPosY = randPosY - 1.8f;
+                            randPosX = Random.Range(wLimitLeft, xLimit_35.x - margin);
+                            randPosY = Random.Range(xLimit_35.y + margin, hLimitTop);
+                            comPosX = randPosX + onScreenScale_35.x;
+                            comPosY = randPosY - onScreenScale_35.y;
                             overraped = false;
                         }
                         break;
                     case 4:
                         if (overraped)
                         {
-                            randPosX = Random.Range(-9.2f, 5.4f);
-                            randPosY = Random.Range(-2.5f, 4.6f);
-                            comPosX = randPosX + 2.7f;
-                            comPosY = randPosY - 2.5f;
+                            randPosX = Random.Range(wLimitLeft, xLimit_40.x - margin);
+                            randPosY = Random.Range(xLimit_40.y + margin, hLimitTop);
+                            comPosX = randPosX + onScreenScale_40.x;
+                            comPosY = randPosY - onScreenScale_40.y;
                             overraped = false;
                         }
                         break;
@@ -339,24 +347,24 @@ public class SpawnPrefab : MonoBehaviour {
                     switch (objType[i2])
                     {
                         case 0:
-                            oriPosX = posList[i2].x + 0.6f;
-                            oriPosY = posList[i2].y - 0.52f;
+                            oriPosX = posList[i2].x + onScreenScale_20.x;
+                            oriPosY = posList[i2].y - onScreenScale_20.y;
                             break;
                         case 1:
-                            oriPosX = posList[i2].x + 1.0f;
-                            oriPosY = posList[i2].y - 0.9f;
+                            oriPosX = posList[i2].x + onScreenScale_25.x;
+                            oriPosY = posList[i2].y - onScreenScale_25.y;
                             break;
                         case 2:
-                            oriPosX = posList[i2].x + 1.4f;
-                            oriPosY = posList[i2].y - 1.3f;
+                            oriPosX = posList[i2].x + onScreenScale_30.x;
+                            oriPosY = posList[i2].y - onScreenScale_30.y;
                             break;
                         case 3:
-                            oriPosX = posList[i2].x + 1.9f;
-                            oriPosY = posList[i2].y - 1.8f;
+                            oriPosX = posList[i2].x + onScreenScale_35.x;
+                            oriPosY = posList[i2].y - onScreenScale_35.y;
                             break;
                         case 4:
-                            oriPosX = posList[i2].x + 2.7f;
-                            oriPosY = posList[i2].y - 2.5f;
+                            oriPosX = posList[i2].x + onScreenScale_40.x;
+                            oriPosY = posList[i2].y - onScreenScale_40.y;
                             break;
                     }                    
 
@@ -507,7 +515,7 @@ public class SpawnPrefab : MonoBehaviour {
     public void setScale()
     {
         Vector3 temp;
-        Vector3 worldPos;
+
         RectTransform rt;
 
         float localscale_20 = soomong_15.transform.localScale.x;
@@ -525,20 +533,20 @@ public class SpawnPrefab : MonoBehaviour {
         worldPos = Camera.main.ScreenToWorldPoint(temp);
 
         
-        onScreenScale_20.x = rt.rect.x * localscale_20;
-        onScreenScale_20.y = rt.rect.y * localscale_20;
+        onScreenScale_20.x = rt.rect.width * localscale_20;
+        onScreenScale_20.y = rt.rect.height * localscale_20;
 
-        onScreenScale_25.x = rt.rect.x * localscale_25;
-        onScreenScale_25.y = rt.rect.y * localscale_25;
+        onScreenScale_25.x = rt.rect.width * localscale_25;
+        onScreenScale_25.y = rt.rect.height * localscale_25;
 
-        onScreenScale_30.x = rt.rect.x * localscale_30;
-        onScreenScale_30.y = rt.rect.y * localscale_30;
+        onScreenScale_30.x = rt.rect.width * localscale_30;
+        onScreenScale_30.y = rt.rect.height * localscale_30;
 
-        onScreenScale_35.x = rt.rect.x * localscale_35;
-        onScreenScale_35.y = rt.rect.y * localscale_35;
+        onScreenScale_35.x = rt.rect.width * localscale_35;
+        onScreenScale_35.y = rt.rect.height * localscale_35;
 
-        onScreenScale_40.x = rt.rect.x * localscale_40;
-        onScreenScale_40.y = rt.rect.y * localscale_40;
+        onScreenScale_40.x = rt.rect.width * localscale_40;
+        onScreenScale_40.y = rt.rect.height * localscale_40;
 
         xLimit_20.x = worldPos.x - onScreenScale_20.x;
         xLimit_20.y = worldPos.y * -1.0f + onScreenScale_20.y;
@@ -556,7 +564,7 @@ public class SpawnPrefab : MonoBehaviour {
         xLimit_40.y = worldPos.y * -1.0f + onScreenScale_40.y;
 
         Debug.Log("Soomong localscale x: " + soomong_15.transform.localScale.x);
-        Debug.Log("Rect rect x: " + rt.rect.x);
+        Debug.Log("Rect rect x: " + rt.rect.width);
         Debug.Log(onScreenScale_20.x);
         Debug.Log(onScreenScale_20.y);
         Debug.Log(worldPos.x);
