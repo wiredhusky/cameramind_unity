@@ -563,6 +563,7 @@ public class SpawnPrefab : MonoBehaviour {
         xLimit_40.x = worldPos.x - onScreenScale_40.x;
         xLimit_40.y = worldPos.y * -1.0f + onScreenScale_40.y;
 
+        /*
         Debug.Log("Soomong localscale x: " + soomong_15.transform.localScale.x);
         Debug.Log("Rect rect x: " + rt.rect.width);
         Debug.Log(onScreenScale_20.x);
@@ -571,7 +572,7 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log(worldPos.y);
         Debug.Log(xLimit_20.x);
         Debug.Log(xLimit_20.y);
-
+        */
     }
 
     /*
