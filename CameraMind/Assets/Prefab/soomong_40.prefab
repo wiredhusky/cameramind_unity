@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212201672588867822}
   - component: {fileID: 114601175537609800}
   - component: {fileID: 60127468779562574}
+  - component: {fileID: 95135498408485642}
   m_Layer: 0
   m_Name: soomong_40
   m_TagString: soomong
@@ -119,6 +120,23 @@ PolygonCollider2D:
       - {x: 2.03, y: -3.4299998}
       - {x: 2.31, y: -3.3899999}
       - {x: 2.54, y: -3.31}
+--- !u!95 &95135498408485642
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1380938309550406}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a49c5e7fcf2962243b78dc6ec828999d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114601175537609800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionType: {fileID: 0}
   level: {fileID: 0}
+  animator: {fileID: 95135498408485642}
 --- !u!212 &212201672588867822
 SpriteRenderer:
   m_ObjectHideFlags: 1

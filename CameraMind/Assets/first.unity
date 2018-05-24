@@ -443,6 +443,7 @@ MonoBehaviour:
   soomong_70: {fileID: 1380938309550406, guid: 4109fb4922fbcca4891431a3493bc85d, type: 2}
   posList: []
   objType: 
+  obj: []
   levelTransition: {fileID: 1575772627}
   index: 0
 --- !u!4 &576493376

@@ -6,6 +6,8 @@ public class Clicked : MonoBehaviour {
 
     public TransitionControl transitionType;
     public SpawnPrefab level;
+    public Animator animator;
+    
 
     private void Start()
     {
@@ -23,12 +25,21 @@ public class Clicked : MonoBehaviour {
         }
         else
         {
-            transitionType.DoTransition(1);
+            level.obj[level.index - 1].SendMessage("Animate");
         }
 
         //Debug.Log("Success");
+                
+    }
 
-        
+    public void Animate()
+    {
+        animator.SetTrigger("gameOver");
+    }
+
+    public void GameEnded()
+    {
+        transitionType.DoTransition(1);
     }
 
     private bool ComparePos()
@@ -48,4 +59,20 @@ public class Clicked : MonoBehaviour {
             
         }
     }
+
+   
+
+    /*
+    private void Update()
+    {
+        Debug.Log(transitionType.hasGameEnded);
+        if (transitionType.hasGameEnded)
+        {
+            if (ComparePos())
+            {
+                animator.SetTrigger("gameOver");
+                
+            }
+        }
+    }*/
 }

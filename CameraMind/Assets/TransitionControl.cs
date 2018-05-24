@@ -6,14 +6,18 @@ public class TransitionControl : MonoBehaviour {
 
     public GameObject levelTransition;
     public GameObject gameOver;
+    
     public LevelCounter display;
+
+    
 
 	// Use this for initialization
 	void Start () {
-        display = FindObjectOfType<LevelCounter>();
+        display = FindObjectOfType<LevelCounter>();      
 	}
 	
 
+   
 
     public void DoTransition(int type)
     {

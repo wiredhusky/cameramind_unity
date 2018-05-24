@@ -13,6 +13,7 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject soomong_70;
     public List<Vector2> posList = new List<Vector2>();
     public List<int> objType = new List<int>();
+    public List<GameObject> obj = new List<GameObject>();
     //public LevelCounter level;
     public GameObject levelTransition;
     
@@ -76,6 +77,7 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -88,6 +90,7 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -100,6 +103,7 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -112,6 +116,7 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -124,6 +129,7 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
