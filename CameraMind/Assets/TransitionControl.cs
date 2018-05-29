@@ -28,7 +28,7 @@ public class TransitionControl : MonoBehaviour {
                 levelTransition.SetActive(true);
                 break;
             case 1:
-                display.GameResult();
+                //display.GameResult();
                 gameOver.SetActive(true);
                 break;
         }        

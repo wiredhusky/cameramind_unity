@@ -27,10 +27,11 @@ public class LevelCounter : MonoBehaviour {
         counter.text = "Level " + (indicator.index + 1).ToString();
     }
 
+    /*
     public void GameResult()
     {
         counter.text = "Level " + (indicator.index).ToString();
         Debug.Log(counter.text);
-    }
+    }*/
 	
 }
