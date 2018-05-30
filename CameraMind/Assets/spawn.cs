@@ -5,6 +5,7 @@ using UnityEngine;
 public class spawn : MonoBehaviour {
 
     public SpawnPrefab instance;
+    public MoveMove move;
     public GameObject gameOver;
     
 
@@ -12,9 +13,15 @@ public class spawn : MonoBehaviour {
     void Start ()
     {
         instance = FindObjectOfType<SpawnPrefab>();
+        move = FindObjectOfType<MoveMove>();
 
 	}
 	
+    public void MoveNow()
+    {
+        move.objTranslate();
+    }
+
 	public void objCreator()
     {
         instance.SpawnObj();

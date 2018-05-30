@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/first.unity
+- path: Assets/Flip.unity
   isLoaded: 1
   isActive: 1

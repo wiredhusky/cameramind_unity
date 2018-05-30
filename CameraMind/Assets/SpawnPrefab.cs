@@ -16,6 +16,8 @@ public class SpawnPrefab : MonoBehaviour {
     public List<GameObject> obj = new List<GameObject>();
     //public LevelCounter level;
     public GameObject levelTransition;
+
+    private MoveMove move;
     
     bool allThingsDone = false;
     //float objPosX;
@@ -33,11 +35,11 @@ public class SpawnPrefab : MonoBehaviour {
 
     public int index = 0;
 
-    Vector2 onScreenScale_20;
-    Vector2 onScreenScale_25;
-    Vector2 onScreenScale_30;
-    Vector2 onScreenScale_35;
-    Vector2 onScreenScale_40;
+    public Vector2 onScreenScale_20;
+    public Vector2 onScreenScale_25;
+    public Vector2 onScreenScale_30;
+    public Vector2 onScreenScale_35;
+    public Vector2 onScreenScale_40;
 
     Vector2 xLimit_20;
     Vector2 xLimit_25;
@@ -60,6 +62,7 @@ public class SpawnPrefab : MonoBehaviour {
     {
         GameObject _obj;
         Vector2 spawnPos;
+        //RectTransform rt;
         //int type = 4;
 
         /*if (allThingsDone)
@@ -77,6 +80,9 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                //rt = (RectTransform)_obj.transform;
+                //Debug.Log("Lower left x: " + rt.rect.xMin);
+                //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
@@ -90,6 +96,9 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                /*rt = (RectTransform)_obj.transform;
+                Debug.Log("Lower left x: " + rt.rect.xMin);
+                Debug.Log("Upper right x: " + rt.rect.xMax);*/
                 obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
@@ -103,6 +112,9 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                //rt = (RectTransform)_obj.transform;
+                //Debug.Log("Lower left x: " + rt.rect.xMin);
+                //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
@@ -116,6 +128,9 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                //rt = (RectTransform)_obj.transform;
+                //Debug.Log("Lower left x: " + rt.rect.xMin);
+                //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
@@ -129,6 +144,9 @@ public class SpawnPrefab : MonoBehaviour {
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
 
                 _obj.transform.position = spawnPos;
+                //rt = (RectTransform)_obj.transform;
+                //Debug.Log("Lower left x: " + rt.rect.xMin);
+                //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
                 index++;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
@@ -492,24 +510,25 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Start()
     {
+        move = FindObjectOfType<MoveMove>();
+
         setScale();
-        levelTransition.SetActive(true);
-
-        //level = FindObjectOfType<LevelCounter>();
-        //level.counter.text = "Level " + (index + 1).ToString();
-
-        //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-
-
-
 
         while (!allThingsDone)
         {
             PosSearch();
         }
+
+        move.centerPosCalculator();
+        levelTransition.SetActive(true);        
+        
+        //level = FindObjectOfType<LevelCounter>();
+        //level.counter.text = "Level " + (index + 1).ToString();
+
+        //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+        
         // SpawnObj();
         //Invoke("SpawnObj", 1.0f);
-
         
     }
 
@@ -579,6 +598,8 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log(xLimit_20.x);
         Debug.Log(xLimit_20.y);
         */
+
+        
     }
 
     /*
