@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instance: {fileID: 0}
-  move: {fileID: 0}
+  move: {fileID: 863002773}
   gameOver: {fileID: 1354240259}
 --- !u!95 &31170778
 Animator:
@@ -896,7 +896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 576493375}
-  centerPos: []
   OppCenterPos: []
 --- !u!4 &863002774
 Transform:

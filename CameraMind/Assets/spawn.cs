@@ -19,6 +19,7 @@ public class spawn : MonoBehaviour {
 	
     public void MoveNow()
     {
+        //Debug.Log("Move");
         move.objTranslate();
     }
 
@@ -28,7 +29,7 @@ public class spawn : MonoBehaviour {
     }
 
     public void SetObj()
-    {
+    {        
         gameObject.SetActive(false);
     }
 
