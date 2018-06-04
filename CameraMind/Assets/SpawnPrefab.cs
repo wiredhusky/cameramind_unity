@@ -11,7 +11,7 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject soomong_35;
     public GameObject soomong_50;
     public GameObject soomong_70;
-    public List<Vector2> posList = new List<Vector2>();
+    public List<Vector3> posList = new List<Vector3>();
     public List<int> objType = new List<int>();
     public List<GameObject> obj = new List<GameObject>();
     //public LevelCounter level;
