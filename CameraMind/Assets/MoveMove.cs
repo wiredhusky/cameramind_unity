@@ -180,31 +180,39 @@ public class MoveMove : MonoBehaviour {
     {
         //float distance = 0f;
         //Quaternion right = Quaternion.identity;
-        
+
         //right.eulerAngles = new Vector3(270, 0, 0);
+        //float speed = 0.2f;
 
         if (reverse)
         {
             for (int i = 0; i < spawner.index; i++)
             {
 
-                spawner.obj[i].transform.Translate(new Vector3(distance[i] * Time.deltaTime * 5f, 0, 0));
+                //spawner.obj[i].transform.Translate(new Vector3(distance[i] * Time.deltaTime * 10f, 0, 0));
+
+                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], Time.deltaTime*5.0f);
               
                 if (spawner.obj[spawner.index - 1].transform.position == OppCenterPos[spawner.index - 1])
                 {
                     _move = false;
-                    //Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
+
                     //Debug.Log("Origin Pos: " + OppCenterPos[spawner.index - 1]);
                     reverse = false;
                 }
             }
+            Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
+            Debug.Log("OppcenterPos: " + OppCenterPos[spawner.index - 1]);
+            Debug.Log("Pos List: " + spawner.posList[spawner.index - 1]);
         }
         else
         {
             for (int i = 0; i < spawner.index; i++)
             {
 
-                spawner.obj[i].transform.Translate(new Vector3(distance_counter[i] * Time.deltaTime * 5f, 0, 0));
+                //spawner.obj[i].transform.Translate(new Vector3(distance_counter[i] * Time.deltaTime * 10f, 0, 0));
+
+                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], Time.deltaTime*5.0f);
               
                 if (spawner.obj[spawner.index - 1].transform.position == spawner.posList[spawner.index - 1])
                 {
@@ -214,7 +222,11 @@ public class MoveMove : MonoBehaviour {
                     reverse = true;
                 }
             }
+            Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
+            Debug.Log("OppcenterPos: " + OppCenterPos[spawner.index - 1]);
+            Debug.Log("Pos List: " + spawner.posList[spawner.index - 1]);
         }
+
     
     }
 
