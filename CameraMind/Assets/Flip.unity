@@ -844,6 +844,7 @@ MonoBehaviour:
   OppCenterPos: []
   distance: []
   distance_counter: []
+  reverse: 1
 --- !u!4 &863002774
 Transform:
   m_ObjectHideFlags: 0

@@ -7,12 +7,15 @@ public class Clicked : MonoBehaviour {
     public TransitionControl transitionType;
     public SpawnPrefab level;
     public Animator animator;
+    public MoveMove moveIndex;
+    public float a = 1.0f;
     
 
     private void Start()
     {
         transitionType = FindObjectOfType<TransitionControl>();
         level = FindObjectOfType<SpawnPrefab>();
+        moveIndex = FindObjectOfType<MoveMove>();        
     }
 
     private void OnMouseDown()
@@ -45,19 +48,39 @@ public class Clicked : MonoBehaviour {
     private bool ComparePos()
     {
         Vector3 tempPos;
-        tempPos = level.PosReturn();
+        
         //Debug.Log(tempPos.x);
         //Debug.Log(gameObject.transform.position.x); // obj가 하나 생성되면 index는 1개 올라갔기 때문에 2번째 값을 보내줌
-        if(gameObject.transform.position == tempPos)
+        if (moveIndex.reverse)
         {
-            return true;
-            
+            tempPos = level.PosReturn();
+            if (gameObject.transform.position == tempPos)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+
+            }
         }
         else
         {
-            return false;
-            
+            tempPos = moveIndex.OppCenterPos[level.index - 1];
+            if (gameObject.transform.position == tempPos)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+
+            }
         }
+        
+        
     }
 
    

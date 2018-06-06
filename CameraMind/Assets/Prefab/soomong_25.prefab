@@ -164,6 +164,8 @@ MonoBehaviour:
   transitionType: {fileID: 0}
   level: {fileID: 0}
   animator: {fileID: 95265861680364266}
+  moveIndex: {fileID: 0}
+  a: 1
 --- !u!212 &212537317307560446
 SpriteRenderer:
   m_ObjectHideFlags: 1

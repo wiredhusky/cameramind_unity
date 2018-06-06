@@ -74,81 +74,140 @@ public class SpawnPrefab : MonoBehaviour {
         {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;
+                if (move._flip)
+                {
+                    _obj.GetComponent<Clicked>().enabled = false;
+                }
                 originScale = soomong_15.transform.localScale;
                 _obj.transform.localScale = originScale;
 
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-
-                _obj.transform.position = spawnPos;
+                if (move.reverse)
+                {
+                    spawnPos = new Vector2(posList[index].x, posList[index].y);
+                    _obj.transform.position = spawnPos;
+                }
+                else
+                {
+                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
+                    _obj.transform.position = spawnPos;
+                }
+                
                 //rt = (RectTransform)_obj.transform;
                 //Debug.Log("Lower left x: " + rt.rect.xMin);
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
                 index++;
+                //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 1:
                 _obj = Instantiate(soomong_25) as GameObject;
+                if (move._flip)
+                {
+                    _obj.GetComponent<Clicked>().enabled = false;
+                }
                 originScale = soomong_25.transform.localScale;
                 _obj.transform.localScale = originScale;
 
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-
-                _obj.transform.position = spawnPos;
+                if (move.reverse)
+                {
+                    spawnPos = new Vector2(posList[index].x, posList[index].y);
+                    _obj.transform.position = spawnPos;
+                }
+                else
+                {
+                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
+                    _obj.transform.position = spawnPos;
+                }
                 /*rt = (RectTransform)_obj.transform;
                 Debug.Log("Lower left x: " + rt.rect.xMin);
                 Debug.Log("Upper right x: " + rt.rect.xMax);*/
                 obj.Add(_obj);
                 index++;
+                //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 2:
                 _obj = Instantiate(soomong_35) as GameObject;
+                if (move._flip)
+                {
+                    _obj.GetComponent<Clicked>().enabled = false;
+                }
                 originScale = soomong_35.transform.localScale;
                 _obj.transform.localScale = originScale;
-
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-
-                _obj.transform.position = spawnPos;
+                if (move.reverse)
+                {
+                    spawnPos = new Vector2(posList[index].x, posList[index].y);
+                    _obj.transform.position = spawnPos;
+                }
+                else
+                {
+                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
+                    _obj.transform.position = spawnPos;
+                }
                 //rt = (RectTransform)_obj.transform;
                 //Debug.Log("Lower left x: " + rt.rect.xMin);
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
                 index++;
+                //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 3:
                 _obj = Instantiate(soomong_50) as GameObject;
+                if (move._flip)
+                {
+                    _obj.GetComponent<Clicked>().enabled = false;
+                }
                 originScale = soomong_50.transform.localScale;
                 _obj.transform.localScale = originScale;
-
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-
-                _obj.transform.position = spawnPos;
+                if (move.reverse)
+                {
+                    spawnPos = new Vector2(posList[index].x, posList[index].y);
+                    _obj.transform.position = spawnPos;
+                }
+                else
+                {
+                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
+                    _obj.transform.position = spawnPos;
+                }
                 //rt = (RectTransform)_obj.transform;
                 //Debug.Log("Lower left x: " + rt.rect.xMin);
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
                 index++;
+                //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 4:
                 _obj = Instantiate(soomong_70) as GameObject;
+                if (move._flip)
+                {
+                    _obj.GetComponent<Clicked>().enabled = false;
+                }
                 originScale = soomong_70.transform.localScale;
                 _obj.transform.localScale = originScale;
-
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-
-                _obj.transform.position = spawnPos;
+                if (move.reverse)
+                {
+                    spawnPos = new Vector2(posList[index].x, posList[index].y);
+                    _obj.transform.position = spawnPos;
+                }
+                else
+                {
+                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
+                    _obj.transform.position = spawnPos;
+                }
                 //rt = (RectTransform)_obj.transform;
                 //Debug.Log("Lower left x: " + rt.rect.xMin);
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
+                
                 obj.Add(_obj);
                 index++;
+                //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
                 break;

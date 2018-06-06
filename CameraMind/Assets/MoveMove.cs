@@ -9,8 +9,10 @@ public class MoveMove : MonoBehaviour {
     public List<Vector3> OppCenterPos = new List<Vector3>();
     public List<float> distance = new List<float>();
     public List<float> distance_counter = new List<float>();
+    //public Clicked TapController;
+    public bool _flip = true;
     bool _move = false;
-    bool reverse = true;
+    public bool reverse = true;
     
 
 	// Use this for initialization
@@ -19,6 +21,8 @@ public class MoveMove : MonoBehaviour {
         _move = false;
         reverse = true;
         spawner = FindObjectOfType<SpawnPrefab>();
+        //TapController = FindObjectOfType<Clicked>();
+        //Debug.Log(TapController.a);
         
         		
 	}
@@ -196,14 +200,16 @@ public class MoveMove : MonoBehaviour {
                 if (spawner.obj[spawner.index - 1].transform.position == OppCenterPos[spawner.index - 1])
                 {
                     _move = false;
-
                     //Debug.Log("Origin Pos: " + OppCenterPos[spawner.index - 1]);
                     reverse = false;
+                    spawner.obj[spawner.index - 1].GetComponent<Clicked>().enabled = true;
+                    //spawner.obj[spawner.index - 1].
                 }
             }
-            Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
-            Debug.Log("OppcenterPos: " + OppCenterPos[spawner.index - 1]);
-            Debug.Log("Pos List: " + spawner.posList[spawner.index - 1]);
+            //Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position.x);
+            //Debug.Log("OppcenterPos: " + OppCenterPos[spawner.index - 1].x);
+            //Debug.Log("Pos List: " + spawner.posList[spawner.index - 1]);
+            //Debug.Log("Move: " + _move);
         }
         else
         {
@@ -220,11 +226,13 @@ public class MoveMove : MonoBehaviour {
                     //Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
                     //Debug.Log("Origin Pos: " + spawner.posList[spawner.index - 1]);
                     reverse = true;
+                    spawner.obj[spawner.index - 1].GetComponent<Clicked>().enabled = true;
                 }
             }
-            Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
-            Debug.Log("OppcenterPos: " + OppCenterPos[spawner.index - 1]);
-            Debug.Log("Pos List: " + spawner.posList[spawner.index - 1]);
+            //Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position.x);
+            //Debug.Log("OppcenterPos: " + OppCenterPos[spawner.index - 1].x);
+            //Debug.Log("Pos List: " + spawner.posList[spawner.index - 1]);
+            //Debug.Log("Move: " + _move);
         }
 
     

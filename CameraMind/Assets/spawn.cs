@@ -6,6 +6,7 @@ public class spawn : MonoBehaviour {
 
     public SpawnPrefab instance;
     public MoveMove move;
+    //public Clicked tap;
     public GameObject gameOver;
     
 
@@ -14,8 +15,14 @@ public class spawn : MonoBehaviour {
     {
         instance = FindObjectOfType<SpawnPrefab>();
         move = FindObjectOfType<MoveMove>();
+        //tap = GetComponent<Clicked>();
 
 	}
+    /*
+    public void ActiveClicked()
+    {
+        tap.enabled = true;
+    }*/
 	
     public void MoveNow()
     {
