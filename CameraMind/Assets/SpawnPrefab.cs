@@ -76,7 +76,7 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj = Instantiate(soomong_15) as GameObject;
                 if (move._flip)
                 {
-                    _obj.GetComponent<Clicked>().enabled = false;
+                    //_obj.GetComponent<Clicked>().enabled = false;
                 }
                 originScale = soomong_15.transform.localScale;
                 _obj.transform.localScale = originScale;
@@ -105,7 +105,7 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj = Instantiate(soomong_25) as GameObject;
                 if (move._flip)
                 {
-                    _obj.GetComponent<Clicked>().enabled = false;
+                    //_obj.GetComponent<Clicked>().enabled = false;
                 }
                 originScale = soomong_25.transform.localScale;
                 _obj.transform.localScale = originScale;
@@ -133,7 +133,7 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj = Instantiate(soomong_35) as GameObject;
                 if (move._flip)
                 {
-                    _obj.GetComponent<Clicked>().enabled = false;
+                    //_obj.GetComponent<Clicked>().enabled = false;
                 }
                 originScale = soomong_35.transform.localScale;
                 _obj.transform.localScale = originScale;
@@ -160,7 +160,7 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj = Instantiate(soomong_50) as GameObject;
                 if (move._flip)
                 {
-                    _obj.GetComponent<Clicked>().enabled = false;
+                    //_obj.GetComponent<Clicked>().enabled = false;
                 }
                 originScale = soomong_50.transform.localScale;
                 _obj.transform.localScale = originScale;
@@ -187,7 +187,7 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj = Instantiate(soomong_70) as GameObject;
                 if (move._flip)
                 {
-                    _obj.GetComponent<Clicked>().enabled = false;
+                    //_obj.GetComponent<Clicked>().enabled = false;
                 }
                 originScale = soomong_70.transform.localScale;
                 _obj.transform.localScale = originScale;

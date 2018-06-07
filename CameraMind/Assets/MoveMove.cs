@@ -13,6 +13,7 @@ public class MoveMove : MonoBehaviour {
     public bool _flip = true;
     bool _move = false;
     public bool reverse = true;
+    //Quaternion rotation = Quaternion.identity;
     
 
 	// Use this for initialization
@@ -21,6 +22,7 @@ public class MoveMove : MonoBehaviour {
         _move = false;
         reverse = true;
         spawner = FindObjectOfType<SpawnPrefab>();
+        //rotation.eulerAngles = new Vector3(90, 0, 0);
         //TapController = FindObjectOfType<Clicked>();
         //Debug.Log(TapController.a);
         
@@ -195,14 +197,19 @@ public class MoveMove : MonoBehaviour {
 
                 //spawner.obj[i].transform.Translate(new Vector3(distance[i] * Time.deltaTime * 10f, 0, 0));
 
-                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], Time.deltaTime*5.0f);
-              
+                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], Time.deltaTime*7.5f);
+                //spawner.obj[i].transform.Rotate(Vector3.up * Time.deltaTime);
+                //spawner.obj[i].transform.rotation = Quaternion.Lerp(spawner.obj[i].transform.rotation, rotation, Time.deltaTime * 6.5f);
+                //spawner.obj[i].transform.position = Vector3.MoveTowards(spawner.obj[i].transform.position, OppCenterPos[i], (Time.deltaTime + 2.0f) * 6.5f);
+
                 if (spawner.obj[spawner.index - 1].transform.position == OppCenterPos[spawner.index - 1])
                 {
                     _move = false;
                     //Debug.Log("Origin Pos: " + OppCenterPos[spawner.index - 1]);
                     reverse = false;
-                    spawner.obj[spawner.index - 1].GetComponent<Clicked>().enabled = true;
+                    //spawner.obj[spawner.index - 1].GetComponent<Clicked>().enabled = true;
+                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
+                    //Debug.Log(spawner.obj[spawner.index - 1].transform.rotation);
                     //spawner.obj[spawner.index - 1].
                 }
             }
@@ -218,15 +225,17 @@ public class MoveMove : MonoBehaviour {
 
                 //spawner.obj[i].transform.Translate(new Vector3(distance_counter[i] * Time.deltaTime * 10f, 0, 0));
 
-                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], Time.deltaTime*5.0f);
-              
+                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], Time.deltaTime*7.5f);
+                //spawner.obj[i].transform.position = Vector3.MoveTowards(spawner.obj[i].transform.position, spawner.posList[i], (Time.deltaTime+2.0f) * 6.5f);
+
                 if (spawner.obj[spawner.index - 1].transform.position == spawner.posList[spawner.index - 1])
                 {
                     _move = false;
                     //Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
                     //Debug.Log("Origin Pos: " + spawner.posList[spawner.index - 1]);
                     reverse = true;
-                    spawner.obj[spawner.index - 1].GetComponent<Clicked>().enabled = true;
+                    //spawner.obj[spawner.index - 1].GetComponent<Clicked>().enabled = true;
+                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
                 }
             }
             //Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position.x);

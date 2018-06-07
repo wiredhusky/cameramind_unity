@@ -844,6 +844,7 @@ MonoBehaviour:
   OppCenterPos: []
   distance: []
   distance_counter: []
+  _flip: 1
   reverse: 1
 --- !u!4 &863002774
 Transform:
@@ -1407,7 +1408,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1597869038
 RectTransform:
