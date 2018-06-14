@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SpawnPrefab : MonoBehaviour {
 
       
@@ -18,6 +17,8 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject levelTransition;
 
     private MoveMove move;
+
+    
     
     bool allThingsDone = false;
     //float objPosX;
@@ -57,6 +58,32 @@ public class SpawnPrefab : MonoBehaviour {
     Vector3 originScale;
 
     //Vector3 screenPos;    
+
+    private void Start()
+    {
+        
+        move = FindObjectOfType<MoveMove>();
+
+        setScale();
+
+        while (!allThingsDone)
+        {
+            PosSearch();
+        }
+                
+        move.centerPosCalculator();
+        
+        
+        levelTransition.SetActive(true);
+
+        //level = FindObjectOfType<LevelCounter>();
+        //level.counter.text = "Level " + (index + 1).ToString();
+
+        //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
+
+        // SpawnObj();
+        //Invoke("SpawnObj", 1.0f);
+    }
 
     public void SpawnObj()
     {
@@ -566,30 +593,7 @@ public class SpawnPrefab : MonoBehaviour {
         }
         //return randObj;
     } 
-
-    private void Start()
-    {
-        move = FindObjectOfType<MoveMove>();
-
-        setScale();
-
-        while (!allThingsDone)
-        {
-            PosSearch();
-        }
-
-        move.centerPosCalculator();
-        levelTransition.SetActive(true);        
-        
-        //level = FindObjectOfType<LevelCounter>();
-        //level.counter.text = "Level " + (index + 1).ToString();
-
-        //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-        
-        // SpawnObj();
-        //Invoke("SpawnObj", 1.0f);
-        
-    }
+    
 
     public Vector2 PosReturn()
     {

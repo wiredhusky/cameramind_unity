@@ -14,6 +14,7 @@ public class MoveMove : MonoBehaviour {
     bool _move = false;
     public bool reverse = true;
     //Quaternion rotation = Quaternion.identity;
+    //float t;
     
 
 	// Use this for initialization
@@ -189,6 +190,9 @@ public class MoveMove : MonoBehaviour {
 
         //right.eulerAngles = new Vector3(270, 0, 0);
         //float speed = 0.2f;
+        //t += Time.deltaTime * 7.5f;
+        
+        
 
         if (reverse)
         {
@@ -198,6 +202,9 @@ public class MoveMove : MonoBehaviour {
                 //spawner.obj[i].transform.Translate(new Vector3(distance[i] * Time.deltaTime * 10f, 0, 0));
 
                 spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], Time.deltaTime*7.5f);
+                //spawner.obj[i].transform.position = Vector3.SmoothDamp(spawner.obj[i].transform.position, OppCenterPos[i], temp, 1.0f);
+                //spawner.obj[i].transform.Rotate(Vector3.left * Time.deltaTime);
+                //spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], t);
                 //spawner.obj[i].transform.Rotate(Vector3.up * Time.deltaTime);
                 //spawner.obj[i].transform.rotation = Quaternion.Lerp(spawner.obj[i].transform.rotation, rotation, Time.deltaTime * 6.5f);
                 //spawner.obj[i].transform.position = Vector3.MoveTowards(spawner.obj[i].transform.position, OppCenterPos[i], (Time.deltaTime + 2.0f) * 6.5f);
@@ -226,6 +233,9 @@ public class MoveMove : MonoBehaviour {
                 //spawner.obj[i].transform.Translate(new Vector3(distance_counter[i] * Time.deltaTime * 10f, 0, 0));
 
                 spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], Time.deltaTime*7.5f);
+                //spawner.obj[i].transform.position = Vector3.SmoothDamp(spawner.obj[i].transform.position, spawner.posList[i], temp, 1.0f);
+                //spawner.obj[i].transform.Rotate(Vector3.left * Time.deltaTime);
+                //spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], t);
                 //spawner.obj[i].transform.position = Vector3.MoveTowards(spawner.obj[i].transform.position, spawner.posList[i], (Time.deltaTime+2.0f) * 6.5f);
 
                 if (spawner.obj[spawner.index - 1].transform.position == spawner.posList[spawner.index - 1])
@@ -255,6 +265,7 @@ public class MoveMove : MonoBehaviour {
             TempMove();
             //Debug.Log("Target Pos: " + spawner.obj[spawner.index - 1].transform.position);
         }
+        
         
         //float distance;
         /*if (_move)

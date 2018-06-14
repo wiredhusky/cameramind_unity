@@ -28,17 +28,20 @@ public class Clicked : MonoBehaviour {
         }
         else
         {
-            level.obj[level.index - 1].SendMessage("Animate");
+            //level.obj[level.index - 1].SendMessage("Animate");
+            animator = level.obj[level.index - 1].GetComponent<Animator>();
+            animator.SetTrigger("gameOver");
         }
 
         //Debug.Log("Success");
                 
     }
 
+    /*
     public void Animate()
     {
         animator.SetTrigger("gameOver");
-    }
+    }*/
 
     public void GameEnded()
     {
@@ -82,8 +85,13 @@ public class Clicked : MonoBehaviour {
         
         
     }
+    /*
+    private void FixedUpdate()
+    {
+        transform.Rotate(Vector3.forward, 360f*Time.deltaTime);
+    }*/
 
-   
+
 
     /*
     private void Update()

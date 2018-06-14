@@ -12,5 +12,8 @@ EditorBuildSettings:
     path: Assets/first.unity
     guid: 5dd73b4eb6ce28348ada2dacabdc2dd3
   - enabled: 1
+    path: Assets/Flip.unity
+    guid: 307532df33130a840b68a35c03e2d16b
+  - enabled: 1
     path: Assets/GameOver.unity
     guid: 87927845caf2bd6449039feb9c0f1f9b
