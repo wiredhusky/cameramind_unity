@@ -8,7 +8,7 @@ public class Clicked : MonoBehaviour {
     public SpawnPrefab level;
     public Animator animator;
     public MoveMove moveIndex;
-    public float a = 1.0f;
+    //public float a = 1.0f;
     
 
     private void Start()
@@ -20,21 +20,35 @@ public class Clicked : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        //Debug.Log(ComparePos());
-        
-        if (ComparePos())
+        switch (level.scene)
         {
-            transitionType.DoTransition(0);
+            case 0:
+                break;
+            case 1:
+                if (ComparePos_Normal())
+                {
+                    transitionType.DoTransition(0);
+                }
+                else
+                {
+                    //level.obj[level.index - 1].SendMessage("Animate");
+                    animator = level.obj[level.index - 1].GetComponent<Animator>();
+                    animator.SetTrigger("gameOver");
+                }
+                break;
+            case 2:
+                if (ComparePos())
+                {
+                    transitionType.DoTransition(0);
+                }
+                else
+                {
+                    //level.obj[level.index - 1].SendMessage("Animate");
+                    animator = level.obj[level.index - 1].GetComponent<Animator>();
+                    animator.SetTrigger("gameOver");
+                }
+                break;
         }
-        else
-        {
-            //level.obj[level.index - 1].SendMessage("Animate");
-            animator = level.obj[level.index - 1].GetComponent<Animator>();
-            animator.SetTrigger("gameOver");
-        }
-
-        //Debug.Log("Success");
-                
     }
 
     /*
@@ -48,62 +62,49 @@ public class Clicked : MonoBehaviour {
         transitionType.DoTransition(1);
     }
 
-    private bool ComparePos()
+    private bool ComparePos_Normal()
     {
         Vector3 tempPos;
-        
-        //Debug.Log(tempPos.x);
-        //Debug.Log(gameObject.transform.position.x); // obj가 하나 생성되면 index는 1개 올라갔기 때문에 2번째 값을 보내줌
-        if (moveIndex.reverse)
+        tempPos = level.PosReturn();
+        if (gameObject.transform.position == tempPos)
         {
-            tempPos = level.PosReturn();
-            if (gameObject.transform.position == tempPos)
-            {
-                return true;
-
-            }
-            else
-            {
-                return false;
-
-            }
+            return true;
         }
         else
         {
-            tempPos = moveIndex.OppCenterPos[level.index - 1];
-            if (gameObject.transform.position == tempPos)
-            {
-                return true;
-
-            }
-            else
-            {
-                return false;
-
-            }
+            return false;
         }
-        
-        
     }
-    /*
-    private void FixedUpdate()
+
+    private bool ComparePos()
     {
-        transform.Rotate(Vector3.forward, 360f*Time.deltaTime);
-    }*/
+        Vector3 tempPos;
 
-
-
-    /*
-    private void Update()
-    {
-        Debug.Log(transitionType.hasGameEnded);
-        if (transitionType.hasGameEnded)
-        {
-            if (ComparePos())
-            {
-                animator.SetTrigger("gameOver");
-                
-            }
-        }
-    }*/
+        //Debug.Log(tempPos.x);
+        //Debug.Log(gameObject.transform.position.x); // obj가 하나 생성되면 index는 1개 올라갔기 때문에 2번째 값을 보내줌
+        if (moveIndex.reverse)
+                {
+                    tempPos = level.PosReturn();
+                    if (gameObject.transform.position == tempPos)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    tempPos = moveIndex.OppCenterPos[level.index - 1];
+                    if (gameObject.transform.position == tempPos)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+    }
 }

@@ -32,7 +32,17 @@ public class spawn : MonoBehaviour {
 
 	public void objCreator()
     {
-        instance.SpawnObj();
+        switch (instance.scene)
+        {
+            case 0:
+                break;
+            case 1:
+                instance.SpawnObj();
+                break;
+            case 2:
+                instance.SpawnObj_Flip();
+                break;
+        }        
     }
 
     public void SetObj()

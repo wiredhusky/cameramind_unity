@@ -9,11 +9,13 @@ public class LevelCounter : MonoBehaviour {
     public TextMeshProUGUI counter;
     public SpawnPrefab indicator;
     
+    
     // Use this for initialization
     void Start () {
 
         //counter = FindObjectOfType<TextMeshProUGUI>();
         //indicator = gameObject.GetComponent<SpawnPrefab>();
+        //indicator = FindObjectOfType<SpawnPrefab>();
         indicator = FindObjectOfType<SpawnPrefab>();
                 
         counter = gameObject.GetComponent<TextMeshProUGUI>();
@@ -24,6 +26,7 @@ public class LevelCounter : MonoBehaviour {
 
     public void CountLevel()
     {
+        //counter.text = "Level " + (indicator.index + 1).ToString();
         counter.text = "Level " + (indicator.index + 1).ToString();
     }
 

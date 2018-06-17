@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnPrefab : MonoBehaviour {
 
@@ -18,8 +19,9 @@ public class SpawnPrefab : MonoBehaviour {
 
     private MoveMove move;
 
-    
-    
+    public int scene;
+
+
     bool allThingsDone = false;
     //float objPosX;
     //float objPosY;
@@ -61,8 +63,7 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Start()
     {
-        
-        move = FindObjectOfType<MoveMove>();
+        scene = SceneManager.GetActiveScene().buildIndex;
 
         setScale();
 
@@ -70,9 +71,18 @@ public class SpawnPrefab : MonoBehaviour {
         {
             PosSearch();
         }
-                
-        move.centerPosCalculator();
-        
+
+        switch (scene)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                move = FindObjectOfType<MoveMove>();
+                move.centerPosCalculator();
+                break;
+        }
         
         levelTransition.SetActive(true);
 
@@ -86,6 +96,76 @@ public class SpawnPrefab : MonoBehaviour {
     }
 
     public void SpawnObj()
+    {
+        GameObject _obj;
+        Vector2 spawnPos;
+        
+        switch (objType[index])
+        {
+            case 0:
+                _obj = Instantiate(soomong_15) as GameObject;
+               
+                originScale = soomong_15.transform.localScale;
+                _obj.transform.localScale = originScale;
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                _obj.GetComponent<PolygonCollider2D>().enabled = true;                             
+                obj.Add(_obj);
+                index++;
+                
+                break;
+            case 1:
+                _obj = Instantiate(soomong_25) as GameObject;
+                
+                originScale = soomong_25.transform.localScale;
+                _obj.transform.localScale = originScale;
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                _obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+                index++;
+                
+                break;
+            case 2:
+                _obj = Instantiate(soomong_35) as GameObject;
+               
+                originScale = soomong_35.transform.localScale;
+                _obj.transform.localScale = originScale;
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                _obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+                index++;
+                
+                break;
+            case 3:
+                _obj = Instantiate(soomong_50) as GameObject;
+                
+                originScale = soomong_50.transform.localScale;
+                _obj.transform.localScale = originScale;
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                _obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+                index++;
+                
+                break;
+            case 4:
+                _obj = Instantiate(soomong_70) as GameObject;
+             
+                originScale = soomong_70.transform.localScale;
+                _obj.transform.localScale = originScale;
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                _obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+                index++;
+                
+                break;
+        }
+    }
+
+    public void SpawnObj_Flip()
     {
         GameObject _obj;
         Vector2 spawnPos;
