@@ -319,68 +319,7 @@ public class SpawnPrefab : MonoBehaviour {
                 //level.counter.text = "Level " + (index + 1).ToString();
                 break;
         }
-
-        /*
-        while (!isSearched)
-        {
-            type = PosSearch();
-        }
-
-        /*
-        if (isSearched && !allThingsDone)
-        {
-            switch (type)
-            {
-                case 0:
-                    _obj = Instantiate(soomong_15) as GameObject;
-                    originScale = soomong_15.transform.localScale;
-                    _obj.transform.localScale = originScale;
-
-                    spawnPos = new Vector2(objPosX, objPosY);
-
-                    _obj.transform.position = spawnPos;
-                    break;
-                case 1:
-                    _obj = Instantiate(soomong_25) as GameObject;
-                    originScale = soomong_25.transform.localScale;
-                    _obj.transform.localScale = originScale;
-
-                    spawnPos = new Vector2(objPosX, objPosY);
-
-                    _obj.transform.position = spawnPos;
-                    break;
-                case 2:
-                    _obj = Instantiate(soomong_35) as GameObject;
-                    originScale = soomong_35.transform.localScale;
-                    _obj.transform.localScale = originScale;
-
-                    spawnPos = new Vector2(objPosX, objPosY);
-
-                    _obj.transform.position = spawnPos;
-                    break;
-                case 3:
-                    _obj = Instantiate(soomong_50) as GameObject;
-                    originScale = soomong_50.transform.localScale;
-                    _obj.transform.localScale = originScale;
-
-                    spawnPos = new Vector2(objPosX, objPosY);
-
-                    _obj.transform.position = spawnPos;
-                    break;
-                case 4:
-                    _obj = Instantiate(soomong_70) as GameObject;
-                    originScale = soomong_70.transform.localScale;
-                    _obj.transform.localScale = originScale;
-
-                    spawnPos = new Vector2(objPosX, objPosY);
-
-                    _obj.transform.position = spawnPos;
-                    break;
-            }
-            count++;
-            //Debug.Log("Count: " + count);
-        }*/
-        //isSearched = false;
+        
     }
 
     public void PosSearch()
@@ -678,6 +617,11 @@ public class SpawnPrefab : MonoBehaviour {
     public Vector2 PosReturn()
     {
         return posList[index-1];
+    }
+
+    public Vector2 PosReturn_Track(int _index)
+    {
+        return posList[_index];
     }
 
     public void setScale()

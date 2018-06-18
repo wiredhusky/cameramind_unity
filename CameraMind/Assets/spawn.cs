@@ -42,6 +42,9 @@ public class spawn : MonoBehaviour {
             case 2:
                 instance.SpawnObj_Flip();
                 break;
+            case 3:
+                instance.SpawnObj();
+                break;
         }        
     }
 

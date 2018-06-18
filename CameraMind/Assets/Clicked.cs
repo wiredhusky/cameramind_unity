@@ -8,6 +8,7 @@ public class Clicked : MonoBehaviour {
     public SpawnPrefab level;
     public Animator animator;
     public MoveMove moveIndex;
+    int index_track = 0;
     //public float a = 1.0f;
     
 
@@ -27,7 +28,7 @@ public class Clicked : MonoBehaviour {
             case 1:
                 if (ComparePos_Normal())
                 {
-                    transitionType.DoTransition(0);
+                    transitionType.DoTransition(0);       
                 }
                 else
                 {
@@ -35,6 +36,8 @@ public class Clicked : MonoBehaviour {
                     animator = level.obj[level.index - 1].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
                 }
+                //Debug.Log("double click");
+                
                 break;
             case 2:
                 if (ComparePos())
@@ -48,6 +51,25 @@ public class Clicked : MonoBehaviour {
                     animator.SetTrigger("gameOver");
                 }
                 break;
+            case 3:
+                if (ComparePos_Track())
+                {
+                    if(index_track == level.index)
+                    {
+                        transitionType.DoTransition(0);
+                        //This is Problem when first prefab is cliked index_track is initialized!!!!!!!
+                        //index_track = 0;
+                    }
+                }
+                else
+                {
+                    animator = level.obj[level.index - 1].GetComponent<Animator>();
+                    animator.SetTrigger("gameOver");
+                }
+                //OK sign
+                //Trigger Animation or New Sprite
+                //if last tap is last object Do Transition(Success) else Do Transition(Fail)
+                break;
         }
     }
 
@@ -59,13 +81,33 @@ public class Clicked : MonoBehaviour {
 
     public void GameEnded()
     {
-        transitionType.DoTransition(1);
+        transitionType.DoTransition(1);        
+    }
+
+    private bool ComparePos_Track()
+    {
+        Vector3 tempPos;
+        tempPos = level.PosReturn_Track(index_track);
+        //Debug.Log(tempPos);
+        //Debug.Log(gameObject.transform.position);
+        Debug.Log(index_track);
+        if(gameObject.transform.position == tempPos)
+        {
+            index_track++;
+            Debug.Log(index_track);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private bool ComparePos_Normal()
     {
         Vector3 tempPos;
         tempPos = level.PosReturn();
+        
         if (gameObject.transform.position == tempPos)
         {
             return true;
@@ -74,6 +116,7 @@ public class Clicked : MonoBehaviour {
         {
             return false;
         }
+        
     }
 
     private bool ComparePos()
