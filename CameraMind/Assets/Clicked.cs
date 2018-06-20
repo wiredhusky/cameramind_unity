@@ -8,7 +8,7 @@ public class Clicked : MonoBehaviour {
     public SpawnPrefab level;
     public Animator animator;
     public MoveMove moveIndex;
-    int index_track = 0;
+    
     //public float a = 1.0f;
     
 
@@ -54,16 +54,14 @@ public class Clicked : MonoBehaviour {
             case 3:
                 if (ComparePos_Track())
                 {
-                    if(index_track == level.index)
-                    {
-                        transitionType.DoTransition(0);
-                        //This is Problem when first prefab is cliked index_track is initialized!!!!!!!
-                        //index_track = 0;
-                    }
+                    animator = level.obj[level.index_track-1].GetComponent<Animator>();
+                    animator.SetTrigger("Clicked");
+                    //transition is operated in the event of Clicked animation
+                    //Don't use animation EVENT!!!
                 }
                 else
                 {
-                    animator = level.obj[level.index - 1].GetComponent<Animator>();
+                    animator = level.obj[level.index_track].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
                 }
                 //OK sign
@@ -87,14 +85,12 @@ public class Clicked : MonoBehaviour {
     private bool ComparePos_Track()
     {
         Vector3 tempPos;
-        tempPos = level.PosReturn_Track(index_track);
-        //Debug.Log(tempPos);
-        //Debug.Log(gameObject.transform.position);
-        Debug.Log(index_track);
+        tempPos = level.PosReturn_Track(level.index_track);
+        
+        Debug.Log(level.index_track);
         if(gameObject.transform.position == tempPos)
         {
-            index_track++;
-            Debug.Log(index_track);
+            level.index_track++;
             return true;
         }
         else
@@ -119,12 +115,19 @@ public class Clicked : MonoBehaviour {
         
     }
 
+    void DoTransitonTrack()
+    {
+        if (level.index_track == level.index)
+        {
+            transitionType.DoTransition(0);
+            level.index_track = 0;
+        }
+    }
+
     private bool ComparePos()
     {
         Vector3 tempPos;
-
-        //Debug.Log(tempPos.x);
-        //Debug.Log(gameObject.transform.position.x); // obj가 하나 생성되면 index는 1개 올라갔기 때문에 2번째 값을 보내줌
+        
         if (moveIndex.reverse)
                 {
                     tempPos = level.PosReturn();

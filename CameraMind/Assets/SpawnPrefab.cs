@@ -20,6 +20,7 @@ public class SpawnPrefab : MonoBehaviour {
     private MoveMove move;
 
     public int scene;
+    public int index_track = 0;
 
 
     bool allThingsDone = false;

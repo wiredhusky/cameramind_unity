@@ -446,6 +446,7 @@ MonoBehaviour:
   obj: []
   levelTransition: {fileID: 1575772627}
   scene: 0
+  index_track: 0
   index: 0
   onScreenScale_20: {x: 0, y: 0}
   onScreenScale_25: {x: 0, y: 0}
