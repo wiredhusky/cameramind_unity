@@ -27,7 +27,8 @@ public class spawn : MonoBehaviour {
     public void MoveNow()
     {
         //Debug.Log("Move");
-        move.objTranslate();
+        move.objTranslate();  
+        //y position -10.2f
     }
 
 	public void objCreator()
@@ -55,7 +56,17 @@ public class spawn : MonoBehaviour {
 
     public void DeactiveGameOver()
     {
-        gameOver.SetActive(false);
+        gameOver.SetActive(false);        
     }
-	
+
+    private void FixedUpdate()
+    {       
+        if(gameObject.transform.position.y <= -10.1f)
+        {               
+            move._move = true;
+            gameObject.transform.position = new Vector3(0, 10.1f, 0);
+            gameObject.SetActive(false);
+        }
+    }
+
 }

@@ -9,10 +9,10 @@ public class MoveMove : MonoBehaviour {
     public List<Vector3> OppCenterPos = new List<Vector3>();
     
     public bool _flip = true;
-    bool _move = false;
+    public bool _move = false;
     public bool reverse = true;
 
-    float speed;
+    float speed, currentTime, lerpTime=1.5f;
         
 	// Use this for initialization
 	void Start () {
@@ -177,7 +177,10 @@ public class MoveMove : MonoBehaviour {
 
     public void TempMove()
     {
-        speed += (1.0f - speed)*Time.deltaTime * 1.0f;
+        currentTime += Time.deltaTime;
+        speed = currentTime / lerpTime;
+        speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
+        
         if (reverse)
         {
             for (int i = 0; i < spawner.index; i++)
@@ -189,7 +192,7 @@ public class MoveMove : MonoBehaviour {
                     _move = false;
                     reverse = false;
                     spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
-                    speed = 0;
+                    currentTime = 0;
                 }
             }
         }
@@ -204,7 +207,7 @@ public class MoveMove : MonoBehaviour {
                     _move = false;
                     reverse = true;
                     spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
-                    speed = 0;
+                    currentTime = 0;
                 }
             }
         }

@@ -8,7 +8,12 @@ public class Clicked : MonoBehaviour {
     public SpawnPrefab level;
     public Animator animator;
     public MoveMove moveIndex;
-    
+
+    Vector3 destPos, startPos;
+
+    float currentTime, lerpTime=1.5f, speed;
+    bool reverse = true;
+        
     //public float a = 1.0f;
     
 
@@ -16,7 +21,21 @@ public class Clicked : MonoBehaviour {
     {
         transitionType = FindObjectOfType<TransitionControl>();
         level = FindObjectOfType<SpawnPrefab>();
-        moveIndex = FindObjectOfType<MoveMove>();        
+        moveIndex = FindObjectOfType<MoveMove>();
+        startPos = gameObject.transform.position;
+        //Debug.Log(gameObject.transform.localScale);
+
+        if(gameObject.transform.localScale.x == 0.2f)
+        {
+            destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_20.x;
+            destPos.y = gameObject.transform.position.y;
+        }else if(gameObject.transform.localScale.x == 0.25f)
+        {
+            destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_25.x;
+            destPos.y = gameObject.transform.position.y;
+        }
+
+
     }
 
     private void OnMouseDown()
@@ -70,6 +89,43 @@ public class Clicked : MonoBehaviour {
                 break;
         }
     }
+    /*
+    public void MovePrefab()
+    {
+        currentTime += Time.deltaTime;
+        speed = currentTime / lerpTime;
+        speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
+        
+        if (reverse)
+        {
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, moveIndex.OppCenterPosOppCenterPos[i], speed);
+            spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], speed);
+
+                if (spawner.obj[spawner.index - 1].transform.position == OppCenterPos[spawner.index - 1])
+                {
+                    _move = false;
+                    reverse = false;
+                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
+                    currentTime = 0;
+                }
+            
+        }
+        else
+        {
+            for (int i = 0; i < spawner.index; i++)
+            {
+                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], speed);
+
+                if (spawner.obj[spawner.index - 1].transform.position == spawner.posList[spawner.index - 1])
+                {
+                    _move = false;
+                    reverse = true;
+                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
+                    currentTime = 0;
+                }
+            }
+        }
+    }*/
 
     /*
     public void Animate()
