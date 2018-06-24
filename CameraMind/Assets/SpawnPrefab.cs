@@ -180,10 +180,7 @@ public class SpawnPrefab : MonoBehaviour {
         {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;
-                if (move._flip)
-                {
-                    //_obj.GetComponent<Clicked>().enabled = false;
-                }
+                
                 originScale = soomong_15.transform.localScale;
                 _obj.transform.localScale = originScale;
 
@@ -210,10 +207,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 1:
                 _obj = Instantiate(soomong_25) as GameObject;
-                if (move._flip)
-                {
-                    //_obj.GetComponent<Clicked>().enabled = false;
-                }
+                
                 originScale = soomong_25.transform.localScale;
                 _obj.transform.localScale = originScale;
 
@@ -239,10 +233,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 2:
                 _obj = Instantiate(soomong_35) as GameObject;
-                if (move._flip)
-                {
-                    //_obj.GetComponent<Clicked>().enabled = false;
-                }
+                
                 originScale = soomong_35.transform.localScale;
                 _obj.transform.localScale = originScale;
                 if (move.reverse)
@@ -267,10 +258,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 3:
                 _obj = Instantiate(soomong_50) as GameObject;
-                if (move._flip)
-                {
-                    //_obj.GetComponent<Clicked>().enabled = false;
-                }
+                
                 originScale = soomong_50.transform.localScale;
                 _obj.transform.localScale = originScale;
                 if (move.reverse)
@@ -295,10 +283,7 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             case 4:
                 _obj = Instantiate(soomong_70) as GameObject;
-                if (move._flip)
-                {
-                    //_obj.GetComponent<Clicked>().enabled = false;
-                }
+                
                 originScale = soomong_70.transform.localScale;
                 _obj.transform.localScale = originScale;
                 if (move.reverse)

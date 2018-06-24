@@ -8,23 +8,13 @@ public class Clicked : MonoBehaviour {
     public SpawnPrefab level;
     public Animator animator;
     public MoveMove moveIndex;
-
-    Vector3 destPos;
-
-    float currentTime, lerpTime=1.5f, speed;
-
+    
+    
     private void Start()
-    {
-        
+    {   
         transitionType = FindObjectOfType<TransitionControl>();
         level = FindObjectOfType<SpawnPrefab>();
         moveIndex = FindObjectOfType<MoveMove>();
-
-        moveIndex.OnMove += destPosCal;
-        moveIndex.OnMove += MoveSoomong;
-
-        //Debug.Log(gameObject.transform.localScale);
-
     }
 
     private void OnMouseDown()
@@ -43,6 +33,7 @@ public class Clicked : MonoBehaviour {
                     //level.obj[level.index - 1].SendMessage("Animate");
                     animator = level.obj[level.index - 1].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
+                    transitionType.GameOver = true;
                 }
                 //Debug.Log("double click");
                 
@@ -57,12 +48,13 @@ public class Clicked : MonoBehaviour {
                     //level.obj[level.index - 1].SendMessage("Animate");
                     animator = level.obj[level.index - 1].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
+                    transitionType.GameOver = true;
                 }
                 break;
             case 3:
                 if (ComparePos_Track())
                 {
-                    animator = level.obj[level.index_track-1].GetComponent<Animator>();
+                    animator = gameObject.GetComponent<Animator>();
                     animator.SetTrigger("Clicked");
                     //transition is operated in the event of Clicked animation
                     //Don't use animation EVENT!!!
@@ -71,6 +63,7 @@ public class Clicked : MonoBehaviour {
                 {
                     animator = level.obj[level.index_track].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
+                    transitionType.GameOver = true;
                 }
                 //OK sign
                 //Trigger Animation or New Sprite
@@ -79,10 +72,10 @@ public class Clicked : MonoBehaviour {
         }
     }
 
+    /*
     public void destPosCal()
     {
-        Debug.Log("poslist: " + level.posList[0].y);
-        Debug.Log("game object: " + gameObject.transform.position.y);
+        
         if (moveIndex.calOrnot)
         {
             if (gameObject.transform.localScale.x == 0.20f)
@@ -115,14 +108,13 @@ public class Clicked : MonoBehaviour {
                 destPos.y = gameObject.transform.position.y;
                 destPos.z = 0;
             }
-            Debug.Log("one time");
         }
         moveIndex.calOrnot = false;
-    }
+    }*/
 
+        /*
     public void MoveSoomong()
     {
-
         currentTime += Time.deltaTime;
         speed = currentTime / lerpTime;
         speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
@@ -133,18 +125,16 @@ public class Clicked : MonoBehaviour {
             if (moveIndex.reverse)
             {
                 moveIndex.reverse = false;
-            }else{
+            }else
+            {
                 moveIndex.reverse = true;
             }
             moveIndex._move = false;
             moveIndex.calOrnot = true;
             gameObject.GetComponent<PolygonCollider2D>().enabled = true;
             currentTime = 0;
-            Debug.Log("Success");
-            Debug.Log(gameObject.transform.position);
-            Debug.Log(destPos);
         }
-    }
+    }*/
 
 
 

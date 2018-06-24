@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveMove : MonoBehaviour {
-
-    public delegate void GoGo();
-    public GoGo OnMove;
+    
     public SpawnPrefab spawner;
     
     public List<Vector3> OppCenterPos = new List<Vector3>();
     
-    public bool _flip = true;
     public bool _move = false;
     public bool reverse = true;
-    public bool calOrnot = true;
 
     float speed, currentTime, lerpTime=1.5f;
         
@@ -221,7 +217,7 @@ public class MoveMove : MonoBehaviour {
     {   
         if(_move)
         {
-            OnMove();
+            TempMove();
         }
     }
 }

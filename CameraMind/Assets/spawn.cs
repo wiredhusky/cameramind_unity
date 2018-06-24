@@ -61,12 +61,15 @@ public class spawn : MonoBehaviour {
     }
 
     private void FixedUpdate()
-    {       
-        if(gameObject.transform.position.y <= -10.1f)
-        {               
-            move._move = true;
-            gameObject.transform.position = new Vector3(0, 10.1f, 0);
-            gameObject.SetActive(false);
+    {
+        if (instance.scene == 2)
+        {
+            if (gameObject.transform.position.y <= -10.1f)
+            {
+                move._move = true;
+                gameObject.transform.position = new Vector3(0, 10.1f, 0);
+                gameObject.SetActive(false);
+            }
         }
     }
 
