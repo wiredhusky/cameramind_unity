@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SpawnPrefab : MonoBehaviour {
-
-      
+    
     public GameObject soomong_15;
     public GameObject soomong_25;
     public GameObject soomong_35;
@@ -113,7 +112,6 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj.GetComponent<PolygonCollider2D>().enabled = true;                             
                 obj.Add(_obj);
                 index++;
-                
                 break;
             case 1:
                 _obj = Instantiate(soomong_25) as GameObject;
@@ -193,6 +191,7 @@ public class SpawnPrefab : MonoBehaviour {
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
                     _obj.transform.position = spawnPos;
+                    Debug.Log("spawn pos: " + _obj.transform.position.y);
                 }
                 else
                 {
@@ -222,6 +221,7 @@ public class SpawnPrefab : MonoBehaviour {
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
                     _obj.transform.position = spawnPos;
+                    Debug.Log("spawn pos: " + _obj.transform.position.y);
                 }
                 else
                 {
@@ -249,6 +249,7 @@ public class SpawnPrefab : MonoBehaviour {
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
                     _obj.transform.position = spawnPos;
+                    Debug.Log("spawn pos: " + _obj.transform.position.y);
                 }
                 else
                 {
@@ -276,6 +277,7 @@ public class SpawnPrefab : MonoBehaviour {
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
                     _obj.transform.position = spawnPos;
+                    Debug.Log("spawn pos: " + _obj.transform.position.y);
                 }
                 else
                 {
@@ -303,6 +305,7 @@ public class SpawnPrefab : MonoBehaviour {
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
                     _obj.transform.position = spawnPos;
+                    Debug.Log("spawn pos: " + _obj.transform.position.y);
                 }
                 else
                 {
@@ -689,6 +692,8 @@ public class SpawnPrefab : MonoBehaviour {
 
         
     }
+
+   
 
     /*
     private void RandomTest()

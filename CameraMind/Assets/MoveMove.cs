@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveMove : MonoBehaviour {
 
+    public delegate void GoGo();
+    public GoGo OnMove;
     public SpawnPrefab spawner;
     
     public List<Vector3> OppCenterPos = new List<Vector3>();
@@ -11,6 +13,7 @@ public class MoveMove : MonoBehaviour {
     public bool _flip = true;
     public bool _move = false;
     public bool reverse = true;
+    public bool calOrnot = true;
 
     float speed, currentTime, lerpTime=1.5f;
         
@@ -170,10 +173,11 @@ public class MoveMove : MonoBehaviour {
         }
     }
 
+    /*
     public void objTranslate()
     {  
         _move = true;                
-    }
+    }*/
 
     public void TempMove()
     {
@@ -215,9 +219,9 @@ public class MoveMove : MonoBehaviour {
 
     private void FixedUpdate()
     {   
-        if (_move)
+        if(_move)
         {
-            TempMove();
+            OnMove();
         }
     }
 }

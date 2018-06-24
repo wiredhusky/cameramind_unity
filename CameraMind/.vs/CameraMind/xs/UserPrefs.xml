@@ -1,13 +1,15 @@
 ﻿<Properties StartupConfiguration="{05623BF3-EF12-B7AC-894B-736AA88B0421}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MoveMove.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Clicked.cs">
     <Files>
       <File FileName="Assets/MainMenu.cs" Line="14" Column="1" />
-      <File FileName="Assets/Clicked.cs" Line="41" Column="6" />
-      <File FileName="Assets/SpawnPrefab.cs" Line="542" Column="9" />
+      <File FileName="Assets/Clicked.cs" Line="104" Column="54" />
+      <File FileName="Assets/SpawnPrefab.cs" Line="696" Column="9" />
+      <File FileName="Assets/MoveMove.cs" Line="12" Column="31" />
+      <File FileName="Assets/spawn.cs" Line="67" Column="31" />
+      <File FileName="Assets/TransitionControl.cs" Line="29" Column="23" />
       <File FileName="Assets/LevelCounter.cs" Line="23" Column="3" />
-      <File FileName="Assets/TransitionControl.cs" Line="31" Column="19" />
       <File FileName="Assets/GameOverLevel.cs" Line="10" Column="1" />
-      <File FileName="Assets/MoveMove.cs" Line="34" Column="25" />
+      <File FileName="../../../../../../Library/Frameworks/Mono.framework/Versions/5.10.1/lib/mono/msbuild/15.0/bin/Microsoft.Common.CurrentVersion.targets" Line="2067" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

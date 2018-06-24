@@ -24,12 +24,13 @@ public class spawn : MonoBehaviour {
         tap.enabled = true;
     }*/
 	
+    /*
     public void MoveNow()
     {
         //Debug.Log("Move");
         move.objTranslate();  
         //y position -10.2f
-    }
+    }*/
 
 	public void objCreator()
     {

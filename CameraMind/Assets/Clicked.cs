@@ -3,38 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Clicked : MonoBehaviour {
-
+    
     public TransitionControl transitionType;
     public SpawnPrefab level;
     public Animator animator;
     public MoveMove moveIndex;
 
-    Vector3 destPos, startPos;
+    Vector3 destPos;
 
     float currentTime, lerpTime=1.5f, speed;
-    bool reverse = true;
-        
-    //public float a = 1.0f;
-    
 
     private void Start()
     {
+        
         transitionType = FindObjectOfType<TransitionControl>();
         level = FindObjectOfType<SpawnPrefab>();
         moveIndex = FindObjectOfType<MoveMove>();
-        startPos = gameObject.transform.position;
+
+        moveIndex.OnMove += destPosCal;
+        moveIndex.OnMove += MoveSoomong;
+
         //Debug.Log(gameObject.transform.localScale);
-
-        if(gameObject.transform.localScale.x == 0.2f)
-        {
-            destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_20.x;
-            destPos.y = gameObject.transform.position.y;
-        }else if(gameObject.transform.localScale.x == 0.25f)
-        {
-            destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_25.x;
-            destPos.y = gameObject.transform.position.y;
-        }
-
 
     }
 
@@ -89,6 +78,76 @@ public class Clicked : MonoBehaviour {
                 break;
         }
     }
+
+    public void destPosCal()
+    {
+        Debug.Log("poslist: " + level.posList[0].y);
+        Debug.Log("game object: " + gameObject.transform.position.y);
+        if (moveIndex.calOrnot)
+        {
+            if (gameObject.transform.localScale.x == 0.20f)
+            {
+                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_20.x;
+                destPos.y = gameObject.transform.position.y;
+                destPos.z = 0;
+            }
+            else if (gameObject.transform.localScale.x == 0.25f)
+            {
+                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_25.x;
+                destPos.y = gameObject.transform.position.y;
+                destPos.z = 0;
+            }
+            else if (gameObject.transform.localScale.x == 0.30f)
+            {
+                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_30.x;
+                destPos.y = gameObject.transform.position.y;
+                destPos.z = 0;
+            }
+            else if (gameObject.transform.localScale.x == 0.35f)
+            {
+                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_35.x;
+                destPos.y = gameObject.transform.position.y;
+                destPos.z = 0;
+            }
+            else if (gameObject.transform.localScale.x == 0.40f)
+            {
+                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_40.x;
+                destPos.y = gameObject.transform.position.y;
+                destPos.z = 0;
+            }
+            Debug.Log("one time");
+        }
+        moveIndex.calOrnot = false;
+    }
+
+    public void MoveSoomong()
+    {
+
+        currentTime += Time.deltaTime;
+        speed = currentTime / lerpTime;
+        speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
+
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destPos, speed);
+        if(gameObject.transform.position == destPos)
+        {
+            if (moveIndex.reverse)
+            {
+                moveIndex.reverse = false;
+            }else{
+                moveIndex.reverse = true;
+            }
+            moveIndex._move = false;
+            moveIndex.calOrnot = true;
+            gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+            currentTime = 0;
+            Debug.Log("Success");
+            Debug.Log(gameObject.transform.position);
+            Debug.Log(destPos);
+        }
+    }
+
+
+
     /*
     public void MovePrefab()
     {
@@ -183,30 +242,34 @@ public class Clicked : MonoBehaviour {
     private bool ComparePos()
     {
         Vector3 tempPos;
-        
+
         if (moveIndex.reverse)
-                {
-                    tempPos = level.PosReturn();
-                    if (gameObject.transform.position == tempPos)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    tempPos = moveIndex.OppCenterPos[level.index - 1];
-                    if (gameObject.transform.position == tempPos)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+        {
+
+            tempPos = level.PosReturn();
+            if (gameObject.transform.position == tempPos)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            tempPos = moveIndex.OppCenterPos[level.index - 1];
+            Debug.Log("Opp: " + moveIndex.OppCenterPos[level.index - 1]);
+            Debug.Log(gameObject.transform.position);
+            if (gameObject.transform.position == tempPos)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
+
 }
