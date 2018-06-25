@@ -10,7 +10,7 @@ public class MoveMove : MonoBehaviour {
     
     public bool _move = false;
     public bool reverse = true;
-
+    
     float speed, currentTime, lerpTime=1.5f;
         
 	// Use this for initialization

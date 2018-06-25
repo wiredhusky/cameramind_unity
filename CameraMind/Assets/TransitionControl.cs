@@ -9,14 +9,14 @@ public class TransitionControl : MonoBehaviour {
     
     public LevelCounter display;
 
-    public bool GameOver = false;
-    float currentTime = 0;
-
+    public bool GameOver;
+    
 	// Use this for initialization
 	void Start () {
-        display = FindObjectOfType<LevelCounter>();      
+        display = FindObjectOfType<LevelCounter>();
+        GameOver = true;
 	}
-
+    
     public void DoTransition(int type)
     {
         switch (type)
@@ -32,6 +32,7 @@ public class TransitionControl : MonoBehaviour {
         }        
     }
 
+    /*
     private void FixedUpdate()
     {
         if (GameOver)
@@ -44,4 +45,5 @@ public class TransitionControl : MonoBehaviour {
             }
         }
     }
+    */
 }

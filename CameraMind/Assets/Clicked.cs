@@ -15,6 +15,19 @@ public class Clicked : MonoBehaviour {
         transitionType = FindObjectOfType<TransitionControl>();
         level = FindObjectOfType<SpawnPrefab>();
         moveIndex = FindObjectOfType<MoveMove>();
+        
+        //moveIndex.OnIdleAnimation += GoToIdle;
+    }
+
+    IEnumerator TransitionGameOver()
+    {
+        while (transitionType.GameOver)
+        {
+            yield return new WaitForSeconds(0.8f);
+            //Debug.Log("GoGo");
+            transitionType.DoTransition(1);
+            transitionType.GameOver = false;
+        }
     }
 
     private void OnMouseDown()
@@ -33,7 +46,7 @@ public class Clicked : MonoBehaviour {
                     //level.obj[level.index - 1].SendMessage("Animate");
                     animator = level.obj[level.index - 1].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
-                    transitionType.GameOver = true;
+                    StartCoroutine("TransitionGameOver");
                 }
                 //Debug.Log("double click");
                 
@@ -48,7 +61,7 @@ public class Clicked : MonoBehaviour {
                     //level.obj[level.index - 1].SendMessage("Animate");
                     animator = level.obj[level.index - 1].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
-                    transitionType.GameOver = true;
+                    StartCoroutine("TransitionGameOver");
                 }
                 break;
             case 3:
@@ -63,7 +76,7 @@ public class Clicked : MonoBehaviour {
                 {
                     animator = level.obj[level.index_track].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
-                    transitionType.GameOver = true;
+                    StartCoroutine("TransitionGameOver");
                 }
                 //OK sign
                 //Trigger Animation or New Sprite
@@ -260,6 +273,12 @@ public class Clicked : MonoBehaviour {
                 return false;
             }
         }
+    }
+
+    public void GoToIdle()
+    {
+        animator = gameObject.GetComponent<Animator>();
+        animator.SetTrigger("Idle");
     }
 
 }
