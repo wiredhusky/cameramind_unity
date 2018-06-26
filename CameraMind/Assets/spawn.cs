@@ -60,7 +60,7 @@ public class spawn : MonoBehaviour {
         gameOver.SetActive(false);        
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (instance.scene == 2)
         {

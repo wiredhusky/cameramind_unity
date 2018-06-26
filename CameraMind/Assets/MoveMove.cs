@@ -213,7 +213,7 @@ public class MoveMove : MonoBehaviour {
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {   
         if(_move)
         {
