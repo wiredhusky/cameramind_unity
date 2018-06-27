@@ -9,8 +9,6 @@ public class Clicked : MonoBehaviour {
     public Animator animator;
     public MoveMove moveIndex;
     public AnimatorStateInfo currentBaseState;
-    string a;
-    
     
     private void Start()
     {   
@@ -44,7 +42,8 @@ public class Clicked : MonoBehaviour {
             case 1:
                 if (ComparePos_Normal())
                 {
-                    transitionType.DoTransition(0);       
+                    transitionType.DoTransition(0);
+                    level.index++;
                 }
                 else
                 {
@@ -61,6 +60,7 @@ public class Clicked : MonoBehaviour {
                 if (ComparePos())
                 {
                     transitionType.DoTransition(0);
+                    level.index++;
                 }
                 else
                 {
@@ -240,6 +240,7 @@ public class Clicked : MonoBehaviour {
         
     }
 
+    /*
     void DoTransitonTrack()
     {
         if (level.index_track == level.index)
@@ -247,7 +248,7 @@ public class Clicked : MonoBehaviour {
             transitionType.DoTransition(0);
             level.index_track = 0;
         }
-    }
+    }*/
 
     private bool ComparePos()
     {
@@ -299,6 +300,16 @@ public class Clicked : MonoBehaviour {
                 animator.SetTrigger("Idle");                
             }            
         }
+
+        if (currentBaseState.IsName("soomong20_clicked"))
+        {
+            if(currentBaseState.normalizedTime > 1.0f && level.index_track == level.index+1)
+            {
+                level.index++;
+                transitionType.DoTransition(0);
+                level.index_track = 0;
+            }
+        }        
     }
 
 }

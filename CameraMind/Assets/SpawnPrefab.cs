@@ -111,7 +111,7 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj.transform.position = spawnPos;
                 _obj.GetComponent<PolygonCollider2D>().enabled = true;                             
                 obj.Add(_obj);
-                index++;
+                
                 break;
             case 1:
                 _obj = Instantiate(soomong_25) as GameObject;
@@ -122,7 +122,6 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj.transform.position = spawnPos;
                 _obj.GetComponent<PolygonCollider2D>().enabled = true;
                 obj.Add(_obj);
-                index++;
                 
                 break;
             case 2:
@@ -134,7 +133,6 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj.transform.position = spawnPos;
                 _obj.GetComponent<PolygonCollider2D>().enabled = true;
                 obj.Add(_obj);
-                index++;
                 
                 break;
             case 3:
@@ -146,7 +144,6 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj.transform.position = spawnPos;
                 _obj.GetComponent<PolygonCollider2D>().enabled = true;
                 obj.Add(_obj);
-                index++;
                 
                 break;
             case 4:
@@ -158,7 +155,6 @@ public class SpawnPrefab : MonoBehaviour {
                 _obj.transform.position = spawnPos;
                 _obj.GetComponent<PolygonCollider2D>().enabled = true;
                 obj.Add(_obj);
-                index++;
                 
                 break;
         }
@@ -200,7 +196,7 @@ public class SpawnPrefab : MonoBehaviour {
                 //Debug.Log("Lower left x: " + rt.rect.xMin);
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
-                index++;
+                
                 //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -226,7 +222,7 @@ public class SpawnPrefab : MonoBehaviour {
                 Debug.Log("Lower left x: " + rt.rect.xMin);
                 Debug.Log("Upper right x: " + rt.rect.xMax);*/
                 obj.Add(_obj);
-                index++;
+                
                 //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -251,7 +247,7 @@ public class SpawnPrefab : MonoBehaviour {
                 //Debug.Log("Lower left x: " + rt.rect.xMin);
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
-                index++;
+                
                 //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -276,7 +272,7 @@ public class SpawnPrefab : MonoBehaviour {
                 //Debug.Log("Lower left x: " + rt.rect.xMin);
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
-                index++;
+                
                 //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
@@ -302,7 +298,7 @@ public class SpawnPrefab : MonoBehaviour {
                 //Debug.Log("Upper right x: " + rt.rect.xMax);
                 
                 obj.Add(_obj);
-                index++;
+                
                 //_obj.GetComponent<Clicked>().enabled = false;
                 //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
                 //level.counter.text = "Level " + (index + 1).ToString();
