@@ -183,30 +183,30 @@ public class MoveMove : MonoBehaviour {
         
         if (reverse)
         {
-            for (int i = 0; i < spawner.index; i++)
+            for (int i = 0; i <= spawner.index; i++)
             {   
                 spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], speed);
                 
-                if (spawner.obj[spawner.index - 1].transform.position == OppCenterPos[spawner.index - 1])
+                if (spawner.obj[spawner.index].transform.position == OppCenterPos[spawner.index])
                 {   
                     _move = false;
                     reverse = false;
-                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
+                    spawner.obj[spawner.index].GetComponent<PolygonCollider2D>().enabled = true;
                     currentTime = 0;
                 }
             }
         }
         else
         {
-            for (int i = 0; i < spawner.index; i++)
+            for (int i = 0; i <= spawner.index; i++)
             {
                 spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], speed);
                 
-                if (spawner.obj[spawner.index - 1].transform.position == spawner.posList[spawner.index - 1])
+                if (spawner.obj[spawner.index].transform.position == spawner.posList[spawner.index])
                 {   
                     _move = false;
                     reverse = true;
-                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
+                    spawner.obj[spawner.index].GetComponent<PolygonCollider2D>().enabled = true;
                     currentTime = 0;
                 }
             }

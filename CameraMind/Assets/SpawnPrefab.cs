@@ -601,7 +601,7 @@ public class SpawnPrefab : MonoBehaviour {
 
     public Vector2 PosReturn()
     {
-        return posList[index-1];
+        return posList[index];        
     }
 
     public Vector2 PosReturn_Track(int _index)

@@ -9,13 +9,14 @@ public class Clicked : MonoBehaviour {
     public Animator animator;
     public MoveMove moveIndex;
     public AnimatorStateInfo currentBaseState;
+    public Animator animatorFinalObject;
     
     private void Start()
     {   
         transitionType = FindObjectOfType<TransitionControl>();
         level = FindObjectOfType<SpawnPrefab>();
         moveIndex = FindObjectOfType<MoveMove>();
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();        
         
         //moveIndex.OnIdleAnimation += GoToIdle;
     }
@@ -42,13 +43,14 @@ public class Clicked : MonoBehaviour {
             case 1:
                 if (ComparePos_Normal())
                 {
-                    transitionType.DoTransition(0);
                     level.index++;
+                    transitionType.DoTransition(0);
+                    
                 }
                 else
                 {
                     //level.obj[level.index - 1].SendMessage("Animate");
-                    animator = level.obj[level.index - 1].GetComponent<Animator>();
+                    animator = level.obj[level.index].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
                     
                     //StartCoroutine("TransitionGameOver");
@@ -59,13 +61,13 @@ public class Clicked : MonoBehaviour {
             case 2:
                 if (ComparePos())
                 {
-                    transitionType.DoTransition(0);
                     level.index++;
+                    transitionType.DoTransition(0);                    
                 }
                 else
                 {
                     //level.obj[level.index - 1].SendMessage("Animate");
-                    animator = level.obj[level.index - 1].GetComponent<Animator>();
+                    animator = level.obj[level.index].GetComponent<Animator>();
                     animator.SetTrigger("gameOver");
                     //StartCoroutine("TransitionGameOver");
                 }
@@ -73,8 +75,9 @@ public class Clicked : MonoBehaviour {
             case 3:
                 if (ComparePos_Track())
                 {
+                    level.index_track++;
                     animator = gameObject.GetComponent<Animator>();
-                    animator.SetTrigger("Clicked");
+                    animator.SetTrigger("Clicked");                    
                     //transition is operated in the event of Clicked animation
                     //Don't use animation EVENT!!!
                 }
@@ -214,8 +217,7 @@ public class Clicked : MonoBehaviour {
         
         Debug.Log(level.index_track);
         if(gameObject.transform.position == tempPos)
-        {
-            level.index_track++;
+        {            
             return true;
         }
         else
@@ -269,7 +271,7 @@ public class Clicked : MonoBehaviour {
         }
         else
         {
-            tempPos = moveIndex.OppCenterPos[level.index - 1];
+            tempPos = moveIndex.OppCenterPos[level.index];
             //Debug.Log("Opp: " + moveIndex.OppCenterPos[level.index - 1]);
             //Debug.Log(gameObject.transform.position);
             if (gameObject.transform.position == tempPos)
@@ -303,13 +305,14 @@ public class Clicked : MonoBehaviour {
 
         if (currentBaseState.IsName("soomong20_clicked"))
         {
-            if(currentBaseState.normalizedTime > 1.0f && level.index_track == level.index+1)
+            if (currentBaseState.normalizedTime > 1.0f && level.index_track == level.index + 1)
             {
                 level.index++;
                 transitionType.DoTransition(0);
                 level.index_track = 0;
             }
-        }        
+        }           
+        
     }
 
 }
