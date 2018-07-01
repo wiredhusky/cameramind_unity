@@ -929,48 +929,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 893532309}
---- !u!1001 &1104488710
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620390018854196, guid: cd12112604869b2428083a8195f66964, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: cd12112604869b2428083a8195f66964, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1354240259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,5 +1588,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTransition: {fileID: 1575772627}
   gameOver: {fileID: 1354240259}
+  aniSpawn: {fileID: 0}
   display: {fileID: 0}
-  GameOver: 0
+  chkGameOver: 0

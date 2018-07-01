@@ -7,17 +7,15 @@ public class Clicked : MonoBehaviour {
     public TransitionControl transitionType;
     public SpawnPrefab level;
     public Animator animator;
-    public MoveMove moveIndex;
-    public AnimatorStateInfo currentBaseState;
-    public Animator animatorFinalObject;
+    public MoveMove moveIndex;    
     
     private void Start()
     {   
         transitionType = FindObjectOfType<TransitionControl>();
         level = FindObjectOfType<SpawnPrefab>();
         moveIndex = FindObjectOfType<MoveMove>();
-        animator = GetComponent<Animator>();        
-        
+        animator = GetComponent<Animator>();
+        transitionType.goIdle += SetIdle;        
         //moveIndex.OnIdleAnimation += GoToIdle;
     }
 
@@ -48,12 +46,8 @@ public class Clicked : MonoBehaviour {
                     
                 }
                 else
-                {
-                    //level.obj[level.index - 1].SendMessage("Animate");
-                    animator = level.obj[level.index].GetComponent<Animator>();
-                    animator.SetTrigger("gameOver");
-                    
-                    //StartCoroutine("TransitionGameOver");
+                {   
+                    transitionType.GameOver();
                 }
                 //Debug.Log("double click");
                 
@@ -65,31 +59,20 @@ public class Clicked : MonoBehaviour {
                     transitionType.DoTransition(0);                    
                 }
                 else
-                {
-                    //level.obj[level.index - 1].SendMessage("Animate");
-                    animator = level.obj[level.index].GetComponent<Animator>();
-                    animator.SetTrigger("gameOver");
-                    //StartCoroutine("TransitionGameOver");
+                {   
+                    transitionType.GameOver();
                 }
                 break;
             case 3:
                 if (ComparePos_Track())
-                {
-                    level.index_track++;
-                    animator = gameObject.GetComponent<Animator>();
-                    animator.SetTrigger("Clicked");                    
-                    //transition is operated in the event of Clicked animation
-                    //Don't use animation EVENT!!!
+                {                    
+                    transitionType.ChkClicked();
                 }
                 else
                 {
-                    animator = level.obj[level.index_track].GetComponent<Animator>();
-                    animator.SetTrigger("gameOver");
-                    //StartCoroutine("TransitionGameOver");
+                    animator.SetTrigger("Clicked");
+                    transitionType.GameOver();
                 }
-                //OK sign
-                //Trigger Animation or New Sprite
-                //if last tap is last object Do Transition(Success) else Do Transition(Fail)
                 break;
         }
     }
@@ -285,34 +268,9 @@ public class Clicked : MonoBehaviour {
         }
     }
 
-    public void GoToIdle()
+    public void SetIdle()
     {
         //animator = gameObject.GetComponent<Animator>();
         animator.SetTrigger("Idle");
     }
-
-    private void Update()
-    {
-        currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
-        if (currentBaseState.IsName("soomong20_twinkle"))
-        {            
-            if(currentBaseState.normalizedTime > 1.0f)
-            {   
-                transitionType.DoTransition(1);
-                animator.SetTrigger("Idle");                
-            }            
-        }
-
-        if (currentBaseState.IsName("soomong20_clicked"))
-        {
-            if (currentBaseState.normalizedTime > 1.0f && level.index_track == level.index + 1)
-            {
-                level.index++;
-                transitionType.DoTransition(0);
-                level.index_track = 0;
-            }
-        }           
-        
-    }
-
 }

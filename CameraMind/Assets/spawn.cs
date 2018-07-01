@@ -61,7 +61,7 @@ public class spawn : MonoBehaviour {
     }
 
     private void Update()
-    {
+    {   
         if (instance.scene == 2)
         {
             if (gameObject.transform.position.y <= -10.1f)
