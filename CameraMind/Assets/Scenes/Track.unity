@@ -722,11 +722,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1540,6 +1540,10 @@ Prefab:
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 1354240259}
+    - target: {fileID: 1606969204639892, guid: cf7d1266a5660894595e77acf059b260, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf7d1266a5660894595e77acf059b260, type: 2}
   m_IsPrefabParent: 0
@@ -1586,5 +1590,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTransition: {fileID: 1575772627}
   gameOver: {fileID: 1354240259}
+  aniSpawn: {fileID: 0}
   display: {fileID: 0}
-  GameOver: 0
+  chkGameOver: 0

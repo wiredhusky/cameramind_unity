@@ -70,7 +70,7 @@ public class Clicked : MonoBehaviour {
                 }
                 else
                 {
-                    animator.SetTrigger("Clicked");
+                    //animator.SetTrigger("Clicked");
                     transitionType.GameOver();
                 }
                 break;
@@ -198,7 +198,6 @@ public class Clicked : MonoBehaviour {
         Vector3 tempPos;
         tempPos = level.PosReturn_Track(level.index_track);
         
-        Debug.Log(level.index_track);
         if(gameObject.transform.position == tempPos)
         {            
             return true;
@@ -272,5 +271,6 @@ public class Clicked : MonoBehaviour {
     {
         //animator = gameObject.GetComponent<Animator>();
         animator.SetTrigger("Idle");
+        
     }
 }

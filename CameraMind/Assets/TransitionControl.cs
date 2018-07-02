@@ -14,6 +14,8 @@ public class TransitionControl : MonoBehaviour {
     
     public LevelCounter display;
 
+    bool test = true;
+
     public bool chkGameOver;
     Animator animator;
     AnimatorStateInfo currentBaseState;
@@ -60,17 +62,18 @@ public class TransitionControl : MonoBehaviour {
         {   
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_twinkle"))
-            {                
+            {
+                Debug.Log(currentBaseState.normalizedTime);
                 if (currentBaseState.normalizedTime > 1.0f)
-                {
+                {                    
                     DoTransition(1);
-                    animator.SetTrigger("Idle");
+                    //animator.SetTrigger("Clicked");
                 }
-            }
+            }            
         }
 
         if (aniSpawn.scene == 3 && aniSpawn.index_track == aniSpawn.index + 1)
-        {
+        {   
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))
             {
@@ -85,10 +88,17 @@ public class TransitionControl : MonoBehaviour {
 
         if(aniSpawn.scene == 3)
         {
-            if(levelTransition.gameObject.transform.position.y == 0)
-            {
-                goIdle();
+            
+            if (levelTransition.transform.position.y == 0 && test)
+            {                
+                goIdle();                
+                test = false;                
             }
+        }
+
+        if(levelTransition.transform.position.y <= -10.1f)
+        {
+            test = true;
         }
     }
 
