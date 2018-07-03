@@ -8,15 +8,15 @@ public class spawn : MonoBehaviour {
     public MoveMove move;
     //public Clicked tap;
     public GameObject gameOver;
+    public TransitionControl transitionControl;
     
-
     // Use this for initialization
     void Start ()
     {
         instance = FindObjectOfType<SpawnPrefab>();
         move = FindObjectOfType<MoveMove>();
+        transitionControl = FindObjectOfType<TransitionControl>();        
         //tap = GetComponent<Clicked>();
-
 	}
     /*
     public void ActiveClicked()
@@ -46,6 +46,7 @@ public class spawn : MonoBehaviour {
                 break;
             case 3:
                 instance.SpawnObj();
+                transitionControl.eventHandler();
                 break;
         }        
     }

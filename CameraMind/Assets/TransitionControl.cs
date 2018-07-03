@@ -11,11 +11,8 @@ public class TransitionControl : MonoBehaviour {
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
-    
+
     public LevelCounter display;
-
-    bool test = true;
-
     public bool chkGameOver;
     Animator animator;
     AnimatorStateInfo currentBaseState;
@@ -26,6 +23,14 @@ public class TransitionControl : MonoBehaviour {
         aniSpawn = FindObjectOfType<SpawnPrefab>();
         chkGameOver = false;
 	}
+
+    public void eventHandler()
+    {
+        if(goIdle != null)
+        {
+            goIdle();
+        }
+    }
     
     public void GameOver()
     {
@@ -84,21 +89,6 @@ public class TransitionControl : MonoBehaviour {
                     aniSpawn.index_track = 0;
                 }
             }            
-        }
-
-        if(aniSpawn.scene == 3)
-        {
-            
-            if (levelTransition.transform.position.y == 0 && test)
-            {                
-                goIdle();                
-                test = false;                
-            }
-        }
-
-        if(levelTransition.transform.position.y <= -10.1f)
-        {
-            test = true;
         }
     }
 

@@ -1303,6 +1303,7 @@ MonoBehaviour:
   instance: {fileID: 0}
   move: {fileID: 0}
   gameOver: {fileID: 1354240259}
+  transitionControl: {fileID: 0}
 --- !u!1 &1597869034
 GameObject:
   m_ObjectHideFlags: 0

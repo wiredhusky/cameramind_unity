@@ -70,7 +70,7 @@ public class Clicked : MonoBehaviour {
                 }
                 else
                 {
-                    //animator.SetTrigger("Clicked");
+                    animator.SetTrigger("Clicked");
                     transitionType.GameOver();
                 }
                 break;
@@ -270,7 +270,7 @@ public class Clicked : MonoBehaviour {
     public void SetIdle()
     {
         //animator = gameObject.GetComponent<Animator>();
-        animator.SetTrigger("Idle");
+        animator.SetTrigger("Origin");
         
     }
 }
