@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveMove : MonoBehaviour {
     
     public SpawnPrefab spawner;
+    public TransitionControl colControl;
     
     public List<Vector3> OppCenterPos = new List<Vector3>();
     
@@ -17,8 +18,9 @@ public class MoveMove : MonoBehaviour {
 	void Start () {
 
         _move = false;
-        reverse = true;
-        spawner = FindObjectOfType<SpawnPrefab>();
+        reverse = true;        
+        spawner = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
+        colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
 
 	}
 
@@ -191,7 +193,8 @@ public class MoveMove : MonoBehaviour {
                 {   
                     _move = false;
                     reverse = false;
-                    spawner.obj[spawner.index].GetComponent<PolygonCollider2D>().enabled = true;
+                    //spawner.obj[spawner.index].GetComponent<PolygonCollider2D>().enabled = true;
+                    colControl.ActiveHandler();
                     currentTime = 0;
                 }
             }
@@ -206,7 +209,7 @@ public class MoveMove : MonoBehaviour {
                 {   
                     _move = false;
                     reverse = true;
-                    spawner.obj[spawner.index].GetComponent<PolygonCollider2D>().enabled = true;
+                    colControl.ActiveHandler();
                     currentTime = 0;
                 }
             }

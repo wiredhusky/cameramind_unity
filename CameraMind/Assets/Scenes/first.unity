@@ -1240,6 +1240,7 @@ MonoBehaviour:
   instance: {fileID: 0}
   move: {fileID: 0}
   gameOver: {fileID: 1354240259}
+  transitionControl: {fileID: 0}
 --- !u!95 &1575772630
 Animator:
   serializedVersion: 3
@@ -1556,7 +1557,7 @@ GameObject:
   - component: {fileID: 2134077726}
   m_Layer: 0
   m_Name: TransitionControl
-  m_TagString: Untagged
+  m_TagString: transitionControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

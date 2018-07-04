@@ -11,6 +11,8 @@ public class TransitionControl : MonoBehaviour {
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
+    public event GoToIdle activeCollider;
+    public event GoToIdle deactiveCollider;
 
     public LevelCounter display;
     public bool chkGameOver;
@@ -24,12 +26,25 @@ public class TransitionControl : MonoBehaviour {
         chkGameOver = false;
 	}
 
-    public void eventHandler()
+    public void EventHandler()
     {
         if(goIdle != null)
         {
             goIdle();
         }
+    }
+
+    public void ActiveHandler()
+    {
+        if(activeCollider != null)
+        {
+            activeCollider();
+        }
+    }
+
+    public void DeactiveHandler()
+    {
+        deactiveCollider();
     }
     
     public void GameOver()
@@ -44,6 +59,10 @@ public class TransitionControl : MonoBehaviour {
         animator = aniSpawn.obj[aniSpawn.index_track].GetComponent<Animator>();
         animator.SetTrigger("Clicked");
         aniSpawn.index_track++;
+        if(aniSpawn.index_track == aniSpawn.index + 1)
+        {
+            DeactiveHandler();
+        }
     }
 
     public void DoTransition(int type)
@@ -78,7 +97,7 @@ public class TransitionControl : MonoBehaviour {
         }
 
         if (aniSpawn.scene == 3 && aniSpawn.index_track == aniSpawn.index + 1)
-        {   
+        {            
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))
             {

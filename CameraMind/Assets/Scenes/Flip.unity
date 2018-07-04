@@ -166,6 +166,7 @@ MonoBehaviour:
   instance: {fileID: 0}
   move: {fileID: 863002773}
   gameOver: {fileID: 1354240259}
+  transitionControl: {fileID: 0}
 --- !u!95 &31170778
 Animator:
   serializedVersion: 3
@@ -824,7 +825,7 @@ GameObject:
   - component: {fileID: 863002773}
   m_Layer: 0
   m_Name: MovementManager
-  m_TagString: Untagged
+  m_TagString: movement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -841,6 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 1271740384}
+  colControl: {fileID: 0}
   OppCenterPos: []
   _move: 0
   reverse: 1
@@ -1481,7 +1483,7 @@ GameObject:
   - component: {fileID: 2134077726}
   m_Layer: 0
   m_Name: TransitionControl
-  m_TagString: Untagged
+  m_TagString: transitionControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1513,5 +1515,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTransition: {fileID: 31170775}
   gameOver: {fileID: 1354240259}
+  aniSpawn: {fileID: 0}
   display: {fileID: 0}
-  GameOver: 0
+  chkGameOver: 0

@@ -39,16 +39,21 @@ public class spawn : MonoBehaviour {
             case 0:
                 break;
             case 1:
-                instance.SpawnObj();
+                instance.SpawnObj();                
                 break;
             case 2:
                 instance.SpawnObj_Flip();
                 break;
             case 3:
-                instance.SpawnObj();
-                transitionControl.eventHandler();
+                instance.SpawnObj();                
+                transitionControl.EventHandler();
                 break;
         }        
+    }
+
+    public void ActiveCollider()
+    {
+        transitionControl.ActiveHandler();
     }
 
     public void SetObj()

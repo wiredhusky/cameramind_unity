@@ -183,8 +183,7 @@ public class SpawnPrefab : MonoBehaviour {
                 if (move.reverse)
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;
-                    Debug.Log("spawn pos: " + _obj.transform.position.y);
+                    _obj.transform.position = spawnPos;                    
                 }
                 else
                 {
@@ -210,8 +209,7 @@ public class SpawnPrefab : MonoBehaviour {
                 if (move.reverse)
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;
-                    Debug.Log("spawn pos: " + _obj.transform.position.y);
+                    _obj.transform.position = spawnPos;                    
                 }
                 else
                 {
@@ -235,8 +233,7 @@ public class SpawnPrefab : MonoBehaviour {
                 if (move.reverse)
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;
-                    Debug.Log("spawn pos: " + _obj.transform.position.y);
+                    _obj.transform.position = spawnPos;                    
                 }
                 else
                 {
@@ -260,8 +257,7 @@ public class SpawnPrefab : MonoBehaviour {
                 if (move.reverse)
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;
-                    Debug.Log("spawn pos: " + _obj.transform.position.y);
+                    _obj.transform.position = spawnPos;                    
                 }
                 else
                 {
@@ -286,7 +282,6 @@ public class SpawnPrefab : MonoBehaviour {
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
                     _obj.transform.position = spawnPos;
-                    Debug.Log("spawn pos: " + _obj.transform.position.y);
                 }
                 else
                 {

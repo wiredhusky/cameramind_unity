@@ -10,12 +10,18 @@ public class Clicked : MonoBehaviour {
     public MoveMove moveIndex;    
     
     private void Start()
-    {   
-        transitionType = FindObjectOfType<TransitionControl>();
-        level = FindObjectOfType<SpawnPrefab>();
-        moveIndex = FindObjectOfType<MoveMove>();
+    {
+        transitionType = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
+        level = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();        
         animator = GetComponent<Animator>();
-        transitionType.goIdle += SetIdle;        
+        transitionType.goIdle += SetIdle;
+        transitionType.activeCollider += ActiveCol;
+        transitionType.deactiveCollider += DeActiveCol;
+
+        if(level.scene == 2)
+        {
+            moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+        }
         //moveIndex.OnIdleAnimation += GoToIdle;
     }
 
@@ -33,12 +39,14 @@ public class Clicked : MonoBehaviour {
     */
 
     private void OnMouseDown()
-    {
+    {        
+
         switch (level.scene)
         {
             case 0:
                 break;
             case 1:
+                transitionType.DeactiveHandler();
                 if (ComparePos_Normal())
                 {
                     level.index++;
@@ -46,30 +54,35 @@ public class Clicked : MonoBehaviour {
                     
                 }
                 else
-                {   
+                {
+                    transitionType.DeactiveHandler();
                     transitionType.GameOver();
                 }
                 //Debug.Log("double click");
                 
                 break;
             case 2:
+                transitionType.DeactiveHandler();
                 if (ComparePos())
                 {
                     level.index++;
+                    Debug.Log(level.index);
                     transitionType.DoTransition(0);                    
                 }
                 else
-                {   
+                {
+                    transitionType.DeactiveHandler();
                     transitionType.GameOver();
                 }
                 break;
-            case 3:
+            case 3:                
                 if (ComparePos_Track())
                 {                    
                     transitionType.ChkClicked();
                 }
                 else
                 {
+                    transitionType.DeactiveHandler();
                     animator.SetTrigger("Clicked");
                     transitionType.GameOver();
                 }
@@ -272,5 +285,15 @@ public class Clicked : MonoBehaviour {
         //animator = gameObject.GetComponent<Animator>();
         animator.SetTrigger("Origin");
         
+    }
+
+    public void ActiveCol()
+    {
+        gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+    }
+
+    public void DeActiveCol()
+    {
+        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
     }
 }
