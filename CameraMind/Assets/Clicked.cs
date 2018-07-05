@@ -84,8 +84,9 @@ public class Clicked : MonoBehaviour {
                 {
                     transitionType.DeactiveHandler();
                     animator.SetTrigger("Clicked");
-                    transitionType.GameOver();
+                    transitionType.GameOver();                    
                 }
+                Debug.Log(level.index_track);
                 break;
         }
     }
@@ -217,7 +218,11 @@ public class Clicked : MonoBehaviour {
         }
         else
         {
-            return false;
+            /*tempPos = level.obj[level.index_track].transform.position;
+
+            Debug.Log("Clicked Obj: " + gameObject.transform.position);
+            Debug.Log("Index Track: " + tempPos);*/
+            return false;            
         }
     }
 
@@ -261,7 +266,7 @@ public class Clicked : MonoBehaviour {
             }
             else
             {
-                return false;
+                return false;                
             }
         }
         else

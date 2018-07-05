@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 600395692}
   m_Layer: 5
   m_Name: LevelCounter
-  m_TagString: Untagged
+  m_TagString: LevelCounter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1543,6 +1543,10 @@ Prefab:
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 1354240259}
+    - target: {fileID: 1186533411967288, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}
+      propertyPath: m_TagString
+      value: LevelCounter
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}
   m_IsPrefabParent: 0

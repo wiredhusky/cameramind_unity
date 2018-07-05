@@ -21,8 +21,9 @@ public class TransitionControl : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        display = FindObjectOfType<LevelCounter>();
-        aniSpawn = FindObjectOfType<SpawnPrefab>();
+        display = GameObject.FindWithTag("LevelCounter").GetComponent<LevelCounter>();
+        aniSpawn = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
+        //aniSpawn = FindObjectOfType<SpawnPrefab>();
         chkGameOver = false;
 	}
 
@@ -49,7 +50,18 @@ public class TransitionControl : MonoBehaviour {
     
     public void GameOver()
     {
-        animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+        switch (aniSpawn.scene)
+        {
+            case 1:
+                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+                break;
+            case 2:
+                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+                break;
+            case 3:
+                animator = aniSpawn.obj[aniSpawn.index_track].GetComponent<Animator>();
+                break;
+        }        
         animator.SetTrigger("gameOver");
         chkGameOver = true;        
     }
@@ -63,6 +75,7 @@ public class TransitionControl : MonoBehaviour {
         {
             DeactiveHandler();
         }
+        Debug.Log("OK");
     }
 
     public void DoTransition(int type)
@@ -87,7 +100,7 @@ public class TransitionControl : MonoBehaviour {
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_twinkle"))
             {
-                Debug.Log(currentBaseState.normalizedTime);
+                //Debug.Log(currentBaseState.normalizedTime);
                 if (currentBaseState.normalizedTime > 1.0f)
                 {                    
                     DoTransition(1);
@@ -96,7 +109,7 @@ public class TransitionControl : MonoBehaviour {
             }            
         }
 
-        if (aniSpawn.scene == 3 && aniSpawn.index_track == aniSpawn.index + 1)
+        if (aniSpawn.index_track == aniSpawn.index + 1)
         {            
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))

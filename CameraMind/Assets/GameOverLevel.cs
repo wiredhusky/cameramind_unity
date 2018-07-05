@@ -12,7 +12,7 @@ public class GameOverLevel : MonoBehaviour {
 	void Start () {
 
         counter = gameObject.GetComponent<TextMeshProUGUI>();
-        indicator = FindObjectOfType<SpawnPrefab>();
+        indicator = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         counter.text = "Level " + (indicator.index).ToString();
 		
 	}

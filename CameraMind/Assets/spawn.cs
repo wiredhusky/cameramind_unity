@@ -9,13 +9,18 @@ public class spawn : MonoBehaviour {
     //public Clicked tap;
     public GameObject gameOver;
     public TransitionControl transitionControl;
+    //Animator animator;
     
     // Use this for initialization
     void Start ()
     {
-        instance = FindObjectOfType<SpawnPrefab>();
-        move = FindObjectOfType<MoveMove>();
-        transitionControl = FindObjectOfType<TransitionControl>();        
+        instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
+        transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();        
+        if(instance.scene == 2)
+        {
+            move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+        }
+        //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
 	}
     /*
@@ -57,7 +62,8 @@ public class spawn : MonoBehaviour {
     }
 
     public void SetObj()
-    {        
+    {
+        //animator.SetTrigger("getBackIdle");
         gameObject.SetActive(false);
     }
 
@@ -76,7 +82,7 @@ public class spawn : MonoBehaviour {
                 gameObject.transform.position = new Vector3(0, 10.1f, 0);
                 gameObject.SetActive(false);
             }
-        }
+        }        
     }
 
 }
