@@ -6,10 +6,7 @@ using UnityEngine.SceneManagement;
 public class SpawnPrefab : MonoBehaviour {
     
     public GameObject soomong_15;
-    public GameObject soomong_25;
-    public GameObject soomong_35;
-    public GameObject soomong_50;
-    public GameObject soomong_70;
+    public GameObject soomong_colored;
     public List<Vector3> posList = new List<Vector3>();
     public List<int> objType = new List<int>();
     public List<GameObject> obj = new List<GameObject>();
@@ -21,6 +18,8 @@ public class SpawnPrefab : MonoBehaviour {
 
     public int scene;
     public int index_track = 0;
+
+    bool colored = true;
 
 
     bool allThingsDone = false;
@@ -52,15 +51,6 @@ public class SpawnPrefab : MonoBehaviour {
     Vector2 xLimit_40;
 
     Vector3 worldPos;
-    
-    //int count = 0;
-    //int temp = 0;
-
-    //public GameObject temp;
-    //Vector3 mousePos;
-    Vector3 originScale;
-
-    //Vector3 screenPos;    
 
     private void Start()
     {
@@ -84,19 +74,7 @@ public class SpawnPrefab : MonoBehaviour {
                 move.centerPosCalculator();
                 break;
         }
-
-        //animator = levelTransition.GetComponent<Animator>();
-        //animator.SetTrigger("transition");
-
         levelTransition.SetActive(true);
-
-        //level = FindObjectOfType<LevelCounter>();
-        //level.counter.text = "Level " + (index + 1).ToString();
-
-        //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-
-        // SpawnObj();
-        //Invoke("SpawnObj", 1.0f);
     }
 
     public void SpawnObj()
@@ -107,10 +85,8 @@ public class SpawnPrefab : MonoBehaviour {
         switch (objType[index])
         {
             case 0:
-                _obj = Instantiate(soomong_15) as GameObject;
-               
-                originScale = soomong_15.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;                
+                _obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
                 _obj.transform.position = spawnPos;
                 //_obj.GetComponent<PolygonCollider2D>().enabled = true;                             
@@ -118,10 +94,10 @@ public class SpawnPrefab : MonoBehaviour {
                 
                 break;
             case 1:
-                _obj = Instantiate(soomong_25) as GameObject;
                 
-                originScale = soomong_25.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;
+                
+                _obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
                 _obj.transform.position = spawnPos;
                 //_obj.GetComponent<PolygonCollider2D>().enabled = true;
@@ -129,10 +105,9 @@ public class SpawnPrefab : MonoBehaviour {
                 
                 break;
             case 2:
-                _obj = Instantiate(soomong_35) as GameObject;
-               
-                originScale = soomong_35.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;
+                
+                _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
                 _obj.transform.position = spawnPos;
                 //_obj.GetComponent<PolygonCollider2D>().enabled = true;
@@ -140,10 +115,9 @@ public class SpawnPrefab : MonoBehaviour {
                 
                 break;
             case 3:
-                _obj = Instantiate(soomong_50) as GameObject;
+                _obj = Instantiate(soomong_15) as GameObject;
                 
-                originScale = soomong_50.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
                 _obj.transform.position = spawnPos;
                 //_obj.GetComponent<PolygonCollider2D>().enabled = true;
@@ -151,10 +125,9 @@ public class SpawnPrefab : MonoBehaviour {
                 
                 break;
             case 4:
-                _obj = Instantiate(soomong_70) as GameObject;
-             
-                originScale = soomong_70.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;
+                
+                _obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                 spawnPos = new Vector2(posList[index].x, posList[index].y);
                 _obj.transform.position = spawnPos;
                 //_obj.GetComponent<PolygonCollider2D>().enabled = true;
@@ -168,21 +141,12 @@ public class SpawnPrefab : MonoBehaviour {
     {
         GameObject _obj;
         Vector2 spawnPos;
-        //RectTransform rt;
-        //int type = 4;
-
-        /*if (allThingsDone)
-        {
-
-        }*/
 
         switch (objType[index])
         {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;
-                
-                originScale = soomong_15.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
                 if (move.reverse)
                 {
@@ -194,21 +158,11 @@ public class SpawnPrefab : MonoBehaviour {
                     spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
                     _obj.transform.position = spawnPos;
                 }
-                
-                //rt = (RectTransform)_obj.transform;
-                //Debug.Log("Lower left x: " + rt.rect.xMin);
-                //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
-                
-                //_obj.GetComponent<Clicked>().enabled = false;
-                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 1:
-                _obj = Instantiate(soomong_25) as GameObject;
-                
-                originScale = soomong_25.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;
+                _obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
                 if (move.reverse)
                 {
@@ -220,20 +174,11 @@ public class SpawnPrefab : MonoBehaviour {
                     spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
                     _obj.transform.position = spawnPos;
                 }
-                /*rt = (RectTransform)_obj.transform;
-                Debug.Log("Lower left x: " + rt.rect.xMin);
-                Debug.Log("Upper right x: " + rt.rect.xMax);*/
                 obj.Add(_obj);
-                
-                //_obj.GetComponent<Clicked>().enabled = false;
-                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 2:
-                _obj = Instantiate(soomong_35) as GameObject;
-                
-                originScale = soomong_35.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;
+                _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                 if (move.reverse)
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
@@ -244,20 +189,11 @@ public class SpawnPrefab : MonoBehaviour {
                     spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
                     _obj.transform.position = spawnPos;
                 }
-                //rt = (RectTransform)_obj.transform;
-                //Debug.Log("Lower left x: " + rt.rect.xMin);
-                //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
-                
-                //_obj.GetComponent<Clicked>().enabled = false;
-                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 3:
-                _obj = Instantiate(soomong_50) as GameObject;
-                
-                originScale = soomong_50.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;
+                _obj.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
                 if (move.reverse)
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
@@ -268,20 +204,11 @@ public class SpawnPrefab : MonoBehaviour {
                     spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
                     _obj.transform.position = spawnPos;
                 }
-                //rt = (RectTransform)_obj.transform;
-                //Debug.Log("Lower left x: " + rt.rect.xMin);
-                //Debug.Log("Upper right x: " + rt.rect.xMax);
                 obj.Add(_obj);
-                
-                //_obj.GetComponent<Clicked>().enabled = false;
-                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
             case 4:
-                _obj = Instantiate(soomong_70) as GameObject;
-                
-                originScale = soomong_70.transform.localScale;
-                _obj.transform.localScale = originScale;
+                _obj = Instantiate(soomong_15) as GameObject;
+                _obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
                 if (move.reverse)
                 {
                     spawnPos = new Vector2(posList[index].x, posList[index].y);
@@ -292,18 +219,108 @@ public class SpawnPrefab : MonoBehaviour {
                     spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
                     _obj.transform.position = spawnPos;
                 }
-                //rt = (RectTransform)_obj.transform;
-                //Debug.Log("Lower left x: " + rt.rect.xMin);
-                //Debug.Log("Upper right x: " + rt.rect.xMax);
-                
                 obj.Add(_obj);
-                
-                //_obj.GetComponent<Clicked>().enabled = false;
-                //FindObjectOfType<LevelCounter>().counter.text = "Level " + (index + 1).ToString();
-                //level.counter.text = "Level " + (index + 1).ToString();
                 break;
         }
         
+    }
+
+    public void SpawnObj_Twins()
+    {
+        GameObject _obj;
+        Vector2 spawnPos;
+
+        switch (objType[index])
+        {
+            case 0:
+                if (colored)
+                {
+                    _obj = Instantiate(soomong_colored) as GameObject;
+                    colored = false;
+                }
+                else
+                {
+                    _obj = Instantiate(soomong_15) as GameObject;
+                    colored = true;
+                }
+                _obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;                                           
+                obj.Add(_obj);
+                break;
+            case 1:
+                if (colored)
+                {
+                    _obj = Instantiate(soomong_colored) as GameObject;
+                    colored = false;
+                }
+                else
+                {
+                    _obj = Instantiate(soomong_15) as GameObject;
+                    colored = true;
+                }
+                _obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+
+                break;
+            case 2:
+                if (colored)
+                {
+                    _obj = Instantiate(soomong_colored) as GameObject;
+                    colored = false;
+                }
+                else
+                {
+                    _obj = Instantiate(soomong_15) as GameObject;
+                    colored = true;
+                }
+                _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);                
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+
+                break;
+            case 3:
+                if (colored)
+                {
+                    _obj = Instantiate(soomong_colored) as GameObject;
+                    colored = false;
+                }
+                else
+                {
+                    _obj = Instantiate(soomong_15) as GameObject;
+                    colored = true;
+                }
+                _obj.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+
+                break;
+            case 4:
+                if (colored)
+                {
+                    _obj = Instantiate(soomong_colored) as GameObject;
+                    colored = false;
+                }
+                else
+                {
+                    _obj = Instantiate(soomong_15) as GameObject;
+                    colored = true;
+                }
+                _obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                spawnPos = new Vector2(posList[index].x, posList[index].y);
+                _obj.transform.position = spawnPos;
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+
+                break;
+        }
     }
 
     public void PosSearch()
@@ -614,13 +631,13 @@ public class SpawnPrefab : MonoBehaviour {
 
         RectTransform rt;
 
-        float localscale_20 = soomong_15.transform.localScale.x;
-        float localscale_25 = soomong_25.transform.localScale.x;
-        float localscale_30 = soomong_35.transform.localScale.x;
-        float localscale_35 = soomong_50.transform.localScale.x;
-        float localscale_40 = soomong_70.transform.localScale.x;        
+        float localscale_20 = 0.2f;
+        float localscale_25 = 0.25f;
+        float localscale_30 = 0.3f;
+        float localscale_35 = 0.35f;
+        float localscale_40 = 0.4f;
 
-        rt = (RectTransform)soomong_70.transform;
+        rt = (RectTransform)soomong_15.transform;
                 
         temp.x = Screen.width;
         temp.y = Screen.height;

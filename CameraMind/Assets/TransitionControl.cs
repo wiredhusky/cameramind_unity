@@ -61,6 +61,9 @@ public class TransitionControl : MonoBehaviour {
             case 3:
                 animator = aniSpawn.obj[aniSpawn.index_track].GetComponent<Animator>();
                 break;
+            case 4:
+                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+                break;
         }        
         animator.SetTrigger("gameOver");
         chkGameOver = true;        
@@ -123,19 +126,5 @@ public class TransitionControl : MonoBehaviour {
             }            
         }
     }
-
-    /*
-    private void FixedUpdate()
-    {
-        if (GameOver)
-        {
-            currentTime += Time.deltaTime;
-            if(currentTime >= 1.0f)
-            {
-                GameOver = false;
-                DoTransition(1);
-            }
-        }
-    }
-    */
+    
 }

@@ -53,6 +53,9 @@ public class spawn : MonoBehaviour {
                 instance.SpawnObj();                
                 transitionControl.EventHandler();
                 break;
+            case 4:
+                instance.SpawnObj_Twins();
+                break;
         }        
     }
 

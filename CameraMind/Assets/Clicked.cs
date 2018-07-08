@@ -88,124 +88,23 @@ public class Clicked : MonoBehaviour {
                 }
                 Debug.Log(level.index_track);
                 break;
+            case 4:
+                transitionType.DeactiveHandler();
+                if (ComparePos_Normal())
+                {
+                    level.index++;
+                    transitionType.DoTransition(0);
+
+                }
+                else
+                {
+                    transitionType.DeactiveHandler();
+                    transitionType.GameOver();
+                }
+                break;
         }
     }
-
-    /*
-    public void destPosCal()
-    {
-        
-        if (moveIndex.calOrnot)
-        {
-            if (gameObject.transform.localScale.x == 0.20f)
-            {
-                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_20.x;
-                destPos.y = gameObject.transform.position.y;
-                destPos.z = 0;
-            }
-            else if (gameObject.transform.localScale.x == 0.25f)
-            {
-                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_25.x;
-                destPos.y = gameObject.transform.position.y;
-                destPos.z = 0;
-            }
-            else if (gameObject.transform.localScale.x == 0.30f)
-            {
-                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_30.x;
-                destPos.y = gameObject.transform.position.y;
-                destPos.z = 0;
-            }
-            else if (gameObject.transform.localScale.x == 0.35f)
-            {
-                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_35.x;
-                destPos.y = gameObject.transform.position.y;
-                destPos.z = 0;
-            }
-            else if (gameObject.transform.localScale.x == 0.40f)
-            {
-                destPos.x = gameObject.transform.position.x * -1.0f - level.onScreenScale_40.x;
-                destPos.y = gameObject.transform.position.y;
-                destPos.z = 0;
-            }
-        }
-        moveIndex.calOrnot = false;
-    }*/
-
-        /*
-    public void MoveSoomong()
-    {
-        currentTime += Time.deltaTime;
-        speed = currentTime / lerpTime;
-        speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
-
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, destPos, speed);
-        if(gameObject.transform.position == destPos)
-        {
-            if (moveIndex.reverse)
-            {
-                moveIndex.reverse = false;
-            }else
-            {
-                moveIndex.reverse = true;
-            }
-            moveIndex._move = false;
-            moveIndex.calOrnot = true;
-            gameObject.GetComponent<PolygonCollider2D>().enabled = true;
-            currentTime = 0;
-        }
-    }*/
-
-
-
-    /*
-    public void MovePrefab()
-    {
-        currentTime += Time.deltaTime;
-        speed = currentTime / lerpTime;
-        speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
-        
-        if (reverse)
-        {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, moveIndex.OppCenterPosOppCenterPos[i], speed);
-            spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], speed);
-
-                if (spawner.obj[spawner.index - 1].transform.position == OppCenterPos[spawner.index - 1])
-                {
-                    _move = false;
-                    reverse = false;
-                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
-                    currentTime = 0;
-                }
-            
-        }
-        else
-        {
-            for (int i = 0; i < spawner.index; i++)
-            {
-                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], speed);
-
-                if (spawner.obj[spawner.index - 1].transform.position == spawner.posList[spawner.index - 1])
-                {
-                    _move = false;
-                    reverse = true;
-                    spawner.obj[spawner.index - 1].GetComponent<PolygonCollider2D>().enabled = true;
-                    currentTime = 0;
-                }
-            }
-        }
-    }*/
-
-    /*
-    public void Animate()
-    {
-        animator.SetTrigger("gameOver");
-    }*/
-
-        /*
-    public void GameEnded()
-    {
-        transitionType.DoTransition(1);        
-    }*/
+    
 
     private bool ComparePos_Track()
     {
