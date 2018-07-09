@@ -437,10 +437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soomong_15: {fileID: 1173986339302714, guid: cd12112604869b2428083a8195f66964, type: 2}
-  soomong_25: {fileID: 1184513218360154, guid: 1fe147aaae357f04ea81fcc380e0cac5, type: 2}
-  soomong_35: {fileID: 1637608686147554, guid: b42f02a2ae2154a459d5eaf1b586c098, type: 2}
-  soomong_50: {fileID: 1884019610717094, guid: 0f417cfd80b0afc4b83cf3d88dc95cce, type: 2}
-  soomong_70: {fileID: 1380938309550406, guid: 4109fb4922fbcca4891431a3493bc85d, type: 2}
   soomong_colored: {fileID: 1173986339302714, guid: f8d990a8ab32c1d43aa48201fe73def0,
     type: 2}
   posList: []
@@ -449,6 +445,8 @@ MonoBehaviour:
   levelTransition: {fileID: 1575772627}
   scene: 0
   index_track: 0
+  index_twins: 0
+  colored: 1
   index: 0
   onScreenScale_20: {x: 0, y: 0}
   onScreenScale_25: {x: 0, y: 0}

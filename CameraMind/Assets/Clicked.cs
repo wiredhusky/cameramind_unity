@@ -90,8 +90,9 @@ public class Clicked : MonoBehaviour {
                 break;
             case 4:
                 transitionType.DeactiveHandler();
-                if (ComparePos_Normal())
+                if (ComparePosTwins())
                 {
+                    level.index_twins += 2;
                     level.index++;
                     transitionType.DoTransition(0);
 
@@ -107,30 +108,20 @@ public class Clicked : MonoBehaviour {
     
 
     private bool ComparePos_Track()
-    {
-        Vector3 tempPos;
-        tempPos = level.PosReturn_Track(level.index_track);
-        
-        if(gameObject.transform.position == tempPos)
+    {   
+        if(gameObject.transform.position == level.posList[level.index_track])
         {            
             return true;
         }
         else
         {
-            /*tempPos = level.obj[level.index_track].transform.position;
-
-            Debug.Log("Clicked Obj: " + gameObject.transform.position);
-            Debug.Log("Index Track: " + tempPos);*/
             return false;            
         }
     }
 
     private bool ComparePos_Normal()
-    {
-        Vector3 tempPos;
-        tempPos = level.PosReturn();
-        
-        if (gameObject.transform.position == tempPos)
+    {   
+        if (gameObject.transform.position == level.posList[level.index])
         {
             return true;
         }
@@ -141,25 +132,11 @@ public class Clicked : MonoBehaviour {
         
     }
 
-    /*
-    void DoTransitonTrack()
-    {
-        if (level.index_track == level.index)
-        {
-            transitionType.DoTransition(0);
-            level.index_track = 0;
-        }
-    }*/
-
     private bool ComparePos()
     {
-        Vector3 tempPos;
-
         if (moveIndex.reverse)
         {
-
-            tempPos = level.PosReturn();
-            if (gameObject.transform.position == tempPos)
+            if (gameObject.transform.position == level.posList[level.index])
             {
                 return true;
             }
@@ -169,12 +146,37 @@ public class Clicked : MonoBehaviour {
             }
         }
         else
-        {
-            tempPos = moveIndex.OppCenterPos[level.index];
-            //Debug.Log("Opp: " + moveIndex.OppCenterPos[level.index - 1]);
-            //Debug.Log(gameObject.transform.position);
-            if (gameObject.transform.position == tempPos)
+        {   
+            if (gameObject.transform.position == moveIndex.OppCenterPos[level.index])
             {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    private bool ComparePosTwins()
+    {
+        if (level.colored)
+        {
+            if (gameObject.transform.position == level.posList[level.index_twins])
+            {
+                level.colored = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (gameObject.transform.position == level.posList[level.index_twins+1])
+            {
+                level.colored = true;
                 return true;
             }
             else

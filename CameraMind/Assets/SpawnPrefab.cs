@@ -18,8 +18,9 @@ public class SpawnPrefab : MonoBehaviour {
 
     public int scene;
     public int index_track = 0;
+    public int index_twins = 0;
 
-    bool colored = true;
+    public bool colored = true;
 
 
     bool allThingsDone = false;
@@ -228,97 +229,82 @@ public class SpawnPrefab : MonoBehaviour {
     public void SpawnObj_Twins()
     {
         GameObject _obj;
-        Vector2 spawnPos;
 
-        switch (objType[index])
+        switch (objType[index_twins])
         {
             case 0:
-                if (colored)
-                {
-                    _obj = Instantiate(soomong_colored) as GameObject;
-                    colored = false;
-                }
-                else
-                {
-                    _obj = Instantiate(soomong_15) as GameObject;
-                    colored = true;
-                }
+                _obj = Instantiate(soomong_colored) as GameObject;
+                _obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);                
+                _obj.transform.position = posList[index_twins];
+                
+                obj.Add(_obj);                
+                break;
+            case 1:
+                _obj = Instantiate(soomong_colored) as GameObject;
+                _obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                _obj.transform.position = posList[index_twins];
+
+                obj.Add(_obj);
+                break;
+            case 2:
+                _obj = Instantiate(soomong_colored) as GameObject;
+                _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                _obj.transform.position = posList[index_twins];
+
+                obj.Add(_obj);
+                break;
+            case 3:
+                _obj = Instantiate(soomong_colored) as GameObject;
+                _obj.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+                _obj.transform.position = posList[index_twins];
+
+                obj.Add(_obj);
+                break;
+            case 4:
+                _obj = Instantiate(soomong_colored) as GameObject;
+                _obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                _obj.transform.position = posList[index_twins];
+
+                obj.Add(_obj);
+                break;
+        }
+
+        switch (objType[index_twins+1])
+        {
+            case 0:
+                _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-                _obj.transform.position = spawnPos;                                           
+                _obj.transform.position = posList[index_twins+1];
+
                 obj.Add(_obj);
                 break;
             case 1:
-                if (colored)
-                {
-                    _obj = Instantiate(soomong_colored) as GameObject;
-                    colored = false;
-                }
-                else
-                {
-                    _obj = Instantiate(soomong_15) as GameObject;
-                    colored = true;
-                }
+                _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-                _obj.transform.position = spawnPos;
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                obj.Add(_obj);
+                _obj.transform.position = posList[index_twins+1];
 
+                obj.Add(_obj);
                 break;
             case 2:
-                if (colored)
-                {
-                    _obj = Instantiate(soomong_colored) as GameObject;
-                    colored = false;
-                }
-                else
-                {
-                    _obj = Instantiate(soomong_15) as GameObject;
-                    colored = true;
-                }
-                _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);                
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-                _obj.transform.position = spawnPos;
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                obj.Add(_obj);
+                _obj = Instantiate(soomong_15) as GameObject;
+                _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                _obj.transform.position = posList[index_twins+1];
 
+                obj.Add(_obj);
                 break;
             case 3:
-                if (colored)
-                {
-                    _obj = Instantiate(soomong_colored) as GameObject;
-                    colored = false;
-                }
-                else
-                {
-                    _obj = Instantiate(soomong_15) as GameObject;
-                    colored = true;
-                }
+                _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-                _obj.transform.position = spawnPos;
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                obj.Add(_obj);
+                _obj.transform.position = posList[index_twins+1];
 
+                obj.Add(_obj);
                 break;
             case 4:
-                if (colored)
-                {
-                    _obj = Instantiate(soomong_colored) as GameObject;
-                    colored = false;
-                }
-                else
-                {
-                    _obj = Instantiate(soomong_15) as GameObject;
-                    colored = true;
-                }
+                _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-                spawnPos = new Vector2(posList[index].x, posList[index].y);
-                _obj.transform.position = spawnPos;
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                obj.Add(_obj);
+                _obj.transform.position = posList[index_twins+1];
 
+                obj.Add(_obj);
                 break;
         }
     }
@@ -614,7 +600,7 @@ public class SpawnPrefab : MonoBehaviour {
         //return randObj;
     } 
     
-
+    /*
     public Vector2 PosReturn()
     {
         return posList[index];        
@@ -623,7 +609,7 @@ public class SpawnPrefab : MonoBehaviour {
     public Vector2 PosReturn_Track(int _index)
     {
         return posList[_index];
-    }
+    }*/
 
     public void setScale()
     {

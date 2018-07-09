@@ -62,7 +62,14 @@ public class TransitionControl : MonoBehaviour {
                 animator = aniSpawn.obj[aniSpawn.index_track].GetComponent<Animator>();
                 break;
             case 4:
-                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+                if (aniSpawn.colored)
+                {
+                    animator = aniSpawn.obj[aniSpawn.index_twins].GetComponent<Animator>();
+                }
+                else
+                {
+                    animator = aniSpawn.obj[aniSpawn.index_twins+1].GetComponent<Animator>();
+                }                
                 break;
         }        
         animator.SetTrigger("gameOver");
