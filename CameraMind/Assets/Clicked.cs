@@ -14,13 +14,21 @@ public class Clicked : MonoBehaviour {
         transitionType = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
         level = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();        
         animator = GetComponent<Animator>();
-        transitionType.goIdle += SetIdle;
+        
         transitionType.activeCollider += ActiveCol;
         transitionType.deactiveCollider += DeActiveCol;
 
-        if(level.scene == 2)
+        switch (level.scene)
         {
-            moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+            case 2: // Flip Horizontal
+                moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                break;
+            case 3: // Track
+                transitionType.goIdle += SetIdle;
+                break;
+            case 5: //Alone, renedere enabled = true;
+                transitionType.enableRenderer += EnableRenderer;
+                break;
         }
         //moveIndex.OnIdleAnimation += GoToIdle;
     }
@@ -201,5 +209,10 @@ public class Clicked : MonoBehaviour {
     public void DeActiveCol()
     {
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+    }
+
+    public void EnableRenderer()
+    {
+        gameObject.GetComponent<Renderer>().enabled = true;
     }
 }

@@ -13,6 +13,7 @@ public class TransitionControl : MonoBehaviour {
     public event GoToIdle goIdle;
     public event GoToIdle activeCollider;
     public event GoToIdle deactiveCollider;
+    public event GoToIdle enableRenderer;
 
     public LevelCounter display;
     public bool chkGameOver;
@@ -46,6 +47,14 @@ public class TransitionControl : MonoBehaviour {
     public void DeactiveHandler()
     {
         deactiveCollider();
+    }
+
+    public void RendererHandler()
+    {
+        if(aniSpawn.index == 0)
+        {
+            enableRenderer();
+        }        
     }
     
     public void GameOver()
