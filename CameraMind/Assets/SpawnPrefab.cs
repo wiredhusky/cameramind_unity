@@ -66,16 +66,60 @@ public class SpawnPrefab : MonoBehaviour {
 
         switch (scene)
         {
-            case 0:
+            case 0: // main menu
                 break;
-            case 1:
+            case 1: // normal
                 break;
-            case 2:
+            case 2: // horizontal flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
+            case 3: // track
+                break;
+            case 4: // twins
+                break;
+            case 5: // alone
+                break;
+            case 6: //temptation
+                break;
+
+                //double, triple, vertical flip, mix
         }
         levelTransition.SetActive(true);
+
+        Debug.Log("obj count: " + objType.Count);
+        case0 = 0;
+        case1 = 0;
+        case2 = 0;
+        case3 = 0;
+        case4 = 0;
+        for(int i = 0; i < objType.Count; i++)
+        {
+            switch (objType[i])
+            {
+                case 0:
+                    case0++;
+                    break;
+                case 1:
+                    case1++;
+                    break;
+                case 2:
+                    case2++;
+                    break;
+                case 3:
+                    case3++;
+                    break;
+                case 4:
+                    case4++;
+                    break;
+            }
+        }
+        Debug.Log("15: " + case0);
+        Debug.Log("20: " + case1);
+        Debug.Log("25: " + case2);
+        Debug.Log("30: " + case3);
+        Debug.Log("40: " + case4);
+
     }
 
     public void SpawnObj()
