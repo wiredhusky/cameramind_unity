@@ -19,6 +19,7 @@ public class SpawnPrefab : MonoBehaviour {
     public int scene;
     public int index_track = 0;
     public int index_twins = 0;
+    public int index_alone = 50;
 
     public bool colored = true;
 
@@ -81,7 +82,44 @@ public class SpawnPrefab : MonoBehaviour {
             case 4: // twins
                 break;
             case 5: // alone
-                for(int i = 0; i < posList.Count; i++)
+                for (int i = 0; i < 50; i++)
+                {
+                    switch (objType[i])
+                    {
+                        case 0:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 1:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 2:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 3:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 4:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            _obj.transform.position = posList[i];
+                            break;
+                    }
+                    
+                }
+                /*for(int i = 0; i < posList.Count; i++)
                 {
                     switch (objType[i])
                     {
@@ -122,7 +160,7 @@ public class SpawnPrefab : MonoBehaviour {
                                 break;
                         }
                     }
-                }
+                }*/
                 break;
             case 6: //temptation
                 break;
@@ -229,6 +267,68 @@ public class SpawnPrefab : MonoBehaviour {
                 
                 break;
         }
+    }
+
+    public void SpawnObj_Alone()
+    {
+        GameObject _obj;
+        //Vector2 spawnPos;        
+        
+        switch (objType[index_alone])
+        {
+            case 0:
+                _obj = Instantiate(soomong_15) as GameObject;
+                _obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                //spawnPos = new Vector2(posList[index].x, posList[index].y);
+                //_obj.transform.position = spawnPos;
+                _obj.transform.position = posList[index_alone];
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;                             
+                obj.Add(_obj);
+                break;
+            case 1:
+                _obj = Instantiate(soomong_15) as GameObject;
+
+                _obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                //spawnPos = new Vector2(posList[index].x, posList[index].y);
+                //_obj.transform.position = spawnPos;
+                _obj.transform.position = posList[index_alone];
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+                break;
+            case 2:
+                _obj = Instantiate(soomong_15) as GameObject;
+
+                _obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                //spawnPos = new Vector2(posList[index].x, posList[index].y);
+                //_obj.transform.position = spawnPos;
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                _obj.transform.position = posList[index_alone];
+                obj.Add(_obj);
+
+                break;
+            case 3:
+                _obj = Instantiate(soomong_15) as GameObject;
+
+                _obj.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+                //spawnPos = new Vector2(posList[index].x, posList[index].y);
+                //_obj.transform.position = spawnPos;
+                _obj.transform.position = posList[index_alone];
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+
+                break;
+            case 4:
+                _obj = Instantiate(soomong_15) as GameObject;
+
+                _obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                //spawnPos = new Vector2(posList[index].x, posList[index].y);
+                //_obj.transform.position = spawnPos;
+                _obj.transform.position = posList[index_alone];
+                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
+                obj.Add(_obj);
+
+                break;
+        }        
     }
 
     public void SpawnObj_Flip()
@@ -416,7 +516,7 @@ public class SpawnPrefab : MonoBehaviour {
 
         float wLimitLeft;
         float hLimitTop;
-        float margin = 0.1f;
+        float margin = 0.2f;
 
         Vector2 _objPos;
 

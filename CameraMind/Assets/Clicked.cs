@@ -111,6 +111,32 @@ public class Clicked : MonoBehaviour {
                     transitionType.GameOver();
                 }
                 break;
+            case 5:
+                transitionType.DeactiveHandler();
+                if (ComparePos_Alone())
+                {
+                    level.index++;
+                    level.index_alone++;
+                    transitionType.DoTransition(0);
+                }
+                else
+                {
+                    transitionType.DeactiveHandler();
+                    transitionType.GameOver();
+                }
+                break;
+        }
+    }
+
+    private bool ComparePos_Alone()
+    {
+        if (gameObject.transform.position == level.posList[level.index_alone])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     

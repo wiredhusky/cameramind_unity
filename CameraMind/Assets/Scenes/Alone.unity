@@ -446,6 +446,7 @@ MonoBehaviour:
   scene: 0
   index_track: 0
   index_twins: 0
+  index_alone: 50
   colored: 1
   index: 0
   onScreenScale_20: {x: 0, y: 0}

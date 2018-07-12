@@ -45,7 +45,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 1}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.79, y: 3.45}
     newSize: {x: 3.79, y: 3.45}
     adaptiveTilingThreshold: 0.5
@@ -211,6 +211,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.895, y: -1.7249999}
   m_SizeDelta: {x: 3.79, y: 3.45}
-  m_Pivot: {x: -0, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}

@@ -80,6 +80,9 @@ public class TransitionControl : MonoBehaviour {
                     animator = aniSpawn.obj[aniSpawn.index_twins+1].GetComponent<Animator>();
                 }                
                 break;
+            case 5:
+                animator = aniSpawn.obj[aniSpawn.index_alone].GetComponent<Animator>();
+                break;
         }        
         animator.SetTrigger("gameOver");
         chkGameOver = true;        
@@ -128,7 +131,7 @@ public class TransitionControl : MonoBehaviour {
             }            
         }
 
-        if (aniSpawn.index_track == aniSpawn.index + 1)
+        if (aniSpawn.scene == 4 && aniSpawn.index_track == aniSpawn.index + 1)
         {            
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))
