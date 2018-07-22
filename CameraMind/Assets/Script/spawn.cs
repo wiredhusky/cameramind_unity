@@ -23,19 +23,15 @@ public class spawn : MonoBehaviour {
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
 	}
-    /*
-    public void ActiveClicked()
+
+    public void SetAnimation()
     {
-        tap.enabled = true;
-    }*/
-	
-    /*
-    public void MoveNow()
-    {
-        //Debug.Log("Move");
-        move.objTranslate();  
-        //y position -10.2f
-    }*/
+        switch (instance.scene)
+        {
+            case 6: // temptation
+                break;
+        }
+    }
 
 	public void objCreator()
     {
@@ -49,7 +45,7 @@ public class spawn : MonoBehaviour {
             case 2:
                 instance.SpawnObj_Flip();
                 break;
-            case 3:
+            case 3: // track
                 instance.SpawnObj();                
                 transitionControl.EventHandler();
                 break;
@@ -59,6 +55,11 @@ public class spawn : MonoBehaviour {
             case 5: // alone
                 instance.SpawnObj_Alone();
                 transitionControl.RendererHandler();
+                break;
+            case 6: // temptation
+                instance.SpawnObj();
+                break;
+            case 7: // vertical flip
                 break;
         }        
     }

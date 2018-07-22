@@ -28,23 +28,9 @@ public class Clicked : MonoBehaviour {
                 break;
             case 5: //Alone, renedere enabled = true;
                 transitionType.enableRenderer += EnableRenderer;
-                break;
-        }
-        //moveIndex.OnIdleAnimation += GoToIdle;
-    }
-
-    /*
-    IEnumerator TransitionGameOver()
-    {
-        while (transitionType.GameOver)
-        {
-            yield return new WaitForSeconds(0.8f);
-            //Debug.Log("GoGo");
-            transitionType.DoTransition(1);
-            transitionType.GameOver = false;
+                break;            
         }
     }
-    */
 
     private void OnMouseDown()
     {        

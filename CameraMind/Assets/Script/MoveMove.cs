@@ -23,159 +23,49 @@ public class MoveMove : MonoBehaviour {
         colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
 
 	}
-
     
     public void centerPosCalculator()
-    {
-        
+    {   
         Vector3 temp;
         //float distanceTemp;
         temp.x = 0f;
         temp.y = 0f;
         temp.z = 0f;
         
-                        
         for(int i=0; i < spawner.posList.Count; i++)
         {
             
             switch (spawner.objType[i])
             {
                 case 0:
-                    temp.x = spawner.posList[i].x * -1.0f - spawner.onScreenScale_20.x;
-                    temp.y = spawner.posList[i].y;                    
-                    /*distanceTemp = Vector3.Distance(spawner.posList[i], temp);
-
-                    if(spawner.posList[i].x > 0f)
-                    {
-                        distance_counter.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance.Add(distanceTemp);
-                    }
-                    else
-                    {
-                        distance.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance_counter.Add(distanceTemp);
-                    }*/
-                    
+                    temp.x = spawner.posList[i].x * -1.0f;
+                    temp.y = spawner.posList[i].y;
                     OppCenterPos.Add(temp);
-                    /*
-                    Debug.Log(spawner.posList[i].x);
-                    Debug.Log(temp.x);
-                    Debug.Log(temp.y);*/
-                    //Debug.Log(centerPos[i]);
-                    //Debug.Log(OppCenterPos[i]);
                     break;
                 case 1:
-                    temp.x = spawner.posList[i].x * -1.0f - spawner.onScreenScale_25.x;
+                    temp.x = spawner.posList[i].x * -1.0f;
                     temp.y = spawner.posList[i].y;
-                    /*distanceTemp = Vector3.Distance(spawner.posList[i], temp);
-                    if (spawner.posList[i].x > 0f)
-                    {
-                        distance_counter.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance.Add(distanceTemp);
-                    }
-                    else
-                    {
-                        distance.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance_counter.Add(distanceTemp);
-                    }
-                    //Debug.Log(tempX);
-                    /*
-                    Debug.Log(spawner.posList[i].x);
-                    Debug.Log(temp.x);
-                    Debug.Log(temp.y);*/
                     OppCenterPos.Add(temp);
-                    //Debug.Log(centerPos[i]);
-                    //Debug.Log(OppCenterPos[i]);
                     break;
                 case 2:
-                    temp.x = spawner.posList[i].x * -1.0f - spawner.onScreenScale_30.x;
+                    temp.x = spawner.posList[i].x * -1.0f;
                     temp.y = spawner.posList[i].y;
-                    /*distanceTemp = Vector3.Distance(spawner.posList[i], temp);
-                    if (spawner.posList[i].x > 0f)
-                    {
-                        distance_counter.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance.Add(distanceTemp);
-                    }
-                    else
-                    {
-                        distance.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance_counter.Add(distanceTemp);
-                    }*/
-                    //Debug.Log(tempX);
-                    /*
-                    Debug.Log(spawner.posList[i].x);
-                    Debug.Log(temp.x);
-                    Debug.Log(temp.y);*/
                     OppCenterPos.Add(temp);
-                    //Debug.Log(centerPos[i]);
-                    //Debug.Log(OppCenterPos[i]);
                     break;
                 case 3:
-                    temp.x = spawner.posList[i].x * -1.0f - spawner.onScreenScale_35.x;
+                    temp.x = spawner.posList[i].x * -1.0f;
                     temp.y = spawner.posList[i].y;
-                    /*distanceTemp = Vector3.Distance(spawner.posList[i], temp);
-                    if (spawner.posList[i].x > 0f)
-                    {
-                        distance_counter.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance.Add(distanceTemp);
-                    }
-                    else
-                    {
-                        distance.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance_counter.Add(distanceTemp);
-                    }*/
-                    //Debug.Log(tempX);
-                    /*
-                    Debug.Log(spawner.posList[i].x);
-                    Debug.Log(temp.x);
-                    Debug.Log(temp.y);*/
                     OppCenterPos.Add(temp);
-                    //Debug.Log(centerPos[i]);
-                    //Debug.Log(OppCenterPos[i]);
                     break;
                 case 4:
-                    temp.x = spawner.posList[i].x * -1.0f - spawner.onScreenScale_40.x;
+                    temp.x = spawner.posList[i].x * -1.0f;
                     temp.y = spawner.posList[i].y;
-                    /*distanceTemp = Vector3.Distance(spawner.posList[i], temp);
-                    if (spawner.posList[i].x > 0f)
-                    {
-                        distance_counter.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance.Add(distanceTemp);
-                    }
-                    else
-                    {
-                        distance.Add(distanceTemp);
-                        distanceTemp = distanceTemp * -1.0f;
-                        distance_counter.Add(distanceTemp);
-                    }*/
-                    /*
-                    Debug.Log(spawner.posList[i].x);
-                    Debug.Log(temp.x);
-                    Debug.Log(temp.y);*/
-                    //Debug.Log(tempX);
                     OppCenterPos.Add(temp);
-                    //Debug.Log(centerPos[i]);
-                    //Debug.Log(OppCenterPos[i]);
                     break;
             }
             
         }
     }
-
-    /*
-    public void objTranslate()
-    {  
-        _move = true;                
-    }*/
 
     public void TempMove()
     {

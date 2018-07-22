@@ -33,13 +33,6 @@ public class SpawnPrefab : MonoBehaviour {
     float limitTop, limitBottom, limitLeft, limitRight;
 
     bool allThingsDone = false;
-    //float objPosX;
-    //float objPosY;
-    //float TimeLeft = 1.0f;
-    //float TimeLeftFinal = 5.0f;
-    //float nextTime = 0.0f;
-
-    //to remove randObj when some randOjb is failed to search position
     int exceptCase = 5;
     int case0, case1, case2, case3, case4;
 
@@ -51,24 +44,10 @@ public class SpawnPrefab : MonoBehaviour {
     public Vector2 onScreenScale_35;
     public Vector2 onScreenScale_40;
 
-    //objects' boundaries
-    /*
-    Vector2 xLimit_20;
-    Vector2 yLimit_20;
-    Vector2 xLimit_25;
-    Vector2 yLimit_25;
-    Vector2 xLimit_30;
-    Vector2 yLimit_30;
-    Vector2 xLimit_35;
-    Vector2 yLimit_35;
-    Vector2 xLimit_40;
-    Vector2 yLimit_40;
-    */
-
     Vector3 worldPos;
 
     private void Start()
-    {
+    {   
         GameObject _obj;
 
         scene = SceneManager.GetActiveScene().buildIndex;
@@ -288,54 +267,32 @@ public class SpawnPrefab : MonoBehaviour {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
                 _obj.transform.position = posList[index_alone];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;                             
                 obj.Add(_obj);
                 break;
             case 1:
                 _obj = Instantiate(soomong_15) as GameObject;
-
                 _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
                 _obj.transform.position = posList[index_alone];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
                 obj.Add(_obj);
                 break;
             case 2:
                 _obj = Instantiate(soomong_15) as GameObject;
-
                 _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
                 _obj.transform.position = posList[index_alone];
                 obj.Add(_obj);
-
                 break;
             case 3:
                 _obj = Instantiate(soomong_15) as GameObject;
-
                 _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
                 _obj.transform.position = posList[index_alone];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
                 obj.Add(_obj);
-
                 break;
             case 4:
                 _obj = Instantiate(soomong_15) as GameObject;
-
                 _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
                 _obj.transform.position = posList[index_alone];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
                 obj.Add(_obj);
-
                 break;
         }        
     }
@@ -513,7 +470,6 @@ public class SpawnPrefab : MonoBehaviour {
 
     public void PosSearch()
     {
-        bool isSearched = true;
         bool overraped = false;
 
         float randPosX = 0f;
@@ -540,59 +496,30 @@ public class SpawnPrefab : MonoBehaviour {
                     randPosY = Random.Range(limitTop - onScreenScale_20.y * objRadious, limitBottom + onScreenScale_20.y * objRadious);
                     _objPos = new Vector2(randPosX, randPosY);
                     newHalfWidth = onScreenScale_20.x * radious;
-                    //newTriangle.y = onScreenScale_20.y * radious;
                     break;
                 case 1: //soomong 25
                     randPosX = Random.Range(limitLeft + onScreenScale_25.x * objRadious, limitRight - onScreenScale_25.x * objRadious);
                     randPosY = Random.Range(limitTop - onScreenScale_25.y * objRadious, limitBottom + onScreenScale_25.y * objRadious);
                     _objPos = new Vector2(randPosX, randPosY);
                     newHalfWidth = onScreenScale_25.x * radious;
-                    //newTriangle.y = onScreenScale_25.y * radious;
-                    /*
-                    newPosLeftTop.x = randPosX - onScreenScale_25.x * objRadious;
-                    newPosLeftTop.y = randPosY + onScreenScale_25.y * objRadious;
-                    newPosRightBottom.x = randPosX + onScreenScale_25.x * objRadious;
-                    newPosRightBottom.y = randPosY - onScreenScale_25.y * objRadious;
-                    */
                     break;
                 case 2: //soomong 30
                     randPosX = Random.Range(limitLeft + onScreenScale_30.x * objRadious, limitRight - onScreenScale_30.x * objRadious);
                     randPosY = Random.Range(limitTop - onScreenScale_30.y * objRadious, limitBottom + onScreenScale_30.y * objRadious);
                     _objPos = new Vector2(randPosX, randPosY);
                     newHalfWidth = onScreenScale_30.x * radious;
-                    //newTriangle.y = onScreenScale_30.y * radious;
-                    /*
-                    newPosLeftTop.x = randPosX - onScreenScale_30.x * objRadious;
-                    newPosLeftTop.y = randPosY + onScreenScale_30.y * objRadious;
-                    newPosRightBottom.x = randPosX + onScreenScale_30.x * objRadious;
-                    newPosRightBottom.y = randPosY - onScreenScale_30.y * objRadious;
-                    */
                     break;
                 case 3: //soomong 35
                     randPosX = Random.Range(limitLeft + onScreenScale_35.x * objRadious, limitRight - onScreenScale_35.x * objRadious);
                     randPosY = Random.Range(limitTop - onScreenScale_35.y * objRadious, limitBottom + onScreenScale_35.y * objRadious);
                     _objPos = new Vector2(randPosX, randPosY);
                     newHalfWidth = onScreenScale_35.x * radious;
-                    //newTriangle.y = onScreenScale_35.y * radious;
-                    /*
-                    newPosLeftTop.x = randPosX - onScreenScale_35.x * objRadious;
-                    newPosLeftTop.y = randPosY + onScreenScale_35.y * objRadious;
-                    newPosRightBottom.x = randPosX + onScreenScale_35.x * objRadious;
-                    newPosRightBottom.y = randPosY - onScreenScale_35.y * objRadious;
-                    */
                     break;
                 case 4: //soomong 40
                     randPosX = Random.Range(limitLeft + onScreenScale_40.x * objRadious, limitRight - onScreenScale_40.x * objRadious);
                     randPosY = Random.Range(limitTop - onScreenScale_40.y * objRadious, limitBottom + onScreenScale_40.y * objRadious);
                     _objPos = new Vector2(randPosX, randPosY);
                     newHalfWidth = onScreenScale_40.x * radious;
-                    //newTriangle.y = onScreenScale_40.y * radious;
-                    /*
-                    newPosLeftTop.x = randPosX - onScreenScale_40.x * objRadious;
-                    newPosLeftTop.y = randPosY + onScreenScale_40.y * objRadious;
-                    newPosRightBottom.x = randPosX + onScreenScale_40.x * objRadious;
-                    newPosRightBottom.y = randPosY - onScreenScale_40.y * objRadious;
-                    */
                     break;
             }
 
@@ -601,7 +528,6 @@ public class SpawnPrefab : MonoBehaviour {
                 _objPos = new Vector2(randPosX, randPosY);
                 posList.Add(_objPos);
                 objType.Add(randObj);
-                isSearched = true;
             }
             else
             {
@@ -616,13 +542,6 @@ public class SpawnPrefab : MonoBehaviour {
                                 randPosY = Random.Range(limitTop - onScreenScale_20.y * objRadious, limitBottom + onScreenScale_20.y * objRadious);
                                 _objPos = new Vector2(randPosX, randPosY);
                                 newHalfWidth = onScreenScale_20.x * radious;
-                                //newTriangle.y = onScreenScale_20.y * radious;
-                                /*
-                                newPosLeftTop.x = randPosX - onScreenScale_20.x * objRadious;
-                                newPosLeftTop.y = randPosY + onScreenScale_20.y * objRadious;
-                                newPosRightBottom.x = randPosX + onScreenScale_20.x * objRadious;
-                                newPosRightBottom.y = randPosY - onScreenScale_20.y * objRadious;
-                                */
                                 overraped = false;
                                 break;
                             case 1:
@@ -630,13 +549,6 @@ public class SpawnPrefab : MonoBehaviour {
                                 randPosY = Random.Range(limitTop - onScreenScale_25.y * objRadious, limitBottom + onScreenScale_25.y * objRadious);
                                 _objPos = new Vector2(randPosX, randPosY);
                                 newHalfWidth = onScreenScale_25.x * radious;
-                                //newTriangle.y = onScreenScale_25.y * radious;
-                                /*
-                                newPosLeftTop.x = randPosX - onScreenScale_25.x * objRadious;
-                                newPosLeftTop.y = randPosY + onScreenScale_25.y * objRadious;
-                                newPosRightBottom.x = randPosX + onScreenScale_25.x * objRadious;
-                                newPosRightBottom.y = randPosY - onScreenScale_25.y * objRadious;
-                                */
                                 overraped = false;
                                 break;
                             case 2:
@@ -644,13 +556,6 @@ public class SpawnPrefab : MonoBehaviour {
                                 randPosY = Random.Range(limitTop - onScreenScale_30.y * objRadious, limitBottom + onScreenScale_30.y * objRadious);
                                 _objPos = new Vector2(randPosX, randPosY);
                                 newHalfWidth = onScreenScale_30.x * radious;
-                                //newTriangle.y = onScreenScale_30.y * radious;
-                                /*
-                                newPosLeftTop.x = randPosX - onScreenScale_30.x * objRadious;
-                                newPosLeftTop.y = randPosY + onScreenScale_30.y * objRadious;
-                                newPosRightBottom.x = randPosX + onScreenScale_30.x * objRadious;
-                                newPosRightBottom.y = randPosY - onScreenScale_30.y * objRadious;
-                                */
                                 overraped = false;
                                 break;
                             case 3:
@@ -658,13 +563,6 @@ public class SpawnPrefab : MonoBehaviour {
                                 randPosY = Random.Range(limitTop - onScreenScale_35.y * objRadious, limitBottom + onScreenScale_35.y * objRadious);
                                 _objPos = new Vector2(randPosX, randPosY);
                                 newHalfWidth = onScreenScale_35.x * radious;
-                                //newTriangle.y = onScreenScale_35.y * radious;
-                                /*
-                                newPosLeftTop.x = randPosX - onScreenScale_35.x * objRadious;
-                                newPosLeftTop.y = randPosY + onScreenScale_35.y * objRadious;
-                                newPosRightBottom.x = randPosX + onScreenScale_35.x * objRadious;
-                                newPosRightBottom.y = randPosY - onScreenScale_35.y * objRadious;
-                                */
                                 overraped = false;
                                 break;
                             case 4:
@@ -672,13 +570,6 @@ public class SpawnPrefab : MonoBehaviour {
                                 randPosY = Random.Range(limitTop - onScreenScale_40.y * objRadious, limitBottom + onScreenScale_40.y * objRadious);
                                 _objPos = new Vector2(randPosX, randPosY);
                                 newHalfWidth = onScreenScale_40.x * radious;
-                                //newTriangle.y = onScreenScale_40.y * radious;
-                                /*
-                                newPosLeftTop.x = randPosX - onScreenScale_40.x * objRadious;
-                                newPosLeftTop.y = randPosY + onScreenScale_40.y * objRadious;
-                                newPosRightBottom.x = randPosX + onScreenScale_40.x * objRadious;
-                                newPosRightBottom.y = randPosY - onScreenScale_40.y * objRadious;
-                                */
                                 overraped = false;
                                 break;
                         }
@@ -690,59 +581,22 @@ public class SpawnPrefab : MonoBehaviour {
                         {
                             case 0:
                                 preHalfWidth = onScreenScale_20.x * radious;
-                                //preTriangle.y = onScreenScale_20.y * radious;
-                                /*
-                                prePosLeftTop.x = posList[i2].x - onScreenScale_20.x * objRadious;
-                                prePosLeftTop.y = posList[i2].y + onScreenScale_20.y * objRadious;
-                                prePosRightBottom.x = posList[i2].x + onScreenScale_20.x * objRadious;
-                                prePosRightBottom.y = posList[i2].y - onScreenScale_20.y * objRadious;
-                                */
                                 break;
                             case 1:
                                 preHalfWidth = onScreenScale_25.x * radious;
-                                //preTriangle.y = onScreenScale_25.y * radious;
-                                /*
-                                prePosLeftTop.x = posList[i2].x - onScreenScale_25.x * objRadious;
-                                prePosLeftTop.y = posList[i2].y + onScreenScale_25.y * objRadious;
-                                prePosRightBottom.x = posList[i2].x + onScreenScale_25.x * objRadious;
-                                prePosRightBottom.y = posList[i2].y - onScreenScale_25.y * objRadious;
-                                */
                                 break;
                             case 2:
                                 preHalfWidth = onScreenScale_30.x * radious;
-                                //preTriangle.y = onScreenScale_30.y * radious;
-                                /*
-                                prePosLeftTop.x = posList[i2].x - onScreenScale_30.x * objRadious;
-                                prePosLeftTop.y = posList[i2].y + onScreenScale_30.y * objRadious;
-                                prePosRightBottom.x = posList[i2].x + onScreenScale_30.x * objRadious;
-                                prePosRightBottom.y = posList[i2].y - onScreenScale_30.y * objRadious;
-                                */
                                 break;
                             case 3:
                                 preHalfWidth = onScreenScale_35.x * radious;
-                                //preTriangle.y = onScreenScale_35.y * radious;
-                                /*
-                                prePosLeftTop.x = posList[i2].x - onScreenScale_35.x * objRadious;
-                                prePosLeftTop.y = posList[i2].y + onScreenScale_35.y * objRadious;
-                                prePosRightBottom.x = posList[i2].x + onScreenScale_35.x * objRadious;
-                                prePosRightBottom.y = posList[i2].y - onScreenScale_35.y * objRadious;
-                                */
                                 break;
                             case 4:
                                 preHalfWidth = onScreenScale_40.x * radious;
-                                //preTriangle.y = onScreenScale_40.y * radious;
-                                /*
-                                prePosLeftTop.x = posList[i2].x - onScreenScale_40.x * objRadious;
-                                prePosLeftTop.y = posList[i2].y + onScreenScale_40.y * objRadious;
-                                prePosRightBottom.x = posList[i2].x + onScreenScale_40.x * objRadious;
-                                prePosRightBottom.y = posList[i2].y - onScreenScale_40.y * objRadious;
-                                */
                                 break;
                         }
                         posListTemp = new Vector2(posList[i2].x, posList[i2].y);
                         distance = (posListTemp - _objPos).sqrMagnitude;
-                        //triangleSquare.x = (preHalfWidth + newHalfWidth) * (preHalfWidth + newHalfWidth);
-                        //triangleSquare.y = (preTriangle.y + newTriangle.y) * (preTriangle.y + newTriangle.y);
                         sumOfHalfWidth = (preHalfWidth + newHalfWidth) * (preHalfWidth + newHalfWidth);
 
                         if (distance <= sumOfHalfWidth)
@@ -759,67 +613,10 @@ public class SpawnPrefab : MonoBehaviour {
                         objType.Add(randObj);                        
                         break;
                     }
-
-                    /*
-                    //if the left-top pos of new obj is in the current obj
-                    if (newPosLeftTop.x >= prePosLeftTop.x && newPosLeftTop.x <= prePosRightBottom.x && newPosLeftTop.y <= prePosLeftTop.y && newPosLeftTop.y >= prePosRightBottom.y) // left-top
-                    {
-                        overraped = true;
-                        //Debug.Log("Left Top Overraped");
-                        break;
-                    } 
-                    else if (newPosRightBottom.x >= prePosLeftTop.x && newPosRightBottom.x <= prePosRightBottom.x && newPosLeftTop.y <= prePosLeftTop.y && newPosLeftTop.y >= prePosRightBottom.y) // right-top
-                    {
-                        overraped = true;
-                        //Debug.Log("Right Top Overraped");
-                        break;
-                    }
-                    else if (newPosLeftTop.x >= prePosLeftTop.x && newPosLeftTop.x <= prePosRightBottom.x && newPosRightBottom.y <= prePosLeftTop.y && newPosRightBottom.y >= prePosRightBottom.y) // left-bottom
-                    {
-                        overraped = true;
-                        //Debug.Log("left bottom Overraped");
-                        break;
-                    }
-                    else if (newPosRightBottom.x >= prePosLeftTop.x && newPosRightBottom.x <= prePosRightBottom.x && newPosRightBottom.y <= prePosLeftTop.y && newPosRightBottom.y >= prePosRightBottom.y) // right-bottom
-                    {
-                        overraped = true;
-                        //Debug.Log("right bottom Overraped");
-                        break;
-                    }
-
-                    //compare old obj to new obj
-                    if (posList[i2].x >= randPosX && posList[i2].x <= comPosX && posList[i2].y >= comPosY && posList[i2].y <= randPosY) // left-top
-                    {
-                        overraped = true;
-                        //Debug.Log("Overraped");
-                        break;
-                    }else if(oriPosX >= randPosX && oriPosX <= comPosX && posList[i2].y >= comPosY && posList[i2].y <= randPosY) // right-top
-                    {
-                        overraped = true;
-                        //Debug.Log("Overraped");
-                        break;
-                    }else if(posList[i2].x >= randPosX && posList[i2].x <= comPosX && oriPosY >= comPosY && oriPosY <= randPosY) // left-bottom
-                    {
-                        overraped = true;
-                        //Debug.Log("Overraped");
-                        break;
-                    }else if(oriPosX >= randPosX && oriPosX <= comPosX && oriPosY >= comPosY && oriPosY <= randPosY) // right-bottom
-                    {
-                        overraped = true;
-                       // Debug.Log("Overraped");
-                        break;
-                    }
-                    */
-                    //searched
-                }
-
-                if(overraped == true)
-                {
-                    isSearched = false;
                 }
 
                 //when loop is repeated 300 times
-                if (isSearched == false)
+                if (overraped == true)
                 {
                     switch (randObj)
                     {
@@ -835,22 +632,22 @@ public class SpawnPrefab : MonoBehaviour {
                             break;
                         case 1:
                             exceptCase = 1;
-                            isSearched = true;
+                            overraped = false;
                             Debug.Log("25 is removed");
                             break;
                         case 2:
                             exceptCase = 2;
-                            isSearched = true;
+                            overraped = false;
                             Debug.Log("30 is removed");
                             break;
                         case 3:
                             exceptCase = 3;
-                            isSearched = true;
+                            overraped = false;
                             Debug.Log("35 is removed");
                             break;
                         case 4:
                             exceptCase = 4;
-                            isSearched = true;
+                            overraped = false;
                             Debug.Log("40 is removed");
                             break;
                     }
