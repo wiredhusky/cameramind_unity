@@ -28,42 +28,26 @@ public class MoveMove : MonoBehaviour {
     {   
         Vector3 temp;
         //float distanceTemp;
-        temp.x = 0f;
-        temp.y = 0f;
-        temp.z = 0f;
-        
-        for(int i=0; i < spawner.posList.Count; i++)
+        temp.z = 0;
+
+        switch (spawner.scene)
         {
-            
-            switch (spawner.objType[i])
-            {
-                case 0:
+            case 2:
+                for (int i = 0; i < spawner.posList.Count; i++)
+                {
                     temp.x = spawner.posList[i].x * -1.0f;
                     temp.y = spawner.posList[i].y;
                     OppCenterPos.Add(temp);
-                    break;
-                case 1:
-                    temp.x = spawner.posList[i].x * -1.0f;
-                    temp.y = spawner.posList[i].y;
+                }
+                break;
+            case 7:
+                for (int i = 0; i < spawner.posList.Count; i++)
+                {
+                    temp.x = spawner.posList[i].x;
+                    temp.y = spawner.posList[i].y * -1.0f;
                     OppCenterPos.Add(temp);
-                    break;
-                case 2:
-                    temp.x = spawner.posList[i].x * -1.0f;
-                    temp.y = spawner.posList[i].y;
-                    OppCenterPos.Add(temp);
-                    break;
-                case 3:
-                    temp.x = spawner.posList[i].x * -1.0f;
-                    temp.y = spawner.posList[i].y;
-                    OppCenterPos.Add(temp);
-                    break;
-                case 4:
-                    temp.x = spawner.posList[i].x * -1.0f;
-                    temp.y = spawner.posList[i].y;
-                    OppCenterPos.Add(temp);
-                    break;
-            }
-            
+                }
+                break;
         }
     }
 

@@ -9,7 +9,9 @@ public class spawn : MonoBehaviour {
     //public Clicked tap;
     public GameObject gameOver;
     public TransitionControl transitionControl;
-    //Animator animator;
+
+    Animator animator;
+    int randObj, randAni;
     
     // Use this for initialization
     void Start ()
@@ -29,6 +31,23 @@ public class spawn : MonoBehaviour {
         switch (instance.scene)
         {
             case 6: // temptation
+                randObj = Random.Range(0, instance.index);
+                randAni = Random.Range(0, 3);
+                switch (randAni)
+                {
+                    case 0:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("rotation");
+                        break;
+                    case 1:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("angry");
+                        break;
+                    case 2:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("shaking");
+                        break;
+                }
                 break;
         }
     }
@@ -60,6 +79,7 @@ public class spawn : MonoBehaviour {
                 instance.SpawnObj();
                 break;
             case 7: // vertical flip
+                instance.SpawnObj_Flip();
                 break;
         }        
     }
@@ -80,17 +100,9 @@ public class spawn : MonoBehaviour {
         gameOver.SetActive(false);        
     }
 
-    private void Update()
-    {   
-        if (instance.scene == 2)
-        {
-            if (gameObject.transform.position.y <= -10.1f)
-            {
-                move._move = true;
-                gameObject.transform.position = new Vector3(0, 10.1f, 0);
-                gameObject.SetActive(false);
-            }
-        }        
+    public void MovePrefab()
+    {
+        move._move = true;
     }
 
 }

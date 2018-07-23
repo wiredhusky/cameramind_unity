@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Temptation.unity
+- path: Assets/Scenes/Vertical Flip.unity
   isLoaded: 1
   isActive: 1

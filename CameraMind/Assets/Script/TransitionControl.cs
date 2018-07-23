@@ -83,6 +83,12 @@ public class TransitionControl : MonoBehaviour {
             case 5:
                 animator = aniSpawn.obj[aniSpawn.index_alone].GetComponent<Animator>();
                 break;
+            case 6: // temptation
+                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+                break;
+            case 7: // vertical flip
+                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+                break;
         }        
         animator.SetTrigger("gameOver");
         chkGameOver = true;        

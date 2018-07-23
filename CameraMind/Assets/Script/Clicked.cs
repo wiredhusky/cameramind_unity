@@ -28,7 +28,10 @@ public class Clicked : MonoBehaviour {
                 break;
             case 5: //Alone, renedere enabled = true;
                 transitionType.enableRenderer += EnableRenderer;
-                break;            
+                break;
+            case 7:
+                moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                break;
         }
     }
 
@@ -49,7 +52,6 @@ public class Clicked : MonoBehaviour {
                 }
                 else
                 {
-                    transitionType.DeactiveHandler();
                     transitionType.GameOver();
                 }
                 //Debug.Log("double click");
@@ -65,7 +67,6 @@ public class Clicked : MonoBehaviour {
                 }
                 else
                 {
-                    transitionType.DeactiveHandler();
                     transitionType.GameOver();
                 }
                 break;
@@ -93,7 +94,6 @@ public class Clicked : MonoBehaviour {
                 }
                 else
                 {
-                    transitionType.DeactiveHandler();
                     transitionType.GameOver();
                 }
                 break;
@@ -107,7 +107,31 @@ public class Clicked : MonoBehaviour {
                 }
                 else
                 {
-                    transitionType.DeactiveHandler();
+                    transitionType.GameOver();
+                }
+                break;
+            case 6: // temptation
+                transitionType.DeactiveHandler();
+                if (ComparePos_Normal())
+                {
+                    level.index++;
+                    transitionType.DoTransition(0);
+                }
+                else
+                {   
+                    transitionType.GameOver();
+                }
+                break;
+            case 7: // vertical flip
+                transitionType.DeactiveHandler();
+                if (ComparePos())
+                {
+                    level.index++;
+                    Debug.Log(level.index);
+                    transitionType.DoTransition(0);
+                }
+                else
+                {
                     transitionType.GameOver();
                 }
                 break;

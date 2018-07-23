@@ -11,6 +11,7 @@ public class SpawnPrefab : MonoBehaviour {
     public List<int> objType = new List<int>();
     public List<GameObject> obj = new List<GameObject>();
     public GameObject levelTransition;
+    private GameObject _obj;
     private MoveMove move;
 
     float margin = 0.2f;
@@ -48,8 +49,6 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Start()
     {   
-        GameObject _obj;
-
         scene = SceneManager.GetActiveScene().buildIndex;
 
         setScale();
@@ -153,6 +152,8 @@ public class SpawnPrefab : MonoBehaviour {
             case 6: //temptation
                 break;
             case 7: //vertical flip
+                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                move.centerPosCalculator();
                 break;
                 //double, triple, mix
         }
@@ -195,7 +196,6 @@ public class SpawnPrefab : MonoBehaviour {
 
     public void SpawnObj()
     {
-        GameObject _obj;
         //Vector2 spawnPos;
         
         switch (objType[index])
@@ -203,269 +203,151 @@ public class SpawnPrefab : MonoBehaviour {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;                
                 _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
-                _obj.transform.position = posList[index];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;                             
-                obj.Add(_obj);
-                
                 break;
             case 1:                
                 _obj = Instantiate(soomong_15) as GameObject;
-                
                 _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
-                _obj.transform.position = posList[index];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                obj.Add(_obj);
-                
                 break;
             case 2:
                 _obj = Instantiate(soomong_15) as GameObject;
-                
                 _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                _obj.transform.position = posList[index];
-                obj.Add(_obj);
-                
                 break;
             case 3:
                 _obj = Instantiate(soomong_15) as GameObject;
-                
                 _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
-                _obj.transform.position = posList[index];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                obj.Add(_obj);
-                
                 break;
             case 4:
                 _obj = Instantiate(soomong_15) as GameObject;
-                
                 _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                //spawnPos = new Vector2(posList[index].x, posList[index].y);
-                //_obj.transform.position = spawnPos;
-                _obj.transform.position = posList[index];
-                //_obj.GetComponent<PolygonCollider2D>().enabled = true;
-                obj.Add(_obj);
-                
                 break;
         }
+        _obj.transform.position = posList[index];
+        obj.Add(_obj);
     }
 
     public void SpawnObj_Alone()
-    {
-        GameObject _obj;
-        //Vector2 spawnPos;        
-        
+    {   
         switch (objType[index_alone])
         {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                _obj.transform.position = posList[index_alone];
-                obj.Add(_obj);
                 break;
             case 1:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                _obj.transform.position = posList[index_alone];
-                obj.Add(_obj);
                 break;
             case 2:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                _obj.transform.position = posList[index_alone];
-                obj.Add(_obj);
                 break;
             case 3:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                _obj.transform.position = posList[index_alone];
-                obj.Add(_obj);
                 break;
             case 4:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                _obj.transform.position = posList[index_alone];
-                obj.Add(_obj);
                 break;
-        }        
+        }
+        _obj.transform.position = posList[index_alone];
+        obj.Add(_obj);
     }
 
     public void SpawnObj_Flip()
     {
-        GameObject _obj;
-        Vector2 spawnPos;
-
         switch (objType[index])
         {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-
-                if (move.reverse)
-                {
-                    spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;                    
-                }
-                else
-                {
-                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
-                    _obj.transform.position = spawnPos;
-                }
-                obj.Add(_obj);
                 break;
             case 1:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-
-                if (move.reverse)
-                {
-                    spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;                    
-                }
-                else
-                {
-                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
-                    _obj.transform.position = spawnPos;
-                }
-                obj.Add(_obj);
                 break;
             case 2:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                if (move.reverse)
-                {
-                    spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;                    
-                }
-                else
-                {
-                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
-                    _obj.transform.position = spawnPos;
-                }
-                obj.Add(_obj);
                 break;
             case 3:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                if (move.reverse)
-                {
-                    spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;                    
-                }
-                else
-                {
-                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
-                    _obj.transform.position = spawnPos;
-                }
-                obj.Add(_obj);
                 break;
             case 4:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                if (move.reverse)
-                {
-                    spawnPos = new Vector2(posList[index].x, posList[index].y);
-                    _obj.transform.position = spawnPos;
-                }
-                else
-                {
-                    spawnPos = new Vector2(move.OppCenterPos[index].x, move.OppCenterPos[index].y);
-                    _obj.transform.position = spawnPos;
-                }
-                obj.Add(_obj);
                 break;
         }
-        
+
+        if (move.reverse)
+        {
+            _obj.transform.position = posList[index];
+        }
+        else
+        {
+            _obj.transform.position = move.OppCenterPos[index];
+        }
+        obj.Add(_obj);
+
     }
 
     public void SpawnObj_Twins()
     {
-        GameObject _obj;
-
         switch (objType[index_twins])
         {
             case 0:
                 _obj = Instantiate(soomong_colored) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);                
-                _obj.transform.position = posList[index_twins];
-                
-                obj.Add(_obj);                
                 break;
             case 1:
                 _obj = Instantiate(soomong_colored) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                _obj.transform.position = posList[index_twins];
-
-                obj.Add(_obj);
                 break;
             case 2:
                 _obj = Instantiate(soomong_colored) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                _obj.transform.position = posList[index_twins];
-
-                obj.Add(_obj);
                 break;
             case 3:
                 _obj = Instantiate(soomong_colored) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                _obj.transform.position = posList[index_twins];
-
-                obj.Add(_obj);
                 break;
             case 4:
                 _obj = Instantiate(soomong_colored) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                _obj.transform.position = posList[index_twins];
-
-                obj.Add(_obj);
                 break;
         }
+
+        _obj.transform.position = posList[index_twins];
+        obj.Add(_obj);
 
         switch (objType[index_twins+1])
         {
             case 0:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                _obj.transform.position = posList[index_twins+1];
-
-                obj.Add(_obj);
                 break;
             case 1:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                _obj.transform.position = posList[index_twins+1];
-
-                obj.Add(_obj);
                 break;
             case 2:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                _obj.transform.position = posList[index_twins+1];
-
-                obj.Add(_obj);
                 break;
             case 3:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                _obj.transform.position = posList[index_twins+1];
-
-                obj.Add(_obj);
                 break;
             case 4:
                 _obj = Instantiate(soomong_15) as GameObject;
                 _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                _obj.transform.position = posList[index_twins+1];
-
-                obj.Add(_obj);
                 break;
         }
+
+        _obj.transform.position = posList[index_twins + 1];
+        obj.Add(_obj);
+
     }
 
     public void PosSearch()
