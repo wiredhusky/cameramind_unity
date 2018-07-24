@@ -30,5 +30,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Vertical Flip.unity
     guid: 0ebff63ded515b149a28c323ec883f33
   - enabled: 1
+    path: Assets/Scenes/Double.unity
+    guid: 6d4c32de3c27d434abbc576e994bb642
+  - enabled: 1
+    path: Assets/Scenes/Triple.unity
+    guid: c557cb078f406fc49afcf8771db37790
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 87927845caf2bd6449039feb9c0f1f9b

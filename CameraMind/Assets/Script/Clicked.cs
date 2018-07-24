@@ -39,10 +39,8 @@ public class Clicked : MonoBehaviour {
     {        
 
         switch (level.scene)
-        {
-            case 0:
-                break;
-            case 1:
+        {   
+            default:
                 transitionType.DeactiveHandler();
                 if (ComparePos_Normal())
                 {
@@ -54,8 +52,7 @@ public class Clicked : MonoBehaviour {
                 {
                     transitionType.GameOver();
                 }
-                //Debug.Log("double click");
-                
+                //Debug.Log("double click");                
                 break;
             case 2:
                 transitionType.DeactiveHandler();
@@ -109,19 +106,7 @@ public class Clicked : MonoBehaviour {
                 {
                     transitionType.GameOver();
                 }
-                break;
-            case 6: // temptation
-                transitionType.DeactiveHandler();
-                if (ComparePos_Normal())
-                {
-                    level.index++;
-                    transitionType.DoTransition(0);
-                }
-                else
-                {   
-                    transitionType.GameOver();
-                }
-                break;
+                break;            
             case 7: // vertical flip
                 transitionType.DeactiveHandler();
                 if (ComparePos())

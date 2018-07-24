@@ -25,7 +25,7 @@ public class spawn : MonoBehaviour {
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
 	}
-
+    /*
     public void SetAnimation()
     {
         switch (instance.scene)
@@ -50,17 +50,14 @@ public class spawn : MonoBehaviour {
                 }
                 break;
         }
-    }
+    }*/
 
 	public void objCreator()
     {
         switch (instance.scene)
         {
             case 0:
-                break;
-            case 1:
-                instance.SpawnObj();                
-                break;
+                break;            
             case 2:
                 instance.SpawnObj_Flip();
                 break;
@@ -77,9 +74,29 @@ public class spawn : MonoBehaviour {
                 break;
             case 6: // temptation
                 instance.SpawnObj();
+                randObj = Random.Range(0, instance.index);
+                randAni = Random.Range(0, 3);
+                switch (randAni)
+                {
+                    case 0:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("rotation");
+                        break;
+                    case 1:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("angry");
+                        break;
+                    case 2:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("shaking");
+                        break;
+                }
                 break;
             case 7: // vertical flip
                 instance.SpawnObj_Flip();
+                break;
+            default: // normal, double, triple
+                instance.SpawnObj();
                 break;
         }        
     }

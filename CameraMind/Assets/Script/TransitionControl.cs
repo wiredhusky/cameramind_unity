@@ -61,11 +61,7 @@ public class TransitionControl : MonoBehaviour {
     {
         switch (aniSpawn.scene)
         {
-            case 1:
-                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
-                break;
-            case 2:
-                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
+            case 0:
                 break;
             case 3:
                 animator = aniSpawn.obj[aniSpawn.index_track].GetComponent<Animator>();
@@ -82,11 +78,8 @@ public class TransitionControl : MonoBehaviour {
                 break;
             case 5:
                 animator = aniSpawn.obj[aniSpawn.index_alone].GetComponent<Animator>();
-                break;
-            case 6: // temptation
-                animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
-                break;
-            case 7: // vertical flip
+                break;            
+            default: // normal, double, triple, vertical/horizontal flip, temptation
                 animator = aniSpawn.obj[aniSpawn.index].GetComponent<Animator>();
                 break;
         }        
@@ -137,7 +130,7 @@ public class TransitionControl : MonoBehaviour {
             }            
         }
 
-        if (aniSpawn.scene == 4 && aniSpawn.index_track == aniSpawn.index + 1)
+        if (aniSpawn.scene == 3 && aniSpawn.index_track == aniSpawn.index + 1)
         {            
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))

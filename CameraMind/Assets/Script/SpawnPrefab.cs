@@ -50,7 +50,7 @@ public class SpawnPrefab : MonoBehaviour {
     private void Start()
     {   
         scene = SceneManager.GetActiveScene().buildIndex;
-
+        
         setScale();
         PosSearch();
 
@@ -154,7 +154,7 @@ public class SpawnPrefab : MonoBehaviour {
             case 7: //vertical flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
-                break;
+                break;                
                 //double, triple, mix
         }
 
@@ -197,6 +197,7 @@ public class SpawnPrefab : MonoBehaviour {
     public void SpawnObj()
     {
         //Vector2 spawnPos;
+        
         
         switch (objType[index])
         {
