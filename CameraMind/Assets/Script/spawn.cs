@@ -18,7 +18,7 @@ public class spawn : MonoBehaviour {
     {
         instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();        
-        if(instance.scene == 2)
+        if(instance.scene == 2 || instance.scene == 10)
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
         }
@@ -94,6 +94,26 @@ public class spawn : MonoBehaviour {
                 break;
             case 7: // vertical flip
                 instance.SpawnObj_Flip();
+                break;
+            case 10: // mix
+                instance.SpawnObj_Flip();
+                randObj = Random.Range(0, instance.index);
+                randAni = Random.Range(0, 3);
+                switch (randAni)
+                {
+                    case 0:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("rotation");
+                        break;
+                    case 1:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("angry");
+                        break;
+                    case 2:
+                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator.SetTrigger("shaking");
+                        break;
+                }
                 break;
             default: // normal, double, triple
                 instance.SpawnObj();

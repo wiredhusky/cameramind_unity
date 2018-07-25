@@ -154,7 +154,11 @@ public class SpawnPrefab : MonoBehaviour {
             case 7: //vertical flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
-                break;                
+                break;
+            case 10:
+                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                move.centerPosCalculator();
+                break;
                 //double, triple, mix
         }
 

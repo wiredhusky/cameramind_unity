@@ -614,7 +614,7 @@ MonoBehaviour:
   posList: []
   objType: 
   obj: []
-  levelTransition: {fileID: 0}
+  levelTransition: {fileID: 697772079}
   scene: 0
   index_track: 0
   index_twins: 0
@@ -706,7 +706,7 @@ Animator:
   m_GameObject: {fileID: 697772079}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6507bf0cc2822d347be88f1c75e97b3a, type: 2}
+  m_Controller: {fileID: 9100000, guid: ea84e69875dd2374db4e5373cfb01ab6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05f328817452ed4a945ab8e4620d142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTransition: {fileID: 0}
+  levelTransition: {fileID: 697772079}
   gameOver: {fileID: 1354240259}
   aniSpawn: {fileID: 0}
   display: {fileID: 0}

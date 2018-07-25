@@ -48,6 +48,14 @@ public class MoveMove : MonoBehaviour {
                     OppCenterPos.Add(temp);
                 }
                 break;
+            case 10:
+                for (int i = 0; i < spawner.posList.Count; i++)
+                {
+                    temp.x = spawner.posList[i].x;
+                    temp.y = spawner.posList[i].y * -1.0f;
+                    OppCenterPos.Add(temp);
+                }
+                break;
         }
     }
 

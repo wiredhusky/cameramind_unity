@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Double.unity
+- path: Assets/Scenes/Chaos.unity
   isLoaded: 1
   isActive: 1

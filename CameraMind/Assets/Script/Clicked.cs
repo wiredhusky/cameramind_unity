@@ -32,10 +32,13 @@ public class Clicked : MonoBehaviour {
             case 7:
                 moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 break;
+            case 10:
+                moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                break;
         }
     }
 
-    private void OnMouseDown()
+    private void OnMouseUp()
     {        
 
         switch (level.scene)
@@ -108,6 +111,19 @@ public class Clicked : MonoBehaviour {
                 }
                 break;            
             case 7: // vertical flip
+                transitionType.DeactiveHandler();
+                if (ComparePos())
+                {
+                    level.index++;
+                    Debug.Log(level.index);
+                    transitionType.DoTransition(0);
+                }
+                else
+                {
+                    transitionType.GameOver();
+                }
+                break;
+            case 10:
                 transitionType.DeactiveHandler();
                 if (ComparePos())
                 {

@@ -36,5 +36,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Triple.unity
     guid: c557cb078f406fc49afcf8771db37790
   - enabled: 1
+    path: Assets/Scenes/Chaos.unity
+    guid: b5288719b64bcfd4c88668466c3fdf32
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 87927845caf2bd6449039feb9c0f1f9b
