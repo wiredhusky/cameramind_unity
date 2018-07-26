@@ -445,6 +445,7 @@ MonoBehaviour:
   scene: 0
   index_track: 0
   index_twins: 0
+  index_alone: 50
   colored: 1
   index: 0
   onScreenScale_20: {x: 0, y: 0}
@@ -1543,6 +1544,30 @@ Prefab:
     - target: {fileID: 1186533411967288, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}
       propertyPath: m_TagString
       value: LevelCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260217099219998, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114911574896933270, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114911574896933270, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114911574896933270, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114911574896933270, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: m_fontColor.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}

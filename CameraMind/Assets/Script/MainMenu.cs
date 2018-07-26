@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour {
 
@@ -9,8 +10,6 @@ public class MainMenu : MonoBehaviour {
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
-
     }
 
     public void Resume()
@@ -21,6 +20,18 @@ public class MainMenu : MonoBehaviour {
     public void GameOver()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void SceneLoader()
+    {
+        string sceneName;
+        sceneName = EventSystem.current.currentSelectedGameObject.name;
+        SceneManager.LoadScene(sceneName);
     }
 
 }
