@@ -18,7 +18,7 @@ public class spawn : MonoBehaviour {
     {
         instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();        
-        if(instance.scene == 2 || instance.scene == 10)
+        if(instance.scene == 2 || instance.scene == 10 || instance.scene == 7)
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
         }
@@ -118,6 +118,15 @@ public class spawn : MonoBehaviour {
             default: // normal, double, triple
                 instance.SpawnObj();
                 break;
+        }        
+    }
+
+    public void PauseAni()
+    {
+        if (!instance.allThingsDone)
+        {
+            animator = gameObject.GetComponent<Animator>();
+            animator.speed = 0;
         }        
     }
 

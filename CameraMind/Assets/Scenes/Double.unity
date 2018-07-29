@@ -559,7 +559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soomong_15: {fileID: 1173986339302714, guid: cd12112604869b2428083a8195f66964, type: 2}
-  soomong_colored: {fileID: 0}
+  soomong_colored: {fileID: 1173986339302714, guid: f8d990a8ab32c1d43aa48201fe73def0,
+    type: 2}
   posList: []
   objType: 
   obj: []

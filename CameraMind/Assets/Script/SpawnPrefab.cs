@@ -14,6 +14,8 @@ public class SpawnPrefab : MonoBehaviour {
     private GameObject _obj;
     private MoveMove move;
 
+    Animator animator;
+
     float margin = 0.2f;
     float radious = 0.55f;
     float objRadious = 0.5f;
@@ -33,7 +35,7 @@ public class SpawnPrefab : MonoBehaviour {
 
     float limitTop, limitBottom, limitLeft, limitRight;
 
-    bool allThingsDone = false;
+    public bool allThingsDone = false;
     int exceptCase = 5;
     int case0, case1, case2, case3, case4;
 
@@ -48,8 +50,10 @@ public class SpawnPrefab : MonoBehaviour {
     Vector3 worldPos;
 
     private void Start()
-    {   
+    {
+        levelTransition.SetActive(true);
         scene = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("Scene: " + scene);
         
         setScale();
         PosSearch();
@@ -155,14 +159,17 @@ public class SpawnPrefab : MonoBehaviour {
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
-            case 10:
+            case 10: // chaos
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
-                //double, triple, mix
+                //double, triple 
         }
 
-        levelTransition.SetActive(true);
+        //LevelTransition Resume and Start spawning
+        SpawnStart();
+
+        //levelTransition.SetActive(true);
                 
         Debug.Log("obj count: " + objType.Count);
         case0 = 0;
@@ -196,6 +203,12 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log("30: " + case2);
         Debug.Log("35: " + case3);
         Debug.Log("40: " + case4);
+    }
+
+    public void SpawnStart()
+    {
+        animator = levelTransition.GetComponent<Animator>();
+        animator.speed = 1;
     }
 
     public void SpawnObj()
