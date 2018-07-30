@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour {
 
-	public void PlayGame()
+    public GameObject mainMenuTransition;
+
+    public void PlayGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -24,7 +26,8 @@ public class MainMenu : MonoBehaviour {
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        mainMenuTransition.SetActive(true);
+        //SceneManager.LoadScene(0);
     }
 
     public void ExitGame()
