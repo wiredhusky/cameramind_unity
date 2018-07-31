@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour {
 
-    public GameObject mainMenuTransition;
+    //public GameObject mainMenuTransition;
+    public string sceneName;
 
     public void PlayGame()
     {
@@ -26,8 +27,7 @@ public class MainMenu : MonoBehaviour {
 
     public void GoToMainMenu()
     {
-        mainMenuTransition.SetActive(true);
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
     }
 
     public void ExitGame()
@@ -36,10 +36,9 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void SceneLoader()
-    {
-        string sceneName;
+    {        
         sceneName = EventSystem.current.currentSelectedGameObject.name;
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("Transition", LoadSceneMode.Additive);        
     }
 
 }

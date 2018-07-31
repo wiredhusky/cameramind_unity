@@ -9,6 +9,7 @@ TagManager:
   - transitionControl
   - movement
   - LevelCounter
+  - MainMenu
   layers:
   - Default
   - TransparentFX

@@ -568,7 +568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soomong_15: {fileID: 1173986339302714, guid: cd12112604869b2428083a8195f66964, type: 2}
-  soomong_colored: {fileID: 0}
+  soomong_colored: {fileID: 1173986339302714, guid: f8d990a8ab32c1d43aa48201fe73def0,
+    type: 2}
   posList: []
   objType: 
   obj: []
@@ -1048,6 +1049,10 @@ Prefab:
     - target: {fileID: 1107179981650036, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744573515088586, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
@@ -1984,6 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3380cdb556e63f94f97a0c651726610f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuTransition: {fileID: 1164227415}
 --- !u!4 &1719677279
 Transform:
   m_ObjectHideFlags: 0
