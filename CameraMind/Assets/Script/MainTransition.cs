@@ -23,7 +23,7 @@ public class MainTransition : MonoBehaviour {
 
     private void DestoryMyself()
     {
-        SceneManager.UnloadSceneAsync("Transition");
+        SceneManager.UnloadSceneAsync("Transition");        
     }
 	
 }

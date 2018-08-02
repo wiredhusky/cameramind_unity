@@ -38,7 +38,8 @@ public class MainMenu : MonoBehaviour {
     public void SceneLoader()
     {        
         sceneName = EventSystem.current.currentSelectedGameObject.name;
-        SceneManager.LoadScene("Transition", LoadSceneMode.Additive);        
+        //SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        SceneManager.LoadScene("startTransition", LoadSceneMode.Additive);
     }
 
 }

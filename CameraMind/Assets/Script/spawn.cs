@@ -6,8 +6,7 @@ public class spawn : MonoBehaviour {
 
     public SpawnPrefab instance;
     public MoveMove move;
-    //public Clicked tap;
-    public GameObject gameOver;
+    //public Clicked tap;    
     public TransitionControl transitionControl;
 
     Animator animator;
@@ -141,10 +140,11 @@ public class spawn : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+    /*
     public void DeactiveGameOver()
     {
         gameOver.SetActive(false);        
-    }
+    }*/
 
     public void MovePrefab()
     {

@@ -10,6 +10,8 @@ TagManager:
   - movement
   - LevelCounter
   - MainMenu
+  - startNormalTransition
+  - startCanvas
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,7 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject levelTransition;
     private GameObject _obj;
     private MoveMove move;
+    //private MainMenu mainMenu;
 
     Animator animator;
 
@@ -54,6 +55,8 @@ public class SpawnPrefab : MonoBehaviour {
         levelTransition.SetActive(true);
         scene = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Scene: " + scene);
+        //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
+        //Debug.Log(mainMenu.sceneName);
         
         setScale();
         PosSearch();

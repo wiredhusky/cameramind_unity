@@ -501,7 +501,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.23015787, g: 0.72794116, b: 0.56315774, a: 0}
+  m_BackGroundColor: {r: 0.23137255, g: 0.7294118, b: 0.5647059, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1973,7 +1973,7 @@ GameObject:
   - component: {fileID: 1719677278}
   m_Layer: 0
   m_Name: SceneManager
-  m_TagString: Untagged
+  m_TagString: MainMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3380cdb556e63f94f97a0c651726610f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuTransition: {fileID: 1164227415}
+  sceneName: 
 --- !u!4 &1719677279
 Transform:
   m_ObjectHideFlags: 0
