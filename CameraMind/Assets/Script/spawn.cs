@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class spawn : MonoBehaviour {
 
@@ -24,6 +25,8 @@ public class spawn : MonoBehaviour {
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
 	}
+
+    
     /*
     public void SetAnimation()
     {
@@ -53,6 +56,7 @@ public class spawn : MonoBehaviour {
 
 	public void objCreator()
     {
+        instance.scene = SceneManager.GetActiveScene().buildIndex;
         switch (instance.scene)
         {
             case 0:
@@ -126,7 +130,12 @@ public class spawn : MonoBehaviour {
         {
             animator = gameObject.GetComponent<Animator>();
             animator.speed = 0;
-        }        
+        }
+
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());        
+        }
     }
 
     public void ActiveCollider()

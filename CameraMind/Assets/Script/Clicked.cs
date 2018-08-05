@@ -240,12 +240,12 @@ public class Clicked : MonoBehaviour {
 
     public void ActiveCol()
     {
-        gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public void DeActiveCol()
     {
-        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     public void EnableRenderer()

@@ -13,6 +13,7 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject levelTransition;
     private GameObject _obj;
     private MoveMove move;
+    private MainMenu mainMenu;
     //private MainMenu mainMenu;
 
     Animator animator;
@@ -51,31 +52,27 @@ public class SpawnPrefab : MonoBehaviour {
     Vector3 worldPos;
 
     private void Start()
-    {
-        levelTransition.SetActive(true);
-        scene = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Scene: " + scene);
-        //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
+    {      
+
+        levelTransition.SetActive(true);     
+        
+        mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
         //Debug.Log(mainMenu.sceneName);
         
         setScale();
         PosSearch();
 
-        switch (scene)
-        {
-            case 0: // main menu
-                break;
-            case 1: // normal
-                break;
-            case 2: // horizontal flip
+        //scene = SceneManager.GetActiveScene().buildIndex;
+        //Debug.Log("Scene: " + scene);
+
+        switch (mainMenu.sceneName)
+        {            
+            case "Flip Horizon": // horizontal flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
-            case 3: // track
-                break;
-            case 4: // twins
-                break;
-            case 5: // alone
+            
+            case "Alone": // alone
                 for (int i = 0; i < posList.Count; i++)
                 {
                     switch (objType[i])
@@ -156,17 +153,18 @@ public class SpawnPrefab : MonoBehaviour {
                     }
                 }*/
                 break;
-            case 6: //temptation
-                break;
-            case 7: //vertical flip
+            
+            case "Flip Vertical": //vertical flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
-            case 10: // chaos
+            case "Chaos": // chaos
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
-                //double, triple 
+            default:
+                break;
+                
         }
 
         //LevelTransition Resume and Start spawning
@@ -524,7 +522,7 @@ public class SpawnPrefab : MonoBehaviour {
                     switch (randObj)
                     {
                         case 0:                            
-                            allThingsDone = true;
+                            allThingsDone = true;                            
                             //isSearched = true;
                             Debug.Log("20 is removed");
                             /*

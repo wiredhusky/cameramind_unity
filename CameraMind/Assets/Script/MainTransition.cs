@@ -9,9 +9,13 @@ public class MainTransition : MonoBehaviour {
     public GameObject soomong;
     Animator animator;
 
-    private void SoomongShaker()
+    private void Start()
     {
         animator = soomong.GetComponent<Animator>();
+    }
+
+    private void SoomongShaker()
+    {        
         animator.SetTrigger("shaking");
     }
 
