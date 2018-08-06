@@ -382,7 +382,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -448,6 +448,7 @@ MonoBehaviour:
   index_twins: 0
   index_alone: 50
   colored: 1
+  allThingsDone: 0
   index: 0
   onScreenScale_20: {x: 0, y: 0}
   onScreenScale_25: {x: 0, y: 0}
@@ -1238,7 +1239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instance: {fileID: 0}
   move: {fileID: 0}
-  gameOver: {fileID: 1354240259}
   transitionControl: {fileID: 0}
 --- !u!95 &1575772630
 Animator:
@@ -1427,6 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3380cdb556e63f94f97a0c651726610f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 
 --- !u!4 &1719677279
 Transform:
   m_ObjectHideFlags: 0

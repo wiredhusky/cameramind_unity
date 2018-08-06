@@ -513,7 +513,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -3
+  m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -678,7 +678,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1719677278}
+      - m_Target: {fileID: 1354240265}
         m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -954,7 +954,7 @@ Prefab:
     - target: {fileID: 224014258856639310, guid: 502c7170f453f514abf98b90b38539d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 10.079999
+      value: -10.05
       objectReference: {fileID: 0}
     - target: {fileID: 224014258856639310, guid: 502c7170f453f514abf98b90b38539d8,
         type: 2}
@@ -1005,7 +1005,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1719677278}
+      objectReference: {fileID: 1354240265}
     - target: {fileID: 114056623395438496, guid: 502c7170f453f514abf98b90b38539d8,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -1053,6 +1053,11 @@ Prefab:
     - target: {fileID: 1744573515088586, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306847301761298, guid: 502c7170f453f514abf98b90b38539d8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToMainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
@@ -1359,6 +1364,7 @@ GameObject:
   - component: {fileID: 1354240261}
   - component: {fileID: 1354240264}
   - component: {fileID: 1354240263}
+  - component: {fileID: 1354240265}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -1454,6 +1460,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1354240265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1354240259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fa8564b3cbd0f46a9ab456e56105b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1544677067
 GameObject:
   m_ObjectHideFlags: 0
