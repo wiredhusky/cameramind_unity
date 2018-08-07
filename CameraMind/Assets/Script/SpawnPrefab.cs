@@ -52,20 +52,19 @@ public class SpawnPrefab : MonoBehaviour {
     Vector3 worldPos;
 
     private void Start()
-    {      
-
+    {        
         levelTransition.SetActive(true);     
         
-        mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
+        //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
         //Debug.Log(mainMenu.sceneName);
         
         setScale();
         PosSearch();
 
         //scene = SceneManager.GetActiveScene().buildIndex;
-        //Debug.Log("Scene: " + scene);
+        //Debug.Log("Scene: " + scene);        
 
-        switch (mainMenu.sceneName)
+        switch (SceneManager.GetActiveScene().name)
         {            
             case "Flip Horizon": // horizontal flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
