@@ -12,6 +12,7 @@ TagManager:
   - MainMenu
   - startNormalTransition
   - startCanvas
+  - background
   layers:
   - Default
   - TransparentFX

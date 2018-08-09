@@ -36,16 +36,9 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void SceneLoader()
-    {
-        GameObject tempObj;
+    {        
         sceneName = EventSystem.current.currentSelectedGameObject.name;
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-        tempObj = GameObject.Find("spawner");
-        if(tempObj == null)
-        {
-            Debug.Log("NULL");
-        }
-        tempObj.SetActive(false);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);        
         //SceneManager.LoadScene("startTransition", LoadSceneMode.Additive);
     }
 

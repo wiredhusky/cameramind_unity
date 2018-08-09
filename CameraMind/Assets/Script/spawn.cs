@@ -11,7 +11,8 @@ public class spawn : MonoBehaviour {
     public TransitionControl transitionControl;
 
     Animator animator;
-    int randObj, randAni;
+    
+    int randObj, randAni;    
     
     // Use this for initialization
     void Start ()
@@ -21,7 +22,8 @@ public class spawn : MonoBehaviour {
         if(instance.scene == 2 || instance.scene == 10 || instance.scene == 7)
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-        }
+        }        
+        
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
 	}
@@ -134,8 +136,11 @@ public class spawn : MonoBehaviour {
 
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());        
-        }
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);            
+        }      
+
+        //GameObject.FindWithTag("background").transform.GetChild(0).gameObject.SetActive(true);
+        //instance.CalPos();
     }
 
     public void ActiveCollider()

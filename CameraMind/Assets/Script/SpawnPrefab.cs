@@ -13,7 +13,7 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject levelTransition;
     private GameObject _obj;
     private MoveMove move;
-    private MainMenu mainMenu;
+    //private MainMenu mainMenu;
     //private MainMenu mainMenu;
 
     Animator animator;
@@ -56,21 +56,26 @@ public class SpawnPrefab : MonoBehaviour {
         levelTransition.SetActive(true);     
         
         //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
-        //Debug.Log(mainMenu.sceneName);
+        //Debug.Log(mainMenu.sceneName);    
         
+    }
+
+    public void CalPos()
+    {
         setScale();
         PosSearch();
 
         //scene = SceneManager.GetActiveScene().buildIndex;
         //Debug.Log("Scene: " + scene);        
+        Debug.Log(SceneManager.GetActiveScene().name);
 
         switch (SceneManager.GetActiveScene().name)
-        {            
+        {
             case "Flip Horizon": // horizontal flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
-            
+
             case "Alone": // alone
                 for (int i = 0; i < posList.Count; i++)
                 {
@@ -107,52 +112,10 @@ public class SpawnPrefab : MonoBehaviour {
                             _obj.transform.position = posList[i];
                             break;
                     }
-                    
-                }
-                /*for(int i = 0; i < posList.Count; i++)
-                {
-                    switch (objType[i])
-                    {
-                        case 2:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                            _obj.transform.position = posList[i];                            
-                            break;
-                        case 3:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                            _obj.transform.position = posList[i];                            
-                            break;
-                        case 4:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                            _obj.transform.position = posList[i];                            
-                            break;
-                    }
-                    for(int i2 = posList.Count - 1; i2>=0; i2--)
-                    {
-                        switch (objType[i])
-                        {
-                            case 2:
-                                objType.Remove(objType[i]);
-                                posList.Remove(posList[i]);
-                                break;
-                            case 3:
-                                objType.Remove(objType[i]);
-                                posList.Remove(posList[i]);
-                                break;
-                            case 4:
-                                objType.Remove(objType[i]);
-                                posList.Remove(posList[i]);
-                                break;
-                        }
-                    }
-                }*/
+
+                }                
                 break;
-            
+
             case "Flip Vertical": //vertical flip
                 move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
@@ -163,21 +126,21 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
             default:
                 break;
-                
+
         }
 
         //LevelTransition Resume and Start spawning
         SpawnStart();
 
         //levelTransition.SetActive(true);
-                
+
         Debug.Log("obj count: " + objType.Count);
         case0 = 0;
         case1 = 0;
         case2 = 0;
         case3 = 0;
         case4 = 0;
-        for(int i = 0; i < objType.Count; i++)
+        for (int i = 0; i < objType.Count; i++)
         {
             switch (objType[i])
             {
@@ -204,6 +167,8 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log("35: " + case3);
         Debug.Log("40: " + case4);
     }
+
+
 
     public void SpawnStart()
     {
