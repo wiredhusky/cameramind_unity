@@ -27,7 +27,7 @@ public class GameOver : MonoBehaviour {
 
     void DestroyMyself()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("GameOver"));
     }
 	
 }

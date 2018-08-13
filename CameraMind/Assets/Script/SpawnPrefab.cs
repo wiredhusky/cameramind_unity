@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SpawnPrefab : MonoBehaviour {
-    
+
+    public static SpawnPrefab instance;
+
     public GameObject soomong_15;
     public GameObject soomong_colored;
     public List<Vector3> posList = new List<Vector3>();
     public List<int> objType = new List<int>();
     public List<GameObject> obj = new List<GameObject>();
-    public GameObject levelTransition;
+    public GameObject LevelTransition;
     private GameObject _obj;
-    private MoveMove move;
-    //private MainMenu mainMenu;
-    //private MainMenu mainMenu;
+    private MoveMove move;    
 
     Animator animator;
 
@@ -51,17 +51,17 @@ public class SpawnPrefab : MonoBehaviour {
 
     Vector3 worldPos;
 
-    private void Start()
-    {        
-        levelTransition.SetActive(true);     
-        
-        //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
-        //Debug.Log(mainMenu.sceneName);    
-        
+    private void Awake()
+    {
+        instance = this;
     }
 
-    public void CalPos()
-    {
+    private void Start()
+    {        
+        LevelTransition.SetActive(true);
+
+        //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
+        //Debug.Log(mainMenu.sceneName);    
         setScale();
         PosSearch();
 
@@ -113,7 +113,7 @@ public class SpawnPrefab : MonoBehaviour {
                             break;
                     }
 
-                }                
+                }
                 break;
 
             case "Flip Vertical": //vertical flip
@@ -129,10 +129,10 @@ public class SpawnPrefab : MonoBehaviour {
 
         }
 
-        //LevelTransition Resume and Start spawning
+        //SpawnPrefab.instanceTransition Resume and Start spawning
         SpawnStart();
 
-        //levelTransition.SetActive(true);
+        //SpawnPrefab.instanceTransition.SetActive(true);
 
         Debug.Log("obj count: " + objType.Count);
         case0 = 0;
@@ -166,13 +166,12 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log("30: " + case2);
         Debug.Log("35: " + case3);
         Debug.Log("40: " + case4);
+
     }
-
-
 
     public void SpawnStart()
     {
-        animator = levelTransition.GetComponent<Animator>();
+        animator = LevelTransition.GetComponent<Animator>();
         animator.speed = 1;
     }
 

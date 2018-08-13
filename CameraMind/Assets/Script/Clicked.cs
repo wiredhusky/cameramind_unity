@@ -5,20 +5,20 @@ using UnityEngine;
 public class Clicked : MonoBehaviour {
     
     public TransitionControl transitionType;
-    public SpawnPrefab level;
+    //public SpawnPrefab SpawnPrefab.instance;
     public Animator animator;
     public MoveMove moveIndex;    
     
     private void Start()
     {
         transitionType = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
-        level = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();        
+        //SpawnPrefab.instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();        
         animator = GetComponent<Animator>();
         
         transitionType.activeCollider += ActiveCol;
         transitionType.deactiveCollider += DeActiveCol;
 
-        switch (level.scene)
+        switch (SpawnPrefab.instance.scene)
         {
             case 2: // Flip Horizontal
                 moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
@@ -41,13 +41,13 @@ public class Clicked : MonoBehaviour {
     private void OnMouseUp()
     {        
 
-        switch (level.scene)
+        switch (SpawnPrefab.instance.scene)
         {   
             default:
                 transitionType.DeactiveHandler();
                 if (ComparePos_Normal())
                 {
-                    level.index++;
+                    SpawnPrefab.instance.index++;
                     transitionType.DoTransition(0);
                     
                 }
@@ -61,8 +61,8 @@ public class Clicked : MonoBehaviour {
                 transitionType.DeactiveHandler();
                 if (ComparePos())
                 {
-                    level.index++;
-                    Debug.Log(level.index);
+                    SpawnPrefab.instance.index++;
+                    Debug.Log(SpawnPrefab.instance.index);
                     transitionType.DoTransition(0);                    
                 }
                 else
@@ -81,14 +81,14 @@ public class Clicked : MonoBehaviour {
                     animator.SetTrigger("Clicked");
                     transitionType.GameOver();                    
                 }
-                Debug.Log(level.index_track);
+                Debug.Log(SpawnPrefab.instance.index_track);
                 break;
             case 4:
                 transitionType.DeactiveHandler();
                 if (ComparePosTwins())
                 {
-                    level.index_twins += 2;
-                    level.index++;
+                    SpawnPrefab.instance.index_twins += 2;
+                    SpawnPrefab.instance.index++;
                     transitionType.DoTransition(0);
 
                 }
@@ -101,8 +101,8 @@ public class Clicked : MonoBehaviour {
                 transitionType.DeactiveHandler();
                 if (ComparePos_Alone())
                 {
-                    level.index++;
-                    level.index_alone++;
+                    SpawnPrefab.instance.index++;
+                    SpawnPrefab.instance.index_alone++;
                     transitionType.DoTransition(0);
                 }
                 else
@@ -114,8 +114,8 @@ public class Clicked : MonoBehaviour {
                 transitionType.DeactiveHandler();
                 if (ComparePos())
                 {
-                    level.index++;
-                    Debug.Log(level.index);
+                    SpawnPrefab.instance.index++;
+                    Debug.Log(SpawnPrefab.instance.index);
                     transitionType.DoTransition(0);
                 }
                 else
@@ -127,8 +127,8 @@ public class Clicked : MonoBehaviour {
                 transitionType.DeactiveHandler();
                 if (ComparePos())
                 {
-                    level.index++;
-                    Debug.Log(level.index);
+                    SpawnPrefab.instance.index++;
+                    Debug.Log(SpawnPrefab.instance.index);
                     transitionType.DoTransition(0);
                 }
                 else
@@ -141,7 +141,7 @@ public class Clicked : MonoBehaviour {
 
     private bool ComparePos_Alone()
     {
-        if (gameObject.transform.position == level.posList[level.index_alone])
+        if (gameObject.transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_alone])
         {
             return true;
         }
@@ -154,7 +154,7 @@ public class Clicked : MonoBehaviour {
 
     private bool ComparePos_Track()
     {   
-        if(gameObject.transform.position == level.posList[level.index_track])
+        if(gameObject.transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_track])
         {            
             return true;
         }
@@ -166,7 +166,7 @@ public class Clicked : MonoBehaviour {
 
     private bool ComparePos_Normal()
     {   
-        if (gameObject.transform.position == level.posList[level.index])
+        if (gameObject.transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index])
         {
             return true;
         }
@@ -181,7 +181,7 @@ public class Clicked : MonoBehaviour {
     {
         if (moveIndex.reverse)
         {
-            if (gameObject.transform.position == level.posList[level.index])
+            if (gameObject.transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index])
             {
                 return true;
             }
@@ -192,7 +192,7 @@ public class Clicked : MonoBehaviour {
         }
         else
         {   
-            if (gameObject.transform.position == moveIndex.OppCenterPos[level.index])
+            if (gameObject.transform.position == moveIndex.OppCenterPos[SpawnPrefab.instance.index])
             {
                 return true;
             }
@@ -205,11 +205,11 @@ public class Clicked : MonoBehaviour {
 
     private bool ComparePosTwins()
     {
-        if (level.colored)
+        if (SpawnPrefab.instance.colored)
         {
-            if (gameObject.transform.position == level.posList[level.index_twins])
+            if (gameObject.transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_twins])
             {
-                level.colored = false;
+                SpawnPrefab.instance.colored = false;
                 return true;
             }
             else
@@ -219,9 +219,9 @@ public class Clicked : MonoBehaviour {
         }
         else
         {
-            if (gameObject.transform.position == level.posList[level.index_twins+1])
+            if (gameObject.transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_twins+1])
             {
-                level.colored = true;
+                SpawnPrefab.instance.colored = true;
                 return true;
             }
             else

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveMove : MonoBehaviour {
     
-    public SpawnPrefab spawner;
+    //public SpawnPrefab spawner;
     public TransitionControl colControl;
     
     public List<Vector3> OppCenterPos = new List<Vector3>();
@@ -19,7 +19,7 @@ public class MoveMove : MonoBehaviour {
 
         _move = false;
         reverse = true;        
-        spawner = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
+        //SpawnPrefab.instance = GameObject.FindWithTag("SpawnPrefab.instance").GetComponent<SpawnPrefab>();
         colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
 
 	}
@@ -30,29 +30,29 @@ public class MoveMove : MonoBehaviour {
         //float distanceTemp;
         temp.z = 0;
 
-        switch (spawner.scene)
+        switch (SpawnPrefab.instance.scene)
         {
             case 2:
-                for (int i = 0; i < spawner.posList.Count; i++)
+                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
                 {
-                    temp.x = spawner.posList[i].x * -1.0f;
-                    temp.y = spawner.posList[i].y;
+                    temp.x = SpawnPrefab.instance.posList[i].x * -1.0f;
+                    temp.y = SpawnPrefab.instance.posList[i].y;
                     OppCenterPos.Add(temp);
                 }
                 break;
             case 7:
-                for (int i = 0; i < spawner.posList.Count; i++)
+                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
                 {
-                    temp.x = spawner.posList[i].x;
-                    temp.y = spawner.posList[i].y * -1.0f;
+                    temp.x = SpawnPrefab.instance.posList[i].x;
+                    temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
                     OppCenterPos.Add(temp);
                 }
                 break;
             case 10:
-                for (int i = 0; i < spawner.posList.Count; i++)
+                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
                 {
-                    temp.x = spawner.posList[i].x;
-                    temp.y = spawner.posList[i].y * -1.0f;
+                    temp.x = SpawnPrefab.instance.posList[i].x;
+                    temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
                     OppCenterPos.Add(temp);
                 }
                 break;
@@ -67,15 +67,15 @@ public class MoveMove : MonoBehaviour {
         
         if (reverse)
         {
-            for (int i = 0; i <= spawner.index; i++)
+            for (int i = 0; i <= SpawnPrefab.instance.index; i++)
             {   
-                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, OppCenterPos[i], speed);
+                SpawnPrefab.instance.obj[i].transform.position = Vector3.Lerp(SpawnPrefab.instance.obj[i].transform.position, OppCenterPos[i], speed);
                 
-                if (spawner.obj[spawner.index].transform.position == OppCenterPos[spawner.index])
+                if (SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position == OppCenterPos[SpawnPrefab.instance.index])
                 {   
                     _move = false;
                     reverse = false;
-                    //spawner.obj[spawner.index].GetComponent<PolygonCollider2D>().enabled = true;
+                    //SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<PolygonCollider2D>().enabled = true;
                     colControl.ActiveHandler();
                     currentTime = 0;
                 }
@@ -83,11 +83,11 @@ public class MoveMove : MonoBehaviour {
         }
         else
         {
-            for (int i = 0; i <= spawner.index; i++)
+            for (int i = 0; i <= SpawnPrefab.instance.index; i++)
             {
-                spawner.obj[i].transform.position = Vector3.Lerp(spawner.obj[i].transform.position, spawner.posList[i], speed);
+                SpawnPrefab.instance.obj[i].transform.position = Vector3.Lerp(SpawnPrefab.instance.obj[i].transform.position, SpawnPrefab.instance.posList[i], speed);
                 
-                if (spawner.obj[spawner.index].transform.position == spawner.posList[spawner.index])
+                if (SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index])
                 {   
                     _move = false;
                     reverse = true;

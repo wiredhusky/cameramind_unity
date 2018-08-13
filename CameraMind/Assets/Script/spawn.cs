@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class spawn : MonoBehaviour {
 
-    public SpawnPrefab instance;
+    
     public MoveMove move;
     //public Clicked tap;    
     public TransitionControl transitionControl;
@@ -17,9 +17,9 @@ public class spawn : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
+        //instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();        
-        if(instance.scene == 2 || instance.scene == 10 || instance.scene == 7)
+        if(SpawnPrefab.instance.scene == 2 || SpawnPrefab.instance.scene == 10 || SpawnPrefab.instance.scene == 7)
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
         }        
@@ -58,77 +58,77 @@ public class spawn : MonoBehaviour {
 
 	public void objCreator()
     {
-        instance.scene = SceneManager.GetActiveScene().buildIndex;
-        switch (instance.scene)
+        SpawnPrefab.instance.scene = SceneManager.GetActiveScene().buildIndex;
+        switch (SpawnPrefab.instance.scene)
         {
             case 0:
                 break;            
             case 2:
-                instance.SpawnObj_Flip();
+                SpawnPrefab.instance.SpawnObj_Flip();
                 break;
             case 3: // track
-                instance.SpawnObj();                
+                SpawnPrefab.instance.SpawnObj();                
                 transitionControl.EventHandler();
                 break;
             case 4: // twins
-                instance.SpawnObj_Twins();
+                SpawnPrefab.instance.SpawnObj_Twins();
                 break;
             case 5: // alone
-                instance.SpawnObj_Alone();
+                SpawnPrefab.instance.SpawnObj_Alone();
                 transitionControl.RendererHandler();
                 break;
             case 6: // temptation
-                instance.SpawnObj();
-                randObj = Random.Range(0, instance.index);
+                SpawnPrefab.instance.SpawnObj();
+                randObj = Random.Range(0, SpawnPrefab.instance.index);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
                     case 0:
-                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
                         animator.SetTrigger("rotation");
                         break;
                     case 1:
-                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
                         animator.SetTrigger("angry");
                         break;
                     case 2:
-                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
                         animator.SetTrigger("shaking");
                         break;
                 }
                 break;
             case 7: // vertical flip
-                instance.SpawnObj_Flip();
+                SpawnPrefab.instance.SpawnObj_Flip();
                 break;
             case 10: // mix
-                instance.SpawnObj_Flip();
-                randObj = Random.Range(0, instance.index);
+                SpawnPrefab.instance.SpawnObj_Flip();
+                randObj = Random.Range(0, SpawnPrefab.instance.index);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
                     case 0:
-                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
                         animator.SetTrigger("rotation");
                         break;
                     case 1:
-                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
                         animator.SetTrigger("angry");
                         break;
                     case 2:
-                        animator = instance.obj[randObj].GetComponent<Animator>();
+                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
                         animator.SetTrigger("shaking");
                         break;
                 }
                 break;
             default: // normal, double, triple
-                instance.SpawnObj();
+                SpawnPrefab.instance.SpawnObj();
                 break;
         }        
     }
 
     public void PauseAni()
     {
-        if (!instance.allThingsDone)
+        if (!SpawnPrefab.instance.allThingsDone)
         {
             animator = gameObject.GetComponent<Animator>();
             animator.speed = 0;

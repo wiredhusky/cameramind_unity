@@ -6,14 +6,14 @@ using TMPro;
 public class GameOverLevel : MonoBehaviour {
 
     private TextMeshProUGUI counter;
-    private SpawnPrefab indicator;
+    //private SpawnPrefab indicator;
 
 	// Use this for initialization
 	void Start () {
 
         counter = gameObject.GetComponent<TextMeshProUGUI>();
-        indicator = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
-        counter.text = "Level " + (indicator.index).ToString();
+        //indicator = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
+        counter.text = "Level " + (SpawnPrefab.instance.index).ToString();
 		
 	}
 	
