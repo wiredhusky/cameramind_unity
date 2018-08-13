@@ -437,16 +437,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soomong_15: {fileID: 1173986339302714, guid: cd12112604869b2428083a8195f66964, type: 2}
-  soomong_25: {fileID: 1184513218360154, guid: 1fe147aaae357f04ea81fcc380e0cac5, type: 2}
-  soomong_35: {fileID: 1637608686147554, guid: b42f02a2ae2154a459d5eaf1b586c098, type: 2}
-  soomong_50: {fileID: 1884019610717094, guid: 0f417cfd80b0afc4b83cf3d88dc95cce, type: 2}
-  soomong_70: {fileID: 1380938309550406, guid: 4109fb4922fbcca4891431a3493bc85d, type: 2}
+  soomong_colored: {fileID: 0}
   posList: []
   objType: 
   obj: []
-  levelTransition: {fileID: 1575772627}
+  LevelTransition: {fileID: 1575772627}
   scene: 0
   index_track: 0
+  index_twins: 0
+  index_alone: 50
+  colored: 1
+  allThingsDone: 0
   index: 0
   onScreenScale_20: {x: 0, y: 0}
   onScreenScale_25: {x: 0, y: 0}
@@ -760,7 +761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counter: {fileID: 851056749}
-  indicator: {fileID: 0}
 --- !u!1 &893532309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,9 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ef971deef0c5443993d564ffcabe5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
   move: {fileID: 0}
-  gameOver: {fileID: 1354240259}
   transitionControl: {fileID: 0}
 --- !u!1 &1597869034
 GameObject:
@@ -1426,6 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3380cdb556e63f94f97a0c651726610f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 
 --- !u!4 &1719677279
 Transform:
   m_ObjectHideFlags: 0
@@ -1593,8 +1592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05f328817452ed4a945ab8e4620d142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTransition: {fileID: 1575772627}
+  LevelTransition: {fileID: 1575772627}
   gameOver: {fileID: 1354240259}
-  aniSpawn: {fileID: 0}
   display: {fileID: 0}
   chkGameOver: 0

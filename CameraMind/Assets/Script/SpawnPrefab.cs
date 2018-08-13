@@ -53,7 +53,10 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Awake()
     {
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+        }        
     }
 
     private void Start()
@@ -65,7 +68,7 @@ public class SpawnPrefab : MonoBehaviour {
         setScale();
         PosSearch();
 
-        //scene = SceneManager.GetActiveScene().buildIndex;
+        scene = SceneManager.GetActiveScene().buildIndex;
         //Debug.Log("Scene: " + scene);        
         Debug.Log(SceneManager.GetActiveScene().name);
 

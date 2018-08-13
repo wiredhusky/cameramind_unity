@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainTransition : MonoBehaviour {
 
-    public GameObject soomong;
+    GameObject soomong;
     Animator animator;
 
     private void Start()

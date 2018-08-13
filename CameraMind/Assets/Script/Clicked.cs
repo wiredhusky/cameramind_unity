@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Clicked : MonoBehaviour {
     
-    public TransitionControl transitionType;
+    TransitionControl transitionType;
     //public SpawnPrefab SpawnPrefab.instance;
-    public Animator animator;
+    Animator animator;
     CircleCollider2D _collider;
     Renderer _renderer;
     //public MoveMove moveIndex;
@@ -22,26 +22,19 @@ public class Clicked : MonoBehaviour {
         
         transitionType.activeCollider += ActiveCol;
         transitionType.deactiveCollider += DeActiveCol;
-        /*
+        
 
         switch (SpawnPrefab.instance.scene)
-        {
-            case 2: // Flip Horizontal
-                moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-                break;
+        {            
             case 3: // Track
                 transitionType.goIdle += SetIdle;
                 break;
             case 5: //Alone, renedere enabled = true;
                 transitionType.enableRenderer += EnableRenderer;
                 break;
-            case 7:
-                moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-                break;
-            case 10:
-                moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-                break;
-        }*/
+            default:
+                break;            
+        }
     }
 
     private void OnMouseUp()

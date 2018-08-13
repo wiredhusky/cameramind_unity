@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Flip Horizon.unity
+- path: Assets/Scenes/Normal.unity
   isLoaded: 1
   isActive: 1

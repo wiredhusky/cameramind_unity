@@ -19,7 +19,7 @@ public class spawn : MonoBehaviour {
     {
         //instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();        
-        if (SceneManager.GetActiveScene().name == "Flip Horizontal" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos")
+        if (SceneManager.GetActiveScene().name == "Flip Horizon" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos")
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
         }      
@@ -58,26 +58,26 @@ public class spawn : MonoBehaviour {
 
 	public void objCreator()
     {
-        SpawnPrefab.instance.scene = SceneManager.GetActiveScene().buildIndex;
-        switch (SpawnPrefab.instance.scene)
+        //SpawnPrefab.instance.scene = SceneManager.GetActiveScene().buildIndex;
+        switch (SceneManager.GetActiveScene().name)
         {
-            case 0:
+            case "MainMenu":
                 break;            
-            case 2:
+            case "Flip Horizon":
                 SpawnPrefab.instance.SpawnObj_Flip();
                 break;
-            case 3: // track
+            case "Track": // track
                 SpawnPrefab.instance.SpawnObj();                
-                transitionControl.EventHandler();
+                transitionControl.EventHandler();                
                 break;
-            case 4: // twins
+            case "Twins": // twins
                 SpawnPrefab.instance.SpawnObj_Twins();
                 break;
-            case 5: // alone
+            case "Alone": // alone
                 SpawnPrefab.instance.SpawnObj_Alone();
                 transitionControl.RendererHandler();
                 break;
-            case 6: // temptation
+            case "Temptation": // temptation
                 SpawnPrefab.instance.SpawnObj();
                 randObj = Random.Range(0, SpawnPrefab.instance.index);
                 randAni = Random.Range(0, 3);
@@ -97,10 +97,10 @@ public class spawn : MonoBehaviour {
                         break;
                 }
                 break;
-            case 7: // vertical flip
+            case "Flip Vertical": // vertical flip
                 SpawnPrefab.instance.SpawnObj_Flip();
                 break;
-            case 10: // mix
+            case "Chaos": // mix
                 SpawnPrefab.instance.SpawnObj_Flip();
                 randObj = Random.Range(0, SpawnPrefab.instance.index);
                 randAni = Random.Range(0, 3);

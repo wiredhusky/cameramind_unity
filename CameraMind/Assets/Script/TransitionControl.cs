@@ -16,7 +16,6 @@ public class TransitionControl : MonoBehaviour {
 
     MoveMove moveIndex;
 
-
     public LevelCounter display;
     public bool chkGameOver;
     Animator animator;
@@ -29,7 +28,7 @@ public class TransitionControl : MonoBehaviour {
         //SpawnPrefab.instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         //SpawnPrefab.instance = FindObjectOfType<SpawnPrefab>();
         chkGameOver = false;
-        if(SceneManager.GetActiveScene().name == "Flip Horizontal" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos"){
+        if(SceneManager.GetActiveScene().name == "Flip Horizon" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos"){
             moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
         }
 	}
@@ -53,7 +52,8 @@ public class TransitionControl : MonoBehaviour {
                 }
                 //Debug.Log("double click");                
                 break;
-            case "Flip Horizontal":
+            case "Flip Horizon":
+                Debug.Log("Horizontal");
                 DeactiveHandler();
                 if (ComparePos(_objPos))
                 {
@@ -312,7 +312,7 @@ public class TransitionControl : MonoBehaviour {
             case 1:
                 //display.GameResult();
                 //meOver.SetActive(true);
-                SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+                SceneManager.LoadScene("GameOver");
                 break;
         }        
     }
@@ -326,7 +326,8 @@ public class TransitionControl : MonoBehaviour {
             {
                 //Debug.Log(currentBaseState.normalizedTime);
                 if (currentBaseState.normalizedTime > 1.0f)
-                {                    
+                {
+                    chkGameOver = false;
                     DoTransition(1);
                     //animator.SetTrigger("Clicked");
                 }
