@@ -14,6 +14,8 @@ public class TransitionControl : MonoBehaviour {
     public event GoToIdle deactiveCollider;
     public event GoToIdle enableRenderer;
 
+    MoveMove moveIndex;
+
 
     public LevelCounter display;
     public bool chkGameOver;
@@ -23,14 +25,210 @@ public class TransitionControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         display = GameObject.FindWithTag("LevelCounter").GetComponent<LevelCounter>();
-        if(display == null)
-        {
-            Debug.Log("Null");
-        }
+
         //SpawnPrefab.instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         //SpawnPrefab.instance = FindObjectOfType<SpawnPrefab>();
         chkGameOver = false;
+        if(SceneManager.GetActiveScene().name == "Flip Horizontal" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos"){
+            moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+        }
 	}
+
+    public void ComPos(Vector3 _objPos, Animator _animator)
+    {
+        
+        switch (SceneManager.GetActiveScene().name)
+        {
+            default:
+                DeactiveHandler();
+                if (ComparePos_Normal(_objPos))
+                {
+                    SpawnPrefab.instance.index++;
+                    DoTransition(0);
+
+                }
+                else
+                {
+                    GameOver();
+                }
+                //Debug.Log("double click");                
+                break;
+            case "Flip Horizontal":
+                DeactiveHandler();
+                if (ComparePos(_objPos))
+                {
+                    SpawnPrefab.instance.index++;
+                    Debug.Log(SpawnPrefab.instance.index);
+                    DoTransition(0);
+                }
+                else
+                {
+                    GameOver();
+                }
+                break;
+            case "Track":
+                if (ComparePos_Track(_objPos))
+                {
+                    ChkClicked();
+                }
+                else
+                {
+                    DeactiveHandler();
+                    _animator.SetTrigger("Clicked");
+                    GameOver();
+                }
+                Debug.Log(SpawnPrefab.instance.index_track);
+                break;
+            case "Twins":
+                DeactiveHandler();
+                if (ComparePosTwins(_objPos))
+                {
+                    SpawnPrefab.instance.index_twins += 2;
+                    SpawnPrefab.instance.index++;
+                    DoTransition(0);
+
+                }
+                else
+                {
+                    GameOver();
+                }
+                break;
+            case "Alone":
+                DeactiveHandler();
+                if (ComparePos_Alone(_objPos))
+                {
+                    SpawnPrefab.instance.index++;
+                    SpawnPrefab.instance.index_alone++;
+                    DoTransition(0);
+                }
+                else
+                {
+                    GameOver();
+                }
+                break;
+            case "Flip Vertical": // vertical flip
+                DeactiveHandler();
+                if (ComparePos(_objPos))
+                {
+                    SpawnPrefab.instance.index++;
+                    Debug.Log(SpawnPrefab.instance.index);
+                    DoTransition(0);
+                }
+                else
+                {
+                    GameOver();
+                }
+                break;
+            case "Chaos":
+                DeactiveHandler();
+                if (ComparePos(_objPos))
+                {
+                    SpawnPrefab.instance.index++;
+                    Debug.Log(SpawnPrefab.instance.index);
+                    DoTransition(0);
+                }
+                else
+                {
+                    GameOver();
+                }
+                break;
+        }
+    }
+
+
+    private bool ComparePos_Alone(Vector3 _objPosAlone)
+    {
+        if (_objPosAlone == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_alone])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    private bool ComparePos_Track(Vector3 _objPosTrack)
+    {
+        if (_objPosTrack == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_track])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool ComparePos_Normal(Vector3 _objPosNormal)
+    {
+        if (_objPosNormal == SpawnPrefab.instance.posList[SpawnPrefab.instance.index])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    private bool ComparePos(Vector3 _objPosFlip)
+    {
+        if (moveIndex.reverse)
+        {
+            if (_objPosFlip == SpawnPrefab.instance.posList[SpawnPrefab.instance.index])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (_objPosFlip == moveIndex.OppCenterPos[SpawnPrefab.instance.index])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    private bool ComparePosTwins(Vector3 _objPosTwins)
+    {
+        if (SpawnPrefab.instance.colored)
+        {
+            if (_objPosTwins == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_twins])
+            {
+                SpawnPrefab.instance.colored = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (_objPosTwins == SpawnPrefab.instance.posList[SpawnPrefab.instance.index_twins + 1])
+            {
+                SpawnPrefab.instance.colored = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+
 
     public void EventHandler()
     {

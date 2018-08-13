@@ -19,10 +19,10 @@ public class spawn : MonoBehaviour {
     {
         //instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();        
-        if(SpawnPrefab.instance.scene == 2 || SpawnPrefab.instance.scene == 10 || SpawnPrefab.instance.scene == 7)
+        if (SceneManager.GetActiveScene().name == "Flip Horizontal" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos")
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-        }        
+        }      
         
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();

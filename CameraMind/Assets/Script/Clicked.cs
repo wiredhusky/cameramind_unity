@@ -7,16 +7,22 @@ public class Clicked : MonoBehaviour {
     public TransitionControl transitionType;
     //public SpawnPrefab SpawnPrefab.instance;
     public Animator animator;
-    public MoveMove moveIndex;    
+    CircleCollider2D _collider;
+    Renderer _renderer;
+    //public MoveMove moveIndex;
     
     private void Start()
     {
         transitionType = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
         //SpawnPrefab.instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();        
         animator = GetComponent<Animator>();
+
+        _collider = gameObject.GetComponent<CircleCollider2D>();
+        _renderer = gameObject.GetComponent<Renderer>();
         
         transitionType.activeCollider += ActiveCol;
         transitionType.deactiveCollider += DeActiveCol;
+        /*
 
         switch (SpawnPrefab.instance.scene)
         {
@@ -35,12 +41,15 @@ public class Clicked : MonoBehaviour {
             case 10:
                 moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 break;
-        }
+        }*/
     }
 
     private void OnMouseUp()
-    {        
+    {
 
+        transitionType.ComPos(gameObject.transform.position, animator);
+
+        /*
         switch (SpawnPrefab.instance.scene)
         {   
             default:
@@ -136,8 +145,9 @@ public class Clicked : MonoBehaviour {
                     transitionType.GameOver();
                 }
                 break;
-        }
+        }*/
     }
+    /*
 
     private bool ComparePos_Alone()
     {
@@ -229,7 +239,7 @@ public class Clicked : MonoBehaviour {
                 return false;
             }
         }
-    }
+    }*/
 
     public void SetIdle()
     {
@@ -240,16 +250,19 @@ public class Clicked : MonoBehaviour {
 
     public void ActiveCol()
     {
-        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        _collider.enabled = true;
+        //gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public void DeActiveCol()
     {
-        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        _collider.enabled = true;
+        //gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     public void EnableRenderer()
     {
-        gameObject.GetComponent<Renderer>().enabled = true;
+        _renderer.enabled = true;
+        //gameObject.GetComponent<Renderer>().enabled = true;
     }
 }
