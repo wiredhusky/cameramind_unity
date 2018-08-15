@@ -16,7 +16,7 @@ public class SpawnPrefab : MonoBehaviour {
     private GameObject _obj;
     private MoveMove move;    
 
-    Animator animator;
+    //Animator animator;
 
     float margin = 0.2f;
     float radious = 0.55f;
@@ -28,7 +28,7 @@ public class SpawnPrefab : MonoBehaviour {
     float localScale_35 = 0.35f;
     float localScale_40 = 0.4f;
 
-    public int scene;
+    public string scene;
     public int index_track = 0;
     public int index_twins = 0;
     public int index_alone = 50;
@@ -65,13 +65,13 @@ public class SpawnPrefab : MonoBehaviour {
 
         //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
         //Debug.Log(mainMenu.sceneName);    
-        setScale();
-        PosSearch();
+        //setScale();
+        //PosSearch();
 
-        scene = SceneManager.GetActiveScene().buildIndex;
+        //scene = SceneManager.GetActiveScene().buildIndex;
         //Debug.Log("Scene: " + scene);        
-        Debug.Log(SceneManager.GetActiveScene().name);
-
+        //Debug.Log(SceneManager.GetActiveScene().name);
+        /*
         switch (SceneManager.GetActiveScene().name)
         {
             case "Flip Horizon": // horizontal flip
@@ -130,13 +130,13 @@ public class SpawnPrefab : MonoBehaviour {
             default:
                 break;
 
-        }
+        }*/
 
         //SpawnPrefab.instanceTransition Resume and Start spawning
-        SpawnStart();
+        //SpawnStart();
 
         //SpawnPrefab.instanceTransition.SetActive(true);
-
+        /*
         Debug.Log("obj count: " + objType.Count);
         case0 = 0;
         case1 = 0;
@@ -169,14 +169,111 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log("30: " + case2);
         Debug.Log("35: " + case3);
         Debug.Log("40: " + case4);
-
+        */
     }
 
+    public void SetStart()
+    {
+        scene = SceneManager.GetActiveScene().name;
+        Debug.Log("Scene: " + scene);
+        switch (scene)
+        {
+            case "Flip Horizon": // horizontal flip
+                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                move.centerPosCalculator();
+                break;
+
+            case "Alone": // alone
+                for (int i = 0; i < posList.Count; i++)
+                {
+                    switch (objType[i])
+                    {
+                        case 0:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 1:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 2:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 3:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
+                            _obj.transform.position = posList[i];
+                            break;
+                        case 4:
+                            _obj = Instantiate(soomong_colored) as GameObject;
+                            _obj.GetComponent<Renderer>().enabled = false;
+                            _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
+                            _obj.transform.position = posList[i];
+                            break;
+                    }
+
+                }
+                break;
+
+            case "Flip Vertical": //vertical flip
+                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                move.centerPosCalculator();
+                break;
+            case "Chaos": // chaos
+                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                move.centerPosCalculator();
+                break;
+            default:
+                break;
+        }
+        Debug.Log("obj count: " + objType.Count);
+        case0 = 0;
+        case1 = 0;
+        case2 = 0;
+        case3 = 0;
+        case4 = 0;
+        for (int i = 0; i < objType.Count; i++)
+        {
+            switch (objType[i])
+            {
+                case 0:
+                    case0++;
+                    break;
+                case 1:
+                    case1++;
+                    break;
+                case 2:
+                    case2++;
+                    break;
+                case 3:
+                    case3++;
+                    break;
+                case 4:
+                    case4++;
+                    break;
+            }
+        }
+        Debug.Log("20: " + case0);
+        Debug.Log("25: " + case1);
+        Debug.Log("30: " + case2);
+        Debug.Log("35: " + case3);
+        Debug.Log("40: " + case4);
+    }
+
+    /*
     public void SpawnStart()
     {
         animator = LevelTransition.GetComponent<Animator>();
         animator.speed = 1;
-    }
+    }*/
 
     public void SpawnObj()
     {
@@ -567,38 +664,7 @@ public class SpawnPrefab : MonoBehaviour {
         onScreenScale_35.y = rt.rect.height * localScale_35;
 
         onScreenScale_40.x = rt.rect.width * localScale_40;
-        onScreenScale_40.y = rt.rect.height * localScale_40;
-
-        //center orinted pos calculation
-        /*
-        xLimit_20.x = worldPos.x - onScreenScale_20.x;
-        xLimit_20.y = worldPos.y * -1.0f + onScreenScale_20.y;
-
-        xLimit_25.x = worldPos.x - onScreenScale_25.x;
-        xLimit_25.y = worldPos.y * -1.0f + onScreenScale_25.y;
-
-        xLimit_30.x = worldPos.x - onScreenScale_30.x;
-        xLimit_30.y = worldPos.y * -1.0f + onScreenScale_30.y;
-
-        xLimit_35.x = worldPos.x - onScreenScale_35.x;
-        xLimit_35.y = worldPos.y * -1.0f + onScreenScale_35.y;
-
-        xLimit_40.x = worldPos.x - onScreenScale_40.x;
-        xLimit_40.y = worldPos.y * -1.0f + onScreenScale_40.y;
-        */
-
-        /*
-        Debug.Log("Soomong localscale x: " + soomong_15.transform.localScale.x);
-        Debug.Log("Rect rect x: " + rt.rect.width);
-        Debug.Log(onScreenScale_20.x);
-        Debug.Log(onScreenScale_20.y);
-        Debug.Log(worldPos.x);
-        Debug.Log(worldPos.y);
-        Debug.Log(xLimit_20.x);
-        Debug.Log(xLimit_20.y);
-        */
-
-        
+        onScreenScale_40.y = rt.rect.height * localScale_40;        
     }
 
    

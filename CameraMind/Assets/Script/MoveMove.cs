@@ -30,32 +30,11 @@ public class MoveMove : MonoBehaviour {
         //float distanceTemp;
         temp.z = 0;
 
-        switch (SpawnPrefab.instance.scene)
+        for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
         {
-            case 2:
-                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
-                {
-                    temp.x = SpawnPrefab.instance.posList[i].x * -1.0f;
-                    temp.y = SpawnPrefab.instance.posList[i].y;
-                    OppCenterPos.Add(temp);
-                }
-                break;
-            case 7:
-                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
-                {
-                    temp.x = SpawnPrefab.instance.posList[i].x;
-                    temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
-                    OppCenterPos.Add(temp);
-                }
-                break;
-            case 10:
-                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
-                {
-                    temp.x = SpawnPrefab.instance.posList[i].x;
-                    temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
-                    OppCenterPos.Add(temp);
-                }
-                break;
+            temp.x = SpawnPrefab.instance.posList[i].x;
+            temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
+            OppCenterPos.Add(temp);
         }
     }
 

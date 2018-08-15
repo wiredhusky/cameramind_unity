@@ -22,11 +22,11 @@ public class spawn : MonoBehaviour {
         if (SceneManager.GetActiveScene().name == "Flip Horizon" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos")
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-        }      
-        
+        }
+        animator = gameObject.GetComponent<Animator>();
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
-	}
+    }
 
     
     /*
@@ -128,16 +128,21 @@ public class spawn : MonoBehaviour {
 
     public void PauseAni()
     {
-        if (!SpawnPrefab.instance.allThingsDone)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            animator = gameObject.GetComponent<Animator>();
-            animator.speed = 0;
+            //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);            
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(MainMenu.mainMenu.sceneName));
+            SceneManager.UnloadSceneAsync(0);     
         }
 
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if (!SpawnPrefab.instance.allThingsDone)
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);            
-        }      
+            animator.speed = 0;
+            SpawnPrefab.instance.setScale();
+            SpawnPrefab.instance.PosSearch();
+            SpawnPrefab.instance.SetStart();
+            animator.speed = 1;
+        }        
 
         //GameObject.FindWithTag("background").transform.GetChild(0).gameObject.SetActive(true);
         //instance.CalPos();

@@ -26,10 +26,10 @@ public class Clicked : MonoBehaviour {
 
         switch (SpawnPrefab.instance.scene)
         {            
-            case 3: // Track
+            case "Track": // Track
                 transitionType.goIdle += SetIdle;
                 break;
-            case 5: //Alone, renedere enabled = true;
+            case "Alone": //Alone, renedere enabled = true;
                 transitionType.enableRenderer += EnableRenderer;
                 break;
             default:

@@ -263,12 +263,12 @@ public class TransitionControl : MonoBehaviour {
     {
         switch (SpawnPrefab.instance.scene)
         {
-            case 0:
+            case "MainMenu":
                 break;
-            case 3:
+            case "Track":
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_track].GetComponent<Animator>();
                 break;
-            case 4:
+            case "Twins":
                 if (SpawnPrefab.instance.colored)
                 {
                     animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_twins].GetComponent<Animator>();
@@ -278,7 +278,7 @@ public class TransitionControl : MonoBehaviour {
                     animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_twins+1].GetComponent<Animator>();
                 }                
                 break;
-            case 5:
+            case "Alone":
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_alone].GetComponent<Animator>();
                 break;            
             default: // normal, double, triple, vertical/horizontal flip, temptation
@@ -312,7 +312,7 @@ public class TransitionControl : MonoBehaviour {
             case 1:
                 //display.GameResult();
                 //meOver.SetActive(true);
-                SceneManager.LoadScene("GameOver");
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
                 break;
         }        
     }
@@ -334,7 +334,7 @@ public class TransitionControl : MonoBehaviour {
             }            
         }
 
-        if (SpawnPrefab.instance.scene == 3 && SpawnPrefab.instance.index_track == SpawnPrefab.instance.index + 1)
+        if (SpawnPrefab.instance.scene == "Track" && SpawnPrefab.instance.index_track == SpawnPrefab.instance.index + 1)
         {            
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))

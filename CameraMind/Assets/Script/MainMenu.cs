@@ -8,7 +8,16 @@ public class MainMenu : MonoBehaviour {
     
     //public GameObject mainMenuTransition;
     public string sceneName;
-    
+    public static MainMenu mainMenu;
+
+    private void Awake()
+    {
+        if(mainMenu == null)
+        {
+            mainMenu = this;
+        }
+    }
+
     public void PlayGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

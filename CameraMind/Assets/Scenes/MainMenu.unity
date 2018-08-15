@@ -1476,11 +1476,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 537494253}
---- !u!1 &660836133 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1173986339302714, guid: cd12112604869b2428083a8195f66964,
-    type: 2}
-  m_PrefabInternal: {fileID: 1121621233}
 --- !u!224 &660836134 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224724210378142936, guid: cd12112604869b2428083a8195f66964,
@@ -2970,7 +2965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451033803cdd4494e86e620536e75d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soomong: {fileID: 660836133}
 --- !u!95 &1614898306
 Animator:
   serializedVersion: 3
@@ -3731,7 +3725,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -3
+  m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

@@ -301,7 +301,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -2
+  m_Depth: -3
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -640,7 +640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451033803cdd4494e86e620536e75d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soomong: {fileID: 1556844957}
 --- !u!95 &1164227418
 Animator:
   serializedVersion: 3
@@ -831,11 +830,6 @@ Prefab:
 --- !u!224 &1556844956 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224724210378142936, guid: cd12112604869b2428083a8195f66964,
-    type: 2}
-  m_PrefabInternal: {fileID: 1556844955}
---- !u!1 &1556844957 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1173986339302714, guid: cd12112604869b2428083a8195f66964,
     type: 2}
   m_PrefabInternal: {fileID: 1556844955}
 --- !u!1 &1575772627

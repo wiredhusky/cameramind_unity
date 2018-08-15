@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour {
 
     Animator animator;
+    AsyncOperation asyncOperation;
 
 	// Use this for initialization
 	void Start () {
@@ -20,8 +21,14 @@ public class GameOver : MonoBehaviour {
     }
 
     public void GoToMainMenu()
-    {        
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+    {
+        asyncOperation = SceneManager.UnloadSceneAsync(SpawnPrefab.instance.scene);
+        SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
+        //Wait until ActiveScene is unloaded completely 
+        /*while (!asyncOperation.isDone)
+        {
+            //nothing. Wait until...
+        }*/
         animator.speed = 1;
     }
 
