@@ -13,6 +13,7 @@ TagManager:
   - startNormalTransition
   - startCanvas
   - background
+  - gameOverBack
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class spawn : MonoBehaviour {
     public TransitionControl transitionControl;
 
     Animator animator;
+    GameObject background;
     
     int randObj, randAni;    
     
@@ -24,6 +25,7 @@ public class spawn : MonoBehaviour {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
         }
         animator = gameObject.GetComponent<Animator>();
+        background = GameObject.FindWithTag("background");
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
     }
@@ -141,6 +143,7 @@ public class spawn : MonoBehaviour {
             SpawnPrefab.instance.setScale();
             SpawnPrefab.instance.PosSearch();
             SpawnPrefab.instance.SetStart();
+            background.transform.GetChild(0).gameObject.SetActive(true);            
             animator.speed = 1;
         }        
 

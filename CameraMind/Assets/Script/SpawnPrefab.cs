@@ -61,7 +61,7 @@ public class SpawnPrefab : MonoBehaviour {
 
     private void Start()
     {        
-        LevelTransition.SetActive(true);
+        LevelTransition.SetActive(true);        
 
         //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
         //Debug.Log(mainMenu.sceneName);    

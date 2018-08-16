@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TransitionControl : MonoBehaviour {
 
     public GameObject LevelTransition;
-    public GameObject gameOver;    
+    //public GameObject gameOver;    
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
@@ -24,9 +24,6 @@ public class TransitionControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         display = GameObject.FindWithTag("LevelCounter").GetComponent<LevelCounter>();
-
-        //SpawnPrefab.instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
-        //SpawnPrefab.instance = FindObjectOfType<SpawnPrefab>();
         chkGameOver = false;
         if(SceneManager.GetActiveScene().name == "Flip Horizon" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos"){
             moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
@@ -36,7 +33,7 @@ public class TransitionControl : MonoBehaviour {
     public void ComPos(Vector3 _objPos, Animator _animator)
     {
         
-        switch (SceneManager.GetActiveScene().name)
+        switch (SpawnPrefab.instance.scene)
         {
             default:
                 DeactiveHandler();
