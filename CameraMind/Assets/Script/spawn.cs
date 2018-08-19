@@ -19,7 +19,8 @@ public class spawn : MonoBehaviour {
     void Start ()
     {
         //instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
-        transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();        
+        transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();   
+        
         if (SceneManager.GetActiveScene().name == "Flip Horizon" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos")
         {
             move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
@@ -138,7 +139,7 @@ public class spawn : MonoBehaviour {
         }
 
         if (!SpawnPrefab.instance.allThingsDone)
-        {
+        {           
             animator.speed = 0;
             SpawnPrefab.instance.setScale();
             SpawnPrefab.instance.PosSearch();

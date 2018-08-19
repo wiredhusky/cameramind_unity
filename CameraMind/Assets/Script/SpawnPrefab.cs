@@ -175,7 +175,7 @@ public class SpawnPrefab : MonoBehaviour {
     public void SetStart()
     {
         scene = SceneManager.GetActiveScene().name;
-        Debug.Log("Scene: " + scene);
+        //Debug.Log("Scene: " + scene);
         switch (scene)
         {
             case "Flip Horizon": // horizontal flip

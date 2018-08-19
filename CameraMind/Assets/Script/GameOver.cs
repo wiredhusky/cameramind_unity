@@ -7,6 +7,8 @@ public class GameOver : MonoBehaviour {
 
     Animator animator;    
     bool restart;
+    //AsyncOperation test;
+    bool clicked;
     GameObject gameOverBack;
     string scene;
     //AsyncOperation asyncOperation;
@@ -16,6 +18,7 @@ public class GameOver : MonoBehaviour {
         scene = SpawnPrefab.instance.scene;
         animator = gameObject.GetComponent<Animator>();        
         restart = false;
+        clicked = false;
         gameOverBack = GameObject.FindWithTag("gameOverBack");    
     }
 
@@ -27,25 +30,40 @@ public class GameOver : MonoBehaviour {
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
-        animator.speed = 1;
+        if (!clicked)
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+            animator.speed = 1;
+            clicked = true;
+        }        
     }
 
     public void Restart()
-    {
-        gameOverBack.transform.GetChild(0).gameObject.SetActive(true);
-        animator.speed = 1;
-        restart = true;
+    {        
+        if (!clicked)
+        {
+            //test = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+            animator.speed = 1;
+            //SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
+            clicked = true;
+            
+        }
+        //gameOverBack.transform.GetChild(0).gameObject.SetActive(true);
+                
+        //restart = true;
     }
 
     void DestroyMyself()
-    {
-        if (restart)
+    {        
+       /*if (restart)
         {
-            SceneManager.LoadScene(SpawnPrefab.instance.scene, LoadSceneMode.Additive);
+            SceneManager.LoadScene(scene, LoadSceneMode.Additive);            
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
-        }        
+            Debug.Log("Scene Name: " + scene);
+        }*/
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("GameOver"));
+        //Debug.Log(SceneManager.GetActiveScene().name);
     }
 	
 }

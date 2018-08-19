@@ -18,7 +18,7 @@ public class Clicked : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         _collider = gameObject.GetComponent<CircleCollider2D>();
-        _renderer = gameObject.GetComponent<Renderer>();
+        _renderer = gameObject.GetComponent<Renderer>();        
         
         transitionType.activeCollider += ActiveCol;
         transitionType.deactiveCollider += DeActiveCol;
