@@ -56,7 +56,20 @@ public class SpawnPrefab : MonoBehaviour {
         if(instance == null)
         {
             instance = this;
-        }        
+        }
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "MainMenu":
+                scene = MainMenu.mainMenu.sceneName;
+                break;
+            case "GameOver":
+                scene = GameOver.gameOver.scene;
+                break;
+            default:
+                scene = SceneManager.GetActiveScene().name;
+                break;
+        }
     }
 
     private void Start()
@@ -172,9 +185,17 @@ public class SpawnPrefab : MonoBehaviour {
         */
     }
 
+    /*
+    public void setScene(string _sceneName)
+    {
+        scene = _sceneName;
+        Debug.Log("Scene: " + scene);
+        Debug.Log("_sceneName: " + _sceneName);
+    }*/
+
     public void SetStart()
     {
-        scene = SceneManager.GetActiveScene().name;
+        //scene = SceneManager.GetActiveScene().name;
         //Debug.Log("Scene: " + scene);
         switch (scene)
         {

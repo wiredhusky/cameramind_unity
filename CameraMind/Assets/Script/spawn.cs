@@ -131,11 +131,19 @@ public class spawn : MonoBehaviour {
 
     public void PauseAni()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);            
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(MainMenu.mainMenu.sceneName));
+            Debug.Log("active scene: " + SceneManager.GetActiveScene().name);
             SceneManager.UnloadSceneAsync(0);     
+        }
+
+        if(SceneManager.GetActiveScene().name == "GameOver")
+        {
+            Debug.Log(SpawnPrefab.instance.scene);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
+            SceneManager.UnloadSceneAsync("GameOver");
         }
 
         if (!SpawnPrefab.instance.allThingsDone)

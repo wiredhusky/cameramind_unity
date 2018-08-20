@@ -25,8 +25,12 @@ public class TransitionControl : MonoBehaviour {
     void Start () {
         display = GameObject.FindWithTag("LevelCounter").GetComponent<LevelCounter>();
         chkGameOver = false;
-        if(SceneManager.GetActiveScene().name == "Flip Horizon" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos"){
+        if(SpawnPrefab.instance.scene == "Flip Horizon" || SpawnPrefab.instance.scene == "Flip Vertical" || SpawnPrefab.instance.scene == "Chaos"){
             moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+        }
+        if(moveIndex == null)
+        {
+            Debug.Log("Move Index is Null");
         }
 	}
 

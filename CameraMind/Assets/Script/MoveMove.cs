@@ -21,6 +21,10 @@ public class MoveMove : MonoBehaviour {
         reverse = true;        
         //SpawnPrefab.instance = GameObject.FindWithTag("SpawnPrefab.instance").GetComponent<SpawnPrefab>();
         colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
+        if(colControl == null)
+        {
+            Debug.Log("Col Control is NULL");
+        }
 
 	}
     
