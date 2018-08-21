@@ -7,26 +7,23 @@ public class spawn : MonoBehaviour {
 
     
     public MoveMove move;
+    
     //public Clicked tap;    
     public TransitionControl transitionControl;
 
     Animator animator;
     GameObject background;
     
-    int randObj, randAni;    
+    int randObj, randAni;
+
+    bool isSet = false;
     
     // Use this for initialization
     void Start ()
     {
         //instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
-        transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();   
-        
-        if (SceneManager.GetActiveScene().name == "Flip Horizon" || SceneManager.GetActiveScene().name == "Flip Vertical" || SceneManager.GetActiveScene().name == "Chaos")
-        {
-            move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-        }
         animator = gameObject.GetComponent<Animator>();
-        background = GameObject.FindWithTag("background");
+        background = GameObject.FindWithTag("background");        
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
     }
@@ -62,7 +59,7 @@ public class spawn : MonoBehaviour {
 	public void objCreator()
     {
         //SpawnPrefab.instance.scene = SceneManager.GetActiveScene().buildIndex;
-        switch (SceneManager.GetActiveScene().name)
+        switch (SpawnPrefab.instance.scene)
         {
             case "MainMenu":
                 break;            
@@ -152,12 +149,27 @@ public class spawn : MonoBehaviour {
             SpawnPrefab.instance.setScale();
             SpawnPrefab.instance.PosSearch();
             SpawnPrefab.instance.SetStart();
+            
             background.transform.GetChild(0).gameObject.SetActive(true);            
             animator.speed = 1;
         }        
 
         //GameObject.FindWithTag("background").transform.GetChild(0).gameObject.SetActive(true);
         //instance.CalPos();
+    }
+
+    void SetComponent()
+    {
+        if (!isSet)
+        {
+            transitionControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
+
+            if (SpawnPrefab.instance.scene == "Flip Horizon" || SpawnPrefab.instance.scene == "Flip Vertical" || SpawnPrefab.instance.scene == "Chaos")
+            {
+                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+            }
+            isSet = true;
+        }
     }
 
     public void ActiveCollider()
@@ -179,7 +191,9 @@ public class spawn : MonoBehaviour {
 
     public void MovePrefab()
     {
+        //Debug.Log(move._move);
         move._move = true;
+        //Debug.Log(move._move);
     }
 
 }

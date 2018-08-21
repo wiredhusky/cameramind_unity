@@ -185,13 +185,10 @@ public class SpawnPrefab : MonoBehaviour {
         */
     }
 
-    /*
-    public void setScene(string _sceneName)
+    public void Test()
     {
-        scene = _sceneName;
-        Debug.Log("Scene: " + scene);
-        Debug.Log("_sceneName: " + _sceneName);
-    }*/
+        Debug.Log("Test Complete");
+    }
 
     public void SetStart()
     {

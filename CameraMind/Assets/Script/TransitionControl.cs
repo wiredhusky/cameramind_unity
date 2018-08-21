@@ -25,12 +25,9 @@ public class TransitionControl : MonoBehaviour {
     void Start () {
         display = GameObject.FindWithTag("LevelCounter").GetComponent<LevelCounter>();
         chkGameOver = false;
+        
         if(SpawnPrefab.instance.scene == "Flip Horizon" || SpawnPrefab.instance.scene == "Flip Vertical" || SpawnPrefab.instance.scene == "Chaos"){
             moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-        }
-        if(moveIndex == null)
-        {
-            Debug.Log("Move Index is Null");
         }
 	}
 
@@ -54,7 +51,7 @@ public class TransitionControl : MonoBehaviour {
                 //Debug.Log("double click");                
                 break;
             case "Flip Horizon":
-                Debug.Log("Horizontal");
+                //Debug.Log("Horizontal");
                 DeactiveHandler();
                 if (ComparePos(_objPos))
                 {

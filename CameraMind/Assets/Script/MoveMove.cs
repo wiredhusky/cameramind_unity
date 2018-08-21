@@ -20,11 +20,11 @@ public class MoveMove : MonoBehaviour {
         _move = false;
         reverse = true;        
         //SpawnPrefab.instance = GameObject.FindWithTag("SpawnPrefab.instance").GetComponent<SpawnPrefab>();
-        colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
-        if(colControl == null)
+        //colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
+        /*if(colControl == null)
         {
             Debug.Log("Col Control is NULL");
-        }
+        }*/
 
 	}
     
@@ -71,6 +71,10 @@ public class MoveMove : MonoBehaviour {
                     _move = false;
                     reverse = false;
                     //SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<PolygonCollider2D>().enabled = true;
+                    if (colControl == null)
+                    {
+                        colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
+                    }
                     colControl.ActiveHandler();
                     currentTime = 0;
                 }
@@ -86,6 +90,10 @@ public class MoveMove : MonoBehaviour {
                 {   
                     _move = false;
                     reverse = true;
+                    if(colControl == null)
+                    {
+                        colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
+                    }                    
                     colControl.ActiveHandler();
                     currentTime = 0;
                 }
