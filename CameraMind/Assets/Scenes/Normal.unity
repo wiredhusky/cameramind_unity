@@ -139,8 +139,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 932374468}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &186632859
 SpriteRenderer:
@@ -186,68 +186,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1 &322980672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 322980675}
-  - component: {fileID: 322980674}
-  - component: {fileID: 322980673}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &322980673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 322980672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &322980674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 322980672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 5
---- !u!4 &322980675
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 322980672}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &573572830
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +300,7 @@ MonoBehaviour:
   objType: 
   obj: []
   LevelTransition: {fileID: 1575772627}
+  move: {fileID: 0}
   scene: 0
   index_track: 0
   index_twins: 0
@@ -559,35 +498,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1783797030}
   m_GameObject: {fileID: 600395690}
---- !u!1 &932374467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 932374468}
-  m_Layer: 0
-  m_Name: Background
-  m_TagString: background
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &932374468
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 932374467}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 186632858}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1575772627
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 0}
-  transitionControl: {fileID: 0}
+  transitionControl: {fileID: 2134077726}
+  animator: {fileID: 1575772630}
+  background: {fileID: 186632857}
 --- !u!95 &1575772630
 Animator:
   serializedVersion: 3
@@ -932,6 +844,21 @@ Prefab:
       propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114825327565199390, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1575772630}
+    - target: {fileID: 114825327565199390, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: transitionControl
+      value: 
+      objectReference: {fileID: 2134077726}
+    - target: {fileID: 114825327565199390, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 186632857}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}
   m_IsPrefabParent: 0
@@ -963,7 +890,7 @@ Transform:
   m_Children:
   - {fileID: 1597869038}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2134077726
 MonoBehaviour:
@@ -977,5 +904,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelTransition: {fileID: 1575772627}
-  display: {fileID: 0}
+  moveIndex: {fileID: 0}
+  display: {fileID: 600395692}
   chkGameOver: 0

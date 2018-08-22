@@ -11,22 +11,22 @@ public class spawn : MonoBehaviour {
     //public Clicked tap;    
     public TransitionControl transitionControl;
 
-    Animator animator;
-    GameObject background;
+    public Animator animator;
+    public GameObject background;
     
     int randObj, randAni;
 
-    bool isSet = false;
+    //bool isSet = false;
     
     // Use this for initialization
-    void Start ()
+    /*void Start ()
     {
         //instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         animator = gameObject.GetComponent<Animator>();
         background = GameObject.FindWithTag("background");        
         //animator = gameObject.GetComponent<Animator>();
         //tap = GetComponent<Clicked>();
-    }
+    }*/
 
     
     /*
@@ -149,8 +149,9 @@ public class spawn : MonoBehaviour {
             SpawnPrefab.instance.setScale();
             SpawnPrefab.instance.PosSearch();
             SpawnPrefab.instance.SetStart();
-            
-            background.transform.GetChild(0).gameObject.SetActive(true);            
+
+            //background.transform.GetChild(0).gameObject.SetActive(true);            
+            background.SetActive(true);
             animator.speed = 1;
         }        
 
@@ -158,6 +159,7 @@ public class spawn : MonoBehaviour {
         //instance.CalPos();
     }
 
+    /*
     void SetComponent()
     {
         if (!isSet)
@@ -170,7 +172,7 @@ public class spawn : MonoBehaviour {
             }
             isSet = true;
         }
-    }
+    }*/
 
     public void ActiveCollider()
     {

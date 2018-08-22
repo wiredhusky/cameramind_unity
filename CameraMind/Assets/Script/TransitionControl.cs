@@ -14,7 +14,7 @@ public class TransitionControl : MonoBehaviour {
     public event GoToIdle deactiveCollider;
     public event GoToIdle enableRenderer;
 
-    MoveMove moveIndex;
+    public MoveMove moveIndex;
 
     public LevelCounter display;
     public bool chkGameOver;
@@ -23,12 +23,12 @@ public class TransitionControl : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        display = GameObject.FindWithTag("LevelCounter").GetComponent<LevelCounter>();
+        //display = GameObject.FindWithTag("LevelCounter").GetComponent<LevelCounter>();
         chkGameOver = false;
         
-        if(SpawnPrefab.instance.scene == "Flip Horizon" || SpawnPrefab.instance.scene == "Flip Vertical" || SpawnPrefab.instance.scene == "Chaos"){
+        /*if(SpawnPrefab.instance.scene == "Flip Horizon" || SpawnPrefab.instance.scene == "Flip Vertical" || SpawnPrefab.instance.scene == "Chaos"){
             moveIndex = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-        }
+        }*/
 	}
 
     public void ComPos(Vector3 _objPos, Animator _animator)

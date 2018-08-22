@@ -14,7 +14,7 @@ public class SpawnPrefab : MonoBehaviour {
     public List<GameObject> obj = new List<GameObject>();
     public GameObject LevelTransition;
     private GameObject _obj;
-    private MoveMove move;    
+    public MoveMove move;    
 
     //Animator animator;
 
@@ -197,7 +197,7 @@ public class SpawnPrefab : MonoBehaviour {
         switch (scene)
         {
             case "Flip Horizon": // horizontal flip
-                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                //move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
 
@@ -242,11 +242,11 @@ public class SpawnPrefab : MonoBehaviour {
                 break;
 
             case "Flip Vertical": //vertical flip
-                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                //move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
             case "Chaos": // chaos
-                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
+                //move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
             default:

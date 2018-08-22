@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
 
-    Animator animator;    
-    bool restart;
+    public Animator animator;    
+    bool restart = false;
     //AsyncOperation test;
-    bool clicked;
-    GameObject gameOverBack;
+    bool clicked = false;
+    public GameObject gameOverBack;
     public string scene;
     //AsyncOperation asyncOperation;
 
@@ -22,15 +22,17 @@ public class GameOver : MonoBehaviour {
         {
             gameOver = this;
         }
+        scene = SpawnPrefab.instance.scene;
     }
 
+    /*
     void Start () {
-        scene = SpawnPrefab.instance.scene;
-        animator = gameObject.GetComponent<Animator>();        
+        
+        //animator = gameObject.GetComponent<Animator>();        
         restart = false;
         clicked = false;
-        gameOverBack = GameObject.FindWithTag("gameOverBack");    
-    }
+        //gameOverBack = GameObject.FindWithTag("gameOverBack");    
+    }*/
 
     void PauseGameOver()
     {
@@ -59,7 +61,8 @@ public class GameOver : MonoBehaviour {
             //SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
             clicked = true;
             restart = true;
-            gameOverBack.transform.GetChild(0).gameObject.SetActive(true);
+            //gameOverBack.transform.GetChild(0).gameObject.SetActive(true);
+            gameOverBack.SetActive(true);
             animator.speed = 1;            
         }
         //gameOverBack.transform.GetChild(0).gameObject.SetActive(true);

@@ -6,19 +6,19 @@ public class Clicked : MonoBehaviour {
     
     TransitionControl transitionType;
     //public SpawnPrefab SpawnPrefab.instance;
-    Animator animator;
-    CircleCollider2D _collider;
-    Renderer _renderer;
+    public Animator animator;
+    public CircleCollider2D _collider;
+    public Renderer _renderer;
     //public MoveMove moveIndex;
     
     private void Start()
     {
         transitionType = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
         //SpawnPrefab.instance = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();        
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
-        _collider = gameObject.GetComponent<CircleCollider2D>();
-        _renderer = gameObject.GetComponent<Renderer>();        
+        //_collider = gameObject.GetComponent<CircleCollider2D>();
+        //_renderer = gameObject.GetComponent<Renderer>();        
         
         transitionType.activeCollider += ActiveCol;
         transitionType.deactiveCollider += DeActiveCol;

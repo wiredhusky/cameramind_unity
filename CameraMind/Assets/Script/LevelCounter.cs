@@ -17,7 +17,7 @@ public class LevelCounter : MonoBehaviour {
         //indicator = FindObjectOfType<SpawnPrefab>();
         //indicator = GameObject.FindWithTag("spawner").GetComponent<SpawnPrefab>();
         
-        counter = gameObject.GetComponent<TextMeshProUGUI>();
+        //counter = gameObject.GetComponent<TextMeshProUGUI>();
         //Debug.Log(indicator.index);
         counter.text = "Level " + (SpawnPrefab.instance.index + 1).ToString();
         //CountSpawnPrefab.instance();

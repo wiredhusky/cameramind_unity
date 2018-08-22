@@ -73,10 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd145b396b105844a9f09c1b3c88a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionType: {fileID: 0}
-  level: {fileID: 0}
   animator: {fileID: 95923477988885124}
-  moveIndex: {fileID: 0}
+  _collider: {fileID: 58537228218129382}
+  _renderer: {fileID: 212132656085763358}
 --- !u!212 &212132656085763358
 SpriteRenderer:
   m_ObjectHideFlags: 1
