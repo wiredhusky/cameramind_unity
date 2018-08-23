@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOver : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class GameOver : MonoBehaviour {
     bool clicked = false;
     public GameObject gameOverBack;
     public string scene;
+    public TextMeshProUGUI count;
     //AsyncOperation asyncOperation;
 
     public static GameOver gameOver;
@@ -25,6 +27,10 @@ public class GameOver : MonoBehaviour {
         scene = SpawnPrefab.instance.scene;
     }
 
+    private void Start()
+    {
+        count.text = "Level " + (SpawnPrefab.instance.index).ToString();
+    }
     /*
     void Start () {
         

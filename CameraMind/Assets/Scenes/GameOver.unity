@@ -842,7 +842,46 @@ Prefab:
       propertyPath: counter
       value: 
       objectReference: {fileID: 893532312}
-    m_RemovedComponents: []
+    - target: {fileID: 114698972449171128, guid: 502c7170f453f514abf98b90b38539d8,
+        type: 2}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698972449171128, guid: 502c7170f453f514abf98b90b38539d8,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698972449171128, guid: 502c7170f453f514abf98b90b38539d8,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698972449171128, guid: 502c7170f453f514abf98b90b38539d8,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698972449171128, guid: 502c7170f453f514abf98b90b38539d8,
+        type: 2}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057453486200708, guid: 502c7170f453f514abf98b90b38539d8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069435245196866, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
+      propertyPath: m_Name
+      value: GameOver Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 1896026490872716, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
+      propertyPath: m_Name
+      value: Result
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 502c7170f453f514abf98b90b38539d8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &893532309
@@ -856,9 +895,8 @@ GameObject:
   - component: {fileID: 893532310}
   - component: {fileID: 893532313}
   - component: {fileID: 893532312}
-  - component: {fileID: 893532311}
   m_Layer: 5
-  m_Name: LevelCounter
+  m_Name: Result
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -883,19 +921,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.1085}
   m_SizeDelta: {x: 17.182, y: 4.018}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &893532311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114057453486200708, guid: 502c7170f453f514abf98b90b38539d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 768338786}
-  m_GameObject: {fileID: 893532309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616aeb5a3cc4b4d489c5b9b355fbd5c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counter: {fileID: 893532312}
 --- !u!114 &893532312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +941,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Level
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -984,13 +1009,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 893532312}
-    characterCount: 5
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
@@ -1140,6 +1165,7 @@ MonoBehaviour:
   animator: {fileID: 1354240264}
   gameOverBack: {fileID: 1821268249}
   scene: 
+  count: {fileID: 893532312}
 --- !u!1 &1544677067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1178,7 @@ GameObject:
   - component: {fileID: 1544677070}
   - component: {fileID: 1544677069}
   m_Layer: 5
-  m_Name: TextMeshPro Text
+  m_Name: GameOver Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

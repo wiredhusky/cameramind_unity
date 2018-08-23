@@ -13,20 +13,6 @@ public class MoveMove : MonoBehaviour {
     public bool reverse = true;
     
     float speed, currentTime, lerpTime=1.5f;
-        
-	// Use this for initialization
-	void Start () {
-
-        _move = false;
-        reverse = true;        
-        //SpawnPrefab.instance = GameObject.FindWithTag("SpawnPrefab.instance").GetComponent<SpawnPrefab>();
-        //colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
-        /*if(colControl == null)
-        {
-            Debug.Log("Col Control is NULL");
-        }*/
-
-	}
     
     public void centerPosCalculator()
     {   

@@ -301,6 +301,7 @@ MonoBehaviour:
   obj: []
   LevelTransition: {fileID: 1575772627}
   move: {fileID: 0}
+  counter: {fileID: 600395693}
   scene: 0
   index_track: 0
   index_twins: 0
@@ -337,7 +338,6 @@ GameObject:
   - component: {fileID: 600395691}
   - component: {fileID: 600395694}
   - component: {fileID: 600395693}
-  - component: {fileID: 600395692}
   m_Layer: 5
   m_Name: LevelCounter
   m_TagString: LevelCounter
@@ -364,19 +364,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &600395692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114133877612121226, guid: 2649dc79f897f8443813e0157b8657d0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1783797030}
-  m_GameObject: {fileID: 600395690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9142c30442983e7468d3b3ad95ec2c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counter: {fileID: 600395693}
 --- !u!114 &600395693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,7 +822,8 @@ Prefab:
       propertyPath: background
       value: 
       objectReference: {fileID: 106626743}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2134077724
@@ -881,5 +869,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelTransition: {fileID: 1575772627}
   moveIndex: {fileID: 0}
-  display: {fileID: 600395692}
   chkGameOver: 0

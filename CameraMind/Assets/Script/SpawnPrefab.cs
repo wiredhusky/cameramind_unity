@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SpawnPrefab : MonoBehaviour {
 
@@ -14,7 +15,9 @@ public class SpawnPrefab : MonoBehaviour {
     public List<GameObject> obj = new List<GameObject>();
     public GameObject LevelTransition;
     private GameObject _obj;
-    public MoveMove move;    
+    public MoveMove move;
+
+    public TextMeshProUGUI counter;
 
     //Animator animator;
 
@@ -73,127 +76,19 @@ public class SpawnPrefab : MonoBehaviour {
     }
 
     private void Start()
-    {        
-        LevelTransition.SetActive(true);        
-
-        //mainMenu = GameObject.FindWithTag("MainMenu").GetComponent<MainMenu>();
-        //Debug.Log(mainMenu.sceneName);    
-        //setScale();
-        //PosSearch();
-
-        //scene = SceneManager.GetActiveScene().buildIndex;
-        //Debug.Log("Scene: " + scene);        
-        //Debug.Log(SceneManager.GetActiveScene().name);
-        /*
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "Flip Horizon": // horizontal flip
-                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-                move.centerPosCalculator();
-                break;
-
-            case "Alone": // alone
-                for (int i = 0; i < posList.Count; i++)
-                {
-                    switch (objType[i])
-                    {
-                        case 0:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                            _obj.transform.position = posList[i];
-                            break;
-                        case 1:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                            _obj.transform.position = posList[i];
-                            break;
-                        case 2:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                            _obj.transform.position = posList[i];
-                            break;
-                        case 3:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                            _obj.transform.position = posList[i];
-                            break;
-                        case 4:
-                            _obj = Instantiate(soomong_colored) as GameObject;
-                            _obj.GetComponent<Renderer>().enabled = false;
-                            _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                            _obj.transform.position = posList[i];
-                            break;
-                    }
-
-                }
-                break;
-
-            case "Flip Vertical": //vertical flip
-                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-                move.centerPosCalculator();
-                break;
-            case "Chaos": // chaos
-                move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
-                move.centerPosCalculator();
-                break;
-            default:
-                break;
-
-        }*/
-
-        //SpawnPrefab.instanceTransition Resume and Start spawning
-        //SpawnStart();
-
-        //SpawnPrefab.instanceTransition.SetActive(true);
-        /*
-        Debug.Log("obj count: " + objType.Count);
-        case0 = 0;
-        case1 = 0;
-        case2 = 0;
-        case3 = 0;
-        case4 = 0;
-        for (int i = 0; i < objType.Count; i++)
-        {
-            switch (objType[i])
-            {
-                case 0:
-                    case0++;
-                    break;
-                case 1:
-                    case1++;
-                    break;
-                case 2:
-                    case2++;
-                    break;
-                case 3:
-                    case3++;
-                    break;
-                case 4:
-                    case4++;
-                    break;
-            }
-        }
-        Debug.Log("20: " + case0);
-        Debug.Log("25: " + case1);
-        Debug.Log("30: " + case2);
-        Debug.Log("35: " + case3);
-        Debug.Log("40: " + case4);
-        */
-    }
-
-    public void Test()
     {
-        Debug.Log("Test Complete");
+        CountLevel();
+        LevelTransition.SetActive(true);                
     }
+
+    public void CountLevel()
+    {
+        counter.text = "Level " + (index + 1).ToString();
+    }
+    
 
     public void SetStart()
-    {
-        //scene = SceneManager.GetActiveScene().name;
-        //Debug.Log("Scene: " + scene);
+    {        
         switch (scene)
         {
             case "Flip Horizon": // horizontal flip
@@ -295,8 +190,7 @@ public class SpawnPrefab : MonoBehaviour {
 
     public void SpawnObj()
     {
-        //Vector2 spawnPos;
-        
+        //Vector2 spawnPos;       
         
         switch (objType[index])
         {
