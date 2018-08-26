@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TransitionControl : MonoBehaviour {
 
     public GameObject LevelTransition;
+    public GameObject Pause;
     //public GameObject gameOver;    
 
     public delegate void GoToIdle();
@@ -215,8 +216,6 @@ public class TransitionControl : MonoBehaviour {
         }
     }
 
-
-
     public void EventHandler()
     {
         if(goIdle != null)
@@ -296,13 +295,16 @@ public class TransitionControl : MonoBehaviour {
                 SpawnPrefab.instance.CountLevel();
                 LevelTransition.SetActive(true);
                 break;
-            case 1:
-                //display.GameResult();
-                //meOver.SetActive(true);
+            case 1:                
                 SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
                 break;
         }        
     }
+
+    void PauseGame()
+    {
+        Pause.SetActive(true);
+    }    
 
     void Update()
     {
@@ -315,8 +317,7 @@ public class TransitionControl : MonoBehaviour {
                 if (currentBaseState.normalizedTime > 1.0f)
                 {
                     chkGameOver = false;
-                    DoTransition(1);
-                    //animator.SetTrigger("Clicked");
+                    DoTransition(1);                    
                 }
             }            
         }

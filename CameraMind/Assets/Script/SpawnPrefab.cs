@@ -13,7 +13,7 @@ public class SpawnPrefab : MonoBehaviour {
     public List<Vector3> posList = new List<Vector3>();
     public List<int> objType = new List<int>();
     public List<GameObject> obj = new List<GameObject>();
-    public GameObject LevelTransition;
+    public GameObject LevelTransition;    
     private GameObject _obj;
     public MoveMove move;
 
@@ -84,8 +84,7 @@ public class SpawnPrefab : MonoBehaviour {
     public void CountLevel()
     {
         counter.text = "Level " + (index + 1).ToString();
-    }
-    
+    }    
 
     public void SetStart()
     {        
@@ -181,17 +180,8 @@ public class SpawnPrefab : MonoBehaviour {
         Debug.Log("40: " + case4);
     }
 
-    /*
-    public void SpawnStart()
-    {
-        animator = LevelTransition.GetComponent<Animator>();
-        animator.speed = 1;
-    }*/
-
     public void SpawnObj()
     {
-        //Vector2 spawnPos;       
-        
         switch (objType[index])
         {
             case 0:
@@ -531,17 +521,6 @@ public class SpawnPrefab : MonoBehaviour {
             }
         }
     }
-    
-    /*
-    public Vector2 PosReturn()
-    {
-        return posList[index];        
-    }
-
-    public Vector2 PosReturn_Track(int _index)
-    {
-        return posList[_index];
-    }*/
 
     public void setScale()
     {
@@ -578,35 +557,4 @@ public class SpawnPrefab : MonoBehaviour {
         onScreenScale_40.x = rt.rect.width * localScale_40;
         onScreenScale_40.y = rt.rect.height * localScale_40;        
     }
-
-   
-
-    /*
-    private void RandomTest()
-    {
-        float randPosX;
-        float randPosY;
-        randPosX = Random.Range(-9.2f, 5.4f);
-        randPosY = Random.Range(-2.5f, 4.6f);
-        Debug.Log("X: " + randPosX);
-        Debug.Log("Y: " + randPosY);
-    }*/
-
-
-    /*
-        private void Update()
-        {        
-           if(Time.time > nextTime)
-            {
-                nextTime = Time.time + TimeLeft;
-
-                if (!allThingsDone)
-                {
-                    SpawnObj();
-                }            
-                //RandomTest();
-            }
-        }
-        */
-
 }

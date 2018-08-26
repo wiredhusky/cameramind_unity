@@ -93,7 +93,7 @@ public class spawn : MonoBehaviour {
             //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);            
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(MainMenu.mainMenu.sceneName));
             Debug.Log("active scene: " + SceneManager.GetActiveScene().name);
-            SceneManager.UnloadSceneAsync(0);     
+            SceneManager.UnloadSceneAsync("MainMenu");     
         }
 
         if(SceneManager.GetActiveScene().name == "GameOver")
