@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour {
     //AsyncOperation test;
     bool clicked = false;
     public GameObject gameOverBack;
+    public GameObject pauseBtns;
     public string scene;
     public TextMeshProUGUI count;
     //AsyncOperation asyncOperation;
@@ -29,21 +30,21 @@ public class GameOver : MonoBehaviour {
 
     private void Start()
     {
-        count.text = "Level " + (SpawnPrefab.instance.index).ToString();
-    }
-    /*
-    void Start () {
-        
-        //animator = gameObject.GetComponent<Animator>();        
-        restart = false;
-        clicked = false;
-        //gameOverBack = GameObject.FindWithTag("gameOverBack");    
-    }*/
+        if(gameObject.name == "GameOver")
+        {
+            count.text = "Level " + (SpawnPrefab.instance.index).ToString();
+        }        
+    }    
 
     void PauseGameOver()
     {
         animator.speed = 0;
         SceneManager.UnloadSceneAsync(SpawnPrefab.instance.scene);        
+    }
+    
+    public void PauseGame()
+    {
+        animator.speed = 0;
     }
 
     public void GoToMainMenu()
@@ -74,6 +75,29 @@ public class GameOver : MonoBehaviour {
         //gameOverBack.transform.GetChild(0).gameObject.SetActive(true);
                 
         //restart = true;
+    }
+
+    public void PauseRestart()
+    {
+        if (!clicked)
+        {
+            SceneManager.UnloadSceneAsync(scene);
+            clicked = true;
+            restart = true;
+            pauseBtns.SetActive(false);
+        }
+        Invoke("LoadScene", 0.2f);        
+    }
+
+    public void PauseResume()
+    {
+        animator.speed = 1;
+    }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+        animator.speed = 1;
     }
 
     void DestroyMyself()

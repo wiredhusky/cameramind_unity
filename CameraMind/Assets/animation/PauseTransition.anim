@@ -202,7 +202,14 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.5
-    functionName: PauseTransition
+    functionName: PauseGame
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5
+    functionName: DestroyMyself
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

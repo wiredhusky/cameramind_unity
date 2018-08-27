@@ -98,9 +98,14 @@ public class spawn : MonoBehaviour {
 
         if(SceneManager.GetActiveScene().name == "GameOver")
         {
-            Debug.Log(SpawnPrefab.instance.scene);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
             SceneManager.UnloadSceneAsync("GameOver");
+        }
+
+        if (SceneManager.GetActiveScene().name == "Pause")
+        {            
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
+            SceneManager.UnloadSceneAsync("Pause");
         }
 
         if (!SpawnPrefab.instance.allThingsDone)

@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TransitionControl : MonoBehaviour {
 
-    public GameObject LevelTransition;
-    public GameObject Pause;
-    //public GameObject gameOver;    
+    public GameObject LevelTransition;    
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
@@ -300,11 +298,11 @@ public class TransitionControl : MonoBehaviour {
                 break;
         }        
     }
-
-    void PauseGame()
+    
+    public void PausePressed()
     {
-        Pause.SetActive(true);
-    }    
+        SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
+    }
 
     void Update()
     {

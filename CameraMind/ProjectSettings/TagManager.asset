@@ -14,6 +14,7 @@ TagManager:
   - startCanvas
   - background
   - gameOverBack
+  - Pause
   layers:
   - Default
   - TransparentFX
