@@ -11,7 +11,7 @@ public class GameOver : MonoBehaviour {
     //AsyncOperation test;
     bool clicked = false;
     public GameObject gameOverBack;
-    public GameObject pauseBtns;
+    //public GameObject pauseBtns;
     public string scene;
     public TextMeshProUGUI count;
     //AsyncOperation asyncOperation;
@@ -51,9 +51,19 @@ public class GameOver : MonoBehaviour {
     {
         if (!clicked)
         {
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
-            animator.speed = 1;
             clicked = true;
+            switch (gameObject.name)
+            {
+                case "GameOver":
+                    SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+                    animator.speed = 1;
+                    break;
+                case "Pause":
+                    SceneManager.UnloadSceneAsync(scene);
+                    SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+                    animator.speed = 1;
+                    break;
+            }                        
         }        
     }
 
@@ -61,33 +71,25 @@ public class GameOver : MonoBehaviour {
     {        
         if (!clicked)
         {
-            //test = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
-            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-            //SpawnPrefab.instance.setScene(scene);
-            //Debug.Log("Current Scene: " + scene);
-            //SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
             clicked = true;
             restart = true;
-            //gameOverBack.transform.GetChild(0).gameObject.SetActive(true);
             gameOverBack.SetActive(true);
-            animator.speed = 1;            
-        }
-        //gameOverBack.transform.GetChild(0).gameObject.SetActive(true);
-                
-        //restart = true;
-    }
 
-    public void PauseRestart()
-    {
-        if (!clicked)
-        {
-            SceneManager.UnloadSceneAsync(scene);
-            clicked = true;
-            restart = true;
-            pauseBtns.SetActive(false);
+            switch (gameObject.name)
+            {
+                case "GameOver":
+                    SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+                    animator.speed = 1;
+                    break;
+                case "Pause":
+                    animator.speed = 1;
+                    SceneManager.UnloadSceneAsync(scene);
+                    //pauseBtns.SetActive(false);
+                    SceneManager.LoadScene(scene, LoadSceneMode.Additive);                    
+                    break;
+            }            
         }
-        Invoke("LoadScene", 0.2f);        
-    }
+    }    
 
     public void PauseResume()
     {
@@ -96,23 +98,27 @@ public class GameOver : MonoBehaviour {
 
     void LoadScene()
     {
-        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-        animator.speed = 1;
+        //animator.speed = 1;
+        SceneManager.LoadScene(scene, LoadSceneMode.Additive);        
     }
 
     void DestroyMyself()
-    {
-        /*if (restart)
-         {
-             SceneManager.LoadScene(scene, LoadSceneMode.Additive);            
-             SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
-             Debug.Log("Scene Name: " + scene);
-         }*/
+    {        
         if (!restart)
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("GameOver"));
-        }        
-        //Debug.Log(SceneManager.GetActiveScene().name);
+            Debug.Log(gameObject.name);
+            switch (gameObject.name)
+            {
+                case "GameOver":
+                    SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("GameOver"));
+                    break;
+                case "Pause":
+                    SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("Pause"));
+                    break;
+                default:
+                    break;
+            }            
+        }                
     }
 	
 }

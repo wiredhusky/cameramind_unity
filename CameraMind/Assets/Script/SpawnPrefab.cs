@@ -69,6 +69,9 @@ public class SpawnPrefab : MonoBehaviour {
             case "GameOver":
                 scene = GameOver.gameOver.scene;
                 break;
+            case "Pause":
+                scene = GameOver.gameOver.scene;
+                break;
             default:
                 scene = SceneManager.GetActiveScene().name;
                 break;
