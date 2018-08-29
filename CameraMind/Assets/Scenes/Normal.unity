@@ -1057,6 +1057,7 @@ MonoBehaviour:
   transitionControl: {fileID: 2134077726}
   animator: {fileID: 1575772630}
   background: {fileID: 633630200}
+  ui_btns: {fileID: 871827298}
 --- !u!95 &1575772630
 Animator:
   serializedVersion: 3
@@ -1389,6 +1390,11 @@ Prefab:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114825327565199390, guid: 2649dc79f897f8443813e0157b8657d0,
+        type: 2}
+      propertyPath: ui_btns
+      value: 
+      objectReference: {fileID: 871827298}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2649dc79f897f8443813e0157b8657d0, type: 2}

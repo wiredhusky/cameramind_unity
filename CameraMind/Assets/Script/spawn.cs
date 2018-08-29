@@ -12,7 +12,7 @@ public class spawn : MonoBehaviour {
     public TransitionControl transitionControl;
 
     public Animator animator;
-    public GameObject background;
+    public GameObject background, ui_btns;
     
     int randObj, randAni;
     
@@ -117,6 +117,7 @@ public class spawn : MonoBehaviour {
 
             //background.transform.GetChild(0).gameObject.SetActive(true);            
             background.SetActive(true);
+            ui_btns.SetActive(true);
             animator.speed = 1;
         }                
     }    

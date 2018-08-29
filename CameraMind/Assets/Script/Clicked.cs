@@ -24,9 +24,7 @@ public class Clicked : MonoBehaviour {
                 break;
             case "Alone": //Alone, renedere enabled = true;
                 transitionType.enableRenderer += EnableRenderer;
-                break;
-            default:
-                break;
+                break;            
         }
     }
 

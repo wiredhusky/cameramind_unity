@@ -14,7 +14,7 @@ public class TransitionControl : MonoBehaviour {
     public event GoToIdle enableRenderer;
 
     public MoveMove moveIndex;
-        
+
     public bool chkGameOver = false;
     Animator animator;
     AnimatorStateInfo currentBaseState;    

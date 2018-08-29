@@ -16,7 +16,7 @@ public class GameOver : MonoBehaviour {
     public TextMeshProUGUI count;
     //AsyncOperation asyncOperation;
 
-    public static GameOver gameOver;
+    public static GameOver gameOver;    
 
     // Use this for initialization
     private void Awake()
@@ -29,22 +29,20 @@ public class GameOver : MonoBehaviour {
     }
 
     private void Start()
-    {
+    {        
         if(gameObject.name == "GameOver")
         {
             count.text = "Level " + (SpawnPrefab.instance.index).ToString();
         }        
     }    
-
-    void PauseGameOver()
-    {
-        animator.speed = 0;
-        SceneManager.UnloadSceneAsync(SpawnPrefab.instance.scene);        
-    }
     
     public void PauseGame()
     {
         animator.speed = 0;
+        if(gameObject.name == "GameOver")
+        {
+            SceneManager.UnloadSceneAsync(SpawnPrefab.instance.scene);
+        }
     }
 
     public void GoToMainMenu()
@@ -81,32 +79,37 @@ public class GameOver : MonoBehaviour {
                     SceneManager.LoadScene(scene, LoadSceneMode.Additive);
                     animator.speed = 1;
                     break;
-                case "Pause":
-                    animator.speed = 1;
+                case "Pause":                    
                     SceneManager.UnloadSceneAsync(scene);
-                    //pauseBtns.SetActive(false);
-                    SceneManager.LoadScene(scene, LoadSceneMode.Additive);                    
+                    animator.speed = 1;
+                    //pauseBtns.SetActive(false);                    
                     break;
             }            
         }
-    }    
+    }        
 
     public void PauseResume()
     {
-        animator.speed = 1;
+        if (!clicked)
+        {
+            animator.speed = 1;
+            clicked = true;
+        }        
     }
 
     void LoadScene()
     {
-        //animator.speed = 1;
-        SceneManager.LoadScene(scene, LoadSceneMode.Additive);        
+        if (restart)
+        {
+            SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+        }
     }
 
     void DestroyMyself()
-    {        
+    {
+        animator.speed = 0;
         if (!restart)
-        {
-            Debug.Log(gameObject.name);
+        {                       
             switch (gameObject.name)
             {
                 case "GameOver":
@@ -114,11 +117,9 @@ public class GameOver : MonoBehaviour {
                     break;
                 case "Pause":
                     SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("Pause"));
-                    break;
-                default:
-                    break;
+                    break;                
             }            
-        }                
+        }
     }
 	
 }
