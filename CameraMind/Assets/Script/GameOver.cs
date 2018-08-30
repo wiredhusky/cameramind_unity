@@ -8,14 +8,12 @@ public class GameOver : MonoBehaviour {
 
     public Animator animator;    
     bool restart = false;
-    //AsyncOperation test;
     bool clicked = false;
     public GameObject gameOverBack;
-    //public GameObject pauseBtns;
+    
     public string scene;
     public TextMeshProUGUI count;
-    //AsyncOperation asyncOperation;
-
+    
     public static GameOver gameOver;    
 
     // Use this for initialization
@@ -76,7 +74,7 @@ public class GameOver : MonoBehaviour {
             switch (gameObject.name)
             {
                 case "GameOver":
-                    SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+                    //SceneManager.LoadScene(scene, LoadSceneMode.Additive);
                     animator.speed = 1;
                     break;
                 case "Pause":                    
@@ -109,16 +107,8 @@ public class GameOver : MonoBehaviour {
     {
         animator.speed = 0;
         if (!restart)
-        {                       
-            switch (gameObject.name)
-            {
-                case "GameOver":
-                    SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("GameOver"));
-                    break;
-                case "Pause":
-                    SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("Pause"));
-                    break;                
-            }            
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(gameObject.name));
         }
     }
 	

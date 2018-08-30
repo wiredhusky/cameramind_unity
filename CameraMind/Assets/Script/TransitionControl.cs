@@ -13,7 +13,7 @@ public class TransitionControl : MonoBehaviour {
     public event GoToIdle deactiveCollider;
     public event GoToIdle enableRenderer;
 
-    public MoveMove moveIndex;
+    public MoveMove moveIndex;    
 
     public bool chkGameOver = false;
     Animator animator;
@@ -93,6 +93,19 @@ public class TransitionControl : MonoBehaviour {
                 }
                 break;
             case "Flip Vertical": // vertical flip
+                DeactiveHandler();
+                if (ComparePos(_objPos))
+                {
+                    SpawnPrefab.instance.index++;
+                    Debug.Log(SpawnPrefab.instance.index);
+                    DoTransition(0);
+                }
+                else
+                {
+                    GameOver();
+                }
+                break;
+            case "Time Attack":
                 DeactiveHandler();
                 if (ComparePos(_objPos))
                 {

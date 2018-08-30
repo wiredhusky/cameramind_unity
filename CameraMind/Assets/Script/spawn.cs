@@ -80,6 +80,9 @@ public class spawn : MonoBehaviour {
                         break;
                 }
                 break;
+            case "Time Attack":
+                SpawnPrefab.instance.SpawnObj_Flip();
+                break;
             default: // normal, double, triple
                 SpawnPrefab.instance.SpawnObj();
                 break;

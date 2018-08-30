@@ -21,19 +21,19 @@ public class MoveMove : MonoBehaviour {
         temp.z = 0;
 
         switch(SpawnPrefab.instance.scene){
-            case "Flip Vertical":
-                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
-                {
-                    temp.x = SpawnPrefab.instance.posList[i].x;
-                    temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
-                    OppCenterPos.Add(temp);
-                }
-                break;
-            default:
+            case "Flip Horizon":
                 for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
                 {
                     temp.x = SpawnPrefab.instance.posList[i].x * -1.0f;
                     temp.y = SpawnPrefab.instance.posList[i].y;
+                    OppCenterPos.Add(temp);
+                }
+                break;            
+            default:
+                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
+                {
+                    temp.x = SpawnPrefab.instance.posList[i].x;
+                    temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
                     OppCenterPos.Add(temp);
                 }
                 break;
