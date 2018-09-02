@@ -32,13 +32,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
-        time: 1
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 1.5
+        time: 2.5
         value: -0.000000029802
         inSlope: 0
         outSlope: 0
@@ -66,13 +66,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 1
+        time: 2
         value: 0
         inSlope: 0
         outSlope: -38.72697
         tangentMode: 1
       - serializedVersion: 2
-        time: 1.5
+        time: 2.5
         value: -10.18
         inSlope: -1.2101483
         outSlope: 0
@@ -112,7 +112,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5
+    m_StopTime: 2.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -144,13 +144,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
-        time: 1
+        time: 2
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 1.5
+        time: 2.5
         value: -0.000000029802
         inSlope: 0
         outSlope: 0
@@ -178,13 +178,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 1
+        time: 2
         value: 0
         inSlope: 0
         outSlope: -38.72697
         tangentMode: 1
       - serializedVersion: 2
-        time: 1.5
+        time: 2.5
         value: -10.18
         inSlope: -1.2101483
         outSlope: 0
@@ -208,21 +208,28 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
+  - time: 1
     functionName: objCreator
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.4666667
-    functionName: MovePrefab
+  - time: 2.4666667
+    functionName: ActiveCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.5
+  - time: 2.4666667
+    functionName: SetTimerActive
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.5
     functionName: SetObj
     data: 
     objectReferenceParameter: {fileID: 0}

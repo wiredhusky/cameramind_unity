@@ -7,6 +7,7 @@ public class spawn : MonoBehaviour {
 
     
     public MoveMove move;
+    public Timer timer;
     
     //public Clicked tap;    
     public TransitionControl transitionControl;
@@ -80,9 +81,9 @@ public class spawn : MonoBehaviour {
                         break;
                 }
                 break;
-            case "Time Attack":
+            /*case "Time Attack":
                 SpawnPrefab.instance.SpawnObj_Flip();
-                break;
+                break;*/
             default: // normal, double, triple
                 SpawnPrefab.instance.SpawnObj();
                 break;
@@ -134,6 +135,11 @@ public class spawn : MonoBehaviour {
     {
         //animator.SetTrigger("getBackIdle");
         gameObject.SetActive(false);
+    }
+
+    public void SetTimerActive()
+    {
+        timer.setTimer = true;
     }
 
     /*

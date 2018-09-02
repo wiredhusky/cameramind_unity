@@ -105,7 +105,7 @@ public class TransitionControl : MonoBehaviour {
                     GameOver();
                 }
                 break;
-            case "Time Attack":
+            /*case "Time Attack":
                 DeactiveHandler();
                 if (ComparePos(_objPos))
                 {
@@ -117,7 +117,7 @@ public class TransitionControl : MonoBehaviour {
                 {
                     GameOver();
                 }
-                break;
+                break;*/
             case "Chaos":
                 DeactiveHandler();
                 if (ComparePos(_objPos))

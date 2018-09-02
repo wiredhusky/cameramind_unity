@@ -142,9 +142,9 @@ public class SpawnPrefab : MonoBehaviour {
                 //move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
                 break;
-            case "Time Attack":
+            /*case "Time Attack":
                 move.centerPosCalculator();
-                break;
+                break;*/
             case "Chaos": // chaos
                 //move = GameObject.FindWithTag("movement").GetComponent<MoveMove>();
                 move.centerPosCalculator();
