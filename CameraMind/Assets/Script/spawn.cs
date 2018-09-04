@@ -13,7 +13,7 @@ public class spawn : MonoBehaviour {
     public TransitionControl transitionControl;
 
     public Animator animator;
-    public GameObject background, ui_btns;
+    //public GameObject background, ui_btns;
     
     int randObj, randAni;
     
@@ -91,26 +91,25 @@ public class spawn : MonoBehaviour {
     }
 
     public void PauseAni()
-    {
-        if (SceneManager.GetActiveScene().name == "MainMenu")
+    {        
+        switch (SceneManager.GetActiveScene().name)
         {
-            //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);            
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(MainMenu.mainMenu.sceneName));
-            Debug.Log("active scene: " + SceneManager.GetActiveScene().name);
-            SceneManager.UnloadSceneAsync("MainMenu");     
-        }
-
-        if(SceneManager.GetActiveScene().name == "GameOver")
-        {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
-            SceneManager.UnloadSceneAsync("GameOver");
-        }
-
-        if (SceneManager.GetActiveScene().name == "Pause")
-        {            
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
-            SceneManager.UnloadSceneAsync("Pause");
-        }
+            case "MainMenu":
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName(MainMenu.mainMenu.sceneName));                
+                SceneManager.UnloadSceneAsync("MainMenu");
+                break;
+            case "GameOver":
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
+                SceneManager.UnloadSceneAsync("GameOver");
+                break;
+            case "Pause":
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
+                SceneManager.UnloadSceneAsync("Pause");
+                break;
+            case "TimeAttack":
+                //Do Timer Reset
+                break;
+        }        
 
         if (!SpawnPrefab.instance.allThingsDone)
         {           
@@ -119,11 +118,14 @@ public class spawn : MonoBehaviour {
             SpawnPrefab.instance.PosSearch();
             SpawnPrefab.instance.SetStart();
 
+            SpawnPrefab.instance.uiPanel.SetActive(true);           
+
             //background.transform.GetChild(0).gameObject.SetActive(true);            
-            background.SetActive(true);
-            ui_btns.SetActive(true);
+            //background.SetActive(true);
+            //ui_btns.SetActive(true);
             animator.speed = 1;
-        }                
+        }
+        SpawnPrefab.instance.ActiveUI();
     }    
 
     public void ActiveCollider()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class SpawnPrefab : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class SpawnPrefab : MonoBehaviour {
     public GameObject LevelTransition;    
     private GameObject _obj;
     public MoveMove move;
+    public GameObject uiPanel;
+    public Button pauseBtn;   
 
     public TextMeshProUGUI counter;
 
@@ -563,4 +566,15 @@ public class SpawnPrefab : MonoBehaviour {
         onScreenScale_40.x = rt.rect.width * localScale_40;
         onScreenScale_40.y = rt.rect.height * localScale_40;        
     }
+
+    public void DeactiveUI()
+    {
+        pauseBtn.interactable = false;
+    }
+
+    public void ActiveUI()
+    {
+        pauseBtn.interactable = true;
+    }
+
 }

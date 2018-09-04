@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 419601405}
   setTimer: 0
+  transition: {fileID: 2134077726}
 --- !u!1 &419601405
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,8 +603,6 @@ MonoBehaviour:
   timer: {fileID: 127088508}
   transitionControl: {fileID: 2134077726}
   animator: {fileID: 861371937}
-  background: {fileID: 1093943257}
-  ui_btns: {fileID: 1215361302}
 --- !u!95 &861371937
 Animator:
   serializedVersion: 3
@@ -756,7 +755,7 @@ GameObject:
   - component: {fileID: 1103113676}
   m_Layer: 5
   m_Name: Pause Btn
-  m_TagString: Untagged
+  m_TagString: pauseBtn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1157,6 +1156,8 @@ MonoBehaviour:
   obj: []
   LevelTransition: {fileID: 861371934}
   move: {fileID: 0}
+  uiPanel: {fileID: 1215361302}
+  pauseBtn: {fileID: 1103113676}
   counter: {fileID: 1126102050}
   scene: 0
   index_track: 0
@@ -1412,5 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelTransition: {fileID: 861371934}
+  pauseBtn: {fileID: 1103113674}
+  timer: {fileID: 127088508}
   moveIndex: {fileID: 0}
   chkGameOver: 0

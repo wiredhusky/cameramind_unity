@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour {
 
-    public GameObject timer;
+    public GameObject timer;    
     public bool setTimer = false;
     float speed = 1;
     float sec = 0;
-    Vector3 target;
+    Vector3 target, startPos;
+    public TransitionControl transition;
 
 	// Use this for initialization
 	void Start () {
+        startPos = new Vector3(-7.96f, -4.38f, 0);
         target = new Vector3(-2.96f, -4.38f, 0);        
 	}
 	
@@ -24,7 +26,10 @@ public class Timer : MonoBehaviour {
             Debug.Log("Second: " + sec);
             if(timer.transform.position == target)
             {
-                setTimer = false;
+                transition.DeactiveHandler();
+                SpawnPrefab.instance.DeactiveUI();                
+                transition.GameOver();
+                setTimer = false;                
             }
         }        
 	}

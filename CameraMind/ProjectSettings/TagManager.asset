@@ -15,6 +15,7 @@ TagManager:
   - background
   - gameOverBack
   - Pause
+  - pauseBtn
   layers:
   - Default
   - TransparentFX
