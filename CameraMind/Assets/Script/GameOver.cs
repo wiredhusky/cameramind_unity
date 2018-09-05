@@ -37,6 +37,10 @@ public class GameOver : MonoBehaviour {
     public void PauseGame()
     {
         animator.speed = 0;
+        if(scene == "Time Attack")
+        {
+            Timer.timerControl.setTimer = false;
+        }
         if(gameObject.name == "GameOver")
         {
             SceneManager.UnloadSceneAsync(SpawnPrefab.instance.scene);
@@ -108,6 +112,10 @@ public class GameOver : MonoBehaviour {
         animator.speed = 0;
         if (!restart)
         {
+            if(scene == "Time Attack")
+            {
+                Timer.timerControl.setTimer = true;
+            }
             SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(gameObject.name));
         }
     }

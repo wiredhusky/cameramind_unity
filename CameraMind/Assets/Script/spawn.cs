@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class spawn : MonoBehaviour {
 
     
-    public MoveMove move;
-    public Timer timer;
+    public MoveMove move;    
     
     //public Clicked tap;    
     public TransitionControl transitionControl;
@@ -106,10 +105,12 @@ public class spawn : MonoBehaviour {
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
                 SceneManager.UnloadSceneAsync("Pause");
                 break;
-            case "TimeAttack":
+            case "Time Attack":
                 //Do Timer Reset
+                Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
+                Timer.timerControl.sec = 0;
                 break;
-        }        
+        }
 
         if (!SpawnPrefab.instance.allThingsDone)
         {           
@@ -117,14 +118,10 @@ public class spawn : MonoBehaviour {
             SpawnPrefab.instance.setScale();
             SpawnPrefab.instance.PosSearch();
             SpawnPrefab.instance.SetStart();
-
-            SpawnPrefab.instance.uiPanel.SetActive(true);           
-
-            //background.transform.GetChild(0).gameObject.SetActive(true);            
-            //background.SetActive(true);
-            //ui_btns.SetActive(true);
-            animator.speed = 1;
+            SpawnPrefab.instance.uiPanel.SetActive(true);
+            animator.speed = 1;            
         }
+
         SpawnPrefab.instance.ActiveUI();
     }    
 
@@ -141,7 +138,7 @@ public class spawn : MonoBehaviour {
 
     public void SetTimerActive()
     {
-        timer.setTimer = true;
+        Timer.timerControl.setTimer = true;
     }
 
     /*

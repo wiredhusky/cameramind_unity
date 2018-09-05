@@ -11,8 +11,7 @@ public class TransitionControl : MonoBehaviour {
     public event GoToIdle goIdle;
     public event GoToIdle activeCollider;
     public event GoToIdle deactiveCollider;
-    public event GoToIdle enableRenderer;
-    public Timer timer;
+    public event GoToIdle enableRenderer;    
 
     public MoveMove moveIndex;    
 
@@ -112,7 +111,7 @@ public class TransitionControl : MonoBehaviour {
                 }
                 break;
             case "Time Attack":
-                timer.setTimer = false;
+                Timer.timerControl.setTimer = false;
                 DeactiveHandler();
                 SpawnPrefab.instance.DeactiveUI();
                 if (ComparePos_Normal(_objPos))

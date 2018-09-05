@@ -1,31 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Timer : MonoBehaviour {
 
+    public static Timer timerControl;
     public GameObject timer;    
     public bool setTimer = false;
-    float speed = 1;
-    float sec = 0;
-    Vector3 target, startPos;
+    float speed = 2;
+    public int counter = 0;
+    public float sec = 0;
+    public Vector3 target;
     public TransitionControl transition;
 
-	// Use this for initialization
-	void Start () {
-        startPos = new Vector3(-7.96f, -4.38f, 0);
-        target = new Vector3(-2.96f, -4.38f, 0);        
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public TextMeshProUGUI timerCounter;
+
+    private void Awake()
+    {
+        if(timerControl == null)
+        {
+            timerControl = this;
+        }
+    }
+
+    private void Start()
+    {
+        target = new Vector3(-1.96f, -4.38f, 0);        
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (setTimer)
         {
-            sec += speed * Time.deltaTime;
+            sec += Time.deltaTime;
+            counter = (int) sec % 3;
+            switch (counter)
+            {
+                case 0:
+                    if(timer.transform.position != target)
+                    {
+                        timerCounter.text = (3).ToString();
+                    }
+                    break;
+                case 1:
+                    timerCounter.text = (2).ToString();
+                    break;
+                case 2:
+                    timerCounter.text = (1).ToString();
+                    break;
+            }
+
             timer.transform.position = Vector3.MoveTowards(timer.transform.position, target, speed * Time.deltaTime);
-            Debug.Log("Second: " + sec);
+            
             if(timer.transform.position == target)
             {
+                timerCounter.text = (0).ToString();
                 transition.DeactiveHandler();
                 SpawnPrefab.instance.DeactiveUI();                
                 transition.GameOver();
