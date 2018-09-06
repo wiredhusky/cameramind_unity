@@ -322,6 +322,8 @@ public class TransitionControl : MonoBehaviour {
     
     public void PausePressed()
     {
+        Timer.timerControl.setTimer = false;
+        Timer.timerControl.animator.speed = 0;
         SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
     }
 

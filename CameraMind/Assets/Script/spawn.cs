@@ -107,6 +107,8 @@ public class spawn : MonoBehaviour {
                 break;
             case "Time Attack":
                 //Do Timer Reset
+                SpawnPrefab.instance.uiPanel.SetActive(true);
+                Timer.timerControl.animator.speed = 0;
                 Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
                 Timer.timerControl.sec = 0;
                 break;
@@ -121,7 +123,6 @@ public class spawn : MonoBehaviour {
             SpawnPrefab.instance.uiPanel.SetActive(true);
             animator.speed = 1;            
         }
-
         SpawnPrefab.instance.ActiveUI();
     }    
 
@@ -139,6 +140,8 @@ public class spawn : MonoBehaviour {
     public void SetTimerActive()
     {
         Timer.timerControl.setTimer = true;
+        Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
+        Timer.timerControl.animator.speed = 1;
     }
 
     /*

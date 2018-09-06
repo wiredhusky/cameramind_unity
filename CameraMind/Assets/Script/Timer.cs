@@ -6,13 +6,14 @@ using TMPro;
 public class Timer : MonoBehaviour {
 
     public static Timer timerControl;
+    public Animator animator;
     public GameObject timer;    
     public bool setTimer = false;
     float speed = 2;
     public int counter = 0;
     public float sec = 0;
     public Vector3 target;
-    public TransitionControl transition;
+    public TransitionControl transition;    
 
     public TextMeshProUGUI timerCounter;
 
@@ -25,7 +26,7 @@ public class Timer : MonoBehaviour {
     }
 
     private void Start()
-    {
+    {        
         target = new Vector3(-1.96f, -4.38f, 0);        
     }
 
@@ -41,12 +42,15 @@ public class Timer : MonoBehaviour {
                     if(timer.transform.position != target)
                     {
                         timerCounter.text = (3).ToString();
+                        animator.SetInteger("TimerState", counter);
                     }
                     break;
                 case 1:
+                    animator.SetInteger("TimerState", counter);
                     timerCounter.text = (2).ToString();
                     break;
                 case 2:
+                    animator.SetInteger("TimerState", counter);
                     timerCounter.text = (1).ToString();
                     break;
             }
@@ -55,11 +59,11 @@ public class Timer : MonoBehaviour {
             
             if(timer.transform.position == target)
             {
+                setTimer = false;
                 timerCounter.text = (0).ToString();
                 transition.DeactiveHandler();
                 SpawnPrefab.instance.DeactiveUI();                
-                transition.GameOver();
-                setTimer = false;                
+                transition.GameOver();                                
             }
         }        
 	}
