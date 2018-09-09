@@ -10,8 +10,8 @@ public class Timer : MonoBehaviour {
     public GameObject timer;    
     public bool setTimer = false;
     float speed = 2;
-    public int counter = 0;
-    public float sec = 0;
+    public int counter;
+    public float sec;
     public Vector3 target;
     public TransitionControl transition;    
 
@@ -27,7 +27,10 @@ public class Timer : MonoBehaviour {
 
     private void Start()
     {        
-        target = new Vector3(-1.96f, -4.38f, 0);        
+        target = new Vector3(-1.96f, -4.38f, 0);
+        animator.speed = 0;
+        counter = 0;
+        sec = 0;
     }
 
     // Update is called once per frame
@@ -40,7 +43,7 @@ public class Timer : MonoBehaviour {
             {
                 case 0:
                     if(timer.transform.position != target)
-                    {
+                    {                        
                         timerCounter.text = (3).ToString();
                         animator.SetInteger("TimerState", counter);
                     }
@@ -59,9 +62,9 @@ public class Timer : MonoBehaviour {
             
             if(timer.transform.position == target)
             {
-                setTimer = false;
-                timerCounter.text = (0).ToString();
                 transition.DeactiveHandler();
+                setTimer = false;
+                timerCounter.text = (0).ToString();                
                 SpawnPrefab.instance.DeactiveUI();                
                 transition.GameOver();                                
             }

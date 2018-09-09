@@ -112,6 +112,7 @@ public class TransitionControl : MonoBehaviour {
                 break;
             case "Time Attack":
                 Timer.timerControl.setTimer = false;
+                Timer.timerControl.animator.speed = 0;
                 DeactiveHandler();
                 SpawnPrefab.instance.DeactiveUI();
                 if (ComparePos_Normal(_objPos))
@@ -285,7 +286,11 @@ public class TransitionControl : MonoBehaviour {
                 break;
             case "Alone":
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_alone].GetComponent<Animator>();
-                break;            
+                break;
+            case "Time Attack":
+                Timer.timerControl.animator.speed = 0;
+                animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
+                break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
                 break;

@@ -45,7 +45,7 @@ public class Clicked : MonoBehaviour {
 
     public void DeActiveCol()
     {
-        _collider.enabled = true;
+        _collider.enabled = false;
     }
 
     public void EnableRenderer()
