@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TransitionControl : MonoBehaviour {
 
-    public GameObject LevelTransition, pauseBtn;    
+    public GameObject LevelTransition;    
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
@@ -323,14 +323,7 @@ public class TransitionControl : MonoBehaviour {
                 SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
                 break;
         }        
-    }
-    
-    public void PausePressed()
-    {
-        Timer.timerControl.setTimer = false;
-        Timer.timerControl.animator.speed = 0;
-        SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
-    }
+    }    
 
     void Update()
     {
