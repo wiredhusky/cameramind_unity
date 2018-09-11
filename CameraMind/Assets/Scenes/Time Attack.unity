@@ -619,7 +619,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -1077,8 +1077,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.3049998, y: 0.0000019073486}
-  m_SizeDelta: {x: 200.069, y: 50}
+  m_AnchoredPosition: {x: 1.59, y: -0.000000014901}
+  m_SizeDelta: {x: 0.65, y: -0.133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1115397997
 MonoBehaviour:
@@ -1126,8 +1126,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 0.5
+  m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1175,7 +1175,7 @@ MonoBehaviour:
     lineCount: 0
     pageCount: 0
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -1468,6 +1468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hintCount: 3
   hintText: {fileID: 1115397997}
+  isHintPressed: 0
 --- !u!1 &1271740383
 GameObject:
   m_ObjectHideFlags: 0
