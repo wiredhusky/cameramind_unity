@@ -13,7 +13,8 @@ public class Timer : MonoBehaviour {
     public int counter;
     public float sec;
     public Vector3 target;
-    public TransitionControl transition;    
+    public TransitionControl transition;
+    public UIManager uiManager;
 
     public TextMeshProUGUI timerCounter;
 
@@ -64,8 +65,8 @@ public class Timer : MonoBehaviour {
             {
                 transition.DeactiveHandler();
                 setTimer = false;
-                timerCounter.text = (0).ToString();                
-                SpawnPrefab.instance.DeactiveUI();                
+                timerCounter.text = (0).ToString();
+                uiManager.DeactiveUI();
                 transition.GameOver();                                
             }
         }        

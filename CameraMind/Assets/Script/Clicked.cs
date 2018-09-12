@@ -16,6 +16,7 @@ public class Clicked : MonoBehaviour {
         
         transitionType.activeCollider += ActiveCol;
         transitionType.deactiveCollider += DeActiveCol;
+        transitionType.goIdle += SetIdle;
 
         switch (SpawnPrefab.instance.scene)
         {            

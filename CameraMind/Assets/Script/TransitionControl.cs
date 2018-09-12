@@ -13,7 +13,8 @@ public class TransitionControl : MonoBehaviour {
     public event GoToIdle deactiveCollider;
     public event GoToIdle enableRenderer;    
 
-    public MoveMove moveIndex;    
+    public MoveMove moveIndex;
+    public UIManager uiManager;
 
     public bool chkGameOver = false;
     Animator animator;
@@ -26,7 +27,7 @@ public class TransitionControl : MonoBehaviour {
         {
             default:
                 DeactiveHandler();
-                SpawnPrefab.instance.DeactiveUI();
+                uiManager.DeactiveUI();
                 if (ComparePos_Normal(_objPos))
                 {
                     SpawnPrefab.instance.index++;
@@ -42,7 +43,7 @@ public class TransitionControl : MonoBehaviour {
             case "Flip Horizon":
                 //Debug.Log("Horizontal");
                 DeactiveHandler();
-                SpawnPrefab.instance.DeactiveUI();
+                uiManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
                     SpawnPrefab.instance.index++;
@@ -62,14 +63,14 @@ public class TransitionControl : MonoBehaviour {
                 else
                 {
                     DeactiveHandler();
-                    SpawnPrefab.instance.DeactiveUI();
+                    uiManager.DeactiveUI();
                     _animator.SetTrigger("Clicked");
                     GameOver();
                 }                
                 break;
             case "Twins":
                 DeactiveHandler();
-                SpawnPrefab.instance.DeactiveUI();
+                uiManager.DeactiveUI();
                 if (ComparePosTwins(_objPos))
                 {
                     SpawnPrefab.instance.index_twins += 2;
@@ -84,7 +85,7 @@ public class TransitionControl : MonoBehaviour {
                 break;
             case "Alone":
                 DeactiveHandler();
-                SpawnPrefab.instance.DeactiveUI();
+                uiManager.DeactiveUI();
                 if (ComparePos_Alone(_objPos))
                 {
                     SpawnPrefab.instance.index++;
@@ -98,7 +99,7 @@ public class TransitionControl : MonoBehaviour {
                 break;
             case "Flip Vertical": // vertical flip
                 DeactiveHandler();
-                SpawnPrefab.instance.DeactiveUI();
+                uiManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
                     SpawnPrefab.instance.index++;
@@ -114,7 +115,7 @@ public class TransitionControl : MonoBehaviour {
                 Timer.timerControl.setTimer = false;
                 Timer.timerControl.animator.speed = 0;
                 DeactiveHandler();
-                SpawnPrefab.instance.DeactiveUI();
+                uiManager.DeactiveUI();
                 if (ComparePos_Normal(_objPos))
                 {
                     SpawnPrefab.instance.index++;
@@ -128,7 +129,7 @@ public class TransitionControl : MonoBehaviour {
                 break;
             case "Chaos":
                 DeactiveHandler();
-                SpawnPrefab.instance.DeactiveUI();
+                uiManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
                     SpawnPrefab.instance.index++;

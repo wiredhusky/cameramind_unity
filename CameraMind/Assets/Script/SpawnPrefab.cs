@@ -16,9 +16,7 @@ public class SpawnPrefab : MonoBehaviour {
     public List<GameObject> obj = new List<GameObject>();
     public GameObject LevelTransition;    
     private GameObject _obj;
-    public MoveMove move;
-    public GameObject uiPanel;
-    public Button pauseBtn;   
+    public MoveMove move;   
 
     public TextMeshProUGUI counter;
 
@@ -84,7 +82,7 @@ public class SpawnPrefab : MonoBehaviour {
     private void Start()
     {
         CountLevel();
-        LevelTransition.SetActive(true);                
+        LevelTransition.SetActive(true);
     }
 
     public void CountLevel()
@@ -566,15 +564,4 @@ public class SpawnPrefab : MonoBehaviour {
         onScreenScale_40.x = rt.rect.width * localScale_40;
         onScreenScale_40.y = rt.rect.height * localScale_40;        
     }
-
-    public void DeactiveUI()
-    {
-        pauseBtn.interactable = false;
-    }
-
-    public void ActiveUI()
-    {
-        pauseBtn.interactable = true;
-    }
-
 }
