@@ -8,14 +8,19 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 
     Animator animator;
-    public int hintCount = 3;
+    public int hintCount;
     public TextMeshProUGUI hintText;
     public Button hintBtn, pauseBtn;
-    public GameObject uiPanel;
-    
+    public GameObject uiPanel;    
+
     private void Start()
     {
+        hintCount = PlayerPrefs.GetInt("Hint");
         hintText.text = "x " + hintCount.ToString();
+        if(hintCount == 0)
+        {
+            hintBtn.interactable = false;
+        }
     }
 
     public void HintPressed()
@@ -42,6 +47,8 @@ public class UIManager : MonoBehaviour {
                 break;
         }
         hintCount--;
+        PlayerPrefs.SetInt("Hint", hintCount);
+        PlayerPrefs.Save();
         hintText.text = "x " + hintCount.ToString();
         if(hintCount == 0)
         {
