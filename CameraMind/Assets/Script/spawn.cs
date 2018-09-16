@@ -9,9 +9,7 @@ public class spawn : MonoBehaviour {
     public MoveMove move;    
     
     //public Clicked tap;    
-    public TransitionControl transitionControl;
     public UIManager uiManager;
-
     public Animator animator;
     //public GameObject background, ui_btns;
     
@@ -29,14 +27,14 @@ public class spawn : MonoBehaviour {
                 break;
             case "Track": // track
                 SpawnPrefab.instance.SpawnObj();                
-                transitionControl.EventHandler();                
+                TransitionControl.transitionControl.EventHandler();                
                 break;
             case "Twins": // twins
                 SpawnPrefab.instance.SpawnObj_Twins();
                 break;
             case "Alone": // alone
                 SpawnPrefab.instance.SpawnObj_Alone();
-                transitionControl.RendererHandler();
+                TransitionControl.transitionControl.RendererHandler();
                 break;
             case "Temptation": // temptation
                 SpawnPrefab.instance.SpawnObj();
@@ -129,7 +127,7 @@ public class spawn : MonoBehaviour {
 
         if(SpawnPrefab.instance.scene != "Temptation")
         {
-            transitionControl.EventHandler();
+            TransitionControl.transitionControl.EventHandler();
         }
 
         uiManager.ActiveUI();
@@ -137,7 +135,7 @@ public class spawn : MonoBehaviour {
 
     public void ActiveCollider()
     {
-        transitionControl.ActiveHandler();
+        TransitionControl.transitionControl.ActiveHandler();
     }
 
     public void SetObj()

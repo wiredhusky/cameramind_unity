@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour {
     bool restart = false;
     bool clicked = false;
     bool mainMenu = false;
+    bool revival = false;
     public GameObject gameOverBack;
     public Button reviveBtn;
     int revive;
@@ -31,7 +32,7 @@ public class GameOver : MonoBehaviour {
     }
 
     private void Start()
-    {        
+    {
         if(gameObject.name == "GameOver")
         {
             revive = PlayerPrefs.GetInt("Revive");
@@ -63,6 +64,8 @@ public class GameOver : MonoBehaviour {
         reviveCounter.text = "Revive x " + revive.ToString();
         PlayerPrefs.SetInt("Revive", revive);
         PlayerPrefs.Save();
+        revival = true;
+
         animator.speed = 1;
         switch (SpawnPrefab.instance.scene)
         {
@@ -74,11 +77,20 @@ public class GameOver : MonoBehaviour {
                 animatorObj = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_alone].GetComponent<Animator>();
                 animatorObj.SetTrigger("Hint");
                 break;
+            case "Time Attack":
+                Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
+                Timer.timerControl.sec = 0;
+                Timer.timerControl.counter = 0;
+                Timer.timerControl.timerCounter.text = (3).ToString();
+                Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
+                animatorObj = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
+                animatorObj.SetTrigger("Hint");
+                break;
             default:
                 animatorObj = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
                 animatorObj.SetTrigger("Hint");
                 break;
-        }        
+        }
     }
 
     public void GoToMainMenu()
@@ -123,13 +135,21 @@ public class GameOver : MonoBehaviour {
         }
     }
 
+    void ReviveManager()
+    {
+        if (revival)
+        {
+            TransitionControl.transitionControl.ActiveHandler();
+        }
+    }
+
     void DestroyMyself()
     {
         animator.speed = 0;        
 
         if (!restart)
         {
-            if(scene == "Time Attack" && mainMenu == false)
+            if(scene == "Time Attack" && mainMenu == false && revival == false)
             {
                 Timer.timerControl.setTimer = true;
                 Timer.timerControl.animator.speed = 1;

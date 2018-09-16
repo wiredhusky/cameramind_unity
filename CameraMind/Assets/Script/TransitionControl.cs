@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TransitionControl : MonoBehaviour {
 
-    public GameObject LevelTransition;    
+    public GameObject LevelTransition;
+    public static TransitionControl transitionControl;
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
@@ -18,7 +19,15 @@ public class TransitionControl : MonoBehaviour {
 
     public bool chkGameOver = false;
     Animator animator;
-    AnimatorStateInfo currentBaseState;    
+    AnimatorStateInfo currentBaseState;
+
+    private void Awake()
+    {
+        if(transitionControl == null)
+        {
+            transitionControl = this;
+        }
+    }
 
     public void ComPos(Vector3 _objPos, Animator _animator)
     {
@@ -289,7 +298,6 @@ public class TransitionControl : MonoBehaviour {
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_alone].GetComponent<Animator>();
                 break;
             case "Time Attack":
-                Timer.timerControl.animator.speed = 0;
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
                 break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
@@ -329,7 +337,7 @@ public class TransitionControl : MonoBehaviour {
     void Update()
     {
         if (chkGameOver)
-        {   
+        {
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_twinkle"))
             {

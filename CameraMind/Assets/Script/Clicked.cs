@@ -4,34 +4,31 @@ using UnityEngine;
 
 public class Clicked : MonoBehaviour {
     
-    TransitionControl transitionType;
-    
     public Animator animator;
     public CircleCollider2D _collider;
     public Renderer _renderer;
     
     private void Start()
     {
-        transitionType = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
         
-        transitionType.activeCollider += ActiveCol;
-        transitionType.deactiveCollider += DeActiveCol;
-        transitionType.goIdle += SetIdle;
+        TransitionControl.transitionControl.activeCollider += ActiveCol;
+        TransitionControl.transitionControl.deactiveCollider += DeActiveCol;
+        TransitionControl.transitionControl.goIdle += SetIdle;
 
         switch (SpawnPrefab.instance.scene)
         {            
             case "Track": // Track
-                transitionType.goIdle += SetIdle;
+                TransitionControl.transitionControl.goIdle += SetIdle;
                 break;
             case "Alone": //Alone, renedere enabled = true;
-                transitionType.enableRenderer += EnableRenderer;
+                TransitionControl.transitionControl.enableRenderer += EnableRenderer;
                 break;            
         }
     }
 
     private void OnMouseUp()
     {
-        transitionType.ComPos(gameObject.transform.position, animator);
+        TransitionControl.transitionControl.ComPos(gameObject.transform.position, animator);
     }
 
     public void SetIdle()

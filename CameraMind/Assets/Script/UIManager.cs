@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour {
     public int hintCount;
     public TextMeshProUGUI hintText;
     public Button hintBtn, pauseBtn;
-    public GameObject uiPanel;    
+    public GameObject uiPanel;
 
     private void Start()
     {
