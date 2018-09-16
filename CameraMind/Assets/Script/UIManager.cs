@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI hintText;
     public Button hintBtn, pauseBtn;
     public GameObject uiPanel;
+    public GameObject particle, hintParticle;
 
     private void Start()
     {
@@ -38,8 +39,10 @@ public class UIManager : MonoBehaviour {
             case "Time Attack":
                 Timer.timerControl.setTimer = false;
                 Timer.timerControl.animator.speed = 0;
-                animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
-                animator.SetTrigger("Hint");
+                particle = Instantiate(hintParticle) as GameObject;
+                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position;
+                //animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
+                //animator.SetTrigger("Hint");
                 break;
             default:
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();

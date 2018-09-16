@@ -779,7 +779,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 0}
-  transitionControl: {fileID: 2134077726}
   uiManager: {fileID: 1035034276}
   animator: {fileID: 861371937}
 --- !u!95 &861371937
@@ -898,6 +897,8 @@ MonoBehaviour:
   hintBtn: {fileID: 2000043507}
   pauseBtn: {fileID: 1103113676}
   uiPanel: {fileID: 1215361302}
+  particle: {fileID: 0}
+  hintParticle: {fileID: 156682, guid: b77d07168aab25044b2960c2712b74a7, type: 2}
 --- !u!1 &1093943257
 GameObject:
   m_ObjectHideFlags: 0

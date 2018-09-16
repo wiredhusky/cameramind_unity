@@ -46,6 +46,7 @@ public class GameOver : MonoBehaviour {
         }
     }    
     
+    
     public void PauseGame()
     {
         animator.speed = 0;    
@@ -56,7 +57,7 @@ public class GameOver : MonoBehaviour {
         }
         */
     }
-
+    
     public void Revive()
     {
         reviveBtn.interactable = false;
