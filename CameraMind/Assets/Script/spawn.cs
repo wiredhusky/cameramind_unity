@@ -9,7 +9,7 @@ public class spawn : MonoBehaviour {
     public MoveMove move;    
     
     //public Clicked tap;    
-    public UIManager uiManager;
+    //public UIManager uiManager;
     public Animator animator;
     //public GameObject background, ui_btns;
     
@@ -89,7 +89,7 @@ public class spawn : MonoBehaviour {
     }
 
     public void PauseAni()
-    {        
+    {
         switch (SceneManager.GetActiveScene().name)
         {
             case "MainMenu":
@@ -106,7 +106,7 @@ public class spawn : MonoBehaviour {
                 break;
             case "Time Attack":
                 //Do Timer Reset
-                uiManager.uiPanel.SetActive(true);                
+                UIManager.uiManager.uiPanel.SetActive(true);                
                 Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
                 Timer.timerControl.sec = 0;
                 Timer.timerControl.counter = 0;
@@ -121,7 +121,7 @@ public class spawn : MonoBehaviour {
             SpawnPrefab.instance.setScale();
             SpawnPrefab.instance.PosSearch();
             SpawnPrefab.instance.SetStart();
-            uiManager.uiPanel.SetActive(true);
+            UIManager.uiManager.uiPanel.SetActive(true);
             animator.speed = 1;            
         }
 
@@ -130,7 +130,7 @@ public class spawn : MonoBehaviour {
             TransitionControl.transitionControl.EventHandler();
         }
 
-        uiManager.ActiveUI();
+        UIManager.uiManager.ActiveUI();
     }    
 
     public void ActiveCollider()

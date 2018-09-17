@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour {
 
-    public Animator animator, animatorObj;    
+    public Animator animator;        
+    public GameObject gameOverBack;
+    public Button reviveBtn;
+
     bool restart = false;
     bool clicked = false;
     bool mainMenu = false;
     bool revival = false;
-    public GameObject gameOverBack;
-    public Button reviveBtn;
-    int revive;
-    
+
     public string scene;
     public TextMeshProUGUI count, reviveCounter;
     
@@ -33,17 +33,7 @@ public class GameOver : MonoBehaviour {
 
     private void Start()
     {
-        if(gameObject.name == "GameOver")
-        {
-            revive = PlayerPrefs.GetInt("Revive");
-            count.text = "Level " + (SpawnPrefab.instance.index).ToString();
-            reviveCounter.text = "Revive x " + revive.ToString();
-        }
-
-        if(revive == 0)
-        {
-            reviveBtn.interactable = false;
-        }
+        UIManager.uiManager.InitGameOver();
     }    
     
     
@@ -57,42 +47,6 @@ public class GameOver : MonoBehaviour {
         }
         */
     }
-    
-    public void Revive()
-    {
-        reviveBtn.interactable = false;
-        revive--;
-        reviveCounter.text = "Revive x " + revive.ToString();
-        PlayerPrefs.SetInt("Revive", revive);
-        PlayerPrefs.Save();
-        revival = true;
-
-        animator.speed = 1;
-        switch (SpawnPrefab.instance.scene)
-        {
-            case "Track":
-                animatorObj = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_track].GetComponent<Animator>();
-                animatorObj.SetTrigger("Hint");
-                break;
-            case "Alone":
-                animatorObj = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_alone].GetComponent<Animator>();
-                animatorObj.SetTrigger("Hint");
-                break;
-            case "Time Attack":
-                Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
-                Timer.timerControl.sec = 0;
-                Timer.timerControl.counter = 0;
-                Timer.timerControl.timerCounter.text = (3).ToString();
-                Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
-                animatorObj = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
-                animatorObj.SetTrigger("Hint");
-                break;
-            default:
-                animatorObj = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<Animator>();
-                animatorObj.SetTrigger("Hint");
-                break;
-        }
-    }
 
     public void GoToMainMenu()
     {
@@ -100,10 +54,8 @@ public class GameOver : MonoBehaviour {
         {
             clicked = true;
             mainMenu = true;
-            SceneManager.UnloadSceneAsync(scene);
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
-            animator.speed = 1;      
-        }        
+            UIManager.uiManager.GoToMainMenu();
+        }
     }
 
     public void Restart()
@@ -112,12 +64,15 @@ public class GameOver : MonoBehaviour {
         {
             clicked = true;
             restart = true;
-            gameOverBack.SetActive(true);
-
-            SceneManager.UnloadSceneAsync(scene);
-            animator.speed = 1;
+            UIManager.uiManager.Restart();
         }
     }        
+
+    void Revive()
+    {
+        UIManager.uiManager.Revive();
+        revival = true;
+    }
 
     public void PauseResume()
     {

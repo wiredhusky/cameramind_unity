@@ -1105,7 +1105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1354240264}
-  animatorObj: {fileID: 0}
   gameOverBack: {fileID: 1821268249}
   reviveBtn: {fileID: 1570107941}
   scene: 
