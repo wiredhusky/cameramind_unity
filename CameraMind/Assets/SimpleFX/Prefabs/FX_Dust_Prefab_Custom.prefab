@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 481858}
   - component: {fileID: 19867508}
   - component: {fileID: 19906824}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FX_Dust_Prefab_Custom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ ParticleSystem:
   m_GameObject: {fileID: 156682}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 3
   stopAction: 0
   looping: 1
   prewarm: 0
@@ -3320,9 +3320,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1393359929
+  m_SortingLayer: 1
+  m_SortingOrder: -3
   m_RenderMode: 4
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -3330,7 +3330,7 @@ ParticleSystemRenderer:
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
-  m_SortingFudge: 0
+  m_SortingFudge: 1
   m_NormalDirection: 1
   m_RenderAlignment: 2
   m_Pivot: {x: 0, y: 0, z: 0}

@@ -31,11 +31,7 @@ public class TransitionControl : MonoBehaviour {
 
     public void ComPos(Vector3 _objPos, Animator _animator)
     {
-        if(UIManager.uiManager.particle.transform.position != UIManager.uiManager.unknownPos)
-        {
-            UIManager.uiManager.particle.transform.position = UIManager.uiManager.unknownPos;
-        }
-
+        UIManager.uiManager.particle.SetActive(false);
         switch (SpawnPrefab.instance.scene)
         {
             default:
@@ -281,6 +277,7 @@ public class TransitionControl : MonoBehaviour {
     
     public void GameOver()
     {
+        UIManager.uiManager.particle.SetActive(false);
         switch (SpawnPrefab.instance.scene)
         {
             case "MainMenu":
