@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
     }
-
+    
     public void InitGameOver()
     {
         if (GameOver.gameOver.gameObject.name == "GameOver")
@@ -56,7 +56,13 @@ public class UIManager : MonoBehaviour {
 
             if (revive == 0)
             {
-                GameOver.gameOver.reviveBtn.interactable = false;
+                GameOver.gameOver.reviveObj.SetActive(false);
+                GameOver.gameOver.getReviveObj.SetActive(true);
+            }
+            else
+            {
+                GameOver.gameOver.reviveObj.SetActive(true);
+                GameOver.gameOver.getReviveObj.SetActive(false);
             }
         }        
     }
@@ -227,7 +233,13 @@ public class UIManager : MonoBehaviour {
                         hintAdsObj.SetActive(false);
                         hintObj.SetActive(true);
                         break;
-                    case "ReviveAds":
+                    case "GetRevive":
+                        PlayerPrefs.SetInt("Revive", 1);
+                        PlayerPrefs.Save();
+                        revive = PlayerPrefs.GetInt("Revive");                        
+                        GameOver.gameOver.reviveCounter.text = "Revive x " + revive.ToString();
+                        GameOver.gameOver.reviveObj.SetActive(true);
+                        GameOver.gameOver.getReviveObj.SetActive(false);
                         break;
                 }
                 Debug.Log("Finished");

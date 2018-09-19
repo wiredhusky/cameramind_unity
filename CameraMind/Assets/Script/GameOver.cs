@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour {
 
     public Animator animator;        
-    public GameObject gameOverBack;
+    public GameObject gameOverBack, reviveObj, getReviveObj;
     public Button reviveBtn;
 
     bool restart = false;
@@ -32,7 +32,7 @@ public class GameOver : MonoBehaviour {
     }
 
     private void Start()
-    {
+    {        
         UIManager.uiManager.InitGameOver();
     }    
     
@@ -97,6 +97,11 @@ public class GameOver : MonoBehaviour {
         {
             TransitionControl.transitionControl.ActiveHandler();
         }
+    }
+
+    public void RevivePressed()
+    {
+        UIManager.uiManager.ShowRewardedAd();
     }
 
     void DestroyMyself()
