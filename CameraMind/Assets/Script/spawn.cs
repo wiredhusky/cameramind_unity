@@ -88,6 +88,7 @@ public class spawn : MonoBehaviour {
         }        
     }
 
+    /*
     public void PauseAni()
     {
         switch (SceneManager.GetActiveScene().name)
@@ -106,12 +107,18 @@ public class spawn : MonoBehaviour {
                 break;
             case "Time Attack":
                 //Do Timer Reset
+                if(SpawnPrefab.instance.index == 0)
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                }
                 UIManager.uiManager.uiPanel.SetActive(true);                
                 Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
                 Timer.timerControl.sec = 0;
                 Timer.timerControl.counter = 0;
                 Timer.timerControl.timerCounter.text = (3).ToString();
                 Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);                
+                break;
+            default:
                 break;
         }
 
@@ -131,7 +138,64 @@ public class spawn : MonoBehaviour {
         }
 
         UIManager.uiManager.ActiveUI();
-    }    
+    }*/
+
+    public void PauseAni()
+    {
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Track":
+                if (SpawnPrefab.instance.index_track == 0)
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                }
+                break;
+            case "Twins":
+                if(SpawnPrefab.instance.index_twins == 0)
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                }
+                break;
+            case "Alone":
+                if (SpawnPrefab.instance.index_alone == 0)
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                }
+                break;
+            case "Time Attack":
+                //Do Timer Reset
+                if (SpawnPrefab.instance.index == 0)
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                }
+                UIManager.uiManager.uiPanel.SetActive(true);
+                Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
+                Timer.timerControl.sec = 0;
+                Timer.timerControl.counter = 0;
+                Timer.timerControl.timerCounter.text = (3).ToString();
+                Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
+                break;
+            default:
+                if(SpawnPrefab.instance.index == 0)
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                }
+                break;
+        }
+
+        if (!SpawnPrefab.instance.allThingsDone)
+        {
+            animator.speed = 0;
+            SpawnPrefab.instance.setScale();
+            SpawnPrefab.instance.PosSearch();
+            SpawnPrefab.instance.SetStart();
+            UIManager.uiManager.uiPanel.SetActive(true);
+            animator.speed = 1;
+        }        
+
+        UIManager.uiManager.ActiveUI();
+    }
+
 
     public void ActiveCollider()
     {

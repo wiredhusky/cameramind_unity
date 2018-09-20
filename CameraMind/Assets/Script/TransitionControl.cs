@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TransitionControl : MonoBehaviour {
 
     public GameObject LevelTransition;
+    public GameObject gameOverPanel;
     public static TransitionControl transitionControl;
 
     public delegate void GoToIdle();
@@ -329,8 +330,9 @@ public class TransitionControl : MonoBehaviour {
                 SpawnPrefab.instance.CountLevel();
                 LevelTransition.SetActive(true);
                 break;
-            case 1:                
-                SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+            case 1:
+                //SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+                gameOverPanel.SetActive(true);
                 break;
         }        
     }    
