@@ -4,41 +4,9 @@ using UnityEngine;
 
 public class MoveMove : MonoBehaviour {
     
-    //public SpawnPrefab spawner;
-    public TransitionControl colControl;
-    
-    public List<Vector3> OppCenterPos = new List<Vector3>();
-    
     public bool _move = false;
-    public bool reverse = true;
     
     float speed, currentTime, lerpTime=1.5f;
-    
-    public void centerPosCalculator()
-    {   
-        Vector3 temp;
-        //float distanceTemp;
-        temp.z = 0;
-
-        switch(SpawnPrefab.instance.scene){
-            case "Flip Horizon":
-                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
-                {
-                    temp.x = SpawnPrefab.instance.posList[i].x * -1.0f;
-                    temp.y = SpawnPrefab.instance.posList[i].y;
-                    OppCenterPos.Add(temp);
-                }
-                break;            
-            default:
-                for (int i = 0; i < SpawnPrefab.instance.posList.Count; i++)
-                {
-                    temp.x = SpawnPrefab.instance.posList[i].x;
-                    temp.y = SpawnPrefab.instance.posList[i].y * -1.0f;
-                    OppCenterPos.Add(temp);
-                }
-                break;
-        }
-    }
 
     public void TempMove()
     {
@@ -46,41 +14,32 @@ public class MoveMove : MonoBehaviour {
         speed = currentTime / lerpTime;
         speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
         
-        if (reverse)
+        if (GameManager.gameManager.turnChk)
         {
-            for (int i = 0; i <= SpawnPrefab.instance.index; i++)
+            for (int i = 0; i <= GameManager.gameManager.index; i++)
             {   
-                SpawnPrefab.instance.obj[i].transform.position = Vector3.Lerp(SpawnPrefab.instance.obj[i].transform.position, OppCenterPos[i], speed);
+                GameManager.gameManager.obj[i].transform.position = Vector3.Lerp(GameManager.gameManager.obj[i].transform.position, GameManager.gameManager.oppCenterPos[i], speed);
                 
-                if (SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position == OppCenterPos[SpawnPrefab.instance.index])
+                if (GameManager.gameManager.obj[GameManager.gameManager.index].transform.position == GameManager.gameManager.oppCenterPos[GameManager.gameManager.index])
                 {   
                     _move = false;
-                    reverse = false;
-                    //SpawnPrefab.instance.obj[SpawnPrefab.instance.index].GetComponent<PolygonCollider2D>().enabled = true;
-                    /*if (colControl == null)
-                    {
-                        colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
-                    }*/
-                    colControl.ActiveHandler();
+                    GameManager.gameManager.turnChk = false;
+                    GameManager.gameManager.ActiveHandler();
                     currentTime = 0;
                 }
             }
         }
         else
         {
-            for (int i = 0; i <= SpawnPrefab.instance.index; i++)
+            for (int i = 0; i <= GameManager.gameManager.index; i++)
             {
-                SpawnPrefab.instance.obj[i].transform.position = Vector3.Lerp(SpawnPrefab.instance.obj[i].transform.position, SpawnPrefab.instance.posList[i], speed);
+                GameManager.gameManager.obj[i].transform.position = Vector3.Lerp(GameManager.gameManager.obj[i].transform.position, GameManager.gameManager.posList[i], speed);
                 
-                if (SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position == SpawnPrefab.instance.posList[SpawnPrefab.instance.index])
+                if (GameManager.gameManager.obj[GameManager.gameManager.index].transform.position == GameManager.gameManager.posList[GameManager.gameManager.index])
                 {   
                     _move = false;
-                    reverse = true;
-                    /*if(colControl == null)
-                    {
-                        colControl = GameObject.FindWithTag("transitionControl").GetComponent<TransitionControl>();
-                    } */                   
-                    colControl.ActiveHandler();
+                    GameManager.gameManager.turnChk = true;        
+                    GameManager.gameManager.ActiveHandler();
                     currentTime = 0;
                 }
             }

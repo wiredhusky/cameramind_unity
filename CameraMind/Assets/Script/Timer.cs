@@ -13,8 +13,6 @@ public class Timer : MonoBehaviour {
     public int counter;
     public float sec;
     public Vector3 target;
-    public TransitionControl transition;
-    public UIManager uiManager;
 
     public TextMeshProUGUI timerCounter;
 
@@ -63,12 +61,12 @@ public class Timer : MonoBehaviour {
             
             if(timer.transform.position == target)
             {
-                transition.DeactiveHandler();
+                GameManager.gameManager.DeactiveHandler();
                 animator.speed = 0;
                 setTimer = false;
                 timerCounter.text = (0).ToString();
-                uiManager.DeactiveUI();
-                transition.GameOver();                             
+                UIManager.uiManager.DeactiveUI();
+                RootGameManager.rootGameManager.GameOver();                             
             }
         }        
 	}

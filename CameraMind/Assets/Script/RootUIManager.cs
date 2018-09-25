@@ -59,7 +59,6 @@ public class RootUIManager : MonoBehaviour {
     public void InitScene(GameObject hint, GameObject hintAds, TextMeshProUGUI text){
         
         hintCount = PlayerPrefs.GetInt("Hint");
-        Debug.Log(hintCount);
         reviveCount = PlayerPrefs.GetInt("Revive");
         text.text = "x " + hintCount.ToString();
 
@@ -114,6 +113,7 @@ public class RootUIManager : MonoBehaviour {
     public void Resume(){
         if(!clicked){
             clicked = true;
+            btnName = EventSystem.current.currentSelectedGameObject.name;
             eventSystem.SetActive(false);
             UIManager.uiManager.eventSystem.SetActive(true);
             animator.speed = 1;
@@ -135,6 +135,7 @@ public class RootUIManager : MonoBehaviour {
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             background.SetActive(true);
             animator.speed = 1;
+            RootSpawnManager.rootSpawnManager.allThingsDone = false;
         }
     }
 
@@ -145,6 +146,7 @@ public class RootUIManager : MonoBehaviour {
             menus.SetActive(true);
             background.SetActive(false);
             animator.speed = 1;
+            RootSpawnManager.rootSpawnManager.allThingsDone = false;
         }
     }
 
@@ -164,11 +166,11 @@ public class RootUIManager : MonoBehaviour {
         {
             case "Track":
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_track].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_track].transform.position;
                 break;
             case "Alone":
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_alone].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_alone].transform.position;
                 break;
             case "Time Attack":
                 Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
@@ -177,11 +179,11 @@ public class RootUIManager : MonoBehaviour {
                 Timer.timerControl.timerCounter.text = (3).ToString();
                 Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
                 break;
             default:
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
                 break;
         }
     }
@@ -202,21 +204,21 @@ public class RootUIManager : MonoBehaviour {
         {
             case "Track":
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_track].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_track].transform.position;
                 break;
             case "Alone":
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_alone].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_alone].transform.position;
                 break;
             case "Time Attack":
                 Timer.timerControl.setTimer = false;
                 Timer.timerControl.animator.speed = 0;
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
                 break;
             default:
                 particle.SetActive(true);
-                particle.transform.position = SpawnPrefab.instance.obj[SpawnPrefab.instance.index].transform.position;
+                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
                 break;
         }
     }
@@ -232,7 +234,7 @@ public class RootUIManager : MonoBehaviour {
             clicked = true;
             sceneName = EventSystem.current.currentSelectedGameObject.name;
             eventSystem.SetActive(false);
-            menus.SetActive(false);
+            //menus.SetActive(false);
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
     }

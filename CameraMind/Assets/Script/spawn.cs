@@ -4,145 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class spawn : MonoBehaviour {
-
     
-    public MoveMove move;    
-    
-    //public Clicked tap;    
-    //public UIManager uiManager;
+    public MoveMove move;
     public Animator animator;
-    //public GameObject background, ui_btns;
-    
-    int randObj, randAni;
-    
-	public void objCreator()
-    {        
-        //SpawnPrefab.instance.scene = SceneManager.GetActiveScene().buildIndex;
-        switch (RootUIManager.rootUIManager.sceneName)
-        {
-            case "MainMenu":
-                break;            
-            case "Flip Horizon":
-                SpawnPrefab.instance.SpawnObj_Flip();
-                break;
-            case "Track": // track
-                SpawnPrefab.instance.SpawnObj();                
-                TransitionControl.transitionControl.EventHandler();                
-                break;
-            case "Twins": // twins
-                SpawnPrefab.instance.SpawnObj_Twins();
-                break;
-            case "Alone": // alone
-                SpawnPrefab.instance.SpawnObj_Alone();
-                TransitionControl.transitionControl.RendererHandler();
-                break;
-            case "Temptation": // temptation
-                SpawnPrefab.instance.SpawnObj();
-                randObj = Random.Range(0, SpawnPrefab.instance.index);
-                randAni = Random.Range(0, 3);
-                switch (randAni)
-                {
-                    case 0:
-                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
-                        animator.SetTrigger("rotation");
-                        break;
-                    case 1:
-                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
-                        animator.SetTrigger("angry");
-                        break;
-                    case 2:
-                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
-                        animator.SetTrigger("shaking");
-                        break;
-                }
-                break;
-            case "Flip Vertical": // vertical flip
-                SpawnPrefab.instance.SpawnObj_Flip();
-                break;
-            case "Chaos": // mix
-                SpawnPrefab.instance.SpawnObj_Flip();
-                randObj = Random.Range(0, SpawnPrefab.instance.index);
-                randAni = Random.Range(0, 3);
-                switch (randAni)
-                {
-                    case 0:
-                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
-                        animator.SetTrigger("rotation");
-                        break;
-                    case 1:
-                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
-                        animator.SetTrigger("angry");
-                        break;
-                    case 2:
-                        animator = SpawnPrefab.instance.obj[randObj].GetComponent<Animator>();
-                        animator.SetTrigger("shaking");
-                        break;
-                }
-                break;
-            /*case "Time Attack":
-                SpawnPrefab.instance.SpawnObj_Flip();
-                break;*/
-            default: // normal, double, triple
-                SpawnPrefab.instance.SpawnObj();
-                break;
-        }        
+
+    void objCreator(){
+        //Debug.Log("Obj Type" + GameManager.gameManager.objType[0]);
+        Debug.Log("Pos" + GameManager.gameManager.posList[0]);
+        Debug.Log("Index " + GameManager.gameManager.index);
+        RootSpawnManager.rootSpawnManager.objCreator(GameManager.gameManager.objType, GameManager.gameManager.index, 
+                                                     GameManager.gameManager.obj, GameManager.gameManager.posList);
+        Debug.Log("obj" + GameManager.gameManager.obj[0].transform.position);
     }
-
-    /*
-    public void PauseAni()
-    {
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "MainMenu":
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName(MainMenu.mainMenu.sceneName));                
-                SceneManager.UnloadSceneAsync("MainMenu");
-                break;
-            case "GameOver":
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
-                SceneManager.UnloadSceneAsync("GameOver");
-                break;
-            case "Pause":
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName(SpawnPrefab.instance.scene));
-                SceneManager.UnloadSceneAsync("Pause");
-                break;
-            case "Time Attack":
-                //Do Timer Reset
-                if(SpawnPrefab.instance.index == 0)
-                {
-                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-                }
-                UIManager.uiManager.uiPanel.SetActive(true);                
-                Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
-                Timer.timerControl.sec = 0;
-                Timer.timerControl.counter = 0;
-                Timer.timerControl.timerCounter.text = (3).ToString();
-                Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);                
-                break;
-            default:
-                break;
-        }
-
-        if (!SpawnPrefab.instance.allThingsDone)
-        {           
-            animator.speed = 0;
-            SpawnPrefab.instance.setScale();
-            SpawnPrefab.instance.PosSearch();
-            SpawnPrefab.instance.SetStart();
-            UIManager.uiManager.uiPanel.SetActive(true);
-            animator.speed = 1;            
-        }
-
-        if(SpawnPrefab.instance.scene != "Temptation")
-        {
-            TransitionControl.transitionControl.EventHandler();
-        }
-
-        UIManager.uiManager.ActiveUI();
-    }*/
 
     public void PauseAni()
     {
         RootUIManager.rootUIManager.clicked = false;
+        RootUIManager.rootUIManager.menus.SetActive(false);
         if(SceneManager.GetActiveScene().name == "SceneManager"){
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(RootUIManager.rootUIManager.sceneName));
         }
@@ -156,12 +34,13 @@ public class spawn : MonoBehaviour {
             Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
         }
 
-        if (!SpawnPrefab.instance.allThingsDone)
+        if (!RootSpawnManager.rootSpawnManager.allThingsDone)
         {
             animator.speed = 0;
-            SpawnPrefab.instance.setScale();
-            SpawnPrefab.instance.PosSearch();
-            SpawnPrefab.instance.SetStart();
+            RootSpawnManager.rootSpawnManager.setScale();
+            RootSpawnManager.rootSpawnManager.PosSearch(GameManager.gameManager.posList, 
+                                                        GameManager.gameManager.objType);
+            GameManager.gameManager.SetStart();
             UIManager.uiManager.uiPanel.SetActive(true);
             animator.speed = 1;
         }        
@@ -172,12 +51,11 @@ public class spawn : MonoBehaviour {
 
     public void ActiveCollider()
     {
-        TransitionControl.transitionControl.ActiveHandler();
+        GameManager.gameManager.ActiveHandler();
     }
 
     public void SetObj()
     {
-        //animator.SetTrigger("getBackIdle");
         gameObject.SetActive(false);
     }
 
@@ -188,17 +66,9 @@ public class spawn : MonoBehaviour {
         Timer.timerControl.animator.speed = 1;
     }
 
-    /*
-    public void DeactiveGameOver()
-    {
-        gameOver.SetActive(false);        
-    }*/
-
     public void MovePrefab()
     {
-        //Debug.Log(move._move);
         move._move = true;
-        //Debug.Log(move._move);
     }
 
 }

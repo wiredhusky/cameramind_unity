@@ -16,7 +16,7 @@ public class PauseGameOver : MonoBehaviour {
 
     void LoadRestart(){
         if(RootUIManager.rootUIManager.btnName == "Revive"){
-            TransitionControl.transitionControl.ActiveHandler();
+            GameManager.gameManager.ActiveHandler();
         }
         if(RootUIManager.rootUIManager.btnName == "Restart"){
             SceneManager.LoadScene(RootUIManager.rootUIManager.sceneName, LoadSceneMode.Additive);

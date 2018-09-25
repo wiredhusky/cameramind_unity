@@ -11,25 +11,24 @@ public class Clicked : MonoBehaviour {
     private void Start()
     {
         
-        TransitionControl.transitionControl.activeCollider += ActiveCol;
-        TransitionControl.transitionControl.deactiveCollider += DeActiveCol;
-        TransitionControl.transitionControl.goIdle += SetIdle;
+        GameManager.gameManager.activeCollider += ActiveCol;
+        GameManager.gameManager.deactiveCollider += DeActiveCol;
+        GameManager.gameManager.goIdle += SetIdle;
 
-        switch (SpawnPrefab.instance.scene)
+        switch (RootUIManager.rootUIManager.sceneName)
         {            
             case "Track": // Track
-                TransitionControl.transitionControl.goIdle += SetIdle;
+                GameManager.gameManager.goIdle += SetIdle;
                 break;
             case "Alone": //Alone, renedere enabled = true;
-                TransitionControl.transitionControl.enableRenderer += EnableRenderer;
+                GameManager.gameManager.enableRenderer += EnableRenderer;
                 break;            
         }
     }
 
     private void OnMouseUp()
     {
-        TransitionControl.transitionControl.ComPos(gameObject.transform.position, animator);
-        Debug.Log("Clicked");
+        RootGameManager.rootGameManager.ComPos(gameObject.transform.position, animator);
     }
 
     public void SetIdle()

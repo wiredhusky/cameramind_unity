@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour {
             Timer.timerControl.setTimer = false;
             Timer.timerControl.animator.speed = 0;
         }
-        RootUIManager.rootUIManager.ActivePauseGameOver(0, SpawnPrefab.instance.index);
+        RootUIManager.rootUIManager.ActivePauseGameOver(0, GameManager.gameManager.index);
     }
 
     public void DeactiveUI()
