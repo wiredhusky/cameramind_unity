@@ -32,8 +32,8 @@ public class TransitionControl : MonoBehaviour {
 
     public void ComPos(Vector3 _objPos, Animator _animator)
     {
-        UIManager.uiManager.particle.SetActive(false);
-        switch (SpawnPrefab.instance.scene)
+        RootUIManager.rootUIManager.particle.SetActive(false);
+        switch (RootUIManager.rootUIManager.sceneName)
         {
             default:
                 DeactiveHandler();
@@ -278,10 +278,10 @@ public class TransitionControl : MonoBehaviour {
     
     public void GameOver()
     {
-        UIManager.uiManager.particle.SetActive(false);
-        switch (SpawnPrefab.instance.scene)
+        RootUIManager.rootUIManager.particle.SetActive(false);
+        switch (RootUIManager.rootUIManager.sceneName)
         {
-            case "MainMenu":
+            case "SceneManager":
                 break;
             case "Track":
                 animator = SpawnPrefab.instance.obj[SpawnPrefab.instance.index_track].GetComponent<Animator>();
@@ -348,7 +348,8 @@ public class TransitionControl : MonoBehaviour {
                 if (currentBaseState.normalizedTime > 1.0f)
                 {
                     chkGameOver = false;
-                    DoTransition(1);                    
+                    //DoTransition(1);
+                    RootUIManager.rootUIManager.ActivePauseGameOver(1, SpawnPrefab.instance.index);
                 }
             }            
         }

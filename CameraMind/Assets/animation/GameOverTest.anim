@@ -32,13 +32,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
-        time: 2
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 2.5
+        time: 1.5
         value: -0.000000029802
         inSlope: 0
         outSlope: 0
@@ -66,13 +66,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 2
+        time: 1
         value: 0
         inSlope: 0
         outSlope: -38.72697
         tangentMode: 1
       - serializedVersion: 2
-        time: 2.5
+        time: 1.5
         value: -10.18
         inSlope: -1.2101483
         outSlope: 0
@@ -112,7 +112,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.5
+    m_StopTime: 1.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -144,13 +144,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
-        time: 2
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 2.5
+        time: 1.5
         value: -0.000000029802
         inSlope: 0
         outSlope: 0
@@ -178,13 +178,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 1
       - serializedVersion: 2
-        time: 2
+        time: 1
         value: 0
         inSlope: 0
         outSlope: -38.72697
         tangentMode: 1
       - serializedVersion: 2
-        time: 2.5
+        time: 1.5
         value: -10.18
         inSlope: -1.2101483
         outSlope: 0
@@ -202,14 +202,21 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.5
-    functionName: PauseGameOver
+    functionName: PauseAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.4666667
-    functionName: LoadNextScene
+  - time: 1.45
+    functionName: LoadRestart
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5
+    functionName: DeactiveMyself
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

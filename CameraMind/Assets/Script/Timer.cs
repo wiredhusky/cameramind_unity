@@ -68,7 +68,7 @@ public class Timer : MonoBehaviour {
                 setTimer = false;
                 timerCounter.text = (0).ToString();
                 uiManager.DeactiveUI();
-                transition.GameOver();                                
+                transition.GameOver();                             
             }
         }        
 	}

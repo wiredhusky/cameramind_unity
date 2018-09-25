@@ -61,28 +61,33 @@ public class SpawnPrefab : MonoBehaviour {
         {
             instance = this;
         }
-
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "MainMenu":
-                scene = MainMenu.mainMenu.sceneName;
-                break;
-            case "GameOver":
-                scene = GameOver.gameOver.scene;
-                break;
-            case "Pause":
-                scene = GameOver.gameOver.scene;
-                break;
-            default:
-                scene = SceneManager.GetActiveScene().name;
-                break;
-        }
     }
 
     private void Start()
     {
         CountLevel();
         LevelTransition.SetActive(true);
+        /*
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        TrinityForce.trinityForce.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();
+        RootUIManager.rootUIManager.test();*/
     }
 
     public void CountLevel()
@@ -545,7 +550,7 @@ public class SpawnPrefab : MonoBehaviour {
 
         //set boundaries
         limitTop = worldPos.y - margin;
-        limitBottom = worldPos.y * -1.0f + margin;
+        limitBottom = worldPos.y * -1.0f + margin + 1.4f;
         limitLeft = worldPos.x * -1.0f + margin;
         limitRight = worldPos.x - margin;
         

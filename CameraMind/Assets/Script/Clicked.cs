@@ -29,6 +29,7 @@ public class Clicked : MonoBehaviour {
     private void OnMouseUp()
     {
         TransitionControl.transitionControl.ComPos(gameObject.transform.position, animator);
+        Debug.Log("Clicked");
     }
 
     public void SetIdle()
