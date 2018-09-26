@@ -9,12 +9,8 @@ public class spawn : MonoBehaviour {
     public Animator animator;
 
     void objCreator(){
-        //Debug.Log("Obj Type" + GameManager.gameManager.objType[0]);
-        Debug.Log("Pos" + GameManager.gameManager.posList[0]);
-        Debug.Log("Index " + GameManager.gameManager.index);
         RootSpawnManager.rootSpawnManager.objCreator(GameManager.gameManager.objType, GameManager.gameManager.index, 
                                                      GameManager.gameManager.obj, GameManager.gameManager.posList);
-        Debug.Log("obj" + GameManager.gameManager.obj[0].transform.position);
     }
 
     public void PauseAni()
@@ -26,7 +22,9 @@ public class spawn : MonoBehaviour {
         }
 
         if(RootUIManager.rootUIManager.sceneName == "Time Attack"){
-            UIManager.uiManager.uiPanel.SetActive(true);
+            RootUIManager.rootUIManager.uiNavigation.SetActive(true);
+            RootUIManager.rootUIManager.background.SetActive(true);
+            Timer.timerControl.timer.SetActive(true);
             Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
             Timer.timerControl.sec = 0;
             Timer.timerControl.counter = 0;
@@ -41,11 +39,12 @@ public class spawn : MonoBehaviour {
             RootSpawnManager.rootSpawnManager.PosSearch(GameManager.gameManager.posList, 
                                                         GameManager.gameManager.objType);
             GameManager.gameManager.SetStart();
-            UIManager.uiManager.uiPanel.SetActive(true);
+            RootUIManager.rootUIManager.uiNavigation.SetActive(true);
+            RootUIManager.rootUIManager.background.SetActive(true);
             animator.speed = 1;
         }        
 
-        UIManager.uiManager.ActiveUI();
+        RootUIManager.rootUIManager.ActiveUI();
     }
 
 

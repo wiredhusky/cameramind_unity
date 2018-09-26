@@ -17,12 +17,18 @@ public class RootUIManager : MonoBehaviour {
     public GameObject particle, hintParticle;
     public GameObject eventSystem;
     public GameObject menus;
-    public TextMeshProUGUI currentLevelText, reviveCountText, title;
+    public GameObject uiNavigation;
+    public TextMeshProUGUI currentLevelText, reviveCountText, title, hintCountText;
     public string sceneName, btnName;
     public Animator animator;
     public Button reviveBtn, getReviveBtn;
     int hintCount, reviveCount;
 
+    //uiBtns
+    public Button pauseBtn, hintBtn, getHintBtn;
+    public GameObject hintBtnObj, getHintBtnObj;
+
+    //protect double click
     public bool clicked;
 
     private void Awake()
@@ -54,25 +60,26 @@ public class RootUIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
         clicked = false;
+        InitScene();
     }
 
-    public void InitScene(GameObject hint, GameObject hintAds, TextMeshProUGUI text){
+    public void InitScene(){
         
         hintCount = PlayerPrefs.GetInt("Hint");
         reviveCount = PlayerPrefs.GetInt("Revive");
-        text.text = "x " + hintCount.ToString();
+        hintCountText.text = "x " + hintCount.ToString();
 
         if (hintCount == 0)
         {
-            hint.SetActive(false);
-            hintAds.SetActive(true);
+            hintBtnObj.SetActive(false);
+            getHintBtnObj.SetActive(true);
         }
     }
 
     public void ActivePauseGameOver(int type, int index)
     {
-        UIManager.uiManager.eventSystem.SetActive(false);
-        eventSystem.SetActive(true);
+        //UIManager.uiManager.eventSystem.SetActive(false);
+        //eventSystem.SetActive(true);
         switch(type){
             case 0: // pause
                 title.text = "Pause";
@@ -114,8 +121,8 @@ public class RootUIManager : MonoBehaviour {
         if(!clicked){
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;
-            eventSystem.SetActive(false);
-            UIManager.uiManager.eventSystem.SetActive(true);
+            //eventSystem.SetActive(false);
+            //UIManager.uiManager.eventSystem.SetActive(true);
             animator.speed = 1;
             if (sceneName == "Time Attack")
             {
@@ -130,10 +137,11 @@ public class RootUIManager : MonoBehaviour {
         if(!clicked){
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;
-            eventSystem.SetActive(false);
-            UIManager.uiManager.eventSystem.SetActive(true);
+            //eventSystem.SetActive(false);
+            //UIManager.uiManager.eventSystem.SetActive(true);
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            background.SetActive(true);
+            //background.SetActive(true);
+            uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
         }
@@ -142,9 +150,11 @@ public class RootUIManager : MonoBehaviour {
     public void MainMenu(){
         if(!clicked){
             clicked = true;
+            btnName = EventSystem.current.currentSelectedGameObject.name;
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             menus.SetActive(true);
             background.SetActive(false);
+            uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
         }
@@ -157,8 +167,8 @@ public class RootUIManager : MonoBehaviour {
         reviveCountText.text = "Revive x " + reviveCount.ToString();
         PlayerPrefs.SetInt("Revive", reviveCount);
         PlayerPrefs.Save();
-        eventSystem.SetActive(false);
-        UIManager.uiManager.eventSystem.SetActive(true);
+        //eventSystem.SetActive(false);
+        //UIManager.uiManager.eventSystem.SetActive(true);
 
         animator.speed = 1;
 
@@ -188,11 +198,17 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
-    public void Hint(GameObject hintBtnObj, GameObject getHintBtnObj, Button getHintBtn, 
-                     TextMeshProUGUI hintText){
+    public void Hint(){
         hintCount--;
+        PlayerPrefs.SetInt("Hint", hintCount);
         PlayerPrefs.Save();
-        hintText.text = "x " + hintCount.ToString();
+        hintCountText.text = "x " + hintCount.ToString();
+
+        if (sceneName == "Time Attack")
+        {
+            Timer.timerControl.setTimer = false;
+            Timer.timerControl.animator.speed = 0;
+        }
 
         if(hintCount == 0){
             hintBtnObj.SetActive(false);
@@ -233,7 +249,7 @@ public class RootUIManager : MonoBehaviour {
         if(!clicked){
             clicked = true;
             sceneName = EventSystem.current.currentSelectedGameObject.name;
-            eventSystem.SetActive(false);
+            //eventSystem.SetActive(false);
             //menus.SetActive(false);
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
@@ -265,13 +281,13 @@ public class RootUIManager : MonoBehaviour {
                 switch (btnName)
                 {
                     case "GetHint":
-                        PlayerPrefs.SetInt("Hint", 3);
+                        PlayerPrefs.SetInt("Hint", 2);
                         PlayerPrefs.Save();
                         hintCount = PlayerPrefs.GetInt("Hint");
-                        UIManager.uiManager.hintText.text = "x " + hintCount.ToString();
-                        UIManager.uiManager.getHintBtnObj.SetActive(false);
-                        UIManager.uiManager.hintBtnObj.SetActive(true);
-                        UIManager.uiManager.hintBtn.interactable = true;
+                        hintCountText.text = "x " + hintCount.ToString();
+                        getHintBtnObj.SetActive(false);
+                        hintBtnObj.SetActive(true);
+                        hintBtn.interactable = true;
                         break;
                     case "GetRevive":
                         PlayerPrefs.SetInt("Revive", 1);
@@ -292,5 +308,29 @@ public class RootUIManager : MonoBehaviour {
                 Debug.Log("Failed");
                 break;
         }
+    }
+
+    public void DeactiveUI()
+    {
+        pauseBtn.interactable = false;
+        hintBtn.interactable = false;
+        getHintBtn.interactable = false;
+    }
+
+    public void ActiveUI()
+    {
+        pauseBtn.interactable = true;
+        getHintBtn.interactable = true;
+        hintBtn.interactable = true;
+    }
+
+    public void PausePressed()
+    {
+        if (sceneName == "Time Attack")
+        {
+            Timer.timerControl.setTimer = false;
+            Timer.timerControl.animator.speed = 0;
+        }
+        ActivePauseGameOver(0, GameManager.gameManager.index);
     }
 }

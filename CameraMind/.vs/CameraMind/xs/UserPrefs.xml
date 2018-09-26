@@ -2,14 +2,13 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/spawn.cs">
     <Files>
       <File FileName="Assets/Script/PauseGameOver.cs" Line="13" Column="51" />
-      <File FileName="Assets/Script/RootUIManager.cs" Line="119" Column="32" />
-      <File FileName="Assets/Script/RootSpawnManager.cs" Line="13" Column="27" />
-      <File FileName="Assets/Script/GameManager.cs" Line="4" Column="13" />
-      <File FileName="Assets/Script/UIManager.cs" Line="52" Column="49" />
-      <File FileName="Assets/Script/spawn.cs" Line="36" Column="9" />
-      <File FileName="Assets/Script/RootGameManager.cs" Line="40" Column="50" />
+      <File FileName="Assets/Script/RootUIManager.cs" Line="290" Column="53" />
+      <File FileName="Assets/Script/RootSpawnManager.cs" Line="505" Column="43" />
+      <File FileName="Assets/Script/RootGameManager.cs" Line="10" Column="12" />
+      <File FileName="Assets/Script/GameManager.cs" Line="56" Column="46" />
+      <File FileName="Assets/Script/spawn.cs" Line="16" Column="27" />
       <File FileName="Assets/Script/Clicked.cs" Line="31" Column="40" />
-      <File FileName="Assets/Script/Timer.cs" Line="69" Column="48" />
+      <File FileName="Assets/Script/Timer.cs" Line="11" Column="34" />
       <File FileName="Assets/Script/MoveMove.cs" Line="16" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>

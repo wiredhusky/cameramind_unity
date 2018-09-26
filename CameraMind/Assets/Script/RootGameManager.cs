@@ -7,8 +7,7 @@ public class RootGameManager : MonoBehaviour {
     public static RootGameManager rootGameManager;
 
     public bool chkGameOver = false;
-    Animator animator;
-    AnimatorStateInfo currentBaseState;
+    public Animator animator;
 
     private void Awake()
     {
@@ -24,7 +23,7 @@ public class RootGameManager : MonoBehaviour {
         {
             default:
                 GameManager.gameManager.DeactiveHandler();
-                UIManager.uiManager.DeactiveUI();
+                RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos_Normal(_objPos))
                 {
                     GameManager.gameManager.index++;
@@ -37,7 +36,7 @@ public class RootGameManager : MonoBehaviour {
                 break;
             case "Flip Horizon":
                 GameManager.gameManager.DeactiveHandler();
-                UIManager.uiManager.DeactiveUI();
+                RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
                     GameManager.gameManager.index++;
@@ -57,14 +56,14 @@ public class RootGameManager : MonoBehaviour {
                 else
                 {
                     GameManager.gameManager.DeactiveHandler();
-                    UIManager.uiManager.DeactiveUI();
+                    RootUIManager.rootUIManager.DeactiveUI();
                     _animator.SetTrigger("Clicked");
                     GameOver();
                 }
                 break;
             case "Twins":
                 GameManager.gameManager.DeactiveHandler();
-                UIManager.uiManager.DeactiveUI();
+                RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePosTwins(_objPos))
                 {
                     GameManager.gameManager.index_twins += 2;
@@ -78,7 +77,7 @@ public class RootGameManager : MonoBehaviour {
                 break;
             case "Alone":
                 GameManager.gameManager.DeactiveHandler();
-                UIManager.uiManager.DeactiveUI();
+                RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos_Alone(_objPos))
                 {
                     GameManager.gameManager.index++;
@@ -92,7 +91,7 @@ public class RootGameManager : MonoBehaviour {
                 break;
             case "Flip Vertical": // vertical flip
                 GameManager.gameManager.DeactiveHandler();
-                UIManager.uiManager.DeactiveUI();
+                RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
                     GameManager.gameManager.index++;
@@ -108,7 +107,7 @@ public class RootGameManager : MonoBehaviour {
                 Timer.timerControl.setTimer = false;
                 Timer.timerControl.animator.speed = 0;
                 GameManager.gameManager.DeactiveHandler();
-                UIManager.uiManager.DeactiveUI();
+                RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos_Normal(_objPos))
                 {
                     GameManager.gameManager.index++;
@@ -121,7 +120,7 @@ public class RootGameManager : MonoBehaviour {
                 break;
             case "Chaos":
                 GameManager.gameManager.DeactiveHandler();
-                UIManager.uiManager.DeactiveUI();
+                RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
                     GameManager.gameManager.index++;
@@ -270,6 +269,7 @@ public class RootGameManager : MonoBehaviour {
         GameManager.gameManager.index_track++;
         if (GameManager.gameManager.index_track == GameManager.gameManager.index + 1)
         {
+            GameManager.gameManager.trackComplete = true;
             GameManager.gameManager.DeactiveHandler();
         }
     }
@@ -288,37 +288,5 @@ public class RootGameManager : MonoBehaviour {
                 break;
         }
     }
-
-    void Update()
-    {
-        if (chkGameOver)
-        {
-            currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
-            if (currentBaseState.IsName("soomong20_twinkle"))
-            {
-                //Debug.Log(currentBaseState.normalizedTime);
-                if (currentBaseState.normalizedTime > 1.0f)
-                {
-                    chkGameOver = false;
-                    DoTransition(1);
-                }
-            }
-        }
-
-        if (RootUIManager.rootUIManager.sceneName == "Track" && GameManager.gameManager.index_track == GameManager.gameManager.index + 1)
-        {
-            currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
-            if (currentBaseState.IsName("soomong20_clicked"))
-            {
-                if (currentBaseState.normalizedTime > 1.0f)
-                {
-                    GameManager.gameManager.index++;
-                    DoTransition(0);
-                    GameManager.gameManager.index_track = 0;
-                }
-            }
-        }
-    }
-
 
 }

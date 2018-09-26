@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> obj = new List<GameObject>();
     public GameObject LevelTransitionPanel;
     private GameObject _obj;
-    public MoveMove move;
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
@@ -36,8 +35,11 @@ public class GameManager : MonoBehaviour {
     public int index_alone = 50;
 
     public bool turnChk = true;
+    public bool trackComplete = false;
 
     public GameObject soomong_colored;
+
+    AnimatorStateInfo currentBaseState;
 
     int case0, case1, case2, case3, case4;
 
@@ -165,6 +167,39 @@ public class GameManager : MonoBehaviour {
         if (index == 0)
         {
             enableRenderer();
+        }
+    }
+
+    void Update()
+    {
+        if (RootGameManager.rootGameManager.chkGameOver)
+        {
+            currentBaseState = RootGameManager.rootGameManager.animator.GetCurrentAnimatorStateInfo(0);
+            if (currentBaseState.IsName("soomong20_twinkle"))
+            {
+                //Debug.Log(currentBaseState.normalizedTime);
+                if (currentBaseState.normalizedTime > 1.0f)
+                {
+                    RootGameManager.rootGameManager.chkGameOver = false;
+                    RootGameManager.rootGameManager.DoTransition(1);
+                }
+            }
+        }
+
+        if (trackComplete)
+        {
+            RootUIManager.rootUIManager.DeactiveUI();
+            currentBaseState = RootGameManager.rootGameManager.animator.GetCurrentAnimatorStateInfo(0);
+            if (currentBaseState.IsName("soomong20_clicked"))
+            {
+                if (currentBaseState.normalizedTime > 1.0f)
+                {
+                    index++;
+                    RootGameManager.rootGameManager.DoTransition(0);
+                    index_track = 0;
+                    trackComplete = false;
+                }
+            }
         }
     }
 

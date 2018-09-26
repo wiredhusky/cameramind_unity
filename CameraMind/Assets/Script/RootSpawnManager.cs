@@ -61,7 +61,7 @@ public class RootSpawnManager : MonoBehaviour {
 
         //set boundaries
         limitTop = worldPos.y - margin;
-        limitBottom = worldPos.y * -1.0f + margin + 1.4f;
+        limitBottom = worldPos.y * -1.0f + margin + 1.6f;
         limitLeft = worldPos.x * -1.0f + margin;
         limitRight = worldPos.x - margin;
 
@@ -507,7 +507,7 @@ public class RootSpawnManager : MonoBehaviour {
                 break;
             default:
                 temp.x = objPos.x;
-                temp.y = objPos.y * -1.0f;
+                temp.y = objPos.y * -1.0f + margin + 1.6f;
                 break;
         }
         return temp;
