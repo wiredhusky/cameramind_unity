@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class spawn : MonoBehaviour {
     
     public MoveMove move;
+    public Timer timer;
     public Animator animator;
 
     void objCreator(){
@@ -19,17 +20,6 @@ public class spawn : MonoBehaviour {
         RootUIManager.rootUIManager.menus.SetActive(false);
         if(SceneManager.GetActiveScene().name == "SceneManager"){
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(RootUIManager.rootUIManager.sceneName));
-        }
-
-        if(RootUIManager.rootUIManager.sceneName == "Time Attack"){
-            RootUIManager.rootUIManager.uiNavigation.SetActive(true);
-            RootUIManager.rootUIManager.background.SetActive(true);
-            Timer.timerControl.timer.SetActive(true);
-            Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
-            Timer.timerControl.sec = 0;
-            Timer.timerControl.counter = 0;
-            Timer.timerControl.timerCounter.text = (3).ToString();
-            Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
         }
 
         if (!RootSpawnManager.rootSpawnManager.allThingsDone)
@@ -47,6 +37,18 @@ public class spawn : MonoBehaviour {
         RootUIManager.rootUIManager.ActiveUI();
     }
 
+    public void TimerReset()
+    {
+        //RootUIManager.rootUIManager.uiNavigation.SetActive(true);
+        //RootUIManager.rootUIManager.background.SetActive(true);
+        timer.timer.SetActive(true);
+        timer.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
+        timer.sec = 0;
+        timer.counter = 0;
+        timer.timerCounter.text = (3).ToString();
+        timer.animator.SetInteger("TimerState", Timer.timerControl.counter);
+    }
+
 
     public void ActiveCollider()
     {
@@ -60,9 +62,9 @@ public class spawn : MonoBehaviour {
 
     public void SetTimerActive()
     {
-        Timer.timerControl.setTimer = true;
-        Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
-        Timer.timerControl.animator.speed = 1;
+        timer.setTimer = true;
+        timer.animator.SetInteger("TimerState", Timer.timerControl.counter);
+        timer.animator.speed = 1;
     }
 
     public void MovePrefab()

@@ -396,7 +396,8 @@ MonoBehaviour:
   index_alone: 50
   turnChk: 1
   trackComplete: 0
-  soomong_colored: {fileID: 0}
+  soomong_colored: {fileID: 1173986339302714, guid: f8d990a8ab32c1d43aa48201fe73def0,
+    type: 2}
 --- !u!4 &777602743
 Transform:
   m_ObjectHideFlags: 0

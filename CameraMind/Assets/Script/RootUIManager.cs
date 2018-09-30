@@ -23,6 +23,7 @@ public class RootUIManager : MonoBehaviour {
     public Animator animator;
     public Button reviveBtn, getReviveBtn;
     int hintCount, reviveCount;
+    int curHighScore;
 
     //uiBtns
     public Button pauseBtn, hintBtn, getHintBtn;
@@ -77,7 +78,7 @@ public class RootUIManager : MonoBehaviour {
     }
 
     public void ActivePauseGameOver(int type, int index)
-    {
+    {        
         //UIManager.uiManager.eventSystem.SetActive(false);
         //eventSystem.SetActive(true);
         switch(type){
@@ -90,12 +91,18 @@ public class RootUIManager : MonoBehaviour {
                 gamePanel.SetActive(true);
                 break;
             case 1: // gameOver
-                title.text = "Game Over";
+                title.text = "Game Over";                
                 resumeBtnObj.SetActive(false);
                 reviveCount = PlayerPrefs.GetInt("Revive");
-                currentLevelText.text = "Level " + index.ToString();
+                if (ChkHighScore())
+                {
+                    currentLevelText.text = "New High Score " + index.ToString();
+                }
+                else
+                {                    
+                    currentLevelText.text = "Level " + index.ToString();
+                }                
                 reviveCountText.text = "Revive x " + reviveCount.ToString();
-
                 if (reviveCount == 0)
                 {
                     reviveBtnObj.SetActive(false);
@@ -110,6 +117,66 @@ public class RootUIManager : MonoBehaviour {
                 }
                 gamePanel.SetActive(true);
                 break;
+        }
+    }
+
+    bool ChkHighScore()
+    {
+        if (curHighScore < GameManager.gameManager.index)
+        {
+            curHighScore = GameManager.gameManager.index;
+            switch (sceneName)
+            {
+                case "Normal":
+                    PlayerPrefs.SetInt("HighScoreNormal", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Double":
+                    PlayerPrefs.SetInt("HighScoreDouble", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Flip Horizon":
+                    PlayerPrefs.SetInt("HighScoreHorizon", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Temptation":
+                    PlayerPrefs.SetInt("HighScoreTemptation", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Twins":
+                    PlayerPrefs.SetInt("HighScoreTwins", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Triple":
+                    PlayerPrefs.SetInt("HighScoreTriple", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Flip Vertical":
+                    PlayerPrefs.SetInt("HighScoreVertical", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Alone":
+                    PlayerPrefs.GetInt("HighScoreAlone", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Track":
+                    PlayerPrefs.GetInt("HighScoreTrack", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Chaos":
+                    PlayerPrefs.GetInt("HighScoreChaos", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+                case "Time Attack":
+                    PlayerPrefs.GetInt("HighScoreTimeAttack", curHighScore);
+                    PlayerPrefs.Save();
+                    break;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -133,7 +200,7 @@ public class RootUIManager : MonoBehaviour {
     }
 
     public void Restart(){
-        Debug.Log(clicked);
+        
         if(!clicked){
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;
@@ -144,6 +211,7 @@ public class RootUIManager : MonoBehaviour {
             uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
+            RootSpawnManager.rootSpawnManager.exceptCase = 5;
         }
     }
 
@@ -157,6 +225,7 @@ public class RootUIManager : MonoBehaviour {
             uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
+            RootSpawnManager.rootSpawnManager.exceptCase = 5;
         }
     }
 
@@ -249,6 +318,42 @@ public class RootUIManager : MonoBehaviour {
         if(!clicked){
             clicked = true;
             sceneName = EventSystem.current.currentSelectedGameObject.name;
+            switch (sceneName)
+            {
+                case "Normal":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreNormal");                    
+                    break;
+                case "Double":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreDouble");
+                    break;
+                case "Flip Horizon":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreHorizon");
+                    break;
+                case "Temptation":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreTemptation");
+                    break;
+                case "Twins":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreTwins");
+                    break;
+                case "Triple":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreTriple");
+                    break;
+                case "Flip Vertical":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreVertical");
+                    break;
+                case "Alone":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreAlone");
+                    break;
+                case "Track":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreTrack");
+                    break;
+                case "Chaos":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreChaos");
+                    break;
+                case "Time Attack":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreTimeAttack");
+                    break;
+            }
             //eventSystem.SetActive(false);
             //menus.SetActive(false);
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);

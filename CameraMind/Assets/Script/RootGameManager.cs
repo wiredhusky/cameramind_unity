@@ -251,9 +251,6 @@ public class RootGameManager : MonoBehaviour {
             case "Alone":
                 animator = GameManager.gameManager.obj[GameManager.gameManager.index_alone].GetComponent<Animator>();
                 break;
-            case "Time Attack":
-                animator = GameManager.gameManager.obj[GameManager.gameManager.index].GetComponent<Animator>();
-                break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
                 animator = GameManager.gameManager.obj[GameManager.gameManager.index].GetComponent<Animator>();
                 break;

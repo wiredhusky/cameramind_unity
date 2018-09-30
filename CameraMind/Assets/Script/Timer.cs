@@ -16,6 +16,7 @@ public class Timer : MonoBehaviour {
 
     public TextMeshProUGUI timerCounter;
 
+    
     private void Awake()
     {
         if(timerControl == null)

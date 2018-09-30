@@ -22,7 +22,7 @@ public class RootSpawnManager : MonoBehaviour {
     float limitTop, limitBottom, limitLeft, limitRight;
 
     public bool allThingsDone = false;
-    int exceptCase = 5;
+    public int exceptCase = 5;
 
     public Vector2 onScreenScale_20;
     public Vector2 onScreenScale_25;
