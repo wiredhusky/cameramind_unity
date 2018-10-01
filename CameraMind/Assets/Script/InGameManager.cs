@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour {
+public class InGameManager : MonoBehaviour {
 
-    public static GameManager gameManager;
+    public static InGameManager inGameManager;
 
     public List<Vector3> posList = new List<Vector3>();
     public List<Vector3> oppCenterPos = new List<Vector3>();
@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
-        if(gameManager == null){
-            gameManager = this;
+        if(inGameManager == null){
+            inGameManager = this;
         }
     }
 

@@ -122,9 +122,9 @@ public class RootUIManager : MonoBehaviour {
 
     bool ChkHighScore()
     {
-        if (curHighScore < GameManager.gameManager.index)
+        if (curHighScore < InGameManager.inGameManager.index)
         {
-            curHighScore = GameManager.gameManager.index;
+            curHighScore = InGameManager.inGameManager.index;
             switch (sceneName)
             {
                 case "Normal":
@@ -245,11 +245,11 @@ public class RootUIManager : MonoBehaviour {
         {
             case "Track":
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_track].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].transform.position;
                 break;
             case "Alone":
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_alone].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_alone].transform.position;
                 break;
             case "Time Attack":
                 Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
@@ -258,11 +258,11 @@ public class RootUIManager : MonoBehaviour {
                 Timer.timerControl.timerCounter.text = (3).ToString();
                 Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
                 break;
             default:
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
                 break;
         }
     }
@@ -289,21 +289,21 @@ public class RootUIManager : MonoBehaviour {
         {
             case "Track":
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_track].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].transform.position;
                 break;
             case "Alone":
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index_alone].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_alone].transform.position;
                 break;
             case "Time Attack":
                 Timer.timerControl.setTimer = false;
                 Timer.timerControl.animator.speed = 0;
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
                 break;
             default:
                 particle.SetActive(true);
-                particle.transform.position = GameManager.gameManager.obj[GameManager.gameManager.index].transform.position;
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
                 break;
         }
     }
@@ -436,6 +436,6 @@ public class RootUIManager : MonoBehaviour {
             Timer.timerControl.setTimer = false;
             Timer.timerControl.animator.speed = 0;
         }
-        ActivePauseGameOver(0, GameManager.gameManager.index);
+        ActivePauseGameOver(0, InGameManager.inGameManager.index);
     }
 }

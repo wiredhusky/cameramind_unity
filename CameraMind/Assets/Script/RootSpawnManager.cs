@@ -56,8 +56,12 @@ public class RootSpawnManager : MonoBehaviour {
         temp.x = Screen.width;
         temp.y = Screen.height;
         temp.z = 0;
+        Debug.Log("Width: " + temp.x);
+        Debug.Log("Height: " + temp.y);
 
         worldPos = Camera.main.ScreenToWorldPoint(temp);
+
+        Debug.Log("WorldPos: " + worldPos);
 
         //set boundaries
         limitTop = worldPos.y - margin;
@@ -281,31 +285,31 @@ public class RootSpawnManager : MonoBehaviour {
                 break;
             case "Track": // track
                 SpawnObj(objType, index, obj, posList);
-                GameManager.gameManager.EventHandler();
+                InGameManager.inGameManager.EventHandler();
                 break;
             case "Twins": // twins
-                SpawnObj_Twins(objType, GameManager.gameManager.index_twins, obj, posList);
+                SpawnObj_Twins(objType, InGameManager.inGameManager.index_twins, obj, posList);
                 break;
             case "Alone": // alone
-                SpawnObj_Alone(objType, GameManager.gameManager.index_alone, obj, posList);
-                GameManager.gameManager.RendererHandler();
+                SpawnObj_Alone(objType, InGameManager.inGameManager.index_alone, obj, posList);
+                InGameManager.inGameManager.RendererHandler();
                 break;
             case "Temptation": // temptation
                 SpawnObj(objType, index, obj, posList);
-                randNum = Random.Range(0, GameManager.gameManager.index);
+                randNum = Random.Range(0, InGameManager.inGameManager.index);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
                     case 0:
-                        animator = GameManager.gameManager.obj[randNum].GetComponent<Animator>();
+                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
                         animator.SetTrigger("rotation");
                         break;
                     case 1:
-                        animator = GameManager.gameManager.obj[randNum].GetComponent<Animator>();
+                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
                         animator.SetTrigger("angry");
                         break;
                     case 2:
-                        animator = GameManager.gameManager.obj[randNum].GetComponent<Animator>();
+                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
                         animator.SetTrigger("shaking");
                         break;
                 }
@@ -315,20 +319,20 @@ public class RootSpawnManager : MonoBehaviour {
                 break;
             case "Chaos": // mix
                 SpawnObj_Flip(objType, index, obj, posList);
-                randNum = Random.Range(0, GameManager.gameManager.index);
+                randNum = Random.Range(0, InGameManager.inGameManager.index);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
                     case 0:
-                        animator = GameManager.gameManager.obj[randNum].GetComponent<Animator>();
+                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
                         animator.SetTrigger("rotation");
                         break;
                     case 1:
-                        animator = GameManager.gameManager.obj[randNum].GetComponent<Animator>();
+                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
                         animator.SetTrigger("angry");
                         break;
                     case 2:
-                        animator = GameManager.gameManager.obj[randNum].GetComponent<Animator>();
+                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
                         animator.SetTrigger("shaking");
                         break;
                 }
@@ -401,7 +405,7 @@ public class RootSpawnManager : MonoBehaviour {
     {
         Vector3 tempPos;
         tempPos = CenterPosCalculator(posList[index]);
-        GameManager.gameManager.oppCenterPos.Add(tempPos);
+        InGameManager.inGameManager.oppCenterPos.Add(tempPos);
         switch (objType[index])
         {
             case 0:
@@ -426,7 +430,7 @@ public class RootSpawnManager : MonoBehaviour {
                 break;
         }
 
-        if (GameManager.gameManager.turnChk)
+        if (InGameManager.inGameManager.turnChk)
         {
             _obj.transform.position = posList[index];
         }

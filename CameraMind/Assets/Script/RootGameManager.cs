@@ -22,11 +22,11 @@ public class RootGameManager : MonoBehaviour {
         switch (RootUIManager.rootUIManager.sceneName)
         {
             default:
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos_Normal(_objPos))
                 {
-                    GameManager.gameManager.index++;
+                    InGameManager.inGameManager.index++;
                     DoTransition(0);
                 }
                 else
@@ -35,12 +35,12 @@ public class RootGameManager : MonoBehaviour {
                 }
                 break;
             case "Flip Horizon":
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
-                    GameManager.gameManager.index++;
-                    Debug.Log(GameManager.gameManager.index);
+                    InGameManager.inGameManager.index++;
+                    Debug.Log(InGameManager.inGameManager.index);
                     DoTransition(0);
                 }
                 else
@@ -55,19 +55,19 @@ public class RootGameManager : MonoBehaviour {
                 }
                 else
                 {
-                    GameManager.gameManager.DeactiveHandler();
+                    InGameManager.inGameManager.DeactiveHandler();
                     RootUIManager.rootUIManager.DeactiveUI();
                     _animator.SetTrigger("Clicked");
                     GameOver();
                 }
                 break;
             case "Twins":
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePosTwins(_objPos))
                 {
-                    GameManager.gameManager.index_twins += 2;
-                    GameManager.gameManager.index++;
+                    InGameManager.inGameManager.index_twins += 2;
+                    InGameManager.inGameManager.index++;
                     DoTransition(0);
                 }
                 else
@@ -76,12 +76,12 @@ public class RootGameManager : MonoBehaviour {
                 }
                 break;
             case "Alone":
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos_Alone(_objPos))
                 {
-                    GameManager.gameManager.index++;
-                    GameManager.gameManager.index_alone++;
+                    InGameManager.inGameManager.index++;
+                    InGameManager.inGameManager.index_alone++;
                     DoTransition(0);
                 }
                 else
@@ -90,12 +90,12 @@ public class RootGameManager : MonoBehaviour {
                 }
                 break;
             case "Flip Vertical": // vertical flip
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
-                    GameManager.gameManager.index++;
-                    Debug.Log(GameManager.gameManager.index);
+                    InGameManager.inGameManager.index++;
+                    Debug.Log(InGameManager.inGameManager.index);
                     DoTransition(0);
                 }
                 else
@@ -106,11 +106,11 @@ public class RootGameManager : MonoBehaviour {
             case "Time Attack":
                 Timer.timerControl.setTimer = false;
                 Timer.timerControl.animator.speed = 0;
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos_Normal(_objPos))
                 {
-                    GameManager.gameManager.index++;
+                    InGameManager.inGameManager.index++;
                     DoTransition(0);
                 }
                 else
@@ -119,12 +119,12 @@ public class RootGameManager : MonoBehaviour {
                 }
                 break;
             case "Chaos":
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
-                    GameManager.gameManager.index++;
-                    Debug.Log(GameManager.gameManager.index);
+                    InGameManager.inGameManager.index++;
+                    Debug.Log(InGameManager.inGameManager.index);
                     DoTransition(0);
                 }
                 else
@@ -138,7 +138,7 @@ public class RootGameManager : MonoBehaviour {
 
     private bool ComparePos_Alone(Vector3 _objPosAlone)
     {
-        if (_objPosAlone == GameManager.gameManager.posList[GameManager.gameManager.index_alone])
+        if (_objPosAlone == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_alone])
         {
             return true;
         }
@@ -151,7 +151,7 @@ public class RootGameManager : MonoBehaviour {
 
     private bool ComparePos_Track(Vector3 _objPosTrack)
     {
-        if (_objPosTrack == GameManager.gameManager.posList[GameManager.gameManager.index_track])
+        if (_objPosTrack == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_track])
         {
             return true;
         }
@@ -163,7 +163,7 @@ public class RootGameManager : MonoBehaviour {
 
     private bool ComparePos_Normal(Vector3 _objPosNormal)
     {
-        if (_objPosNormal == GameManager.gameManager.posList[GameManager.gameManager.index])
+        if (_objPosNormal == InGameManager.inGameManager.posList[InGameManager.inGameManager.index])
         {
             return true;
         }
@@ -176,9 +176,9 @@ public class RootGameManager : MonoBehaviour {
 
     private bool ComparePos(Vector3 _objPosFlip)
     {
-        if (GameManager.gameManager.turnChk)
+        if (InGameManager.inGameManager.turnChk)
         {
-            if (_objPosFlip == GameManager.gameManager.posList[GameManager.gameManager.index])
+            if (_objPosFlip == InGameManager.inGameManager.posList[InGameManager.inGameManager.index])
             {
                 return true;
             }
@@ -189,7 +189,7 @@ public class RootGameManager : MonoBehaviour {
         }
         else
         {
-            if (_objPosFlip == GameManager.gameManager.oppCenterPos[GameManager.gameManager.index])
+            if (_objPosFlip == InGameManager.inGameManager.oppCenterPos[InGameManager.inGameManager.index])
             {
                 return true;
             }
@@ -202,11 +202,11 @@ public class RootGameManager : MonoBehaviour {
 
     private bool ComparePosTwins(Vector3 _objPosTwins)
     {
-        if (GameManager.gameManager.turnChk)
+        if (InGameManager.inGameManager.turnChk)
         {
-            if (_objPosTwins == GameManager.gameManager.posList[GameManager.gameManager.index_twins])
+            if (_objPosTwins == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_twins])
             {
-                GameManager.gameManager.turnChk = false;
+                InGameManager.inGameManager.turnChk = false;
                 return true;
             }
             else
@@ -216,9 +216,9 @@ public class RootGameManager : MonoBehaviour {
         }
         else
         {
-            if (_objPosTwins == GameManager.gameManager.posList[GameManager.gameManager.index_twins + 1])
+            if (_objPosTwins == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_twins + 1])
             {
-                GameManager.gameManager.turnChk = true;
+                InGameManager.inGameManager.turnChk = true;
                 return true;
             }
             else
@@ -236,23 +236,23 @@ public class RootGameManager : MonoBehaviour {
             case "SceneManager":
                 break;
             case "Track":
-                animator = GameManager.gameManager.obj[GameManager.gameManager.index_track].GetComponent<Animator>();
+                animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<Animator>();
                 break;
             case "Twins":
-                if (GameManager.gameManager.turnChk)
+                if (InGameManager.inGameManager.turnChk)
                 {
-                    animator = GameManager.gameManager.obj[GameManager.gameManager.index_twins].GetComponent<Animator>();
+                    animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins].GetComponent<Animator>();
                 }
                 else
                 {
-                    animator = GameManager.gameManager.obj[GameManager.gameManager.index_twins + 1].GetComponent<Animator>();
+                    animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins + 1].GetComponent<Animator>();
                 }
                 break;
             case "Alone":
-                animator = GameManager.gameManager.obj[GameManager.gameManager.index_alone].GetComponent<Animator>();
+                animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_alone].GetComponent<Animator>();
                 break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
-                animator = GameManager.gameManager.obj[GameManager.gameManager.index].GetComponent<Animator>();
+                animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].GetComponent<Animator>();
                 break;
         }
         animator.SetTrigger("gameOver");
@@ -261,13 +261,13 @@ public class RootGameManager : MonoBehaviour {
 
     public void ChkClicked()
     {
-        animator = GameManager.gameManager.obj[GameManager.gameManager.index_track].GetComponent<Animator>();
+        animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<Animator>();
         animator.SetTrigger("Clicked");
-        GameManager.gameManager.index_track++;
-        if (GameManager.gameManager.index_track == GameManager.gameManager.index + 1)
+        InGameManager.inGameManager.index_track++;
+        if (InGameManager.inGameManager.index_track == InGameManager.inGameManager.index + 1)
         {
-            GameManager.gameManager.trackComplete = true;
-            GameManager.gameManager.DeactiveHandler();
+            InGameManager.inGameManager.trackComplete = true;
+            InGameManager.inGameManager.DeactiveHandler();
         }
     }
 
@@ -275,13 +275,13 @@ public class RootGameManager : MonoBehaviour {
     {
         switch (type)
         {
-            case 0: // GameManager.gameManager Transition
-                GameManager.gameManager.CountLevel();
-                GameManager.gameManager.LevelTransitionPanel.SetActive(true);
+            case 0: // InGameManager.inGameManager Transition
+                InGameManager.inGameManager.CountLevel();
+                InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
                 break;
             case 1:
                 //SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
-                RootUIManager.rootUIManager.ActivePauseGameOver(1, GameManager.gameManager.index);
+                RootUIManager.rootUIManager.ActivePauseGameOver(1, InGameManager.inGameManager.index);
                 break;
         }
     }

@@ -11,17 +11,17 @@ public class Clicked : MonoBehaviour {
     private void Start()
     {
         
-        GameManager.gameManager.activeCollider += ActiveCol;
-        GameManager.gameManager.deactiveCollider += DeActiveCol;
-        GameManager.gameManager.goIdle += SetIdle;
+        InGameManager.inGameManager.activeCollider += ActiveCol;
+        InGameManager.inGameManager.deactiveCollider += DeActiveCol;
+        InGameManager.inGameManager.goIdle += SetIdle;
 
         switch (RootUIManager.rootUIManager.sceneName)
         {            
             case "Track": // Track
-                GameManager.gameManager.goIdle += SetIdle;
+                InGameManager.inGameManager.goIdle += SetIdle;
                 break;
             case "Alone": //Alone, renedere enabled = true;
-                GameManager.gameManager.enableRenderer += EnableRenderer;
+                InGameManager.inGameManager.enableRenderer += EnableRenderer;
                 break;            
         }
     }

@@ -62,7 +62,7 @@ public class Timer : MonoBehaviour {
             
             if(timer.transform.position == target)
             {
-                GameManager.gameManager.DeactiveHandler();
+                InGameManager.inGameManager.DeactiveHandler();
                 animator.speed = 0;
                 setTimer = false;
                 timerCounter.text = (0).ToString();

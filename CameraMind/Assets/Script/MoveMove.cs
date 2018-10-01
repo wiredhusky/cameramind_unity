@@ -14,32 +14,32 @@ public class MoveMove : MonoBehaviour {
         speed = currentTime / lerpTime;
         speed = Mathf.Sin(speed * Mathf.PI * 0.33f);
         
-        if (GameManager.gameManager.turnChk)
+        if (InGameManager.inGameManager.turnChk)
         {
-            for (int i = 0; i <= GameManager.gameManager.index; i++)
+            for (int i = 0; i <= InGameManager.inGameManager.index; i++)
             {   
-                GameManager.gameManager.obj[i].transform.position = Vector3.Lerp(GameManager.gameManager.obj[i].transform.position, GameManager.gameManager.oppCenterPos[i], speed);
+                InGameManager.inGameManager.obj[i].transform.position = Vector3.Lerp(InGameManager.inGameManager.obj[i].transform.position, InGameManager.inGameManager.oppCenterPos[i], speed);
                 
-                if (GameManager.gameManager.obj[GameManager.gameManager.index].transform.position == GameManager.gameManager.oppCenterPos[GameManager.gameManager.index])
+                if (InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position == InGameManager.inGameManager.oppCenterPos[InGameManager.inGameManager.index])
                 {   
                     _move = false;
-                    GameManager.gameManager.turnChk = false;
-                    GameManager.gameManager.ActiveHandler();
+                    InGameManager.inGameManager.turnChk = false;
+                    InGameManager.inGameManager.ActiveHandler();
                     currentTime = 0;
                 }
             }
         }
         else
         {
-            for (int i = 0; i <= GameManager.gameManager.index; i++)
+            for (int i = 0; i <= InGameManager.inGameManager.index; i++)
             {
-                GameManager.gameManager.obj[i].transform.position = Vector3.Lerp(GameManager.gameManager.obj[i].transform.position, GameManager.gameManager.posList[i], speed);
+                InGameManager.inGameManager.obj[i].transform.position = Vector3.Lerp(InGameManager.inGameManager.obj[i].transform.position, InGameManager.inGameManager.posList[i], speed);
                 
-                if (GameManager.gameManager.obj[GameManager.gameManager.index].transform.position == GameManager.gameManager.posList[GameManager.gameManager.index])
+                if (InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position == InGameManager.inGameManager.posList[InGameManager.inGameManager.index])
                 {   
                     _move = false;
-                    GameManager.gameManager.turnChk = true;        
-                    GameManager.gameManager.ActiveHandler();
+                    InGameManager.inGameManager.turnChk = true;        
+                    InGameManager.inGameManager.ActiveHandler();
                     currentTime = 0;
                 }
             }

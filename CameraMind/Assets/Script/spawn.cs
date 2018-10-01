@@ -10,8 +10,8 @@ public class spawn : MonoBehaviour {
     public Animator animator;
 
     void objCreator(){
-        RootSpawnManager.rootSpawnManager.objCreator(GameManager.gameManager.objType, GameManager.gameManager.index, 
-                                                     GameManager.gameManager.obj, GameManager.gameManager.posList);
+        RootSpawnManager.rootSpawnManager.objCreator(InGameManager.inGameManager.objType, InGameManager.inGameManager.index, 
+                                                     InGameManager.inGameManager.obj, InGameManager.inGameManager.posList);
     }
 
     public void PauseAni()
@@ -26,9 +26,9 @@ public class spawn : MonoBehaviour {
         {
             animator.speed = 0;
             RootSpawnManager.rootSpawnManager.setScale();
-            RootSpawnManager.rootSpawnManager.PosSearch(GameManager.gameManager.posList, 
-                                                        GameManager.gameManager.objType);
-            GameManager.gameManager.SetStart();
+            RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList, 
+                                                        InGameManager.inGameManager.objType);
+            InGameManager.inGameManager.SetStart();
             RootUIManager.rootUIManager.uiNavigation.SetActive(true);
             RootUIManager.rootUIManager.background.SetActive(true);
             animator.speed = 1;
@@ -52,7 +52,7 @@ public class spawn : MonoBehaviour {
 
     public void ActiveCollider()
     {
-        GameManager.gameManager.ActiveHandler();
+        InGameManager.inGameManager.ActiveHandler();
     }
 
     public void SetObj()
