@@ -33,15 +33,129 @@ public class RootSpawnManager : MonoBehaviour {
     GameObject _obj;
 
     Animator animator;
+    Renderer objRenderer;
 
     Vector3 worldPos;
+    Vector3 tempPos;
+    Vector3 temp;
 
     int randNum, randAni;
+    int case0, case1, case2, case3, case4;
 
     private void Awake()
     {
         if(rootSpawnManager == null){
             rootSpawnManager = this;
+        }
+    }
+
+    private void Start()
+    {
+        setScale();
+    }
+
+    public void SetStart()
+    {
+        switch (RootUIManager.rootUIManager.sceneName)
+        {
+            case "Alone": // alone have to change posList.count가 아니라 50까지만 해야
+                InstantiateObj(soomong_colored, InGameManager.inGameManager.posList.Count);
+                break;
+            default:
+                InstantiateObj(soomong_15, InGameManager.inGameManager.posList.Count);
+                break;
+        }
+        Debug.Log("obj count: " + InGameManager.inGameManager.objType.Count);
+        case0 = 0;
+        case1 = 0;
+        case2 = 0;
+        case3 = 0;
+        case4 = 0;
+        for (int i = 0; i < InGameManager.inGameManager.objType.Count; i++)
+        {
+            switch (InGameManager.inGameManager.objType[i])
+            {
+                case 0:
+                    case0++;
+                    break;
+                case 1:
+                    case1++;
+                    break;
+                case 2:
+                    case2++;
+                    break;
+                case 3:
+                    case3++;
+                    break;
+                case 4:
+                    case4++;
+                    break;
+            }
+        }
+        Debug.Log("20: " + case0);
+        Debug.Log("25: " + case1);
+        Debug.Log("30: " + case2);
+        Debug.Log("35: " + case3);
+        Debug.Log("40: " + case4);
+    }
+
+    void InstantiateObj(GameObject obj, int index)
+    {
+        for (int i = 0; i < index; i++)
+        {
+            switch (InGameManager.inGameManager.objType[i])
+            {
+                case 0:
+                    _obj = Instantiate(obj) as GameObject;
+                    _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();                    
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    objRenderer = _obj.GetComponent<Renderer>();
+                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    break;
+                case 1:
+                    _obj = Instantiate(obj) as GameObject;
+                    _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    objRenderer = _obj.GetComponent<Renderer>();
+                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    break;
+                case 2:
+                    _obj = Instantiate(obj) as GameObject;
+                    _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    objRenderer = _obj.GetComponent<Renderer>();
+                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    break;
+                case 3:
+                    _obj = Instantiate(obj) as GameObject;
+                    _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    objRenderer = _obj.GetComponent<Renderer>();
+                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    break;
+                case 4:
+                    _obj = Instantiate(obj) as GameObject;                    
+                    _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    objRenderer = _obj.GetComponent<Renderer>();
+                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    break;
+            }
         }
     }
 
@@ -273,233 +387,104 @@ public class RootSpawnManager : MonoBehaviour {
         }
     }
 
-    public void objCreator(List<int> objType, int index, List<GameObject> obj, 
-                           List<Vector3> posList)
+    public void objCreator()
     {
         switch (RootUIManager.rootUIManager.sceneName)
         {
             case "MainMenu":
                 break;
             case "Flip Horizon":
-                SpawnObj_Flip(objType, index, obj, posList);
+                SpawnObj_Flip();
                 break;
             case "Track": // track
-                SpawnObj(objType, index, obj, posList);
+                SpawnObj();
                 InGameManager.inGameManager.EventHandler();
                 break;
             case "Twins": // twins
-                SpawnObj_Twins(objType, InGameManager.inGameManager.index_twins, obj, posList);
+                SpawnObj_Twins();
                 break;
             case "Alone": // alone
-                SpawnObj_Alone(objType, InGameManager.inGameManager.index_alone, obj, posList);
+                SpawnObj_Alone();
                 InGameManager.inGameManager.RendererHandler();
                 break;
             case "Temptation": // temptation
-                SpawnObj(objType, index, obj, posList);
+                SpawnObj();
                 randNum = Random.Range(0, InGameManager.inGameManager.index);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
                     case 0:
-                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
-                        animator.SetTrigger("rotation");
+                        InGameManager.inGameManager.animatorList[randNum].SetTrigger("rotation");                        
                         break;
                     case 1:
-                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
-                        animator.SetTrigger("angry");
+                        InGameManager.inGameManager.animatorList[randNum].SetTrigger("angry");
                         break;
                     case 2:
-                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
-                        animator.SetTrigger("shaking");
+                        InGameManager.inGameManager.animatorList[randNum].SetTrigger("shaking");
                         break;
                 }
                 break;
             case "Flip Vertical": // vertical flip
-                SpawnObj_Flip(objType, index, obj, posList);
+                SpawnObj_Flip();
                 break;
             case "Chaos": // mix
-                SpawnObj_Flip(objType, index, obj, posList);
+                SpawnObj_Flip();
                 randNum = Random.Range(0, InGameManager.inGameManager.index);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
                     case 0:
-                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
-                        animator.SetTrigger("rotation");
+                        InGameManager.inGameManager.animatorList[randNum].SetTrigger("rotation");
                         break;
                     case 1:
-                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
-                        animator.SetTrigger("angry");
+                        InGameManager.inGameManager.animatorList[randNum].SetTrigger("angry");
                         break;
                     case 2:
-                        animator = InGameManager.inGameManager.obj[randNum].GetComponent<Animator>();
-                        animator.SetTrigger("shaking");
+                        InGameManager.inGameManager.animatorList[randNum].SetTrigger("shaking");
                         break;
                 }
                 break;
             default: // normal, double, triple
-                SpawnObj(objType, index, obj, posList);
+                SpawnObj();
                 break;
         }
     }
 
-    public void SpawnObj(List<int> objType, int index, List<GameObject> obj, List<Vector3> posList)
+    public void SpawnObj()
     {
-        switch (objType[index])
-        {
-            case 0:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                break;
-            case 1:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                break;
-            case 2:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                break;
-            case 3:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                break;
-            case 4:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                break;
-        }
-        _obj.transform.position = posList[index];
-        obj.Add(_obj);
+        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
     }
 
-    public void SpawnObj_Alone(List<int> objType, int index, List<GameObject> obj, List<Vector3> posList)
+    public void SpawnObj_Alone()
     {
-        switch (objType[index])
-        {
-            case 0:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                break;
-            case 1:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                break;
-            case 2:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                break;
-            case 3:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                break;
-            case 4:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                break;
-        }
-        _obj.transform.position = posList[index];
-        obj.Add(_obj);
+        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
     }
 
-    public void SpawnObj_Flip(List<int> objType, int index, List<GameObject> obj, List<Vector3> posList)
-    {
-        Vector3 tempPos;
-        tempPos = CenterPosCalculator(posList[index]);
+    public void SpawnObj_Flip()
+    {        
+        tempPos = CenterPosCalculator(InGameManager.inGameManager.posList[InGameManager.inGameManager.index]);
         InGameManager.inGameManager.oppCenterPos.Add(tempPos);
-        switch (objType[index])
-        {
-            case 0:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                break;
-            case 1:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                break;
-            case 2:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                break;
-            case 3:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                break;
-            case 4:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                break;
-        }
 
         if (InGameManager.inGameManager.turnChk)
         {
-            _obj.transform.position = posList[index];
+            InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position = 
+                InGameManager.inGameManager.posList[InGameManager.inGameManager.index];
         }
         else
         {
-            _obj.transform.position = tempPos;
+            InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position = tempPos;
         }
-        obj.Add(_obj);
+        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
     }
 
-    public void SpawnObj_Twins(List<int> objType, int index, List<GameObject> obj, List<Vector3> posList)
+    public void SpawnObj_Twins()
     {
-        switch (objType[index])
-        {
-            case 0:
-                _obj = Instantiate(soomong_colored) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                break;
-            case 1:
-                _obj = Instantiate(soomong_colored) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                break;
-            case 2:
-                _obj = Instantiate(soomong_colored) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                break;
-            case 3:
-                _obj = Instantiate(soomong_colored) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                break;
-            case 4:
-                _obj = Instantiate(soomong_colored) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                break;
-        }
-
-        _obj.transform.position = posList[index];
-        obj.Add(_obj);
-
-        switch (objType[index + 1])
-        {
-            case 0:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                break;
-            case 1:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                break;
-            case 2:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                break;
-            case 3:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                break;
-            case 4:
-                _obj = Instantiate(soomong_15) as GameObject;
-                _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                break;
-        }
-        _obj.transform.position = posList[index + 1];
-        obj.Add(_obj);
+        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index+1].enabled = true;
     }
 
     public Vector3 CenterPosCalculator(Vector3 objPos)
-    {
-        Vector3 temp;
+    {        
         //float distanceTemp;
         temp.z = 0;
 

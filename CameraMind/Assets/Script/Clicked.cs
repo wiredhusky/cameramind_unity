@@ -10,7 +10,7 @@ public class Clicked : MonoBehaviour {
     
     private void Start()
     {
-        
+        _renderer.enabled = false;
         InGameManager.inGameManager.activeCollider += ActiveCol;
         InGameManager.inGameManager.deactiveCollider += DeActiveCol;
         InGameManager.inGameManager.goIdle += SetIdle;

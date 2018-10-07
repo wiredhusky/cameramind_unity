@@ -10,8 +10,7 @@ public class spawn : MonoBehaviour {
     public Animator animator;
 
     void objCreator(){
-        RootSpawnManager.rootSpawnManager.objCreator(InGameManager.inGameManager.objType, InGameManager.inGameManager.index, 
-                                                     InGameManager.inGameManager.obj, InGameManager.inGameManager.posList);
+        RootSpawnManager.rootSpawnManager.objCreator();
     }
 
     public void PauseAni()
@@ -25,10 +24,10 @@ public class spawn : MonoBehaviour {
         if (!RootSpawnManager.rootSpawnManager.allThingsDone)
         {
             animator.speed = 0;
-            RootSpawnManager.rootSpawnManager.setScale();
+            //RootSpawnManager.rootSpawnManager.setScale();
             RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList, 
                                                         InGameManager.inGameManager.objType);
-            InGameManager.inGameManager.SetStart();
+            RootSpawnManager.rootSpawnManager.SetStart();
             RootUIManager.rootUIManager.uiNavigation.SetActive(true);
             RootUIManager.rootUIManager.background.SetActive(true);
             animator.speed = 1;
