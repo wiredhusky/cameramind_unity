@@ -89,7 +89,7 @@ public class InGameManager : MonoBehaviour {
     {
         if (RootGameManager.rootGameManager.chkGameOver)
         {
-            currentBaseState = RootGameManager.rootGameManager.animator.GetCurrentAnimatorStateInfo(0);
+            currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_twinkle"))
             {
                 //Debug.Log(currentBaseState.normalizedTime);
@@ -104,7 +104,7 @@ public class InGameManager : MonoBehaviour {
         if (trackComplete)
         {
             RootUIManager.rootUIManager.DeactiveUI();
-            currentBaseState = RootGameManager.rootGameManager.animator.GetCurrentAnimatorStateInfo(0);
+            currentBaseState = animatorList[index_track].GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))
             {
                 if (currentBaseState.normalizedTime > 1.0f)

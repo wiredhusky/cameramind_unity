@@ -7,7 +7,7 @@ public class RootGameManager : MonoBehaviour {
     public static RootGameManager rootGameManager;
 
     public bool chkGameOver = false;
-    public Animator animator;
+    //public Animator animator;
 
     private void Awake()
     {
@@ -236,33 +236,33 @@ public class RootGameManager : MonoBehaviour {
             case "SceneManager":
                 break;
             case "Track":
-                animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<Animator>();
+                InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_track].SetTrigger("gameOver");
                 break;
             case "Twins":
                 if (InGameManager.inGameManager.turnChk)
                 {
-                    animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins].GetComponent<Animator>();
+                    
+                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins].SetTrigger("gameOver");
                 }
                 else
                 {
-                    animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins + 1].GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins+1].SetTrigger("gameOver");
                 }
                 break;
             case "Alone":
-                animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_alone].GetComponent<Animator>();
+                InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_alone].SetTrigger("gameOver");
                 break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
-                animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].GetComponent<Animator>();
+                InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
                 break;
         }
-        animator.SetTrigger("gameOver");
         chkGameOver = true;
     }
 
     public void ChkClicked()
     {
-        animator = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<Animator>();
-        animator.SetTrigger("Clicked");
+
+        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_track].SetTrigger("Clicked");
         InGameManager.inGameManager.index_track++;
         if (InGameManager.inGameManager.index_track == InGameManager.inGameManager.index + 1)
         {
