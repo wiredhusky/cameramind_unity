@@ -8,11 +8,10 @@ public class Timer : MonoBehaviour {
     public static Timer timerControl;
     public Animator animator;
     public GameObject timer;    
-    public bool setTimer = false;
-    float speed = 2;
+    public bool setTimer = false;    
     public int counter;
     public float sec;
-    public Vector3 target;
+    public Vector3 target;  
 
     public TextMeshProUGUI timerCounter;
 
@@ -26,8 +25,8 @@ public class Timer : MonoBehaviour {
     }
 
     private void Start()
-    {        
-        target = new Vector3(-1.96f, -4.38f, 0);
+    {   
+        target = timer.transform.position;        
         animator.speed = 0;
         counter = 0;
         sec = 0;
@@ -38,11 +37,12 @@ public class Timer : MonoBehaviour {
         if (setTimer)
         {
             sec += Time.deltaTime;
+            Debug.Log("Sec: " + sec);
             counter = (int) sec % 3;
             switch (counter)
             {
                 case 0:
-                    if(timer.transform.position != target)
+                    if(sec < 3)
                     {                        
                         timerCounter.text = (3).ToString();
                         animator.SetInteger("TimerState", counter);
@@ -58,9 +58,9 @@ public class Timer : MonoBehaviour {
                     break;
             }
 
-            timer.transform.position = Vector3.MoveTowards(timer.transform.position, target, speed * Time.deltaTime);
+            timer.transform.Translate(Vector3.right*0.5f);
             
-            if(timer.transform.position == target)
+            if(sec >= 3)
             {
                 InGameManager.inGameManager.DeactiveHandler();
                 animator.speed = 0;

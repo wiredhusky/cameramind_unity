@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class spawn : MonoBehaviour {
     
-    public MoveMove move;
-    public Timer timer;
+    public MoveMove move;    
     public Animator animator;
 
     void objCreator(){
@@ -37,15 +36,13 @@ public class spawn : MonoBehaviour {
     }
 
     public void TimerReset()
-    {
-        //RootUIManager.rootUIManager.uiNavigation.SetActive(true);
-        //RootUIManager.rootUIManager.background.SetActive(true);
-        timer.timer.SetActive(true);
-        timer.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
-        timer.sec = 0;
-        timer.counter = 0;
-        timer.timerCounter.text = (3).ToString();
-        timer.animator.SetInteger("TimerState", Timer.timerControl.counter);
+    {        
+        Timer.timerControl.timer.SetActive(true);
+        Timer.timerControl.timer.transform.position = Timer.timerControl.target;
+        Timer.timerControl.sec = 0;
+        Timer.timerControl.counter = 0;
+        Timer.timerControl.timerCounter.text = (3).ToString();
+        Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);        
     }
 
 
@@ -61,9 +58,9 @@ public class spawn : MonoBehaviour {
 
     public void SetTimerActive()
     {
-        timer.setTimer = true;
-        timer.animator.SetInteger("TimerState", Timer.timerControl.counter);
-        timer.animator.speed = 1;
+        Timer.timerControl.setTimer = true;
+        Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
+        Timer.timerControl.animator.speed = 1;
     }
 
     public void MovePrefab()

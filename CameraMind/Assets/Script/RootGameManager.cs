@@ -14,6 +14,7 @@ public class RootGameManager : MonoBehaviour {
         if(rootGameManager == null){
             rootGameManager = this;
         }
+        Application.targetFrameRate = 60;
     }
 
     public void ComPos(Vector3 _objPos, Animator _animator)
