@@ -10,7 +10,7 @@ public class Clicked : MonoBehaviour {
     
     private void Start()
     {
-        _renderer.enabled = false;
+        //_renderer.enabled = false;
         InGameManager.inGameManager.activeCollider += ActiveCol;
         InGameManager.inGameManager.deactiveCollider += DeActiveCol;
         InGameManager.inGameManager.goIdle += SetIdle;
@@ -24,10 +24,12 @@ public class Clicked : MonoBehaviour {
                 InGameManager.inGameManager.enableRenderer += EnableRenderer;
                 break;            
         }
+        gameObject.SetActive(false);
     }
 
     private void OnMouseUp()
     {
+        Debug.Log("Clicked");
         RootGameManager.rootGameManager.ComPos(gameObject.transform.position, animator);
     }
 

@@ -452,12 +452,14 @@ public class RootSpawnManager : MonoBehaviour {
 
     public void SpawnObj()
     {
-        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
     }
 
     public void SpawnObj_Alone()
     {
-        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
     }
 
     public void SpawnObj_Flip()
@@ -474,13 +476,16 @@ public class RootSpawnManager : MonoBehaviour {
         {
             InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position = tempPos;
         }
-        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
     }
 
     public void SpawnObj_Twins()
     {
-        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
-        InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index+1].enabled = true;
+        //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+        //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index+1].enabled = true;
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index + 1].SetActive(true);
     }
 
     public Vector3 CenterPosCalculator(Vector3 objPos)
