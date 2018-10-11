@@ -14,9 +14,9 @@ public class spawn : MonoBehaviour {
 
     public void PauseAni()
     {
-        RootUIManager.rootUIManager.clicked = false;
-        RootUIManager.rootUIManager.menus.SetActive(false);
+        RootUIManager.rootUIManager.clicked = false;        
         if(SceneManager.GetActiveScene().name == "SceneManager"){
+            RootUIManager.rootUIManager.menus.SetActive(false);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(RootUIManager.rootUIManager.sceneName));
         }
 

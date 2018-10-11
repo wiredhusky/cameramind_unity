@@ -7,23 +7,19 @@ public class Clicked : MonoBehaviour {
     public Animator animator;
     public CircleCollider2D _collider;
     public Renderer _renderer;
+    AnimatorStateInfo currentBaseState;
     
     private void Start()
-    {
-        //_renderer.enabled = false;
+    {        
         InGameManager.inGameManager.activeCollider += ActiveCol;
         InGameManager.inGameManager.deactiveCollider += DeActiveCol;
-        InGameManager.inGameManager.goIdle += SetIdle;
+        InGameManager.inGameManager.goIdle += SetIdle;        
 
-        switch (RootUIManager.rootUIManager.sceneName)
-        {            
-            case "Track": // Track
-                InGameManager.inGameManager.goIdle += SetIdle;
-                break;
-            case "Alone": //Alone, renedere enabled = true;
-                InGameManager.inGameManager.enableRenderer += EnableRenderer;
-                break;            
+        if(RootUIManager.rootUIManager.sceneName == "Alone")
+        {
+            InGameManager.inGameManager.enableRenderer += EnableRenderer;
         }
+
         gameObject.SetActive(false);
     }
 
@@ -34,7 +30,14 @@ public class Clicked : MonoBehaviour {
 
     public void SetIdle()
     {
-        animator.SetTrigger("Origin");
+        if (gameObject.activeSelf == true)
+        {
+            currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
+            if (!currentBaseState.IsName("soomong20_idle"))
+            {
+                animator.SetTrigger("Origin");
+            }
+        }        
     }
 
     public void ActiveCol()
