@@ -12,7 +12,8 @@ public class RootUIManager : MonoBehaviour {
     private const string rewarded_video_id = "rewardedVideo";
 
     public static RootUIManager rootUIManager;
-    public GameObject gamePanel, background;
+    public GameObject gamePanel;
+    //public GameObject background;
     public GameObject reviveBtnObj, getReviveBtnObj, resumeBtnObj;
     public GameObject particle, hintParticle;
     public GameObject eventSystem;
@@ -221,7 +222,7 @@ public class RootUIManager : MonoBehaviour {
             btnName = EventSystem.current.currentSelectedGameObject.name;
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             menus.SetActive(true);
-            background.SetActive(false);
+            //background.SetActive(false);
             uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;

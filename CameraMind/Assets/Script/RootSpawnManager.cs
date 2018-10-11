@@ -33,7 +33,7 @@ public class RootSpawnManager : MonoBehaviour {
     GameObject _obj;
 
     Animator animator;
-    Renderer objRenderer;
+    //Renderer objRenderer;
 
     Vector3 worldPos;
     Vector3 tempPos;
@@ -112,8 +112,8 @@ public class RootSpawnManager : MonoBehaviour {
                     InGameManager.inGameManager.obj.Add(_obj);
                     animator = _obj.GetComponent<Animator>();                    
                     InGameManager.inGameManager.animatorList.Add(animator);
-                    objRenderer = _obj.GetComponent<Renderer>();
-                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    //objRenderer = _obj.GetComponent<Renderer>();
+                    //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 1:
                     _obj = Instantiate(obj) as GameObject;
@@ -122,8 +122,8 @@ public class RootSpawnManager : MonoBehaviour {
                     InGameManager.inGameManager.obj.Add(_obj);
                     animator = _obj.GetComponent<Animator>();
                     InGameManager.inGameManager.animatorList.Add(animator);
-                    objRenderer = _obj.GetComponent<Renderer>();
-                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    //objRenderer = _obj.GetComponent<Renderer>();
+                    //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 2:
                     _obj = Instantiate(obj) as GameObject;
@@ -132,8 +132,8 @@ public class RootSpawnManager : MonoBehaviour {
                     InGameManager.inGameManager.obj.Add(_obj);
                     animator = _obj.GetComponent<Animator>();
                     InGameManager.inGameManager.animatorList.Add(animator);
-                    objRenderer = _obj.GetComponent<Renderer>();
-                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    //objRenderer = _obj.GetComponent<Renderer>();
+                    //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 3:
                     _obj = Instantiate(obj) as GameObject;
@@ -142,8 +142,8 @@ public class RootSpawnManager : MonoBehaviour {
                     InGameManager.inGameManager.obj.Add(_obj);
                     animator = _obj.GetComponent<Animator>();
                     InGameManager.inGameManager.animatorList.Add(animator);
-                    objRenderer = _obj.GetComponent<Renderer>();
-                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    //objRenderer = _obj.GetComponent<Renderer>();
+                    //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 4:
                     _obj = Instantiate(obj) as GameObject;                    
@@ -152,8 +152,8 @@ public class RootSpawnManager : MonoBehaviour {
                     InGameManager.inGameManager.obj.Add(_obj);
                     animator = _obj.GetComponent<Animator>();
                     InGameManager.inGameManager.animatorList.Add(animator);
-                    objRenderer = _obj.GetComponent<Renderer>();
-                    InGameManager.inGameManager.rendererList.Add(objRenderer);
+                    //objRenderer = _obj.GetComponent<Renderer>();
+                    //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
             }
         }

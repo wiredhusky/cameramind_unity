@@ -262,7 +262,6 @@ public class RootGameManager : MonoBehaviour {
 
     public void ChkClicked()
     {
-
         InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_track].SetTrigger("Clicked");
         InGameManager.inGameManager.index_track++;
         if (InGameManager.inGameManager.index_track == InGameManager.inGameManager.index + 1)

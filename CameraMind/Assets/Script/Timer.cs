@@ -58,7 +58,7 @@ public class Timer : MonoBehaviour {
                     break;
             }
 
-            timer.transform.Translate(Vector3.right*0.5f);
+            timer.transform.Translate(Vector3.right*0.2f);
             
             if(sec >= 3)
             {

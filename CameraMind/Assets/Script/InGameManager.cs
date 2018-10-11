@@ -12,7 +12,7 @@ public class InGameManager : MonoBehaviour {
     public List<int> objType = new List<int>();
     public List<GameObject> obj = new List<GameObject>();
     public List<Animator> animatorList = new List<Animator>();
-    public List<Renderer> rendererList = new List<Renderer>();
+    //public List<Renderer> rendererList = new List<Renderer>();
     public GameObject LevelTransitionPanel;    
 
     public delegate void GoToIdle();
@@ -89,7 +89,15 @@ public class InGameManager : MonoBehaviour {
     {
         if (RootGameManager.rootGameManager.chkGameOver)
         {
-            currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
+            if(RootUIManager.rootUIManager.sceneName == "Track")
+            {
+                currentBaseState = animatorList[index_track].GetCurrentAnimatorStateInfo(0);
+            }
+            else
+            {
+                currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
+            }
+
             if (currentBaseState.IsName("soomong20_twinkle"))
             {
                 //Debug.Log(currentBaseState.normalizedTime);
@@ -104,15 +112,20 @@ public class InGameManager : MonoBehaviour {
         if (trackComplete)
         {
             RootUIManager.rootUIManager.DeactiveUI();
-            currentBaseState = animatorList[index_track].GetCurrentAnimatorStateInfo(0);
+            currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
             if (currentBaseState.IsName("soomong20_clicked"))
             {
                 if (currentBaseState.normalizedTime > 1.0f)
                 {
+                    if (currentBaseState.IsName("soomong20_idle"))
+                    {
+                        Debug.Log("Idle");
+                    }
+                        
                     index++;
-                    RootGameManager.rootGameManager.DoTransition(0);
                     index_track = 0;
                     trackComplete = false;
+                    RootGameManager.rootGameManager.DoTransition(0);                    
                 }
             }
         }

@@ -28,8 +28,7 @@ public class Clicked : MonoBehaviour {
     }
 
     private void OnMouseUp()
-    {
-        Debug.Log("Clicked");
+    {        
         RootGameManager.rootGameManager.ComPos(gameObject.transform.position, animator);
     }
 

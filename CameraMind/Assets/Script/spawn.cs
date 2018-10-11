@@ -28,7 +28,7 @@ public class spawn : MonoBehaviour {
                                                         InGameManager.inGameManager.objType);
             RootSpawnManager.rootSpawnManager.SetStart();
             RootUIManager.rootUIManager.uiNavigation.SetActive(true);
-            RootUIManager.rootUIManager.background.SetActive(true);
+            //RootUIManager.rootUIManager.background.SetActive(true);
             animator.speed = 1;
         }        
 
