@@ -19,12 +19,15 @@ public class RootUIManager : MonoBehaviour {
     public GameObject eventSystem;
     public GameObject menus;
     public GameObject uiNavigation;
-    public TextMeshProUGUI currentLevelText, reviveCountText, title, hintCountText;
+    public TextMeshProUGUI currentLevelText, reviveCountText, title, hintCountText, getFreeHints, getRevives;
     public string sceneName, btnName;
     public Animator animator;
     public Button reviveBtn, getReviveBtn;
     int hintCount, reviveCount;
     int curHighScore;
+    int coroutineHintsSec = 5, coroutineRevivesSec = 5, coroutineHintsMin = 0, coroutineRevivesMin = 0;
+
+    Coroutine startCoroutineHint, startCoroutineRevive;
 
     //uiBtns
     public Button pauseBtn, hintBtn, getHintBtn;
@@ -54,6 +57,8 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetInt("HighScoreTrack", 0);
             PlayerPrefs.SetInt("HighScoreTriple", 0);
             PlayerPrefs.SetInt("HighScoreTwins", 0);
+            PlayerPrefs.SetInt("GetReviveCounter", 0);
+            PlayerPrefs.SetInt("GetHintCounter", 0);
         }
     }
 
@@ -62,7 +67,43 @@ public class RootUIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
         clicked = false;
-        InitScene();
+        InitScene();        
+    }
+
+    IEnumerator GetReviveCounter()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+        }        
+    }
+
+    IEnumerator GetHintCounter()
+    {
+        while (true)
+        {
+            if(coroutineHintsSec == 0)
+            {
+                if(coroutineHintsMin == 0)
+                {
+                    StopCoroutine(startCoroutineHint);
+                    getHintBtn.interactable = true;
+                }
+                coroutineHintsMin--;
+                coroutineHintsSec = 60;
+            }
+
+            if(coroutineHintsSec == 60)
+            {
+                getFreeHints.text = coroutineHintsMin.ToString() + " : " + "00";
+            }
+            else
+            {
+                getFreeHints.text = coroutineHintsMin.ToString() + " : " + coroutineHintsSec.ToString();
+            }
+            coroutineHintsSec--;
+            yield return new WaitForSeconds(1);
+        }
     }
 
     public void InitScene(){
@@ -74,7 +115,7 @@ public class RootUIManager : MonoBehaviour {
         if (hintCount == 0)
         {
             hintBtnObj.SetActive(false);
-            getHintBtnObj.SetActive(true);
+            getHintBtnObj.SetActive(true);            
         }
     }
 
@@ -269,6 +310,8 @@ public class RootUIManager : MonoBehaviour {
     }
 
     public void Hint(){
+        int chkCoroutine;
+        chkCoroutine = PlayerPrefs.GetInt("GetHintCounter");
         hintCount--;
         PlayerPrefs.SetInt("Hint", hintCount);
         PlayerPrefs.Save();
@@ -283,7 +326,15 @@ public class RootUIManager : MonoBehaviour {
         if(hintCount == 0){
             hintBtnObj.SetActive(false);
             getHintBtnObj.SetActive(true);
-            getHintBtn.interactable = true;
+            if (chkCoroutine == 0)
+            {
+                getHintBtn.interactable = true;
+            }
+            else
+            {
+                getHintBtn.interactable = false;
+                startCoroutineHint = StartCoroutine(GetHintCounter());
+            }            
         }
 
         switch (sceneName)
@@ -388,6 +439,7 @@ public class RootUIManager : MonoBehaviour {
                 {
                     case "GetHint":
                         PlayerPrefs.SetInt("Hint", 2);
+                        PlayerPrefs.SetInt("GetHintCounter", 1);
                         PlayerPrefs.Save();
                         hintCount = PlayerPrefs.GetInt("Hint");
                         hintCountText.text = "x " + hintCount.ToString();

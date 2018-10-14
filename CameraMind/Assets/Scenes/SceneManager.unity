@@ -6990,6 +6990,8 @@ MonoBehaviour:
   reviveCountText: {fileID: 1361568714}
   title: {fileID: 1653240914}
   hintCountText: {fileID: 2039922778}
+  getFreeHints: {fileID: 199855991}
+  getRevives: {fileID: 191908155}
   sceneName: 
   btnName: 
   animator: {fileID: 742031194}
