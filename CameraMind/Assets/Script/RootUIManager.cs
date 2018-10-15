@@ -24,8 +24,7 @@ public class RootUIManager : MonoBehaviour {
     public Animator animator;
     public Button reviveBtn, getReviveBtn;
     int hintCount, reviveCount;
-    int curHighScore;
-    int coroutineHintsSec = 5, coroutineRevivesSec = 5, coroutineHintsMin = 0, coroutineRevivesMin = 0;
+    int curHighScore;    
 
     Coroutine startCoroutineHint, startCoroutineRevive;
 
@@ -66,7 +65,7 @@ public class RootUIManager : MonoBehaviour {
     {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
-        clicked = false;
+        clicked = false;        
         InitScene();        
     }
 
@@ -78,30 +77,36 @@ public class RootUIManager : MonoBehaviour {
         }        
     }
 
-    IEnumerator GetHintCounter()
+    IEnumerator GetHintCounter(int coroutineHintsMin, int coroutineHintsSec)
     {
         while (true)
-        {
-            if(coroutineHintsSec == 0)
-            {
-                if(coroutineHintsMin == 0)
-                {
-                    StopCoroutine(startCoroutineHint);
-                    getHintBtn.interactable = true;
-                }
-                coroutineHintsMin--;
-                coroutineHintsSec = 60;
-            }
-
+        {   
             if(coroutineHintsSec == 60)
             {
-                getFreeHints.text = coroutineHintsMin.ToString() + " : " + "00";
+                getFreeHints.text = string.Format("{0}", coroutineHintsMin) + " : " + string.Format("{0:00}", 0);
+            }
+            else if(coroutineHintsMin == 0 && coroutineHintsSec == 0)
+            {
+                StopCoroutine(startCoroutineHint);
+                getHintBtn.interactable = true;
+                getFreeHints.text = "Get Free Hints";
+            }else
+            {
+                getFreeHints.text = string.Format("{0}", coroutineHintsMin) + " : " + string.Format("{0:00}", coroutineHintsSec);
+            }
+
+            if(coroutineHintsSec != 0)
+            {
+                coroutineHintsSec--;
             }
             else
             {
-                getFreeHints.text = coroutineHintsMin.ToString() + " : " + coroutineHintsSec.ToString();
-            }
-            coroutineHintsSec--;
+                if(coroutineHintsMin != 0)
+                {
+                    coroutineHintsMin--;
+                    coroutineHintsSec--;
+                }               
+            }            
             yield return new WaitForSeconds(1);
         }
     }
@@ -329,11 +334,12 @@ public class RootUIManager : MonoBehaviour {
             if (chkCoroutine == 0)
             {
                 getHintBtn.interactable = true;
+                PlayerPrefs.SetInt("GetHintCounter", 1);
             }
             else
-            {
+            {                
                 getHintBtn.interactable = false;
-                startCoroutineHint = StartCoroutine(GetHintCounter());
+                startCoroutineHint = StartCoroutine(GetHintCounter(3, 60));
             }            
         }
 
