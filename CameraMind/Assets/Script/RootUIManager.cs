@@ -24,8 +24,8 @@ public class RootUIManager : MonoBehaviour {
     public Animator animator;
     public Button reviveBtn, getReviveBtn;
     int hintCount, reviveCount;
-    int curHighScore;    
-
+    int curHighScore;
+    
     Coroutine startCoroutineHint, startCoroutineRevive;
 
     //uiBtns
@@ -58,15 +58,24 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetInt("HighScoreTwins", 0);
             PlayerPrefs.SetInt("GetReviveCounter", 0);
             PlayerPrefs.SetInt("GetHintCounter", 0);
+            PlayerPrefs.SetInt("IsRunningCoroutineHint", 0);
+            PlayerPrefs.SetInt("IsRunningCoroutineRevive", 0);
+            PlayerPrefs.SetString("ExitTime", System.DateTime.Now.ToString());
         }
+
+        string lastTime = PlayerPrefs.GetString("ExitTime");
+        System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
+        System.TimeSpan conpareTime = System.DateTime.Now - lastDateTime;
+        Debug.Log("실행 시간 : " + System.DateTime.Now.ToString());
+        Debug.LogFormat("게임 종료 후, {0}초 지났습니다.", conpareTime.TotalSeconds);
     }
 
     private void Start()
-    {
+    {        
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
-        clicked = false;        
-        InitScene();        
+        clicked = false;
+        InitScene();
     }
 
     IEnumerator GetReviveCounter()
@@ -79,8 +88,9 @@ public class RootUIManager : MonoBehaviour {
 
     IEnumerator GetHintCounter(int coroutineHintsMin, int coroutineHintsSec)
     {
+        PlayerPrefs.SetInt("IsRunningCoroutineHint", 1);
         while (true)
-        {   
+        {            
             if(coroutineHintsSec == 60)
             {
                 getFreeHints.text = string.Format("{0}", coroutineHintsMin) + " : " + string.Format("{0:00}", 0);
@@ -90,6 +100,7 @@ public class RootUIManager : MonoBehaviour {
                 StopCoroutine(startCoroutineHint);
                 getHintBtn.interactable = true;
                 getFreeHints.text = "Get Free Hints";
+                PlayerPrefs.SetInt("IsRunningCoroutineHint", 0);
             }else
             {
                 getFreeHints.text = string.Format("{0}", coroutineHintsMin) + " : " + string.Format("{0:00}", coroutineHintsSec);
@@ -125,45 +136,48 @@ public class RootUIManager : MonoBehaviour {
     }
 
     public void ActivePauseGameOver(int type, int index)
-    {        
-        //UIManager.uiManager.eventSystem.SetActive(false);
-        //eventSystem.SetActive(true);
-        switch(type){
-            case 0: // pause
-                title.text = "Pause";
-                resumeBtnObj.SetActive(true);
-                reviveBtnObj.SetActive(false);
-                getReviveBtnObj.SetActive(false);
-                currentLevelText.text = "Level " + index.ToString();
-                gamePanel.SetActive(true);
-                break;
-            case 1: // gameOver
-                title.text = "Game Over";                
-                resumeBtnObj.SetActive(false);
-                reviveCount = PlayerPrefs.GetInt("Revive");
-                if (ChkHighScore())
-                {
-                    currentLevelText.text = "New High Score " + index.ToString();
-                }
-                else
-                {                    
-                    currentLevelText.text = "Level " + index.ToString();
-                }                
-                reviveCountText.text = "Revive x " + reviveCount.ToString();
-                if (reviveCount == 0)
-                {
+    {
+        if (!clicked)
+        {
+            clicked = true;
+            switch (type)
+            {
+                case 0: // pause
+                    title.text = "Pause";
+                    resumeBtnObj.SetActive(true);
                     reviveBtnObj.SetActive(false);
-                    getReviveBtnObj.SetActive(true);
-                    getReviveBtn.interactable = true;
-                }
-                else
-                {
-                    reviveBtnObj.SetActive(true);
                     getReviveBtnObj.SetActive(false);
-                    reviveBtn.interactable = true;
-                }
-                gamePanel.SetActive(true);
-                break;
+                    currentLevelText.text = "Level " + index.ToString();
+                    gamePanel.SetActive(true);
+                    break;
+                case 1: // gameOver
+                    title.text = "Game Over";
+                    resumeBtnObj.SetActive(false);
+                    reviveCount = PlayerPrefs.GetInt("Revive");
+                    if (ChkHighScore())
+                    {
+                        currentLevelText.text = "New High Score " + index.ToString();
+                    }
+                    else
+                    {
+                        currentLevelText.text = "Level " + index.ToString();
+                    }
+                    reviveCountText.text = "Revive x " + reviveCount.ToString();
+                    if (reviveCount == 0)
+                    {
+                        reviveBtnObj.SetActive(false);
+                        getReviveBtnObj.SetActive(true);
+                        getReviveBtn.interactable = true;
+                    }
+                    else
+                    {
+                        reviveBtnObj.SetActive(true);
+                        getReviveBtnObj.SetActive(false);
+                        reviveBtn.interactable = true;
+                    }
+                    gamePanel.SetActive(true);
+                    break;
+            }
         }
     }
 
@@ -277,40 +291,41 @@ public class RootUIManager : MonoBehaviour {
     }
 
     public void Revive(){
-        btnName = EventSystem.current.currentSelectedGameObject.name;
-        reviveBtn.interactable = false;
-        reviveCount--;
-        reviveCountText.text = "Revive x " + reviveCount.ToString();
-        PlayerPrefs.SetInt("Revive", reviveCount);
-        PlayerPrefs.Save();
-        //eventSystem.SetActive(false);
-        //UIManager.uiManager.eventSystem.SetActive(true);
-
-        animator.speed = 1;
-
-        switch (sceneName)
+        if (!clicked)
         {
-            case "Track":
-                particle.SetActive(true);
-                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].transform.position;
-                break;
-            case "Alone":
-                particle.SetActive(true);
-                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_alone].transform.position;
-                break;
-            case "Time Attack":
-                Timer.timerControl.timer.transform.position = new Vector3(-7.96f, -4.38f, 0);
-                Timer.timerControl.sec = 0;
-                Timer.timerControl.counter = 0;
-                Timer.timerControl.timerCounter.text = (3).ToString();
-                Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
-                particle.SetActive(true);
-                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
-                break;
-            default:
-                particle.SetActive(true);
-                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
-                break;
+            clicked = true;
+            btnName = EventSystem.current.currentSelectedGameObject.name;            
+            reviveCount--;
+            reviveCountText.text = "Revive x " + reviveCount.ToString();
+            PlayerPrefs.SetInt("Revive", reviveCount);
+            PlayerPrefs.Save();
+
+            animator.speed = 1;
+
+            switch (sceneName)
+            {
+                case "Track":
+                    particle.SetActive(true);
+                    particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].transform.position;
+                    break;
+                case "Alone":
+                    particle.SetActive(true);
+                    particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_alone].transform.position;
+                    break;
+                case "Time Attack":
+                    Timer.timerControl.timer.transform.position = Timer.timerControl.target;
+                    Timer.timerControl.sec = 0;
+                    Timer.timerControl.counter = 0;
+                    Timer.timerControl.timerCounter.text = (3).ToString();
+                    Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
+                    particle.SetActive(true);
+                    particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
+                    break;
+                default:
+                    particle.SetActive(true);
+                    particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
+                    break;
+            }
         }
     }
 
@@ -333,7 +348,7 @@ public class RootUIManager : MonoBehaviour {
             getHintBtnObj.SetActive(true);
             if (chkCoroutine == 0)
             {
-                getHintBtn.interactable = true;
+                //getHintBtn.interactable = true;
                 PlayerPrefs.SetInt("GetHintCounter", 1);
             }
             else
@@ -473,7 +488,7 @@ public class RootUIManager : MonoBehaviour {
                 break;
         }
     }
-
+        
     public void DeactiveUI()
     {
         pauseBtn.interactable = false;
@@ -486,6 +501,11 @@ public class RootUIManager : MonoBehaviour {
         pauseBtn.interactable = true;
         getHintBtn.interactable = true;
         hintBtn.interactable = true;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetString("ExitTime", System.DateTime.Now.ToString());
     }
 
     public void PausePressed()
