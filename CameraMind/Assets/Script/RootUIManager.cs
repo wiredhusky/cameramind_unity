@@ -25,6 +25,7 @@ public class RootUIManager : MonoBehaviour {
     public Button reviveBtn, getReviveBtn;
     int hintCount, reviveCount;
     int curHighScore;
+    int totalTimeHintMin, totalTimeHintSec;
     
     Coroutine startCoroutineHint, startCoroutineRevive;
 
@@ -78,46 +79,48 @@ public class RootUIManager : MonoBehaviour {
         InitScene();
     }
 
-    IEnumerator GetReviveCounter()
+    IEnumerator GetReviveCounter(int totalSec)
     {
+        PlayerPrefs.SetInt("IsRunningCoroutineRevive", 1);
         while (true)
         {
+            totalTimeHintMin = totalSec / 60;
+            totalTimeHintSec = totalSec % 60;
+            if (totalTimeHintMin == 0 && totalTimeHintSec == 0)
+            {
+                StopCoroutine(startCoroutineRevive);
+                getReviveBtn.interactable = true;
+                getRevives.text = "Get Free Revive";
+                PlayerPrefs.SetInt("IsRunningCoroutineRevive", 0);
+            }
+            else
+            {
+                getRevives.text = string.Format("{0}", totalTimeHintMin) + " : " + string.Format("{0:00}", totalTimeHintSec);
+                totalSec--;
+            }
             yield return new WaitForSeconds(1);
         }        
     }
 
-    IEnumerator GetHintCounter(int coroutineHintsMin, int coroutineHintsSec)
-    {
+    IEnumerator GetHintCounter(int totalSec)
+    {        
         PlayerPrefs.SetInt("IsRunningCoroutineHint", 1);
         while (true)
-        {            
-            if(coroutineHintsSec == 60)
-            {
-                getFreeHints.text = string.Format("{0}", coroutineHintsMin) + " : " + string.Format("{0:00}", 0);
-            }
-            else if(coroutineHintsMin == 0 && coroutineHintsSec == 0)
+        {
+            totalTimeHintMin = totalSec / 60;
+            totalTimeHintSec = totalSec % 60;            
+            if(totalTimeHintMin == 0 && totalTimeHintSec == 0)
             {
                 StopCoroutine(startCoroutineHint);
                 getHintBtn.interactable = true;
                 getFreeHints.text = "Get Free Hints";
                 PlayerPrefs.SetInt("IsRunningCoroutineHint", 0);
-            }else
-            {
-                getFreeHints.text = string.Format("{0}", coroutineHintsMin) + " : " + string.Format("{0:00}", coroutineHintsSec);
-            }
-
-            if(coroutineHintsSec != 0)
-            {
-                coroutineHintsSec--;
             }
             else
             {
-                if(coroutineHintsMin != 0)
-                {
-                    coroutineHintsMin--;
-                    coroutineHintsSec--;
-                }               
-            }            
+                getFreeHints.text = string.Format("{0}", totalTimeHintMin) + " : " + string.Format("{0:00}", totalTimeHintSec);
+                totalSec--;
+            }
             yield return new WaitForSeconds(1);
         }
     }
@@ -165,9 +168,20 @@ public class RootUIManager : MonoBehaviour {
                     reviveCountText.text = "Revive x " + reviveCount.ToString();
                     if (reviveCount == 0)
                     {
-                        reviveBtnObj.SetActive(false);
-                        getReviveBtnObj.SetActive(true);
-                        getReviveBtn.interactable = true;
+                        int chkCoroutine;
+                        chkCoroutine = PlayerPrefs.GetInt("GetReviveCounter");
+                        //coding here ***************************************
+                        if (chkCoroutine == 0)
+                        {
+                            PlayerPrefs.SetInt("GetReviveCounter", 1);
+                            reviveBtnObj.SetActive(false);
+                            getReviveBtnObj.SetActive(true);
+                            getReviveBtn.interactable = true;
+                        }
+                        else
+                        {
+                            //doing coroutine
+                        }                        
                     }
                     else
                     {
@@ -329,9 +343,7 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
-    public void Hint(){
-        int chkCoroutine;
-        chkCoroutine = PlayerPrefs.GetInt("GetHintCounter");
+    public void Hint(){                
         hintCount--;
         PlayerPrefs.SetInt("Hint", hintCount);
         PlayerPrefs.Save();
@@ -344,7 +356,9 @@ public class RootUIManager : MonoBehaviour {
         }
 
         if(hintCount == 0){
+            int chkCoroutine;
             hintBtnObj.SetActive(false);
+            chkCoroutine = PlayerPrefs.GetInt("GetHintCounter");
             getHintBtnObj.SetActive(true);
             if (chkCoroutine == 0)
             {
@@ -354,7 +368,7 @@ public class RootUIManager : MonoBehaviour {
             else
             {                
                 getHintBtn.interactable = false;
-                startCoroutineHint = StartCoroutine(GetHintCounter(3, 60));
+                startCoroutineHint = StartCoroutine(GetHintCounter(5));
             }            
         }
 
