@@ -99,12 +99,19 @@ public class InGameManager : MonoBehaviour {
             }
             
             if (currentBaseState.IsName("soomong20_twinkle"))
-            {
-                //Debug.Log(currentBaseState.normalizedTime);
+            {                
                 if (currentBaseState.normalizedTime > 1.0f)
                 {
                     RootGameManager.rootGameManager.chkGameOver = false;
                     RootGameManager.rootGameManager.DoTransition(1);
+                    if (RootUIManager.rootUIManager.sceneName == "Track")
+                    {
+                        animatorList[index_track].SetTrigger("Origin");
+                    }
+                    else
+                    {
+                        animatorList[index].SetTrigger("Origin");
+                    }
                 }
             }
         }

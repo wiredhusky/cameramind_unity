@@ -26,15 +26,19 @@ public class RootUIManager : MonoBehaviour {
     int hintCount, reviveCount;
     int curHighScore;
     int totalTimeHintMin, totalTimeHintSec;
-    
+    int isCoroutineHint, isCoroutineRevive;
+    string lastTime;
+    int time;
+
     Coroutine startCoroutineHint, startCoroutineRevive;
 
-    //uiBtns
+    //uiBtns    
     public Button pauseBtn, hintBtn, getHintBtn;
     public GameObject hintBtnObj, getHintBtnObj;
 
     //protect double click
     public bool clicked;
+    bool looseFocus = false;
 
     private void Awake()
     {
@@ -62,13 +66,9 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetInt("IsRunningCoroutineHint", 0);
             PlayerPrefs.SetInt("IsRunningCoroutineRevive", 0);
             PlayerPrefs.SetString("ExitTime", System.DateTime.Now.ToString());
+            PlayerPrefs.SetString("StartTimeCoroutineHint", null);
+            PlayerPrefs.SetString("StartTimeCoroutineRevive", null);
         }
-
-        string lastTime = PlayerPrefs.GetString("ExitTime");
-        System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
-        System.TimeSpan conpareTime = System.DateTime.Now - lastDateTime;
-        Debug.Log("실행 시간 : " + System.DateTime.Now.ToString());
-        Debug.LogFormat("게임 종료 후, {0}초 지났습니다.", conpareTime.TotalSeconds);
     }
 
     private void Start()
@@ -76,12 +76,13 @@ public class RootUIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
         clicked = false;
-        InitScene();
+        InitScene();        
     }
 
     IEnumerator GetReviveCounter(int totalSec)
     {
         PlayerPrefs.SetInt("IsRunningCoroutineRevive", 1);
+        PlayerPrefs.SetString("StartTimeCoroutineRevive", System.DateTime.Now.ToString());
         while (true)
         {
             totalTimeHintMin = totalSec / 60;
@@ -105,6 +106,7 @@ public class RootUIManager : MonoBehaviour {
     IEnumerator GetHintCounter(int totalSec)
     {        
         PlayerPrefs.SetInt("IsRunningCoroutineHint", 1);
+        PlayerPrefs.SetString("StartTimeCoroutineHint", System.DateTime.Now.ToString());
         while (true)
         {
             totalTimeHintMin = totalSec / 60;
@@ -168,26 +170,13 @@ public class RootUIManager : MonoBehaviour {
                     reviveCountText.text = "Revive x " + reviveCount.ToString();
                     if (reviveCount == 0)
                     {
-                        int chkCoroutine;
-                        chkCoroutine = PlayerPrefs.GetInt("GetReviveCounter");
-                        //coding here ***************************************
-                        if (chkCoroutine == 0)
-                        {
-                            PlayerPrefs.SetInt("GetReviveCounter", 1);
-                            reviveBtnObj.SetActive(false);
-                            getReviveBtnObj.SetActive(true);
-                            getReviveBtn.interactable = true;
-                        }
-                        else
-                        {
-                            //doing coroutine
-                        }                        
+                        reviveBtnObj.SetActive(false);
+                        getReviveBtnObj.SetActive(true);
                     }
                     else
                     {
                         reviveBtnObj.SetActive(true);
                         getReviveBtnObj.SetActive(false);
-                        reviveBtn.interactable = true;
                     }
                     gamePanel.SetActive(true);
                     break;
@@ -262,9 +251,7 @@ public class RootUIManager : MonoBehaviour {
     public void Resume(){
         if(!clicked){
             clicked = true;
-            btnName = EventSystem.current.currentSelectedGameObject.name;
-            //eventSystem.SetActive(false);
-            //UIManager.uiManager.eventSystem.SetActive(true);
+            btnName = EventSystem.current.currentSelectedGameObject.name;            
             animator.speed = 1;
             if (sceneName == "Time Attack")
             {
@@ -278,11 +265,8 @@ public class RootUIManager : MonoBehaviour {
         
         if(!clicked){
             clicked = true;
-            btnName = EventSystem.current.currentSelectedGameObject.name;
-            //eventSystem.SetActive(false);
-            //UIManager.uiManager.eventSystem.SetActive(true);
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            //background.SetActive(true);
+            btnName = EventSystem.current.currentSelectedGameObject.name;            
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());            
             uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
@@ -295,8 +279,7 @@ public class RootUIManager : MonoBehaviour {
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            menus.SetActive(true);
-            //background.SetActive(false);
+            menus.SetActive(true);            
             uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
@@ -304,7 +287,7 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
-    public void Revive(){
+    public void Revive(){        
         if (!clicked)
         {
             clicked = true;
@@ -313,6 +296,23 @@ public class RootUIManager : MonoBehaviour {
             reviveCountText.text = "Revive x " + reviveCount.ToString();
             PlayerPrefs.SetInt("Revive", reviveCount);
             PlayerPrefs.Save();
+
+            if(reviveCount == 0)
+            {
+                int chkCoroutine;
+                chkCoroutine = PlayerPrefs.GetInt("GetReviveCounter");
+                reviveBtnObj.SetActive(false);
+                getReviveBtnObj.SetActive(true);
+                if (chkCoroutine == 0)
+                {
+                    PlayerPrefs.SetInt("GetReviveCounter", 1);
+                }
+                else
+                {
+                    getReviveBtn.interactable = false;
+                    startCoroutineRevive = StartCoroutine(GetReviveCounter(30));
+                }                
+            }
 
             animator.speed = 1;
 
@@ -368,7 +368,7 @@ public class RootUIManager : MonoBehaviour {
             else
             {                
                 getHintBtn.interactable = false;
-                startCoroutineHint = StartCoroutine(GetHintCounter(5));
+                startCoroutineHint = StartCoroutine(GetHintCounter(30));
             }            
         }
 
@@ -519,7 +519,45 @@ public class RootUIManager : MonoBehaviour {
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.SetString("ExitTime", System.DateTime.Now.ToString());
+        //Exit or Not using this value to check OnApplicationFocus
+        //Always yes!!
+        PlayerPrefs.SetString("Exit", "yes");
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        string exitOrNot = PlayerPrefs.GetString("Exit");
+        if (focus)
+        {    
+            isCoroutineHint = PlayerPrefs.GetInt("IsRunningCoroutineHint");
+            isCoroutineRevive = PlayerPrefs.GetInt("IsRunningCoroutineRevive");
+            //앱이 다시 올라왔을 때 해야 할 행동들 시간 비교해서 빼주기
+            looseFocus = false;
+
+            if(isCoroutineHint == 1)
+            {
+                Debug.Log("Hint Value: " + isCoroutineHint);
+                lastTime = PlayerPrefs.GetString("StartTimeCoroutineHint");
+                System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
+                System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+                time = (int)compareTime.TotalSeconds;
+                if(time >= 30)
+                {                    
+                    StopCoroutine(startCoroutineHint);                  
+                    PlayerPrefs.SetInt("IsRunningCoroutineHint", 0);
+                }
+                else
+                {                    
+                    StopCoroutine(startCoroutineHint);
+                    startCoroutineHint = StartCoroutine(GetHintCounter(30 - time));                    
+                    Debug.Log("Time: "+ time);
+                }
+            }
+        }
+        else
+        {            
+            looseFocus = true;
+        }
     }
 
     public void PausePressed()

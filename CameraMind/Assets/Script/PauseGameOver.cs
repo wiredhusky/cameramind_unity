@@ -7,6 +7,7 @@ public class PauseGameOver : MonoBehaviour {
 
     void PauseAnimation(){
         RootUIManager.rootUIManager.animator.speed = 0;
+        RootUIManager.rootUIManager.clicked = false;
     }
 
     void DeactiveMyself(){

@@ -36,8 +36,7 @@ public class Timer : MonoBehaviour {
     void Update () {
         if (setTimer)
         {
-            sec += Time.deltaTime;
-            Debug.Log("Sec: " + sec);
+            sec += Time.deltaTime;            
             counter = (int) sec % 3;
             switch (counter)
             {

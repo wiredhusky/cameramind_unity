@@ -241,8 +241,7 @@ public class RootGameManager : MonoBehaviour {
                 break;
             case "Twins":
                 if (InGameManager.inGameManager.turnChk)
-                {
-                    
+                {   
                     InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins].SetTrigger("gameOver");
                 }
                 else
