@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Time Attack.unity
     guid: e906aeca2bbab6444ae577b32885151f
+  - enabled: 1
+    path: Assets/Scenes/DanceDance.unity
+    guid: d322d48f789a2f24a8f306b7122aa647
   m_configObjects: {}

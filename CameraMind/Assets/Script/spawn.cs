@@ -35,6 +35,11 @@ public class spawn : MonoBehaviour {
         RootUIManager.rootUIManager.ActiveUI();
     }
 
+    public void PauseAniDance()
+    {
+
+    }
+
     public void TimerReset()
     {        
         Timer.timerControl.timer.SetActive(true);
@@ -44,7 +49,6 @@ public class spawn : MonoBehaviour {
         Timer.timerControl.timerCounter.text = (3).ToString();
         Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);        
     }
-
 
     public void ActiveCollider()
     {

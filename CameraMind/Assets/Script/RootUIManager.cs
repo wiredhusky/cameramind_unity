@@ -318,8 +318,7 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
-    public void Restart(){
-        
+    public void Restart(){        
         if(!clicked){
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;            
@@ -503,7 +502,6 @@ public class RootUIManager : MonoBehaviour {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
     }
-
 
     public void ShowRewardedAd()
     {

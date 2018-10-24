@@ -199,6 +199,14 @@ public class RootSpawnManager : MonoBehaviour {
         onScreenScale_40.y = rt.rect.height * localScale_40;
     }
 
+    public void PosSearchDance(List<Vector3> posList, List<int> objType)
+    {        
+        float marginWidth, marginHeight, centerPosY;
+        marginWidth = ((worldPos.x * 2 - (margin * 2)) - (onScreenScale_40.x * 5)) / 4;
+        marginHeight = ((worldPos.y * 2 - (margin * 2) - 1.6f) - (onScreenScale_40.y * 7)) / 6;
+        centerPosY = 1.6f;
+    }
+
     public void PosSearch(List<Vector3> posList, List<int> objType)
     {
         bool overraped = false;
@@ -444,10 +452,18 @@ public class RootSpawnManager : MonoBehaviour {
                         break;
                 }
                 break;
+            case "DanceDance":
+                SpawnObjDance();
+                break;                    
             default: // normal, double, triple
                 SpawnObj();
                 break;
         }
+    }
+
+    public void SpawnObjDance()
+    {
+
     }
 
     public void SpawnObj()
