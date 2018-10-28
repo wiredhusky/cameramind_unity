@@ -23,10 +23,23 @@ public class spawn : MonoBehaviour {
         if (!RootSpawnManager.rootSpawnManager.allThingsDone)
         {
             animator.speed = 0;
-            //RootSpawnManager.rootSpawnManager.setScale();
-            RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList, 
+
+            switch(RootUIManager.rootUIManager.sceneName){
+                case "Alone":
+                    RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.soomong_colored);
+                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
                                                         InGameManager.inGameManager.objType);
-            RootSpawnManager.rootSpawnManager.SetStart();
+                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.soomong_colored, 
+                                                                     InGameManager.inGameManager.posList.Count);
+                    break;
+                default:
+                    RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.soomong_15);
+                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
+                                                        InGameManager.inGameManager.objType);
+                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.soomong_15, 
+                                                                     InGameManager.inGameManager.posList.Count);
+                    break;
+            }
             RootUIManager.rootUIManager.uiNavigation.SetActive(true);
             //RootUIManager.rootUIManager.background.SetActive(true);
             animator.speed = 1;
@@ -37,6 +50,24 @@ public class spawn : MonoBehaviour {
 
     public void PauseAniDance()
     {
+        RootUIManager.rootUIManager.clicked = false;
+        if (SceneManager.GetActiveScene().name == "SceneManager")
+        {
+            RootUIManager.rootUIManager.menus.SetActive(false);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(RootUIManager.rootUIManager.sceneName));
+        }
+        if (!RootSpawnManager.rootSpawnManager.allThingsDone){
+            animator.speed = 0;
+            RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.cat);
+            RootSpawnManager.rootSpawnManager.PosSearchDance(InGameManager.inGameManager.posList, 
+                                                             InGameManager.inGameManager.objType);
+            RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.cat, 
+                                                             InGameManager.inGameManager.posList.Count);
+            RootUIManager.rootUIManager.uiNavigation.SetActive(true);
+            animator.speed = 1;
+        }
+
+        RootUIManager.rootUIManager.ActiveUI();
 
     }
 

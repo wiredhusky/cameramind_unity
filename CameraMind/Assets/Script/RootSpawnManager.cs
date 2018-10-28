@@ -8,6 +8,8 @@ public class RootSpawnManager : MonoBehaviour {
 
     public GameObject soomong_15;
     public GameObject soomong_colored;
+    public GameObject cat;
+    public Animator animatorCat;
 
     float margin = 0.2f;
     float radious = 0.55f;
@@ -49,57 +51,7 @@ public class RootSpawnManager : MonoBehaviour {
         }
     }
 
-    private void Start()
-    {
-        setScale();
-    }
-
-    public void SetStart()
-    {
-        switch (RootUIManager.rootUIManager.sceneName)
-        {
-            case "Alone": // alone have to change posList.count가 아니라 50까지만 해야
-                InstantiateObj(soomong_colored, InGameManager.inGameManager.posList.Count);
-                break;
-            default:
-                InstantiateObj(soomong_15, InGameManager.inGameManager.posList.Count);
-                break;
-        }
-        Debug.Log("obj count: " + InGameManager.inGameManager.objType.Count);
-        case0 = 0;
-        case1 = 0;
-        case2 = 0;
-        case3 = 0;
-        case4 = 0;
-        for (int i = 0; i < InGameManager.inGameManager.objType.Count; i++)
-        {
-            switch (InGameManager.inGameManager.objType[i])
-            {
-                case 0:
-                    case0++;
-                    break;
-                case 1:
-                    case1++;
-                    break;
-                case 2:
-                    case2++;
-                    break;
-                case 3:
-                    case3++;
-                    break;
-                case 4:
-                    case4++;
-                    break;
-            }
-        }
-        Debug.Log("20: " + case0);
-        Debug.Log("25: " + case1);
-        Debug.Log("30: " + case2);
-        Debug.Log("35: " + case3);
-        Debug.Log("40: " + case4);
-    }
-
-    void InstantiateObj(GameObject obj, int index)
+    public void InstantiateObj(GameObject obj, int index)
     {
         for (int i = 0; i < index; i++)
         {
@@ -157,15 +109,48 @@ public class RootSpawnManager : MonoBehaviour {
                     break;
             }
         }
+
+        Debug.Log("obj count: " + InGameManager.inGameManager.objType.Count);
+        case0 = 0;
+        case1 = 0;
+        case2 = 0;
+        case3 = 0;
+        case4 = 0;
+        for (int i = 0; i < InGameManager.inGameManager.objType.Count; i++)
+        {
+            switch (InGameManager.inGameManager.objType[i])
+            {
+                case 0:
+                    case0++;
+                    break;
+                case 1:
+                    case1++;
+                    break;
+                case 2:
+                    case2++;
+                    break;
+                case 3:
+                    case3++;
+                    break;
+                case 4:
+                    case4++;
+                    break;
+            }
+        }
+        Debug.Log("20: " + case0);
+        Debug.Log("25: " + case1);
+        Debug.Log("30: " + case2);
+        Debug.Log("35: " + case3);
+        Debug.Log("40: " + case4);
     }
 
-    public void setScale()
+    public void setScale(GameObject spawnObj)
     {
         Vector3 temp;
 
         RectTransform rt;
 
-        rt = (RectTransform)soomong_15.transform;
+        rt = (RectTransform)spawnObj.transform;
 
         temp.x = Screen.width;
         temp.y = Screen.height;
@@ -200,11 +185,41 @@ public class RootSpawnManager : MonoBehaviour {
     }
 
     public void PosSearchDance(List<Vector3> posList, List<int> objType)
-    {        
-        float marginWidth, marginHeight, centerPosY;
-        marginWidth = ((worldPos.x * 2 - (margin * 2)) - (onScreenScale_40.x * 5)) / 4;
-        marginHeight = ((worldPos.y * 2 - (margin * 2) - 1.6f) - (onScreenScale_40.y * 7)) / 6;
-        centerPosY = 1.6f;
+    {
+        float marginWidth, marginHeight;
+        Vector2 posListTemp;
+        posListTemp.x = worldPos.x * -1.0f + margin;
+        posListTemp.y = 1.6f;
+        marginWidth = ((worldPos.x * 2 - (margin * 2)) - (onScreenScale_35.x * 5)) / 4;
+        marginHeight = ((worldPos.y * 2 - (margin * 2) - 1.6f) - (onScreenScale_35.y * 7)) / 6;
+        for (int i = 0; i < 5;i++){
+            posListTemp.x += onScreenScale_35.x * 0.5f;
+            posListTemp.y = 1.6f;
+            posList.Add(posListTemp);
+            objType.Add(3);
+            posListTemp.x += onScreenScale_35.x * 0.5f + marginWidth;
+        }
+
+        for (int j = 0; j < 3;j++){
+            posListTemp.y = 1.6f + ((onScreenScale_35.y + marginHeight) * (j + 1));
+
+            for (int k = 0; k < 5;k++){
+                //top 5
+                posListTemp.x = posList[k].x;
+                posList.Add(posListTemp);
+                objType.Add(3);
+            }
+
+            posListTemp.y = 1.6f - ((onScreenScale_35.y + marginHeight) * (j + 1));
+
+            for (int l = 0; l < 5;l++){
+                //bottom 5
+                posListTemp.x = posList[l].x;
+                posList.Add(posListTemp);
+                objType.Add(3);
+            }
+        }
+        allThingsDone = true;
     }
 
     public void PosSearch(List<Vector3> posList, List<int> objType)
@@ -453,6 +468,13 @@ public class RootSpawnManager : MonoBehaviour {
                 }
                 break;
             case "DanceDance":
+                if (InGameManager.inGameManager.index == 0)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        InGameManager.inGameManager.obj[i].SetActive(true);
+                    }
+                }
                 SpawnObjDance();
                 break;                    
             default: // normal, double, triple
@@ -463,7 +485,10 @@ public class RootSpawnManager : MonoBehaviour {
 
     public void SpawnObjDance()
     {
-
+        //Change animator of Objs
+        if(InGameManager.inGameManager.index != 0){
+            
+        }
     }
 
     public void SpawnObj()

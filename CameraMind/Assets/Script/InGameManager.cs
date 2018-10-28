@@ -28,6 +28,7 @@ public class InGameManager : MonoBehaviour {
     public int index_track = 0;
     public int index_twins = 0;
     public int index_alone = 50;
+    public int index_dance = 0;
 
     public bool turnChk = true;
     public bool trackComplete = false;

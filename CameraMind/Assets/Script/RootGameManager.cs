@@ -133,9 +133,26 @@ public class RootGameManager : MonoBehaviour {
                     GameOver();
                 }
                 break;
+            case "DanceDance":
+                InGameManager.inGameManager.DeactiveHandler();
+                RootUIManager.rootUIManager.DeactiveUI();
+                if(ComparePos_Dance(_objPos)){
+                    InGameManager.inGameManager.index++;
+                    DoTransition(0);
+                }else{
+                    GameOver();
+                }
+                break;
         }
     }
 
+    private bool ComparePos_Dance(Vector3 _objPosDance){
+        if(_objPosDance == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_dance]){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     private bool ComparePos_Alone(Vector3 _objPosAlone)
     {

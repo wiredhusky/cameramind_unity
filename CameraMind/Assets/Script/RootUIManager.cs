@@ -30,6 +30,8 @@ public class RootUIManager : MonoBehaviour {
     string lastTime;
     int time;
 
+    public GameObject cat;
+
     Coroutine startCoroutineHint, startCoroutineRevive;    
 
     //uiBtns    
@@ -638,5 +640,41 @@ public class RootUIManager : MonoBehaviour {
             Timer.timerControl.animator.speed = 0;
         }
         ActivePauseGameOver(0, InGameManager.inGameManager.index);
+    }
+
+    public void AniTest(){
+        string btnName2;
+        btnName2 = EventSystem.current.currentSelectedGameObject.name;
+        switch(btnName2){
+            case "Sit":
+                for (int i = 0; i < 5;i++){
+                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_sit");
+                }
+                break;
+            case "TailDown":
+                for (int i = 0; i < 5; i++)
+                {
+                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_tail_down");
+                }
+                break;
+            case "LegUp":
+                for (int i = 0; i < 5; i++)
+                {
+                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_leg_up");
+                }
+                break;
+            case "idle":
+                for (int i = 0; i < 5; i++)
+                {
+                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_idle");
+                }
+                break;
+            case "move":
+                for (int i = 0; i < 5; i++)
+                {
+                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_move");
+                }
+                break;
+        }
     }
 }
