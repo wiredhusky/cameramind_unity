@@ -20,6 +20,8 @@ public class InGameManager : MonoBehaviour {
     public event GoToIdle activeCollider;
     public event GoToIdle deactiveCollider;
     public event GoToIdle enableRenderer;
+    public event GoToIdle goMove;
+    public event GoToIdle goRandomAni;
 
     public TextMeshProUGUI currentLevelText;    
 
@@ -84,6 +86,19 @@ public class InGameManager : MonoBehaviour {
         {
             enableRenderer();
         }
+    }
+
+    public void CatDance(){
+        if (goMove != null){
+            goMove();
+        }
+    }
+
+    public void SetRandomAni(){
+        if (goRandomAni != null){
+            goRandomAni();
+        }
+        //LevelTransitionPanel.SetActive(true);
     }
 
     void Update()

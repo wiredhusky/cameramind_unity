@@ -86,6 +86,10 @@ public class spawn : MonoBehaviour {
         InGameManager.inGameManager.ActiveHandler();
     }
 
+    public void CatMove(){
+        //InGameManager.inGameManager.CatDance();   
+    }
+
     public void SetObj()
     {
         gameObject.SetActive(false);
