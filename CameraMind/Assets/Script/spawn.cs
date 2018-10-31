@@ -13,9 +13,32 @@ public class spawn : MonoBehaviour {
         RootSpawnManager.rootSpawnManager.objCreator();
     }
 
-    void objCreatorDance()
-    {
-        //GoIdle, index에 맞춰 new obj setactive TRUE
+    public void objCreatorDance(){
+        switch(InGameManager.inGameManager.index){
+            case 0:
+                for (int i = 0; i < 5; i++)
+                {
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+            case 5:
+                for (int i = 5; i < 15; i++){
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+            case 10:
+                for (int i = 15; i < 25; i++)
+                {
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+            case 15:
+                for (int i = 25; i < 35; i++)
+                {
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+        }
     }
 
     public void PauseAni()
@@ -93,7 +116,7 @@ public class spawn : MonoBehaviour {
     }
 
     public void CatMove(){
-        //InGameManager.inGameManager.CatDance();   
+        InGameManager.inGameManager.CatDance();   
     }
 
     public void SetObj()

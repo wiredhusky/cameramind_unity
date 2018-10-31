@@ -9,6 +9,12 @@ public class Clicked : MonoBehaviour {
     public Renderer _renderer;
     AnimatorStateInfo currentBaseState;
     int count = 0;
+
+    IEnumerator WaitOneSecond(){
+        Debug.Log("Enter");
+        yield return new WaitForSeconds(1.0f);
+        InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
+    }
     
     private void Start()
     {        
@@ -78,7 +84,7 @@ public class Clicked : MonoBehaviour {
     public void SetCatAni(){        
         SetRandomAni();
         count = 0;
-        InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
+        StartCoroutine("WaitOneSecond");
     }
 
     public void CountMove(){

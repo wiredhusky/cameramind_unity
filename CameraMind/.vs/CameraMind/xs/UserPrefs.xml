@@ -1,17 +1,17 @@
 ﻿<Properties StartupConfiguration="{5FC8159D-D256-4324-DD97-8A3182D4BE2C}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/spawn.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Clicked.cs">
     <Files>
       <File FileName="Assets/Script/PauseGameOver.cs" Line="13" Column="27" />
-      <File FileName="Assets/Script/RootUIManager.cs" Line="20" Column="29" />
-      <File FileName="Assets/Script/RootSpawnManager.cs" Line="489" Column="52" />
+      <File FileName="Assets/Script/RootUIManager.cs" Line="132" Column="6" />
+      <File FileName="Assets/Script/RootSpawnManager.cs" Line="477" Column="29" />
       <File FileName="Assets/Script/RootGameManager.cs" Line="133" Column="32" />
-      <File FileName="Assets/Script/spawn.cs" Line="79" Column="40" />
-      <File FileName="Assets/Script/Clicked.cs" Line="75" Column="10" />
+      <File FileName="Assets/Script/spawn.cs" Line="30" Column="33" />
+      <File FileName="Assets/Script/Clicked.cs" Line="15" Column="47" />
       <File FileName="Assets/Script/Timer.cs" Line="11" Column="34" />
       <File FileName="Assets/Script/MoveMove.cs" Line="16" Column="9" />
       <File FileName="Assets/Script/FPScounter.cs" Line="14" Column="1" />
-      <File FileName="Assets/Script/InGameManager.cs" Line="99" Column="27" />
+      <File FileName="Assets/Script/InGameManager.cs" Line="41" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

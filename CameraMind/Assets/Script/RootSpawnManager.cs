@@ -9,7 +9,8 @@ public class RootSpawnManager : MonoBehaviour {
     public GameObject soomong_15;
     public GameObject soomong_colored;
     public GameObject cat;
-    public Animator animatorCat;
+
+    AnimatorStateInfo currentBaseState;
 
     float margin = 0.2f;
     float radious = 0.55f;
@@ -468,14 +469,17 @@ public class RootSpawnManager : MonoBehaviour {
                 }
                 break;
             case "DanceDance":
-                if (InGameManager.inGameManager.index == 0)
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        InGameManager.inGameManager.obj[i].SetActive(true);
-                    }
+                switch(InGameManager.inGameManager.index){
+                    case 5:
+                        break;
+                    case 10:
+                        break;
+                    case 15:
+                        break;
+                    default:
+                        SetCatPose();
+                        break;
                 }
-                SpawnObjDance();
                 break;                    
             default: // normal, double, triple
                 SpawnObj();
@@ -483,12 +487,50 @@ public class RootSpawnManager : MonoBehaviour {
         }
     }
 
-    public void SpawnObjDance()
+    public void SetCatPose()
     {
-        //Change animator of Objs
-        if(InGameManager.inGameManager.index != 0){
-            
+        int randObj, randAni;
+        string aniName = null;
+
+        randObj = Random.Range(0, InGameManager.inGameManager.index_dance);
+        randAni = Random.Range(0, 4);
+
+        currentBaseState = InGameManager.inGameManager.animatorList[randObj].GetCurrentAnimatorStateInfo(0);
+
+        switch(randAni){
+            case 0:
+                aniName = "cat_idle";
+                break;
+            case 1:
+                aniName = "cat_tail_down";
+                break;
+            case 2:
+                aniName = "cat_sit";
+                break;
+            case 3:
+                aniName = "cat_leg_up";
+                break;
         }
+
+        while(currentBaseState.IsName(aniName)){
+            randAni = Random.Range(0, 4);
+            switch (randAni)
+            {
+                case 0:
+                    aniName = "cat_idle";
+                    break;
+                case 1:
+                    aniName = "cat_tail_down";
+                    break;
+                case 2:
+                    aniName = "cat_sit";
+                    break;
+                case 3:
+                    aniName = "cat_leg_up";
+                    break;
+            }
+        }
+        InGameManager.inGameManager.animatorList[randObj].SetTrigger(aniName);
     }
 
     public void SpawnObj()

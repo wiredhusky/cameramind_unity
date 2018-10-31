@@ -66,6 +66,7 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetInt("HighScoreTrack", 0);
             PlayerPrefs.SetInt("HighScoreTriple", 0);
             PlayerPrefs.SetInt("HighScoreTwins", 0);
+            PlayerPrefs.SetInt("HighScoreDance", 0);
             PlayerPrefs.SetInt("GetReviveCounter", 0);
             PlayerPrefs.SetInt("GetHintCounter", 0);
             PlayerPrefs.SetInt("IsRunningCoroutineHint", 0);
@@ -127,7 +128,7 @@ public class RootUIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
         clicked = false;
-        InitScene();        
+        InitScene();
     }
 
     IEnumerator GetReviveCounter(int totalSec)
