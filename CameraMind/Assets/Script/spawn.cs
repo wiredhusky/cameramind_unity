@@ -7,9 +7,15 @@ public class spawn : MonoBehaviour {
     
     public MoveMove move;    
     public Animator animator;
+    int rand1, rand2;
 
     void objCreator(){
         RootSpawnManager.rootSpawnManager.objCreator();
+    }
+
+    void objCreatorDance()
+    {
+        //GoIdle, index에 맞춰 new obj setactive TRUE
     }
 
     public void PauseAni()

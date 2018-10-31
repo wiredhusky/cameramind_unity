@@ -13,7 +13,8 @@ public class InGameManager : MonoBehaviour {
     public List<GameObject> obj = new List<GameObject>();
     public List<Animator> animatorList = new List<Animator>();
     //public List<Renderer> rendererList = new List<Renderer>();
-    public GameObject LevelTransitionPanel;    
+    public GameObject LevelTransitionPanel;
+    public GameObject DanceTime;
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
@@ -30,7 +31,7 @@ public class InGameManager : MonoBehaviour {
     public int index_track = 0;
     public int index_twins = 0;
     public int index_alone = 50;
-    public int index_dance = 0;
+    public int index_dance = 5;
 
     public bool turnChk = true;
     public bool trackComplete = false;
@@ -51,7 +52,15 @@ public class InGameManager : MonoBehaviour {
     private void Start()
     {
         CountLevel();
-        LevelTransitionPanel.SetActive(true);
+        switch (RootUIManager.rootUIManager.sceneName)
+        {
+            case "DanceDance":
+                DanceTime.SetActive(true);
+                break;
+            default:
+                LevelTransitionPanel.SetActive(true);
+                break;
+        }        
     }
 
     public void CountLevel()

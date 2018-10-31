@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212573165082025038}
   - component: {fileID: 114407164083250024}
   - component: {fileID: 58711922771152112}
+  - component: {fileID: 95671085832406822}
   m_Layer: 0
   m_Name: cat
   m_TagString: Untagged
@@ -44,6 +45,24 @@ CircleCollider2D:
   m_Offset: {x: 0.2599573, y: -0.113731146}
   serializedVersion: 2
   m_Radius: 2.0238376
+--- !u!95 &95671085832406822
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1911054831800334}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8cedd8c94b3158e43af6d588323c08e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114407164083250024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd145b396b105844a9f09c1b3c88a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 95671085832406822}
   _collider: {fileID: 58711922771152112}
   _renderer: {fileID: 212573165082025038}
 --- !u!212 &212573165082025038
@@ -90,9 +109,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1838330091
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3b405b33cd8c64b4d875f4e299598673, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

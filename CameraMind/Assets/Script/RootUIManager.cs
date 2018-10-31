@@ -498,6 +498,9 @@ public class RootUIManager : MonoBehaviour {
                 case "Time Attack":
                     curHighScore = PlayerPrefs.GetInt("HighScoreTimeAttack");
                     break;
+                case "DanceDance":
+                    curHighScore = PlayerPrefs.GetInt("HighScoreDanceDance");
+                    break;
             }
             //eventSystem.SetActive(false);
             //menus.SetActive(false);

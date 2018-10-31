@@ -75,16 +75,21 @@ public class Clicked : MonoBehaviour {
         }
     }
 
-    public void SetCatAni(){
-        if(count == 3){
-            SetRandomAni();
-            count = 0;
-        }
+    public void SetCatAni(){        
+        SetRandomAni();
+        count = 0;
+        InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
     }
 
     public void CountMove(){
-        count++;
-        Debug.Log("Count: " + count);
+        if(count != 2)
+        {            
+            count++;         
+            Debug.Log("Count: " + count);
+        }else
+        {            
+            animator.SetTrigger("cat_ready");
+        }
     }
 
     public void ActiveCol()
