@@ -124,8 +124,7 @@ public class RootGameManager : MonoBehaviour {
                 RootUIManager.rootUIManager.DeactiveUI();
                 if (ComparePos(_objPos))
                 {
-                    InGameManager.inGameManager.index++;
-                    Debug.Log(InGameManager.inGameManager.index);
+                    InGameManager.inGameManager.index++;                    
                     DoTransition(0);
                 }
                 else
@@ -147,9 +146,11 @@ public class RootGameManager : MonoBehaviour {
     }
 
     private bool ComparePos_Dance(Vector3 _objPosDance){
-        if(_objPosDance == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_dance]){
+        if(_objPosDance == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_dance_answer])
+        {
             return true;
-        }else{
+        }else
+        {
             return false;
         }
     }
@@ -244,7 +245,7 @@ public class RootGameManager : MonoBehaviour {
                 return false;
             }
         }
-    }
+    }    
 
     public void GameOver()
     {
@@ -268,6 +269,9 @@ public class RootGameManager : MonoBehaviour {
                 break;
             case "Alone":
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_alone].SetTrigger("gameOver");
+                break;
+            case "DanceDance":
+                InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_dance_answer].SetTrigger("gameOver");
                 break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");

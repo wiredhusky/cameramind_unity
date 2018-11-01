@@ -4639,7 +4639,6 @@ MonoBehaviour:
   soomong_colored: {fileID: 1173986339302714, guid: f8d990a8ab32c1d43aa48201fe73def0,
     type: 2}
   cat: {fileID: 1911054831800334, guid: ef39c96bff8214434b2452d69003d9bf, type: 2}
-  animatorCat: {fileID: 0}
   allThingsDone: 0
   exceptCase: 5
   onScreenScale_20: {x: 0, y: 0}
@@ -4647,6 +4646,7 @@ MonoBehaviour:
   onScreenScale_30: {x: 0, y: 0}
   onScreenScale_35: {x: 0, y: 0}
   onScreenScale_40: {x: 0, y: 0}
+  onScreenScale_60: {x: 0, y: 0}
 --- !u!1 &1256427667
 GameObject:
   m_ObjectHideFlags: 0

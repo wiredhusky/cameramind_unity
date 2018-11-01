@@ -21,6 +21,7 @@ public class RootSpawnManager : MonoBehaviour {
     float localScale_30 = 0.3f;
     float localScale_35 = 0.35f;
     float localScale_40 = 0.4f;
+    float localScale_60 = 0.6f;
 
     float limitTop, limitBottom, limitLeft, limitRight;
 
@@ -32,6 +33,7 @@ public class RootSpawnManager : MonoBehaviour {
     public Vector2 onScreenScale_30;
     public Vector2 onScreenScale_35;
     public Vector2 onScreenScale_40;
+    public Vector2 onScreenScale_60;
 
     GameObject _obj;
 
@@ -108,6 +110,14 @@ public class RootSpawnManager : MonoBehaviour {
                     //objRenderer = _obj.GetComponent<Renderer>();
                     //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
+                case 5:
+                    _obj = Instantiate(obj) as GameObject;
+                    _obj.transform.localScale = new Vector3(localScale_60, localScale_60, localScale_60);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    break;
             }
         }
 
@@ -183,41 +193,44 @@ public class RootSpawnManager : MonoBehaviour {
 
         onScreenScale_40.x = rt.rect.width * localScale_40;
         onScreenScale_40.y = rt.rect.height * localScale_40;
+
+        onScreenScale_60.x = rt.rect.width * localScale_60;
+        onScreenScale_60.y = rt.rect.height * localScale_60;
     }
 
     public void PosSearchDance(List<Vector3> posList, List<int> objType)
     {
         float marginWidth, marginHeight;
-        Vector2 posListTemp;
-        posListTemp.x = worldPos.x * -1.0f + margin;
+        Vector2 posListTemp;        
+        marginWidth = ((worldPos.x * 2 - (margin * 2)) - (onScreenScale_60.x * 3)) / 4;
+        marginHeight = ((worldPos.y * 2 - (margin * 2) - 1.6f) - (onScreenScale_60.y * 5)) / 6;
+        posListTemp.x = worldPos.x * -1.0f + margin + marginWidth;
         posListTemp.y = 1.6f;
-        marginWidth = ((worldPos.x * 2 - (margin * 2)) - (onScreenScale_35.x * 5)) / 4;
-        marginHeight = ((worldPos.y * 2 - (margin * 2) - 1.6f) - (onScreenScale_35.y * 7)) / 6;
-        for (int i = 0; i < 5;i++){
-            posListTemp.x += onScreenScale_35.x * 0.5f;
+        for (int i = 0; i < 3;i++){
+            posListTemp.x += onScreenScale_60.x * 0.5f;
             posListTemp.y = 1.6f;
             posList.Add(posListTemp);
-            objType.Add(3);
-            posListTemp.x += onScreenScale_35.x * 0.5f + marginWidth;
+            objType.Add(5);
+            posListTemp.x += onScreenScale_60.x * 0.5f + marginWidth;
         }
 
-        for (int j = 0; j < 3;j++){
-            posListTemp.y = 1.6f + ((onScreenScale_35.y + marginHeight) * (j + 1));
+        for (int j = 0; j < 2;j++){
+            posListTemp.y = 1.6f + ((onScreenScale_60.y + marginHeight) * (j + 1));
 
-            for (int k = 0; k < 5;k++){
-                //top 5
+            //윗줄 추가
+            for (int k = 0; k < 3;k++){                
                 posListTemp.x = posList[k].x;
                 posList.Add(posListTemp);
-                objType.Add(3);
+                objType.Add(5);
             }
 
-            posListTemp.y = 1.6f - ((onScreenScale_35.y + marginHeight) * (j + 1));
+            posListTemp.y = 1.6f - ((onScreenScale_60.y + marginHeight) * (j + 1));
 
-            for (int l = 0; l < 5;l++){
-                //bottom 5
+            //아랫줄 추가
+            for (int l = 0; l < 3;l++){                
                 posListTemp.x = posList[l].x;
                 posList.Add(posListTemp);
-                objType.Add(3);
+                objType.Add(5);
             }
         }
         allThingsDone = true;
@@ -469,17 +482,7 @@ public class RootSpawnManager : MonoBehaviour {
                 }
                 break;
             case "DanceDance":
-                switch(InGameManager.inGameManager.index){
-                    case 5:
-                        break;
-                    case 10:
-                        break;
-                    case 15:
-                        break;
-                    default:
-                        SetCatPose();
-                        break;
-                }
+                SetCatPose();                
                 break;                    
             default: // normal, double, triple
                 SpawnObj();
@@ -492,10 +495,14 @@ public class RootSpawnManager : MonoBehaviour {
         int randObj, randAni;
         string aniName = null;
 
-        randObj = Random.Range(0, InGameManager.inGameManager.index_dance);
+        //randObj = Random.Range(0, InGameManager.inGameManager.index_dance);
+        //randObj = Random.Range(0, 3);
+        randObj = Random.Range(0, 3);
         randAni = Random.Range(0, 4);
 
         currentBaseState = InGameManager.inGameManager.animatorList[randObj].GetCurrentAnimatorStateInfo(0);
+        InGameManager.inGameManager.index_dance_answer = randObj;
+        Debug.Log("RandObj: " + randObj);
 
         switch(randAni){
             case 0:
@@ -511,8 +518,10 @@ public class RootSpawnManager : MonoBehaviour {
                 aniName = "cat_leg_up";
                 break;
         }
-
-        while(currentBaseState.IsName(aniName)){
+        Debug.Log("RandAni: " + randAni);
+        Debug.Log("AniName: " + aniName);
+        Debug.Log("Bool: " + currentBaseState.IsName(aniName));
+        while (currentBaseState.IsName(aniName)){
             randAni = Random.Range(0, 4);
             switch (randAni)
             {
@@ -530,6 +539,8 @@ public class RootSpawnManager : MonoBehaviour {
                     break;
             }
         }
+        Debug.Log("RandAni: " + randAni);
+        Debug.Log("AniName: " + aniName);
         InGameManager.inGameManager.animatorList[randObj].SetTrigger(aniName);
     }
 

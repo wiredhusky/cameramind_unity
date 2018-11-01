@@ -12,7 +12,7 @@ public class Clicked : MonoBehaviour {
 
     IEnumerator WaitOneSecond(){
         Debug.Log("Enter");
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
     }
     
@@ -80,21 +80,25 @@ public class Clicked : MonoBehaviour {
             }
         }
     }
-
+    
+    /*
     public void SetCatAni(){        
         SetRandomAni();
         count = 0;
         StartCoroutine("WaitOneSecond");
-    }
-
+    }*/
+    
     public void CountMove(){
         if(count != 2)
         {            
             count++;         
             Debug.Log("Count: " + count);
         }else
-        {            
-            animator.SetTrigger("cat_ready");
+        {
+            //animator.SetTrigger("cat_ready");
+            SetRandomAni();
+            count = 0;
+            StartCoroutine("WaitOneSecond");
         }
     }
 

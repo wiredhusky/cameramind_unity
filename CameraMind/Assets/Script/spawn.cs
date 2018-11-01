@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class spawn : MonoBehaviour {
     
     public MoveMove move;    
-    public Animator animator;
-    int rand1, rand2;
+    public Animator animator;    
 
     void objCreator(){
         RootSpawnManager.rootSpawnManager.objCreator();
@@ -16,24 +15,24 @@ public class spawn : MonoBehaviour {
     public void objCreatorDance(){
         switch(InGameManager.inGameManager.index){
             case 0:
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 5:
-                for (int i = 5; i < 15; i++){
+                for (int i = 3; i < 6; i++){
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 10:
-                for (int i = 15; i < 25; i++)
+                for (int i = 6; i < 9; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 15:
-                for (int i = 25; i < 35; i++)
+                for (int i = 9; i < 15; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
