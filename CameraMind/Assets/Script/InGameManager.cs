@@ -31,7 +31,7 @@ public class InGameManager : MonoBehaviour {
     public int index_track = 0;
     public int index_twins = 0;
     public int index_alone = 50;
-    public int index_dance = 3;
+    public int index_dance = 4;
     public int index_dance_answer = 0;
 
     public bool turnChk = true;
@@ -48,12 +48,13 @@ public class InGameManager : MonoBehaviour {
         if(inGameManager == null){
             inGameManager = this;
         }
+        sceneName = RootUIManager.rootUIManager.sceneName;
     }
 
     private void Start()
     {
         CountLevel();
-        switch (RootUIManager.rootUIManager.sceneName)
+        switch (sceneName)
         {
             case "DanceDance":
                 DanceTime.SetActive(true);
@@ -115,16 +116,21 @@ public class InGameManager : MonoBehaviour {
     {
         if (RootGameManager.rootGameManager.chkGameOver)
         {
-            if(RootUIManager.rootUIManager.sceneName == "Track")
+            switch (sceneName)
             {
-                currentBaseState = animatorList[index_track].GetCurrentAnimatorStateInfo(0);
-            }
-            else
-            {
-                currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
+                case "Track":
+                    currentBaseState = animatorList[index_track].GetCurrentAnimatorStateInfo(0);
+                    break;
+                case "DanceDance":
+                    currentBaseState = animatorList[index_dance_answer].GetCurrentAnimatorStateInfo(0);
+                    break;
+                default:
+                    currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
+                    break;
             }
             
-            if (currentBaseState.IsName("soomong20_twinkle"))
+            //When if statement is removed what happen?
+            if (currentBaseState.IsName("GameOver"))
             {                
                 if (currentBaseState.normalizedTime > 1.0f)
                 {
@@ -146,7 +152,7 @@ public class InGameManager : MonoBehaviour {
         {
             RootUIManager.rootUIManager.DeactiveUI();
             currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
-            if (currentBaseState.IsName("soomong20_clicked"))
+            if (currentBaseState.IsName("clicked"))
             {
                 if (currentBaseState.normalizedTime > 1.0f)
                 {       

@@ -21,7 +21,7 @@ public class RootSpawnManager : MonoBehaviour {
     float localScale_30 = 0.3f;
     float localScale_35 = 0.35f;
     float localScale_40 = 0.4f;
-    float localScale_60 = 0.6f;
+    float localScale_50 = 0.5f;
 
     float limitTop, limitBottom, limitLeft, limitRight;
 
@@ -33,7 +33,7 @@ public class RootSpawnManager : MonoBehaviour {
     public Vector2 onScreenScale_30;
     public Vector2 onScreenScale_35;
     public Vector2 onScreenScale_40;
-    public Vector2 onScreenScale_60;
+    public Vector2 onScreenScale_50;
 
     GameObject _obj;
 
@@ -112,7 +112,7 @@ public class RootSpawnManager : MonoBehaviour {
                     break;
                 case 5:
                     _obj = Instantiate(obj) as GameObject;
-                    _obj.transform.localScale = new Vector3(localScale_60, localScale_60, localScale_60);
+                    _obj.transform.localScale = new Vector3(localScale_50, localScale_50, localScale_50);
                     _obj.transform.position = InGameManager.inGameManager.posList[i];
                     InGameManager.inGameManager.obj.Add(_obj);
                     animator = _obj.GetComponent<Animator>();
@@ -194,40 +194,40 @@ public class RootSpawnManager : MonoBehaviour {
         onScreenScale_40.x = rt.rect.width * localScale_40;
         onScreenScale_40.y = rt.rect.height * localScale_40;
 
-        onScreenScale_60.x = rt.rect.width * localScale_60;
-        onScreenScale_60.y = rt.rect.height * localScale_60;
+        onScreenScale_50.x = rt.rect.width * localScale_50;
+        onScreenScale_50.y = rt.rect.height * localScale_50;
     }
 
     public void PosSearchDance(List<Vector3> posList, List<int> objType)
     {
         float marginWidth, marginHeight;
         Vector2 posListTemp;        
-        marginWidth = ((worldPos.x * 2 - (margin * 2)) - (onScreenScale_60.x * 3)) / 4;
-        marginHeight = ((worldPos.y * 2 - (margin * 2) - 1.6f) - (onScreenScale_60.y * 5)) / 6;
+        marginWidth = ((worldPos.x * 2 - (margin * 2)) - (onScreenScale_50.x * 4)) / 5;
+        marginHeight = ((worldPos.y * 2 - (margin * 2) - 1.6f) - (onScreenScale_50.y * 5)) / 6;
         posListTemp.x = worldPos.x * -1.0f + margin + marginWidth;
         posListTemp.y = 1.6f;
-        for (int i = 0; i < 3;i++){
-            posListTemp.x += onScreenScale_60.x * 0.5f;
+        for (int i = 0; i < 4;i++){
+            posListTemp.x += onScreenScale_50.x * 0.5f;
             posListTemp.y = 1.6f;
             posList.Add(posListTemp);
             objType.Add(5);
-            posListTemp.x += onScreenScale_60.x * 0.5f + marginWidth;
+            posListTemp.x += onScreenScale_50.x * 0.5f + marginWidth;
         }
 
         for (int j = 0; j < 2;j++){
-            posListTemp.y = 1.6f + ((onScreenScale_60.y + marginHeight) * (j + 1));
+            posListTemp.y = 1.6f + ((onScreenScale_50.y + marginHeight) * (j + 1));
 
             //윗줄 추가
-            for (int k = 0; k < 3;k++){                
+            for (int k = 0; k < 4;k++){                
                 posListTemp.x = posList[k].x;
                 posList.Add(posListTemp);
                 objType.Add(5);
             }
 
-            posListTemp.y = 1.6f - ((onScreenScale_60.y + marginHeight) * (j + 1));
+            posListTemp.y = 1.6f - ((onScreenScale_50.y + marginHeight) * (j + 1));
 
             //아랫줄 추가
-            for (int l = 0; l < 3;l++){                
+            for (int l = 0; l < 4;l++){                
                 posListTemp.x = posList[l].x;
                 posList.Add(posListTemp);
                 objType.Add(5);
@@ -495,9 +495,9 @@ public class RootSpawnManager : MonoBehaviour {
         int randObj, randAni;
         string aniName = null;
 
-        //randObj = Random.Range(0, InGameManager.inGameManager.index_dance);
+        randObj = Random.Range(0, InGameManager.inGameManager.index_dance);
         //randObj = Random.Range(0, 3);
-        randObj = Random.Range(0, 3);
+        //randObj = Random.Range(0, 3);
         randAni = Random.Range(0, 4);
 
         currentBaseState = InGameManager.inGameManager.animatorList[randObj].GetCurrentAnimatorStateInfo(0);
@@ -506,7 +506,7 @@ public class RootSpawnManager : MonoBehaviour {
 
         switch(randAni){
             case 0:
-                aniName = "cat_idle";
+                aniName = "Origin";
                 break;
             case 1:
                 aniName = "cat_tail_down";
@@ -526,7 +526,7 @@ public class RootSpawnManager : MonoBehaviour {
             switch (randAni)
             {
                 case 0:
-                    aniName = "cat_idle";
+                    aniName = "Origin";
                     break;
                 case 1:
                     aniName = "cat_tail_down";

@@ -45,7 +45,7 @@ public class Clicked : MonoBehaviour {
         if (gameObject.activeSelf == true)
         {
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
-            if (!currentBaseState.IsName("soomong20_idle"))
+            if (!currentBaseState.IsName("idle"))
             {
                 animator.SetTrigger("Origin");
             }
@@ -66,7 +66,7 @@ public class Clicked : MonoBehaviour {
             switch (rand)
             {
                 case 0:
-                    animator.SetTrigger("cat_idle");
+                    animator.SetTrigger("Origin");
                     break;
                 case 1:
                     animator.SetTrigger("cat_leg_up");

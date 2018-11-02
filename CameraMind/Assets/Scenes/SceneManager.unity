@@ -4646,7 +4646,7 @@ MonoBehaviour:
   onScreenScale_30: {x: 0, y: 0}
   onScreenScale_35: {x: 0, y: 0}
   onScreenScale_40: {x: 0, y: 0}
-  onScreenScale_60: {x: 0, y: 0}
+  onScreenScale_50: {x: 0, y: 0}
 --- !u!1 &1256427667
 GameObject:
   m_ObjectHideFlags: 0

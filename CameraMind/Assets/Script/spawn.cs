@@ -15,24 +15,24 @@ public class spawn : MonoBehaviour {
     public void objCreatorDance(){
         switch(InGameManager.inGameManager.index){
             case 0:
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 5:
-                for (int i = 3; i < 6; i++){
+                for (int i = 4; i < 8; i++){
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 10:
-                for (int i = 6; i < 9; i++)
+                for (int i = 8; i < 12; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 15:
-                for (int i = 9; i < 15; i++)
+                for (int i = 12; i < 20; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }

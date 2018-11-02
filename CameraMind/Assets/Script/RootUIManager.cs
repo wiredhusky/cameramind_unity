@@ -447,6 +447,10 @@ public class RootUIManager : MonoBehaviour {
                 particle.SetActive(true);
                 particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
                 break;
+            case "DanceDance":
+                particle.SetActive(true);
+                particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_dance_answer].transform.position;
+                break;
             default:
                 particle.SetActive(true);
                 particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
@@ -651,30 +655,30 @@ public class RootUIManager : MonoBehaviour {
         btnName2 = EventSystem.current.currentSelectedGameObject.name;
         switch(btnName2){
             case "Sit":
-                for (int i = 0; i < 5;i++){
-                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_sit");
+                for (int i = 0; i < 4;i++){
+                    InGameManager.inGameManager.animatorList[i].SetTrigger("GameOver");
                 }
                 break;
             case "TailDown":
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     InGameManager.inGameManager.animatorList[i].SetTrigger("cat_tail_down");
                 }
                 break;
             case "LegUp":
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     InGameManager.inGameManager.animatorList[i].SetTrigger("cat_leg_up");
                 }
                 break;
             case "idle":
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_idle");
+                    InGameManager.inGameManager.animatorList[i].SetTrigger("Origin");
                 }
                 break;
             case "move":
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     InGameManager.inGameManager.animatorList[i].SetTrigger("cat_move");
                 }
