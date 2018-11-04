@@ -45,7 +45,7 @@ public class Clicked : MonoBehaviour {
         if (gameObject.activeSelf == true)
         {
             currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
-            if (!currentBaseState.IsName("idle"))
+            if (!currentBaseState.IsName("Origin"))
             {
                 animator.SetTrigger("Origin");
             }

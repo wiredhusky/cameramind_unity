@@ -62,7 +62,8 @@ public class InGameManager : MonoBehaviour {
             default:
                 LevelTransitionPanel.SetActive(true);
                 break;
-        }        
+        }
+        index_dance = 4;        
     }
 
     public void CountLevel()
@@ -127,22 +128,26 @@ public class InGameManager : MonoBehaviour {
                 default:
                     currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
                     break;
-            }
+            }            
             
-            //When if statement is removed what happen?
-            if (currentBaseState.IsName("GameOver"))
+            if (currentBaseState.IsName("GameOver") || currentBaseState.IsName("GameOver0") || currentBaseState.IsName("GameOver1") || currentBaseState.IsName("GameOver2"))
             {                
                 if (currentBaseState.normalizedTime > 1.0f)
-                {
+                {                    
                     RootGameManager.rootGameManager.chkGameOver = false;
                     RootGameManager.rootGameManager.DoTransition(1);
-                    if (RootUIManager.rootUIManager.sceneName == "Track")
+                    //idle로 돌려주지 않으면 Revive하고 다시 틀렸을 때 걔를 GameOver 애니메이션을 할 수가 없음
+                    switch (sceneName)
                     {
-                        animatorList[index_track].SetTrigger("Origin");
-                    }
-                    else
-                    {
-                        animatorList[index].SetTrigger("Origin");
+                        case "Track":
+                            animatorList[index_track].SetTrigger("Origin");
+                            break;
+                        case "DanceDance":
+                            animatorList[index_dance_answer].SetTrigger("GoBack");
+                            break;
+                        default:
+                            animatorList[index].SetTrigger("Origin");
+                            break;
                     }
                 }
             }

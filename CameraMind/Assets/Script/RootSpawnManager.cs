@@ -446,7 +446,7 @@ public class RootSpawnManager : MonoBehaviour {
                 break;
             case "Temptation": // temptation
                 SpawnObj();
-                randNum = Random.Range(0, InGameManager.inGameManager.index);
+                randNum = Random.Range(0, InGameManager.inGameManager.index+1);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
@@ -466,7 +466,7 @@ public class RootSpawnManager : MonoBehaviour {
                 break;
             case "Chaos": // mix
                 SpawnObj_Flip();
-                randNum = Random.Range(0, InGameManager.inGameManager.index);
+                randNum = Random.Range(0, InGameManager.inGameManager.index+1);
                 randAni = Random.Range(0, 3);
                 switch (randAni)
                 {
@@ -493,8 +493,7 @@ public class RootSpawnManager : MonoBehaviour {
     public void SetCatPose()
     {
         int randObj, randAni;
-        string aniName = null;
-
+        string aniName = null;        
         randObj = Random.Range(0, InGameManager.inGameManager.index_dance);
         //randObj = Random.Range(0, 3);
         //randObj = Random.Range(0, 3);

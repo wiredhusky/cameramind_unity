@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RootGameManager : MonoBehaviour {
 
-    public static RootGameManager rootGameManager;
+    public static RootGameManager rootGameManager;    
 
     public bool chkGameOver = false;
     //public Animator animator;
@@ -270,7 +270,7 @@ public class RootGameManager : MonoBehaviour {
             case "Alone":
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_alone].SetTrigger("gameOver");
                 break;
-            case "DanceDance":
+            case "DanceDance":                                
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_dance_answer].SetTrigger("gameOver");
                 break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
