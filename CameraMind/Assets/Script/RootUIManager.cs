@@ -43,7 +43,7 @@ public class RootUIManager : MonoBehaviour {
 
     System.DateTime lastDateTime;
     System.TimeSpan compareTime;
-    int coroutineHintDuration = 30, coroutineReviveDuration = 30;
+    int coroutineHintDuration = 30, coroutineReviveDuration = 30;    
 
     private void Awake()
     {
@@ -77,6 +77,8 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetString("StartTimeCoroutineRevive", null);
             PlayerPrefs.SetString("HintPressedTime", null);
             PlayerPrefs.SetString("RevivePressedTime", null);
+            PlayerPrefs.SetInt("LeftTimeHint", 30);
+            PlayerPrefs.SetInt("LeftTimeRevive", 30);
             PlayerPrefs.Save();
         }
 
@@ -99,10 +101,8 @@ public class RootUIManager : MonoBehaviour {
             }
             else
             {
-                getHintBtn.interactable = false;
-                startCoroutineHint = StartCoroutine(GetHintCounter(coroutineHintDuration - time));
-                PlayerPrefs.SetString("StartTimeCoroutineHint", System.DateTime.Now.ToString());
-                PlayerPrefs.Save();
+                getHintBtn.interactable = false;                
+                startCoroutineHint = StartCoroutine(GetHintCounter(coroutineHintDuration - time));                
             }
         }
 
@@ -119,10 +119,8 @@ public class RootUIManager : MonoBehaviour {
             }
             else
             {
-                getReviveBtn.interactable = false;
-                startCoroutineRevive = StartCoroutine(GetReviveCounter(coroutineReviveDuration - time));
-                PlayerPrefs.SetString("StartTimeCoroutineRevive", System.DateTime.Now.ToString());
-                PlayerPrefs.Save();
+                getReviveBtn.interactable = false;                
+                startCoroutineRevive = StartCoroutine(GetReviveCounter(coroutineReviveDuration - time));                
             }
         }
     }
@@ -132,12 +130,13 @@ public class RootUIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
         clicked = false;
-        InitScene();
+        InitScene();        
     }
 
     IEnumerator GetReviveCounter(int totalSec)
     {
         PlayerPrefs.SetInt("IsRunningCoroutineRevive", 1);
+        PlayerPrefs.SetInt("LeftTimeRevive", totalSec);
         isCoroutineRevive = PlayerPrefs.GetInt("IsRunningCoroutineRevive");
         PlayerPrefs.SetString("StartTimeCoroutineRevive", System.DateTime.Now.ToString());
         PlayerPrefs.Save();        
@@ -157,7 +156,7 @@ public class RootUIManager : MonoBehaviour {
             else
             {
                 getRevives.text = string.Format("{0}", totalTimeHintMin) + " : " + string.Format("{0:00}", totalTimeHintSec);
-                totalSec--;
+                totalSec--;                
             }
             yield return new WaitForSeconds(1);
         }        
@@ -166,6 +165,7 @@ public class RootUIManager : MonoBehaviour {
     IEnumerator GetHintCounter(int totalSec)
     {        
         PlayerPrefs.SetInt("IsRunningCoroutineHint", 1);
+        PlayerPrefs.SetInt("LeftTimeHint", totalSec);
         isCoroutineHint = PlayerPrefs.GetInt("IsRunningCoroutineHint");
         PlayerPrefs.SetString("StartTimeCoroutineHint", System.DateTime.Now.ToString());
         PlayerPrefs.Save();
@@ -185,7 +185,7 @@ public class RootUIManager : MonoBehaviour {
             else
             {
                 getFreeHints.text = string.Format("{0}", totalTimeHintMin) + " : " + string.Format("{0:00}", totalTimeHintSec);
-                totalSec--;
+                totalSec--;                
             }
             yield return new WaitForSeconds(1);
         }
@@ -598,12 +598,11 @@ public class RootUIManager : MonoBehaviour {
         {   
             if(isCoroutineHint == 1)
             {         
-                lastTime = PlayerPrefs.GetString("HintPressedTime");
+                lastTime = PlayerPrefs.GetString("StartTimeCoroutineHint");
+                coroutineHintDuration = PlayerPrefs.GetInt("LeftTimeHint");
                 lastDateTime = System.DateTime.Parse(lastTime);
                 compareTime = System.DateTime.Now - lastDateTime;
-                time = (int)compareTime.TotalSeconds;
-                Debug.Log("Time: " + time);
-                Debug.Log("Left Time: " + coroutineHintDuration);
+                time = (int)compareTime.TotalSeconds;                                
                 if(time >= coroutineHintDuration)
                 {                    
                     StopCoroutine(startCoroutineHint);                    
@@ -616,8 +615,7 @@ public class RootUIManager : MonoBehaviour {
                 else
                 {                    
                     StopCoroutine(startCoroutineHint);
-                    coroutineHintDuration -= time;
-                    Debug.Log("Left Time: " + coroutineHintDuration);
+                    coroutineHintDuration -= time;                    
                     startCoroutineHint = StartCoroutine(GetHintCounter(coroutineHintDuration));
                 }
             }
@@ -625,9 +623,10 @@ public class RootUIManager : MonoBehaviour {
             if(isCoroutineRevive == 1)
             {
                 lastTime = PlayerPrefs.GetString("StartTimeCoroutineRevive");
+                coroutineReviveDuration = PlayerPrefs.GetInt("LeftTimeRevive");
                 lastDateTime = System.DateTime.Parse(lastTime);
                 compareTime = System.DateTime.Now - lastDateTime;
-                time = (int)compareTime.TotalSeconds;
+                time = (int)compareTime.TotalSeconds;                
                 if (time >= coroutineReviveDuration)
                 {
                     StopCoroutine(startCoroutineRevive);
