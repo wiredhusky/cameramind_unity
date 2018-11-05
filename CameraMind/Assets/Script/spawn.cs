@@ -21,17 +21,20 @@ public class spawn : MonoBehaviour {
                 }
                 break;
             case 5:
+                InGameManager.inGameManager.EventHandler();
                 for (int i = 4; i < 8; i++){
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 10:
+                InGameManager.inGameManager.EventHandler();
                 for (int i = 8; i < 12; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
                 }
                 break;
             case 15:
+                InGameManager.inGameManager.EventHandler();
                 for (int i = 12; i < 20; i++)
                 {
                     InGameManager.inGameManager.obj[i].SetActive(true);
@@ -78,7 +81,6 @@ public class spawn : MonoBehaviour {
 
     public void PauseAniDance()
     {
-        RootUIManager.rootUIManager.clicked = false;
         if (SceneManager.GetActiveScene().name == "SceneManager")
         {
             RootUIManager.rootUIManager.menus.SetActive(false);
@@ -94,9 +96,6 @@ public class spawn : MonoBehaviour {
             RootUIManager.rootUIManager.uiNavigation.SetActive(true);
             animator.speed = 1;
         }
-
-        RootUIManager.rootUIManager.ActiveUI();
-
     }
 
     public void TimerReset()

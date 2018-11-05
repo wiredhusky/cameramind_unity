@@ -135,10 +135,29 @@ public class RootGameManager : MonoBehaviour {
             case "DanceDance":
                 InGameManager.inGameManager.DeactiveHandler();
                 RootUIManager.rootUIManager.DeactiveUI();
-                if(ComparePos_Dance(_objPos)){
+                if (ComparePos_Dance(_objPos))
+                {
                     InGameManager.inGameManager.index++;
-                    DoTransition(0);
-                }else{
+                    switch (InGameManager.inGameManager.index)
+                    {
+                        case 5:
+                            InGameManager.inGameManager.index_dance = 8;
+                            InGameManager.inGameManager.DanceTime.SetActive(true);
+                            break;
+                        case 10:
+                            InGameManager.inGameManager.index_dance = 12;
+                            InGameManager.inGameManager.DanceTime.SetActive(true);
+                            break;
+                        case 15:
+                            InGameManager.inGameManager.index_dance = 20;
+                            InGameManager.inGameManager.DanceTime.SetActive(true);
+                            break;
+                        default:
+                            DoTransition(0);
+                            break;
+                    }
+                }else
+                {
                     GameOver();
                 }
                 break;

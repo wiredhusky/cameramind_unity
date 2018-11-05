@@ -75,6 +75,8 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetInt("RemainReviveDuration", 30);
             PlayerPrefs.SetString("StartTimeCoroutineHint", null);
             PlayerPrefs.SetString("StartTimeCoroutineRevive", null);
+            PlayerPrefs.SetString("HintPressedTime", null);
+            PlayerPrefs.SetString("RevivePressedTime", null);
             PlayerPrefs.Save();
         }
 
@@ -84,10 +86,12 @@ public class RootUIManager : MonoBehaviour {
         if (isCoroutineHint == 1)
         {
             //Application on Focus는 시작할 때는 동작 안함            
-            lastTime = PlayerPrefs.GetString("StartTimeCoroutineHint");
+            lastTime = PlayerPrefs.GetString("HintPressedTime");
+            Debug.Log("Start Time: " + lastTime);
             lastDateTime = System.DateTime.Parse(lastTime);
             compareTime = System.DateTime.Now - lastDateTime;
             time = (int)compareTime.TotalSeconds;
+            Debug.Log("Time: " + time);
             if (time >= coroutineHintDuration)
             {
                 PlayerPrefs.SetInt("IsRunningCoroutineHint", 0);
@@ -104,7 +108,7 @@ public class RootUIManager : MonoBehaviour {
 
         if (isCoroutineRevive == 1)
         {
-            lastTime = PlayerPrefs.GetString("StartTimeCoroutineRevive");
+            lastTime = PlayerPrefs.GetString("RevivePressedTime");
             lastDateTime = System.DateTime.Parse(lastTime);
             compareTime = System.DateTime.Now - lastDateTime;
             time = (int)compareTime.TotalSeconds;
@@ -370,6 +374,8 @@ public class RootUIManager : MonoBehaviour {
                 {
                     getReviveBtn.interactable = false;
                     startCoroutineRevive = StartCoroutine(GetReviveCounter(30));
+                    PlayerPrefs.SetString("RevivePressedTime", System.DateTime.Now.ToString());
+                    PlayerPrefs.Save();
                 }                
             }
 
@@ -428,6 +434,8 @@ public class RootUIManager : MonoBehaviour {
             {                
                 getHintBtn.interactable = false;
                 startCoroutineHint = StartCoroutine(GetHintCounter(30));
+                PlayerPrefs.SetString("HintPressedTime", System.DateTime.Now.ToString());
+                PlayerPrefs.Save();
             }            
         }
 
@@ -589,11 +597,13 @@ public class RootUIManager : MonoBehaviour {
         if (focus)
         {   
             if(isCoroutineHint == 1)
-            {                
-                lastTime = PlayerPrefs.GetString("StartTimeCoroutineHint");
+            {         
+                lastTime = PlayerPrefs.GetString("HintPressedTime");
                 lastDateTime = System.DateTime.Parse(lastTime);
                 compareTime = System.DateTime.Now - lastDateTime;
                 time = (int)compareTime.TotalSeconds;
+                Debug.Log("Time: " + time);
+                Debug.Log("Left Time: " + coroutineHintDuration);
                 if(time >= coroutineHintDuration)
                 {                    
                     StopCoroutine(startCoroutineHint);                    
@@ -607,9 +617,8 @@ public class RootUIManager : MonoBehaviour {
                 {                    
                     StopCoroutine(startCoroutineHint);
                     coroutineHintDuration -= time;
+                    Debug.Log("Left Time: " + coroutineHintDuration);
                     startCoroutineHint = StartCoroutine(GetHintCounter(coroutineHintDuration));
-                    PlayerPrefs.SetString("StartTimeCoroutineHint", System.DateTime.Now.ToString());
-                    PlayerPrefs.Save();
                 }
             }
 
@@ -633,8 +642,6 @@ public class RootUIManager : MonoBehaviour {
                     StopCoroutine(startCoroutineRevive);
                     coroutineReviveDuration -= time;
                     startCoroutineRevive = StartCoroutine(GetReviveCounter(coroutineReviveDuration));
-                    PlayerPrefs.SetString("StartTimeCoroutineRevive", System.DateTime.Now.ToString());
-                    PlayerPrefs.Save();
                 }
             }
         }        
