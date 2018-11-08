@@ -48,6 +48,7 @@ public class spawn : MonoBehaviour {
         RootUIManager.rootUIManager.clicked = false;        
         if(SceneManager.GetActiveScene().name == "SceneManager"){
             RootUIManager.rootUIManager.menus.SetActive(false);
+            RootUIManager.rootUIManager.topBackground.SetActive(false);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(RootUIManager.rootUIManager.sceneName));
         }
 
@@ -84,6 +85,7 @@ public class spawn : MonoBehaviour {
         if (SceneManager.GetActiveScene().name == "SceneManager")
         {
             RootUIManager.rootUIManager.menus.SetActive(false);
+            RootUIManager.rootUIManager.topBackground.SetActive(false);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(RootUIManager.rootUIManager.sceneName));
         }
         if (!RootSpawnManager.rootSpawnManager.allThingsDone){

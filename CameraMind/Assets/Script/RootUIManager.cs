@@ -18,6 +18,7 @@ public class RootUIManager : MonoBehaviour {
     public GameObject particle, hintParticle;
     public GameObject eventSystem;
     public GameObject menus;
+    public GameObject topBackground;
     public GameObject uiNavigation;
     public TextMeshProUGUI currentLevelText, reviveCountText, title, hintCountText, getFreeHints, getRevives;
     public string sceneName, btnName;
@@ -342,7 +343,8 @@ public class RootUIManager : MonoBehaviour {
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            menus.SetActive(true);            
+            menus.SetActive(true);
+            topBackground.SetActive(true);
             uiNavigation.SetActive(false);
             animator.speed = 1;
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
