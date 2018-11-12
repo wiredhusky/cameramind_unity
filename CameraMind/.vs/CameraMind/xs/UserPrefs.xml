@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{5FC8159D-D256-4324-DD97-8A3182D4BE2C}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/RootUIManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Clicked.cs">
     <Files>
       <File FileName="Assets/Script/PauseGameOver.cs" Line="13" Column="27" />
       <File FileName="Assets/Script/RootUIManager.cs" Line="597" Column="19" />
-      <File FileName="Assets/Script/RootSpawnManager.cs" Line="517" Column="30" />
+      <File FileName="Assets/Script/RootSpawnManager.cs" Line="199" Column="41" />
       <File FileName="Assets/Script/RootGameManager.cs" Line="147" Column="33" />
-      <File FileName="Assets/Script/spawn.cs" Line="89" Column="6" />
-      <File FileName="Assets/Script/Clicked.cs" Line="15" Column="47" />
+      <File FileName="Assets/Script/spawn.cs" Line="51" Column="72" />
+      <File FileName="Assets/Script/Clicked.cs" Line="33" Column="10" />
       <File FileName="Assets/Script/Timer.cs" Line="11" Column="34" />
       <File FileName="Assets/Script/MoveMove.cs" Line="16" Column="9" />
       <File FileName="Assets/Script/FPScounter.cs" Line="14" Column="1" />

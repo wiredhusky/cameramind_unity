@@ -9,6 +9,7 @@ public class RootSpawnManager : MonoBehaviour {
     public GameObject soomong_15;
     public GameObject soomong_colored;
     public GameObject cat;
+    public GameObject inGameUIBackground;
 
     AnimatorStateInfo currentBaseState;
 
@@ -158,6 +159,7 @@ public class RootSpawnManager : MonoBehaviour {
     public void setScale(GameObject spawnObj)
     {
         Vector3 temp;
+        float tempPos1;
 
         RectTransform rt;
 
@@ -170,12 +172,14 @@ public class RootSpawnManager : MonoBehaviour {
         Debug.Log("Height: " + temp.y);
 
         worldPos = Camera.main.ScreenToWorldPoint(temp);
+        tempPos1 = (140 * temp.x / 1080);
+        tempPos1 = tempPos1 / temp.y;
 
-        Debug.Log("WorldPos: " + worldPos);
+        tempPos1 = (worldPos.y * 2) * tempPos1;
 
         //set boundaries
         limitTop = worldPos.y - margin;
-        limitBottom = worldPos.y * -1.0f + margin + 1.6f;
+        limitBottom = worldPos.y * -1.0f + margin + tempPos1;
         limitLeft = worldPos.x * -1.0f + margin;
         limitRight = worldPos.x - margin;
 
