@@ -31,6 +31,16 @@ public class RootUIManager : MonoBehaviour {
     string lastTime;
     int time;
 
+    //highScore Text
+    public TextMeshProUGUI highScoreNormal, highScoreHorizontal, highScoreDouble, highScoreTwins, highScoreVertical, highScoreChaos,
+        highScoreDance, highScoreTemptation, highScoreTrack, highScoreTime, highScoreAlone, highScoreTriple;
+
+    //menu unlock or not    
+    public GameObject objNormal, objAlone, objChaos, objDance, objDouble, objHorizon, objVertical, objTemptation,
+        objTime, objTrack, objTriple, objTwins;
+    public GameObject unlockAlone, unlockChaos, unlockDance, unlockDouble, unlockHorizon, unlockVertical, unlockTemptation,
+        unlockTime, unlockTrack, unlockTriple, unlockTwins;
+
     public GameObject cat;
 
     Coroutine startCoroutineHint, startCoroutineRevive;    
@@ -80,6 +90,17 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetString("RevivePressedTime", null);
             PlayerPrefs.SetInt("LeftTimeHint", 30);
             PlayerPrefs.SetInt("LeftTimeRevive", 30);
+            PlayerPrefs.SetInt("unlockHorizontal", 0);
+            PlayerPrefs.SetInt("unlockVertical", 0);
+            PlayerPrefs.SetInt("unlockChaos", 0);
+            PlayerPrefs.SetInt("unlockDance", 0);
+            PlayerPrefs.SetInt("unlockTwins", 0);
+            PlayerPrefs.SetInt("unlockTemptation", 0);
+            PlayerPrefs.SetInt("unlockTrack", 0);
+            PlayerPrefs.SetInt("unlockDouble", 0);
+            PlayerPrefs.SetInt("unlockTime", 0);
+            PlayerPrefs.SetInt("unlockAlone", 0);
+            PlayerPrefs.SetInt("unlockTriple", 0);
             PlayerPrefs.Save();
         }
 
@@ -193,7 +214,11 @@ public class RootUIManager : MonoBehaviour {
     }
 
     public void InitScene(){
-        
+
+        int highScore;
+        int chkUnlock;
+
+        //related to Hint Button
         hintCount = PlayerPrefs.GetInt("Hint");
         reviveCount = PlayerPrefs.GetInt("Revive");
         hintCountText.text = "x " + hintCount.ToString();
@@ -202,6 +227,73 @@ public class RootUIManager : MonoBehaviour {
         {
             hintBtnObj.SetActive(false);
             getHintBtnObj.SetActive(true);            
+        }
+
+        //it's about recording HighScore
+        highScore = PlayerPrefs.GetInt("HighScoreNormal");
+        highScoreNormal.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreAlone");
+        highScoreAlone.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreChaos");
+        highScoreChaos.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreDance");
+        highScoreDance.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreDouble");
+        highScoreDouble.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreHorizon");
+        highScoreHorizontal.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreVertical");
+        highScoreVertical.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreTemptation");
+        highScoreTemptation.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreTimeAttack");
+        highScoreTime.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreTrack");
+        highScoreTrack.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreTriple");
+        highScoreTriple.text = "High Score: " + highScore;
+        highScore = PlayerPrefs.GetInt("HighScoreTwins");
+        highScoreTwins.text = "High Score: " + highScore;
+
+        //Alone unlock or not
+        chkUnlock = PlayerPrefs.GetInt("unlockAlone");
+        if(chkUnlock == 0)
+        {
+            unlockAlone.SetActive(true);
+        }
+        else
+        {
+            objAlone.SetActive(true);
+        }
+        //Chaos unlock or not
+        chkUnlock = PlayerPrefs.GetInt("unlockChoas");
+        if (chkUnlock == 0)
+        {
+            unlockChaos.SetActive(true);
+        }
+        else
+        {
+            objChaos.SetActive(true);
+        }
+        //Dance
+        chkUnlock = PlayerPrefs.GetInt("unlockDance");
+        if (chkUnlock == 0)
+        {
+            unlockDance.SetActive(true);
+        }
+        else
+        {
+            objDance.SetActive(true);
+        }
+        //Double
+        chkUnlock = PlayerPrefs.GetInt("unlockDouble");
+        if (chkUnlock == 0)
+        {
+            unlockDouble.SetActive(true);
+        }
+        else
+        {
+            objDouble.SetActive(true);
         }
     }
 
@@ -259,46 +351,57 @@ public class RootUIManager : MonoBehaviour {
                 case "Normal":
                     PlayerPrefs.SetInt("HighScoreNormal", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreNormal.text = "High Score: " + curHighScore;
                     break;
                 case "Double":
                     PlayerPrefs.SetInt("HighScoreDouble", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreDouble.text = "High Score: " + curHighScore;
                     break;
                 case "Flip Horizon":
                     PlayerPrefs.SetInt("HighScoreHorizon", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreHorizontal.text = "High Score: " + curHighScore;
                     break;
                 case "Temptation":
                     PlayerPrefs.SetInt("HighScoreTemptation", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreTemptation.text = "High Score: " + curHighScore;
                     break;
                 case "Twins":
                     PlayerPrefs.SetInt("HighScoreTwins", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreTwins.text = "High Score: " + curHighScore;
                     break;
                 case "Triple":
                     PlayerPrefs.SetInt("HighScoreTriple", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreTriple.text = "High Score: " + curHighScore;
                     break;
                 case "Flip Vertical":
                     PlayerPrefs.SetInt("HighScoreVertical", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreVertical.text = "High Score: " + curHighScore;
                     break;
                 case "Alone":
-                    PlayerPrefs.GetInt("HighScoreAlone", curHighScore);
+                    PlayerPrefs.SetInt("HighScoreAlone", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreAlone.text = "High Score: " + curHighScore;
                     break;
                 case "Track":
-                    PlayerPrefs.GetInt("HighScoreTrack", curHighScore);
+                    PlayerPrefs.SetInt("HighScoreTrack", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreTrack.text = "High Score: " + curHighScore;
                     break;
                 case "Chaos":
-                    PlayerPrefs.GetInt("HighScoreChaos", curHighScore);
+                    PlayerPrefs.SetInt("HighScoreChaos", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreChaos.text = "High Score: " + curHighScore;
                     break;
                 case "Time Attack":
-                    PlayerPrefs.GetInt("HighScoreTimeAttack", curHighScore);
+                    PlayerPrefs.SetInt("HighScoreTimeAttack", curHighScore);
                     PlayerPrefs.Save();
+                    highScoreTime.text = "High Score: " + curHighScore;
                     break;
             }
             return true;
