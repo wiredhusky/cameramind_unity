@@ -30,10 +30,10 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
-1c4382ee34c15fb2ceca7d99bff4c566 Assembly-CSharp.dll:.RootSpawnManager
+6d32c729fe6800dad1c32b70bf94220a Assembly-CSharp.dll:.RootSpawnManager
 f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
-49dd2b56ea58cc191b20219f05d65758 Assembly-CSharp.dll:.InGameManager
+7461023fb5be5bfa49c6cc481eb4dcc9 Assembly-CSharp.dll:.InGameManager
 2a468dc8956a50f570aa47a3c347a541 Assembly-CSharp.dll:.RootGameManager
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:TMPro.TMP_PhoneNumberValidator
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PauseGameOver
@@ -198,7 +198,7 @@ d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-109bfec6c33e2137dc695ca0aed2d1b4 Assembly-CSharp.dll:.RootUIManager
+0407cee64b9c4763edf85f7636f3402a Assembly-CSharp.dll:.RootUIManager
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 9c4eb4ec0fc11a711fdc1c8f1117255c Assembly-CSharp.dll:TMPro.Examples.Benchmark01_UGUI
 1b19a590a02b791cf7c287970cfab801 Assembly-CSharp.dll:TMPro.Examples.SkewTextExample
