@@ -41,6 +41,9 @@ public class InGameManager : MonoBehaviour {
 
     AnimatorStateInfo currentBaseState;
 
+    //unlock Level
+    int unlockLevel;
+
     //int case0, case1, case2, case3, case4;
 
     private void Awake()
@@ -56,14 +59,38 @@ public class InGameManager : MonoBehaviour {
         CountLevel();
         switch (sceneName)
         {
+            case "Normal":
+                unlockLevel = 15;
+                break;
+            case "Flip Horizon":
+                unlockLevel = 17;
+                break;
+            case "Flip Vertical":
+                break;
+            case "Chaos":
+                break;
             case "DanceDance":
                 DanceTime.SetActive(true);
+                break;
+            case "Twins":
+                break;
+            case "Temptation":
+                break;
+            case "Track":
+                break;
+            case "Double":
+                break;
+            case "Time Attack":
+                break;
+            case "Alone":
+                break;
+            case "Triple":
                 break;
             default:
                 LevelTransitionPanel.SetActive(true);
                 break;
         }
-        index_dance = 4;        
+        index_dance = 4;
     }
 
     public void CountLevel()

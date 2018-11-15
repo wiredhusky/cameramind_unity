@@ -36,7 +36,7 @@ public class RootUIManager : MonoBehaviour {
         highScoreDance, highScoreTemptation, highScoreTrack, highScoreTime, highScoreAlone, highScoreTriple;
 
     //menu unlock or not    
-    public GameObject objNormal, objAlone, objChaos, objDance, objDouble, objHorizon, objVertical, objTemptation,
+    public GameObject objAlone, objChaos, objDance, objDouble, objHorizon, objVertical, objTemptation,
         objTime, objTrack, objTriple, objTwins;
     public GameObject unlockAlone, unlockChaos, unlockDance, unlockDouble, unlockHorizon, unlockVertical, unlockTemptation,
         unlockTime, unlockTrack, unlockTriple, unlockTwins;
@@ -257,43 +257,80 @@ public class RootUIManager : MonoBehaviour {
 
         //Alone unlock or not
         chkUnlock = PlayerPrefs.GetInt("unlockAlone");
-        if(chkUnlock == 0)
+        if(chkUnlock == 1)
         {
-            unlockAlone.SetActive(true);
-        }
-        else
-        {
+            unlockAlone.SetActive(false);
             objAlone.SetActive(true);
         }
         //Chaos unlock or not
         chkUnlock = PlayerPrefs.GetInt("unlockChoas");
-        if (chkUnlock == 0)
+        if (chkUnlock == 1)
         {
-            unlockChaos.SetActive(true);
-        }
-        else
-        {
+            unlockChaos.SetActive(false);
             objChaos.SetActive(true);
         }
         //Dance
         chkUnlock = PlayerPrefs.GetInt("unlockDance");
-        if (chkUnlock == 0)
+        if (chkUnlock == 1)
         {
-            unlockDance.SetActive(true);
-        }
-        else
-        {
+            unlockDance.SetActive(false);
             objDance.SetActive(true);
         }
         //Double
         chkUnlock = PlayerPrefs.GetInt("unlockDouble");
-        if (chkUnlock == 0)
+        if (chkUnlock == 1)
         {
-            unlockDouble.SetActive(true);
-        }
-        else
-        {
+            unlockDouble.SetActive(false);
             objDouble.SetActive(true);
+        }
+        //Horizon
+        chkUnlock = PlayerPrefs.GetInt("unlockHorizontal");
+        if (chkUnlock == 1)
+        {
+            unlockHorizon.SetActive(false);
+            objHorizon.SetActive(true);
+        }
+        //Vertical
+        chkUnlock = PlayerPrefs.GetInt("unlockVertical");
+        if (chkUnlock == 1)
+        {
+            unlockVertical.SetActive(false);
+            objVertical.SetActive(true);
+        }
+        //Temptation
+        chkUnlock = PlayerPrefs.GetInt("unlockTemptation");
+        if (chkUnlock == 1)
+        {
+            unlockTemptation.SetActive(false);
+            objTemptation.SetActive(true);
+        }
+        //Time
+        chkUnlock = PlayerPrefs.GetInt("unlockTime");
+        if (chkUnlock == 1)
+        {
+            unlockTime.SetActive(false);
+            objTime.SetActive(true);
+        }
+        //Track
+        chkUnlock = PlayerPrefs.GetInt("unlockTrack");
+        if (chkUnlock == 1)
+        {
+            unlockTrack.SetActive(false);
+            objTrack.SetActive(true);
+        }
+        //Triple
+        chkUnlock = PlayerPrefs.GetInt("unlockTriple");
+        if (chkUnlock == 1)
+        {
+            unlockTriple.SetActive(false);
+            objTriple.SetActive(true);
+        }
+        //Twins
+        chkUnlock = PlayerPrefs.GetInt("unlockTwins");
+        if (chkUnlock == 1)
+        {
+            unlockTwins.SetActive(false);
+            objTwins.SetActive(true);
         }
     }
 
