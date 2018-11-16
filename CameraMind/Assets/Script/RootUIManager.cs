@@ -99,8 +99,8 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetInt("unlockTrack", 0);
             PlayerPrefs.SetInt("unlockDouble", 0);
             PlayerPrefs.SetInt("unlockTime", 0);
-            PlayerPrefs.SetInt("unlockAlone", 0);
-            PlayerPrefs.SetInt("unlockTriple", 0);
+            PlayerPrefs.SetInt("unlockAlone", 0);            
+            PlayerPrefs.SetInt("unlockTriple", 1);
             PlayerPrefs.Save();
         }
 

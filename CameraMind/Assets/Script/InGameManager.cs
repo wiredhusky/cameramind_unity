@@ -15,6 +15,7 @@ public class InGameManager : MonoBehaviour {
     //public List<Renderer> rendererList = new List<Renderer>();
     public GameObject LevelTransitionPanel;
     public GameObject DanceTime;
+    public GameObject unlockedObj;
 
     public delegate void GoToIdle();
     public event GoToIdle goIdle;
@@ -36,13 +37,15 @@ public class InGameManager : MonoBehaviour {
 
     public bool turnChk = true;
     public bool trackComplete = false;
-
+    
     public GameObject soomong_colored;
 
     AnimatorStateInfo currentBaseState;
 
     //unlock Level
     int unlockLevel;
+
+    int chkUnlock;
 
     //int case0, case1, case2, case3, case4;
 
@@ -60,37 +63,172 @@ public class InGameManager : MonoBehaviour {
         switch (sceneName)
         {
             case "Normal":
-                unlockLevel = 15;
-                break;
-            case "Flip Horizon":
-                unlockLevel = 17;
-                break;
+                chkUnlock = PlayerPrefs.GetInt("unlockHorizontal");
+                Debug.Log("unlock: " + chkUnlock);
+                unlockLevel = 11;
+                LevelTransitionPanel.SetActive(true);
+                break;            
             case "Flip Vertical":
+                chkUnlock = PlayerPrefs.GetInt("unlockTime");                
+                unlockLevel = 21;
+                LevelTransitionPanel.SetActive(true);
                 break;
             case "Chaos":
+                chkUnlock = PlayerPrefs.GetInt("unlockDance");                
+                unlockLevel = 31;
+                LevelTransitionPanel.SetActive(true);
                 break;
             case "DanceDance":
+                chkUnlock = PlayerPrefs.GetInt("unlockAlone");                
+                unlockLevel = 16;
                 DanceTime.SetActive(true);
                 break;
             case "Twins":
-                break;
-            case "Temptation":
-                break;
-            case "Track":
-                break;
-            case "Double":
-                break;
-            case "Time Attack":
-                break;
-            case "Alone":
-                break;
-            case "Triple":
-                break;
-            default:
+                chkUnlock = PlayerPrefs.GetInt("unlockVertical");                
+                unlockLevel = 18;
                 LevelTransitionPanel.SetActive(true);
                 break;
-        }
-        index_dance = 4;
+            case "Temptation":
+                chkUnlock = PlayerPrefs.GetInt("unlockTrack");                
+                unlockLevel = 28;
+                LevelTransitionPanel.SetActive(true);
+                break;
+            case "Track":
+                chkUnlock = PlayerPrefs.GetInt("unlockChaos");                
+                unlockLevel = 21;
+                LevelTransitionPanel.SetActive(true);
+                break;            
+            case "Time Attack":
+                chkUnlock = PlayerPrefs.GetInt("unlockTemptation");                
+                unlockLevel = 26;
+                LevelTransitionPanel.SetActive(true);
+                break;
+            case "Alone":
+                chkUnlock = PlayerPrefs.GetInt("unlockTriple");                
+                unlockLevel = 31;
+                LevelTransitionPanel.SetActive(true);
+                break;
+            case "Triple": // last stage
+                chkUnlock = 1;
+                unlockLevel = 26;
+                LevelTransitionPanel.SetActive(true);
+                break;
+            case "Double":
+                chkUnlock = PlayerPrefs.GetInt("unlockTwins");                
+                unlockLevel = 16;
+                LevelTransitionPanel.SetActive(true);
+                break;
+            case "Horizon":
+                chkUnlock = PlayerPrefs.GetInt("unlockDouble");                
+                unlockLevel = 16;
+                LevelTransitionPanel.SetActive(true);
+                break;
+        }        
+    }
+
+    public void chkUnlockStage()
+    {
+        if(chkUnlock == 0)
+        {
+            Debug.Log("HERE");
+            if (index >= unlockLevel)
+            {
+                switch (sceneName)
+                {
+                    case "Normal":
+                        Debug.Log("HERE");
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockHorizontal", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objHorizon.SetActive(true);
+                        RootUIManager.rootUIManager.unlockHorizon.SetActive(false);
+                        break;
+                    case "Flip Vertical":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTime", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objTime.SetActive(true);
+                        RootUIManager.rootUIManager.unlockTime.SetActive(false);
+                        break;
+                    case "Chaos":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockDance", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objDance.SetActive(true);
+                        RootUIManager.rootUIManager.unlockDance.SetActive(false);
+                        break;
+                    case "DanceDance":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockAlone", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objAlone.SetActive(true);
+                        RootUIManager.rootUIManager.unlockAlone.SetActive(false);
+                        break;
+                    case "Twins":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockVertical", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objVertical.SetActive(true);
+                        RootUIManager.rootUIManager.unlockVertical.SetActive(false);
+                        break;
+                    case "Temptation":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTrack", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objTrack.SetActive(true);
+                        RootUIManager.rootUIManager.unlockTrack.SetActive(false);
+                        break;
+                    case "Track":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockChaos", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objChaos.SetActive(true);
+                        RootUIManager.rootUIManager.unlockChaos.SetActive(false);
+                        break;
+                    case "Time Attack":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTemptation", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objTemptation.SetActive(true);
+                        RootUIManager.rootUIManager.unlockTemptation.SetActive(false);
+                        break;
+                    case "Alone":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTriple", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objTriple.SetActive(true);
+                        RootUIManager.rootUIManager.unlockTriple.SetActive(false);
+                        break;
+                    case "Triple":                        
+                        break;
+                    case "Double":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTwins", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objTwins.SetActive(true);
+                        RootUIManager.rootUIManager.unlockTwins.SetActive(false);
+                        break;
+                    case "Horizon":
+                        chkUnlock = 1;
+                        unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockDouble", 1);
+                        PlayerPrefs.Save();
+                        RootUIManager.rootUIManager.objDouble.SetActive(true);
+                        RootUIManager.rootUIManager.unlockDouble.SetActive(false);
+                        break;
+                }
+            }
+        }        
     }
 
     public void CountLevel()

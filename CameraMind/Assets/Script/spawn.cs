@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 public class spawn : MonoBehaviour {
     
     public MoveMove move;    
-    public Animator animator;    
+    public Animator animator;
+
+    private void Start()
+    {
+        InGameManager.inGameManager.chkUnlockStage();
+    }
 
     void objCreator(){
         RootSpawnManager.rootSpawnManager.objCreator();
@@ -76,7 +81,6 @@ public class spawn : MonoBehaviour {
             //RootUIManager.rootUIManager.background.SetActive(true);
             animator.speed = 1;
         }        
-
         RootUIManager.rootUIManager.ActiveUI();
     }
 
@@ -121,6 +125,7 @@ public class spawn : MonoBehaviour {
 
     public void SetObj()
     {
+        InGameManager.inGameManager.unlockedObj.SetActive(false);
         gameObject.SetActive(false);
     }
 
