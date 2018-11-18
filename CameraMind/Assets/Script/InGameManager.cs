@@ -44,7 +44,7 @@ public class InGameManager : MonoBehaviour {
 
     //unlock Level
     int unlockLevel;
-
+    public bool unlockEvent = false;
     int chkUnlock;
 
     //int case0, case1, case2, case3, case4;
@@ -65,65 +65,66 @@ public class InGameManager : MonoBehaviour {
             case "Normal":
                 chkUnlock = PlayerPrefs.GetInt("unlockHorizontal");
                 Debug.Log("unlock: " + chkUnlock);
-                unlockLevel = 11;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;            
             case "Flip Vertical":
                 chkUnlock = PlayerPrefs.GetInt("unlockTime");                
-                unlockLevel = 21;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
             case "Chaos":
                 chkUnlock = PlayerPrefs.GetInt("unlockDance");                
-                unlockLevel = 31;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
             case "DanceDance":
                 chkUnlock = PlayerPrefs.GetInt("unlockAlone");                
-                unlockLevel = 16;
+                unlockLevel = 5;
                 DanceTime.SetActive(true);
                 break;
             case "Twins":
                 chkUnlock = PlayerPrefs.GetInt("unlockVertical");                
-                unlockLevel = 18;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
             case "Temptation":
                 chkUnlock = PlayerPrefs.GetInt("unlockTrack");                
-                unlockLevel = 28;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
             case "Track":
                 chkUnlock = PlayerPrefs.GetInt("unlockChaos");                
-                unlockLevel = 21;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;            
             case "Time Attack":
                 chkUnlock = PlayerPrefs.GetInt("unlockTemptation");                
-                unlockLevel = 26;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
             case "Alone":
                 chkUnlock = PlayerPrefs.GetInt("unlockTriple");                
-                unlockLevel = 31;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
             case "Triple": // last stage
                 chkUnlock = 1;
-                unlockLevel = 26;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
             case "Double":
                 chkUnlock = PlayerPrefs.GetInt("unlockTwins");                
-                unlockLevel = 16;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
-            case "Horizon":
+            case "Flip Horizon":
                 chkUnlock = PlayerPrefs.GetInt("unlockDouble");                
-                unlockLevel = 16;
+                unlockLevel = 5;
                 LevelTransitionPanel.SetActive(true);
                 break;
-        }        
+        }
+        Debug.Log("unlock or not: " + chkUnlock);
     }
 
     public void chkUnlockStage()
@@ -131,18 +132,20 @@ public class InGameManager : MonoBehaviour {
         if(chkUnlock == 0)
         {
             Debug.Log("HERE");
+            Debug.Log("Index: " + index);
+            Debug.Log("unlockLevel: " + unlockLevel);
             if (index >= unlockLevel)
             {
                 switch (sceneName)
                 {
                     case "Normal":
-                        Debug.Log("HERE");
                         chkUnlock = 1;
                         unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockHorizontal", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objHorizon.SetActive(true);
                         RootUIManager.rootUIManager.unlockHorizon.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Flip Vertical":
                         chkUnlock = 1;
@@ -151,6 +154,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTime.SetActive(true);
                         RootUIManager.rootUIManager.unlockTime.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Chaos":
                         chkUnlock = 1;
@@ -159,6 +163,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objDance.SetActive(true);
                         RootUIManager.rootUIManager.unlockDance.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "DanceDance":
                         chkUnlock = 1;
@@ -167,6 +172,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objAlone.SetActive(true);
                         RootUIManager.rootUIManager.unlockAlone.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Twins":
                         chkUnlock = 1;
@@ -175,6 +181,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objVertical.SetActive(true);
                         RootUIManager.rootUIManager.unlockVertical.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Temptation":
                         chkUnlock = 1;
@@ -183,6 +190,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTrack.SetActive(true);
                         RootUIManager.rootUIManager.unlockTrack.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Track":
                         chkUnlock = 1;
@@ -191,6 +199,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objChaos.SetActive(true);
                         RootUIManager.rootUIManager.unlockChaos.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Time Attack":
                         chkUnlock = 1;
@@ -199,6 +208,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTemptation.SetActive(true);
                         RootUIManager.rootUIManager.unlockTemptation.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Alone":
                         chkUnlock = 1;
@@ -207,6 +217,7 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTriple.SetActive(true);
                         RootUIManager.rootUIManager.unlockTriple.SetActive(false);
+                        unlockEvent = true;
                         break;
                     case "Triple":                        
                         break;
@@ -217,14 +228,16 @@ public class InGameManager : MonoBehaviour {
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTwins.SetActive(true);
                         RootUIManager.rootUIManager.unlockTwins.SetActive(false);
+                        unlockEvent = true;
                         break;
-                    case "Horizon":
+                    case "Flip Horizon":
                         chkUnlock = 1;
                         unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockDouble", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objDouble.SetActive(true);
                         RootUIManager.rootUIManager.unlockDouble.SetActive(false);
+                        unlockEvent = true;
                         break;
                 }
             }

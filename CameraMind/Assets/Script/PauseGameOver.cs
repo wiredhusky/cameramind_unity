@@ -12,6 +12,7 @@ public class PauseGameOver : MonoBehaviour {
 
     void DeactiveMyself(){
         RootUIManager.rootUIManager.clicked = false;
+        RootUIManager.rootUIManager.gameOverUnlockObj.SetActive(false);
         gameObject.SetActive(false);
     }
 

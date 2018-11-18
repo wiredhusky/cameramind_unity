@@ -7,12 +7,7 @@ public class spawn : MonoBehaviour {
     
     public MoveMove move;    
     public Animator animator;
-
-    private void Start()
-    {
-        InGameManager.inGameManager.chkUnlockStage();
-    }
-
+    
     void objCreator(){
         RootSpawnManager.rootSpawnManager.objCreator();
     }

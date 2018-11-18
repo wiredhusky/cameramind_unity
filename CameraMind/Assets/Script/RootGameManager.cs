@@ -41,7 +41,6 @@ public class RootGameManager : MonoBehaviour {
                 if (ComparePos(_objPos))
                 {
                     InGameManager.inGameManager.index++;
-                    Debug.Log(InGameManager.inGameManager.index);
                     DoTransition(0);
                 }
                 else
@@ -316,6 +315,8 @@ public class RootGameManager : MonoBehaviour {
         {
             case 0: // InGameManager.inGameManager Transition
                 InGameManager.inGameManager.CountLevel();
+                //new stage is unlocked
+                InGameManager.inGameManager.chkUnlockStage();
                 InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
                 break;
             case 1:

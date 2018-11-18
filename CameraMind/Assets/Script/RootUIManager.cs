@@ -50,7 +50,10 @@ public class RootUIManager : MonoBehaviour {
     public GameObject hintBtnObj, getHintBtnObj;
 
     //protect double click
-    public bool clicked;    
+    public bool clicked;
+
+    public GameObject gameOverUnlockImg, gameOverUnlockObj;
+    Image unlockImg;
 
     System.DateTime lastDateTime;
     System.TimeSpan compareTime;
@@ -100,7 +103,7 @@ public class RootUIManager : MonoBehaviour {
             PlayerPrefs.SetInt("unlockDouble", 0);
             PlayerPrefs.SetInt("unlockTime", 0);
             PlayerPrefs.SetInt("unlockAlone", 0);            
-            PlayerPrefs.SetInt("unlockTriple", 1);
+            PlayerPrefs.SetInt("unlockTriple", 0);
             PlayerPrefs.Save();
         }
 
@@ -152,7 +155,8 @@ public class RootUIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
         clicked = false;
-        InitScene();        
+        InitScene();
+        unlockImg = gameOverUnlockImg.GetComponent<Image>();
     }
 
     IEnumerator GetReviveCounter(int totalSec)
@@ -217,6 +221,7 @@ public class RootUIManager : MonoBehaviour {
 
         int highScore;
         int chkUnlock;
+        PlayerPrefs.SetInt("unlockTriple", 0);
 
         //related to Hint Button
         hintCount = PlayerPrefs.GetInt("Hint");
@@ -263,7 +268,7 @@ public class RootUIManager : MonoBehaviour {
             objAlone.SetActive(true);
         }
         //Chaos unlock or not
-        chkUnlock = PlayerPrefs.GetInt("unlockChoas");
+        chkUnlock = PlayerPrefs.GetInt("unlockChaos");
         if (chkUnlock == 1)
         {
             unlockChaos.SetActive(false);
@@ -336,6 +341,7 @@ public class RootUIManager : MonoBehaviour {
 
     public void ActivePauseGameOver(int type, int index)
     {
+        string objName;
         if (!clicked)
         {
             clicked = true;
@@ -372,6 +378,15 @@ public class RootUIManager : MonoBehaviour {
                         reviveBtnObj.SetActive(true);
                         getReviveBtnObj.SetActive(false);
                     }
+
+                    if (InGameManager.inGameManager.unlockEvent)
+                    {
+                        gameOverUnlockObj.SetActive(true);
+                        objName = "img/" + sceneName;
+                        unlockImg.sprite = Resources.Load<Sprite>(objName);
+                        InGameManager.inGameManager.unlockEvent = false;
+                    }
+                    
                     gamePanel.SetActive(true);
                     break;
             }
