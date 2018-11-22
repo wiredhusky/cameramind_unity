@@ -31,6 +31,9 @@ public class RootUIManager : MonoBehaviour {
     string lastTime;
     int time;
 
+    //tutorial
+    public GameObject tutorialBackground, tutorialObj, popUpPanel;    
+
     //highScore Text
     public TextMeshProUGUI highScoreNormal, highScoreHorizontal, highScoreDouble, highScoreTwins, highScoreVertical, highScoreChaos,
         highScoreDance, highScoreTemptation, highScoreTrack, highScoreTime, highScoreAlone, highScoreTriple;
@@ -845,6 +848,25 @@ public class RootUIManager : MonoBehaviour {
                 {
                     InGameManager.inGameManager.animatorList[i].SetTrigger("cat_move");
                 }
+                break;
+        }
+    }
+
+    public void Tutorial()
+    {
+        Image tutorialimg;
+        string tutorialName;
+        tutorialName = EventSystem.current.currentSelectedGameObject.name;
+        switch (tutorialName)
+        {
+            case "NormalTuto":                
+                tutorialimg = tutorialBackground.GetComponent<Image>();
+                tutorialimg.sprite = Resources.Load<Sprite>("img/background2");
+                tutorialimg = tutorialObj.GetComponent<Image>();
+                tutorialimg.sprite = Resources.Load<Sprite>("img/boy");
+                popUpPanel.SetActive(true);
+                break;                
+            default:
                 break;
         }
     }
