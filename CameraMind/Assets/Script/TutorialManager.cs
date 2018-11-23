@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour {
 
     public void DeactiveMyself()
     {
+        RootUIManager.rootUIManager.popUpPanel.transform.Find(RootUIManager.rootUIManager.tutorialName).gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 

@@ -32,7 +32,9 @@ public class RootUIManager : MonoBehaviour {
     int time;
 
     //tutorial
-    public GameObject tutorialBackground, tutorialObj, popUpPanel;    
+    public GameObject tutorialBackground, tutorialObj, popUpPanel;
+    public string tutorialName;
+    public Image tutorialImg;
 
     //highScore Text
     public TextMeshProUGUI highScoreNormal, highScoreHorizontal, highScoreDouble, highScoreTwins, highScoreVertical, highScoreChaos,
@@ -160,6 +162,7 @@ public class RootUIManager : MonoBehaviour {
         clicked = false;
         InitScene();
         unlockImg = gameOverUnlockImg.GetComponent<Image>();
+        tutorialImg = tutorialObj.GetComponent<Image>();
     }
 
     IEnumerator GetReviveCounter(int totalSec)
@@ -814,60 +817,81 @@ public class RootUIManager : MonoBehaviour {
             Timer.timerControl.animator.speed = 0;
         }
         ActivePauseGameOver(0, InGameManager.inGameManager.index);
-    }
-
-    public void AniTest(){
-        string btnName2;
-        btnName2 = EventSystem.current.currentSelectedGameObject.name;
-        switch(btnName2){
-            case "Sit":
-                for (int i = 0; i < 4;i++){
-                    InGameManager.inGameManager.animatorList[i].SetTrigger("GameOver");
-                }
-                break;
-            case "TailDown":
-                for (int i = 0; i < 4; i++)
-                {
-                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_tail_down");
-                }
-                break;
-            case "LegUp":
-                for (int i = 0; i < 4; i++)
-                {
-                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_leg_up");
-                }
-                break;
-            case "idle":
-                for (int i = 0; i < 4; i++)
-                {
-                    InGameManager.inGameManager.animatorList[i].SetTrigger("Origin");
-                }
-                break;
-            case "move":
-                for (int i = 0; i < 4; i++)
-                {
-                    InGameManager.inGameManager.animatorList[i].SetTrigger("cat_move");
-                }
-                break;
-        }
-    }
+    }    
 
     public void Tutorial()
     {
-        Image tutorialimg;
-        string tutorialName;
-        tutorialName = EventSystem.current.currentSelectedGameObject.name;
+        //Image tutorialImg;          
+        tutorialName = EventSystem.current.currentSelectedGameObject.name;        
+        Debug.Log(tutorialName);
+        popUpPanel.transform.Find(tutorialName).gameObject.SetActive(true);
         switch (tutorialName)
         {
-            case "NormalTuto":                
-                tutorialimg = tutorialBackground.GetComponent<Image>();
-                tutorialimg.sprite = Resources.Load<Sprite>("img/background2");
-                tutorialimg = tutorialObj.GetComponent<Image>();
-                tutorialimg.sprite = Resources.Load<Sprite>("img/boy");
-                popUpPanel.SetActive(true);
-                break;                
+            case "NormalTuto":                                
+                //tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                //tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Boy");
+                break;
+            case "FlipHorizonTuto":
+                Debug.Log("FlipHorizon");
+                //tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                //tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Normal");
+                break;
+            case "DoubleTuto":
+                Debug.Log("DoubleTuto");
+                //tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                //tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Flip Horizon");
+                break;
+            case "TwinsTuto":
+                tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Double");
+                break;
+            case "FlipVerticalTuto":
+                tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Twins");
+                break;
+            case "TimeAttackTuto":
+                tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Flip Vertical");
+                break;
+            case "TemptationTuto":
+                tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Time Attack");
+                break;
+            case "TrackTuto":
+                tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Temptation");
+                break;
+            case "ChaosTuto":
+                tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Track");
+                break;
+            case "DanceDanceTuto":
+                tutorialImg = tutorialBackground.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
+                tutorialImg = tutorialObj.GetComponent<Image>();
+                tutorialImg.sprite = Resources.Load<Sprite>("img/Chaos");
+                break;
             default:
                 break;
         }
+        popUpPanel.SetActive(true);        
     }
 }
