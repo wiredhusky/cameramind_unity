@@ -825,13 +825,16 @@ public class RootUIManager : MonoBehaviour {
         tutorialName = EventSystem.current.currentSelectedGameObject.name;        
         Debug.Log(tutorialName);
         popUpPanel.transform.Find(tutorialName).gameObject.SetActive(true);
+        /*
         switch (tutorialName)
         {
-            case "NormalTuto":                                
+            case "NormalTuto":
+                
                 //tutorialImg = tutorialBackground.GetComponent<Image>();
                 tutorialImg.sprite = Resources.Load<Sprite>("img/background");
                 //tutorialImg = tutorialObj.GetComponent<Image>();
                 tutorialImg.sprite = Resources.Load<Sprite>("img/Boy");
+                //ImageChanger.imageChanger.ChangeImage();                
                 break;
             case "FlipHorizonTuto":
                 Debug.Log("FlipHorizon");
@@ -891,7 +894,7 @@ public class RootUIManager : MonoBehaviour {
                 break;
             default:
                 break;
-        }
+        }*/
         popUpPanel.SetActive(true);        
     }
 }
