@@ -32,9 +32,10 @@ public class RootUIManager : MonoBehaviour {
     int time;
 
     //tutorial
-    public GameObject tutorialBackground, tutorialObj, popUpPanel;
+    //public GameObject tutorialBackground, tutorialObj, popUpPanel;
+    public GameObject popUpPanel;
     public string tutorialName;
-    public Image tutorialImg;
+    //public Image tutorialImg;
 
     //highScore Text
     public TextMeshProUGUI highScoreNormal, highScoreHorizontal, highScoreDouble, highScoreTwins, highScoreVertical, highScoreChaos,
@@ -162,7 +163,7 @@ public class RootUIManager : MonoBehaviour {
         clicked = false;
         InitScene();
         unlockImg = gameOverUnlockImg.GetComponent<Image>();
-        tutorialImg = tutorialObj.GetComponent<Image>();
+        //tutorialImg = tutorialObj.GetComponent<Image>();
     }
 
     IEnumerator GetReviveCounter(int totalSec)
@@ -820,16 +821,14 @@ public class RootUIManager : MonoBehaviour {
     }    
 
     public void Tutorial()
-    {
-        //Image tutorialImg;          
+    {              
         tutorialName = EventSystem.current.currentSelectedGameObject.name;        
         Debug.Log(tutorialName);
         popUpPanel.transform.Find(tutorialName).gameObject.SetActive(true);
         /*
         switch (tutorialName)
         {
-            case "NormalTuto":
-                
+            case "NormalTuto":                
                 //tutorialImg = tutorialBackground.GetComponent<Image>();
                 tutorialImg.sprite = Resources.Load<Sprite>("img/background");
                 //tutorialImg = tutorialObj.GetComponent<Image>();

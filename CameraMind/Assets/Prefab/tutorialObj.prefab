@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224052171756685786}
   - component: {fileID: 222856161653825248}
   - component: {fileID: 114772366400077506}
-  - component: {fileID: 114183994839901048}
   m_Layer: 0
   m_Name: tutorialObj
   m_TagString: Untagged
@@ -29,17 +28,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114183994839901048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1218747546554986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ae72a65f9496d42a645e498487f764, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114772366400077506
 MonoBehaviour:
   m_ObjectHideFlags: 1
