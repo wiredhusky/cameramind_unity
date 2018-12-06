@@ -303,6 +303,16 @@ public class InGameManager : MonoBehaviour {
                 case "DanceDance":
                     currentBaseState = animatorList[index_dance_answer].GetCurrentAnimatorStateInfo(0);
                     break;
+                case "Twins":
+                    if (InGameManager.inGameManager.turnChk)
+                    {
+                        currentBaseState = animatorList[index_twins].GetCurrentAnimatorStateInfo(0);
+                    }
+                    else
+                    {
+                        currentBaseState = animatorList[index_twins+1].GetCurrentAnimatorStateInfo(0);
+                    }
+                    break;
                 default:
                     currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
                     break;

@@ -162,7 +162,7 @@ public class RootUIManager : MonoBehaviour {
         particle.SetActive(false);
         clicked = false;
         InitScene();
-        unlockImg = gameOverUnlockImg.GetComponent<Image>();
+        unlockImg = gameOverUnlockImg.GetComponent<Image>();        
         //tutorialImg = tutorialObj.GetComponent<Image>();
     }
 
@@ -462,6 +462,11 @@ public class RootUIManager : MonoBehaviour {
                     PlayerPrefs.Save();
                     highScoreTime.text = "High Score: " + curHighScore;
                     break;
+                case "DanceDance":
+                    PlayerPrefs.SetInt("HighScoreDance", curHighScore);
+                    PlayerPrefs.Save();
+                    highScoreTime.text = "High Score: " + curHighScore;
+                    break;
             }
             return true;
         }
@@ -618,6 +623,17 @@ public class RootUIManager : MonoBehaviour {
                 Timer.timerControl.animator.speed = 0;
                 particle.SetActive(true);
                 particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
+                break;
+            case "Twins":
+                particle.SetActive(true);
+                if (InGameManager.inGameManager.turnChk)
+                {
+                    particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins].transform.position;
+                }
+                else
+                {
+                    particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins+1].transform.position;
+                }                
                 break;
             case "DanceDance":
                 particle.SetActive(true);

@@ -156,6 +156,100 @@ public class RootSpawnManager : MonoBehaviour {
         Debug.Log("40: " + case4);
     }
 
+    public void InstantiateObjTwins(int index)
+    {
+        for (int i = 0; i < index; i++)
+        {
+            //Instantiate color or not
+            if(i % 2 == 0)
+            {
+                _obj = Instantiate(soomong_15) as GameObject;
+            }
+            else
+            {
+                _obj = Instantiate(soomong_colored) as GameObject;
+            }
+
+            switch (InGameManager.inGameManager.objType[i])
+            {
+                case 0:                    
+                    _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);                    
+                    break;
+                case 1:                                        
+                    _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    break;
+                case 2:
+                    _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    break;
+                case 3:
+                    _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    break;
+                case 4:
+                    _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    break;
+                case 5:
+                    _obj.transform.localScale = new Vector3(localScale_50, localScale_50, localScale_50);
+                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    InGameManager.inGameManager.obj.Add(_obj);
+                    animator = _obj.GetComponent<Animator>();
+                    InGameManager.inGameManager.animatorList.Add(animator);
+                    break;
+            }
+        }
+        Debug.Log("obj count: " + InGameManager.inGameManager.objType.Count);
+        case0 = 0;
+        case1 = 0;
+        case2 = 0;
+        case3 = 0;
+        case4 = 0;
+        for (int i = 0; i < InGameManager.inGameManager.objType.Count; i++)
+        {
+            switch (InGameManager.inGameManager.objType[i])
+            {
+                case 0:
+                    case0++;
+                    break;
+                case 1:
+                    case1++;
+                    break;
+                case 2:
+                    case2++;
+                    break;
+                case 3:
+                    case3++;
+                    break;
+                case 4:
+                    case4++;
+                    break;
+            }
+        }
+        Debug.Log("20: " + case0);
+        Debug.Log("25: " + case1);
+        Debug.Log("30: " + case2);
+        Debug.Log("35: " + case3);
+        Debug.Log("40: " + case4);
+    }
+
     public void setScale(GameObject spawnObj)
     {
         Vector3 temp;
@@ -426,6 +520,12 @@ public class RootSpawnManager : MonoBehaviour {
                 }
             }
         }
+        //if poslist.count is not even number make it even
+        if(posList.Count % 2 != 0)
+        {
+            posList.RemoveAt(posList.Count-1);
+            objType.RemoveAt(objType.Count-1);
+        }
     }
 
     public void objCreator()
@@ -556,7 +656,7 @@ public class RootSpawnManager : MonoBehaviour {
     public void SpawnObj_Alone()
     {
         //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
-        InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);        
     }
 
     public void SpawnObj_Flip()
@@ -581,8 +681,8 @@ public class RootSpawnManager : MonoBehaviour {
     {
         //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
         //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index+1].enabled = true;
-        InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
-        InGameManager.inGameManager.obj[InGameManager.inGameManager.index + 1].SetActive(true);
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins].SetActive(true);
+        InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins + 1].SetActive(true);
     }
 
     public Vector3 CenterPosCalculator(Vector3 objPos)
