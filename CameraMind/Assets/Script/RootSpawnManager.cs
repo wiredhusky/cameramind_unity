@@ -599,6 +599,7 @@ public class RootSpawnManager : MonoBehaviour {
         int randObj, randAni;
         string aniName = null;        
         randObj = Random.Range(0, InGameManager.inGameManager.index_dance);
+        Debug.Log("index: " + InGameManager.inGameManager.index_dance);
         //randObj = Random.Range(0, 3);
         //randObj = Random.Range(0, 3);
         randAni = Random.Range(0, 4);

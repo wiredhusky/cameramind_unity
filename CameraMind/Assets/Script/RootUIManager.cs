@@ -465,7 +465,7 @@ public class RootUIManager : MonoBehaviour {
                 case "DanceDance":
                     PlayerPrefs.SetInt("HighScoreDance", curHighScore);
                     PlayerPrefs.Save();
-                    highScoreTime.text = "High Score: " + curHighScore;
+                    highScoreDance.text = "High Score: " + curHighScore;
                     break;
             }
             return true;
@@ -692,7 +692,7 @@ public class RootUIManager : MonoBehaviour {
                     curHighScore = PlayerPrefs.GetInt("HighScoreTimeAttack");
                     break;
                 case "DanceDance":
-                    curHighScore = PlayerPrefs.GetInt("HighScoreDanceDance");
+                    curHighScore = PlayerPrefs.GetInt("HighScoreDance");
                     break;
             }
             //eventSystem.SetActive(false);

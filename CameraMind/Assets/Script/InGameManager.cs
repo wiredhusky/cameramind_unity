@@ -55,6 +55,7 @@ public class InGameManager : MonoBehaviour {
             inGameManager = this;
         }
         sceneName = RootUIManager.rootUIManager.sceneName;
+        index_dance = 4;
     }
 
     private void Start()
