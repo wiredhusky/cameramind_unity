@@ -441,6 +441,7 @@ public class RootSpawnManager : MonoBehaviour {
                         }
                     }
 
+                    //Compare position to current objects
                     for (int i2 = 0; i2 < posList.Count; i2++)
                     {
                         switch (objType[i2])

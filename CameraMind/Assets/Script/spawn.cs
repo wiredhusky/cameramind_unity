@@ -110,10 +110,10 @@ public class spawn : MonoBehaviour {
     {        
         Timer.timerControl.timer.SetActive(true);
         Timer.timerControl.timer.transform.position = Timer.timerControl.target;
-        Timer.timerControl.sec = 0;
-        Timer.timerControl.counter = 0;
-        Timer.timerControl.timerCounter.text = (3).ToString();
-        Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);        
+        //Timer.timerControl.sec = 0;
+        //Timer.timerControl.counter = 0;
+        //Timer.timerControl.timerCounter.text = (3).ToString();
+        Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);           
     }
 
     public void ActiveCollider()

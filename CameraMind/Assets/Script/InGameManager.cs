@@ -342,6 +342,7 @@ public class InGameManager : MonoBehaviour {
             }
         }
 
+        //In track mode transition after tapping animation is done
         if (trackComplete)
         {
             RootUIManager.rootUIManager.DeactiveUI();

@@ -273,29 +273,88 @@ public class RootGameManager : MonoBehaviour {
             case "SceneManager":
                 break;
             case "Track":
+                if(InGameManager.inGameManager.index_track >= InGameManager.inGameManager.posList.Count)
+                {
+                    DoTransition(2);
+                }
+                else
+                {
+                    DoTransition(0);
+                }                
+                break;
+            case "Twins":
+                if (InGameManager.inGameManager.index_twins >= InGameManager.inGameManager.posList.Count)
+                {
+                    DoTransition(2);
+                }
+                else
+                {
+                    DoTransition(0);
+                }
+                break;
+            case "Alone":
+                if (InGameManager.inGameManager.index_alone >= InGameManager.inGameManager.posList.Count)
+                {
+                    DoTransition(2);
+                }
+                else
+                {
+                    DoTransition(0);
+                }
+                break;
+            case "DanceDance":
+                if (InGameManager.inGameManager.index >= 31)
+                {
+                    DoTransition(2);
+                }
+                else
+                {
+                    DoTransition(0);
+                }                
+                break;
+            default: // normal, double, triple, vertical/horizontal flip, temptation
+                if (InGameManager.inGameManager.index >= InGameManager.inGameManager.posList.Count)
+                {
+                    DoTransition(2);
+                }
+                else
+                {
+                    DoTransition(0);
+                }
+                break;
+        }
+    }
+
+    void LevelComplete()
+    {
+        RootUIManager.rootUIManager.particle.SetActive(false);
+        switch (RootUIManager.rootUIManager.sceneName)
+        {
+            case "SceneManager":
+                break;
+            case "Track":
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_track].SetTrigger("gameOver");
                 break;
             case "Twins":
                 if (InGameManager.inGameManager.turnChk)
-                {   
+                {
                     InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins].SetTrigger("gameOver");
                 }
                 else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins+1].SetTrigger("gameOver");
+                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins + 1].SetTrigger("gameOver");
                 }
                 break;
             case "Alone":
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_alone].SetTrigger("gameOver");
                 break;
-            case "DanceDance":                                
+            case "DanceDance":
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_dance_answer].SetTrigger("gameOver");
                 break;
             default: // normal, double, triple, vertical/horizontal flip, temptation
                 InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
                 break;
         }
-        chkGameOver = true;
     }
 
     public void ChkClicked()
@@ -322,6 +381,8 @@ public class RootGameManager : MonoBehaviour {
             case 1:
                 //SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
                 RootUIManager.rootUIManager.ActivePauseGameOver(1, InGameManager.inGameManager.index);
+                break;
+            case 2:
                 break;
         }
     }

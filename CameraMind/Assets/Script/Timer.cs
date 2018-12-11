@@ -29,14 +29,17 @@ public class Timer : MonoBehaviour {
         target = timer.transform.position;        
         animator.speed = 0;
         counter = 0;
-        sec = 0;
+        sec = 12;
     }
 
     // Update is called once per frame
     void Update () {
         if (setTimer)
         {
-            sec += Time.deltaTime;            
+            sec -= Time.deltaTime;
+            //counter = (int)sec;
+            timerCounter.text = sec.ToString("N2");
+            /*
             counter = (int) sec % 3;
             switch (counter)
             {
@@ -58,13 +61,13 @@ public class Timer : MonoBehaviour {
             }
 
             timer.transform.Translate(Vector3.right*0.2f);
-            
-            if(sec >= 3)
+            */
+            if(sec <= 0)
             {
                 InGameManager.inGameManager.DeactiveHandler();
                 animator.speed = 0;
                 setTimer = false;
-                timerCounter.text = (0).ToString();
+                timerCounter.text = "Game Over";
                 RootUIManager.rootUIManager.DeactiveUI();
                 RootGameManager.rootGameManager.GameOver();                             
             }
