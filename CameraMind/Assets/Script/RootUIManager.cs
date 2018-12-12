@@ -58,8 +58,9 @@ public class RootUIManager : MonoBehaviour {
     //protect double click
     public bool clicked;
 
-    public GameObject gameOverUnlockImg, gameOverUnlockObj;
-    Image unlockImg;
+    public GameObject gameOverUnlockImg, gameOverUnlockObj, gameOverCatObj;
+    public TextMeshProUGUI talkingCat;
+    Image unlockImg; //공통으로 사용 talking cat이랑 unlock이랑
 
     System.DateTime lastDateTime;
     System.TimeSpan compareTime;
@@ -396,7 +397,19 @@ public class RootUIManager : MonoBehaviour {
                     gamePanel.SetActive(true);
                     break;
                 case 2: // level complete
-                    title.text = "Level Complete";                    
+                    title.text = "Level Complete";
+                    resumeBtnObj.SetActive(false);
+                    reviveBtnObj.SetActive(false);
+                    getReviveBtnObj.SetActive(false);
+                    if (ChkHighScore())
+                    {
+                        currentLevelText.text = "New High Score " + index.ToString();
+                    }
+                    else
+                    {
+                        currentLevelText.text = "Level " + index.ToString();
+                    }
+                    gamePanel.SetActive(true);
                     break;
             }
         }

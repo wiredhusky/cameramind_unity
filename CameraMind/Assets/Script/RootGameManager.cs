@@ -29,6 +29,7 @@ public class RootGameManager : MonoBehaviour {
                 {
                     InGameManager.inGameManager.index++;
                     if (InGameManager.inGameManager.index >= InGameManager.inGameManager.posList.Count)
+                    //if (InGameManager.inGameManager.index >= 5)
                     {
                         DoTransition(2);
                     }
