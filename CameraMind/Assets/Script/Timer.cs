@@ -69,7 +69,8 @@ public class Timer : MonoBehaviour {
                 setTimer = false;
                 timerCounter.text = "Game Over";
                 RootUIManager.rootUIManager.DeactiveUI();
-                RootGameManager.rootGameManager.GameOver();                             
+                InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
+                RootGameManager.rootGameManager.chkGameOver = true;
             }
         }        
 	}

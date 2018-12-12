@@ -352,9 +352,17 @@ public class InGameManager : MonoBehaviour {
                 if (currentBaseState.normalizedTime > 1.0f)
                 {       
                     index++;
-                    index_track = 0;
-                    trackComplete = false;
-                    RootGameManager.rootGameManager.DoTransition(0);                    
+                    if(index == posList.Count)
+                    {
+                        RootGameManager.rootGameManager.DoTransition(2);
+                        trackComplete = false;
+                    }
+                    else
+                    {
+                        index_track = 0;
+                        trackComplete = false;
+                        RootGameManager.rootGameManager.DoTransition(0);
+                    }                    
                 }
             }
         }

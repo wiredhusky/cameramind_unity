@@ -392,9 +392,11 @@ public class RootUIManager : MonoBehaviour {
                         objName = "img/" + sceneName;
                         unlockImg.sprite = Resources.Load<Sprite>(objName);
                         InGameManager.inGameManager.unlockEvent = false;
-                    }
-                    
+                    }                    
                     gamePanel.SetActive(true);
+                    break;
+                case 2: // level complete
+                    title.text = "Level Complete";                    
                     break;
             }
         }
