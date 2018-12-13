@@ -127,7 +127,7 @@ public class spawn : MonoBehaviour {
 
     public void SetObj()
     {
-        InGameManager.inGameManager.unlockedObj.SetActive(false);
+        InGameManager.inGameManager.unlockedObj.SetActive(false); // unlock 했던 obj를 다시 감춤
         gameObject.SetActive(false);
     }
 

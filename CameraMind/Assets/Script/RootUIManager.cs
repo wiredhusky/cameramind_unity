@@ -58,7 +58,7 @@ public class RootUIManager : MonoBehaviour {
     //protect double click
     public bool clicked;
 
-    public GameObject gameOverUnlockImg, gameOverUnlockObj, gameOverCatObj;
+    public GameObject gameOverUnlockImg, gameOverBtns, levelCompleteBtns;
     public TextMeshProUGUI talkingCat;
     Image unlockImg; //공통으로 사용 talking cat이랑 unlock이랑
 
@@ -348,8 +348,7 @@ public class RootUIManager : MonoBehaviour {
     }
 
     public void ActivePauseGameOver(int type, int index)
-    {
-        string objName;
+    {        
         if (!clicked)
         {
             clicked = true;
@@ -357,13 +356,19 @@ public class RootUIManager : MonoBehaviour {
             {
                 case 0: // pause
                     title.text = "Pause";
+                    gameOverBtns.SetActive(true);
+                    levelCompleteBtns.SetActive(false);
                     resumeBtnObj.SetActive(true);
                     reviveBtnObj.SetActive(false);
                     getReviveBtnObj.SetActive(false);
+                    ImageChanger(0);
+                    talkingCat.text = "take a rest!";
                     currentLevelText.text = "Level " + index.ToString();
                     gamePanel.SetActive(true);
                     break;
                 case 1: // gameOver
+                    gameOverBtns.SetActive(true);
+                    levelCompleteBtns.SetActive(false);
                     title.text = "Game Over";
                     resumeBtnObj.SetActive(false);
                     reviveCount = PlayerPrefs.GetInt("Revive");
@@ -389,18 +394,23 @@ public class RootUIManager : MonoBehaviour {
 
                     if (InGameManager.inGameManager.unlockEvent)
                     {
-                        gameOverUnlockObj.SetActive(true);
-                        objName = "img/" + sceneName;
-                        unlockImg.sprite = Resources.Load<Sprite>(objName);
+                        //gameOverUnlockObj.SetActive(true);
+                        ImageChanger(1);
+                        talkingCat.text = "is unlocked";
                         InGameManager.inGameManager.unlockEvent = false;
-                    }                    
+                    }
+                    else
+                    {
+                        ImageChanger(0);
+                        GameOverChat();
+                    }
                     gamePanel.SetActive(true);
                     break;
                 case 2: // level complete
+                    gameOverBtns.SetActive(false);
+                    levelCompleteBtns.SetActive(true);
                     title.text = "Level Complete";
-                    resumeBtnObj.SetActive(false);
-                    reviveBtnObj.SetActive(false);
-                    getReviveBtnObj.SetActive(false);
+                    
                     if (ChkHighScore())
                     {
                         currentLevelText.text = "New High Score " + index.ToString();
@@ -409,9 +419,109 @@ public class RootUIManager : MonoBehaviour {
                     {
                         currentLevelText.text = "Level " + index.ToString();
                     }
+
+                    if (InGameManager.inGameManager.unlockEvent)
+                    {
+                        //gameOverUnlockObj.SetActive(true);
+                        ImageChanger(1);                        
+                        talkingCat.text = "is unlocked";
+                        InGameManager.inGameManager.unlockEvent = false;
+                    }
+                    else
+                    {
+                        ImageChanger(2);
+                        talkingCat.text = "The Cat God is Pleased";
+                    }
+
                     gamePanel.SetActive(true);
                     break;
             }
+        }
+    }
+
+    void ImageChanger(int option)
+    {
+        string objName;
+        int buildIndex;
+        switch (option)
+        {
+            case 0: //normal
+                buildIndex = SceneManager.GetActiveScene().buildIndex;
+                objName = "img/" + buildIndex.ToString();
+                unlockImg.sprite = Resources.Load<Sprite>(objName);
+                break;
+            case 1: //unlock event
+                buildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+                objName = "img/" + buildIndex.ToString();
+                unlockImg.sprite = Resources.Load<Sprite>(objName);
+                break;
+            case 2:
+                objName = "img/" + "catGod";
+                unlockImg.sprite = Resources.Load<Sprite>(objName);
+                break;
+        }        
+    }
+
+    void GameOverChat()
+    {
+        int evaluation;
+        evaluation = InGameManager.inGameManager.index / 5;
+        switch (evaluation)
+        {
+            case 0:
+                talkingCat.text = "Your power of memory is like an EARTHWORM";
+                break;
+            case 1:
+                talkingCat.text = "";
+                break;
+            case 2:
+                talkingCat.text = "";
+                break;
+            case 3:
+                talkingCat.text = "";
+                break;
+            case 4:
+                talkingCat.text = "";
+                break;
+            case 5:
+                talkingCat.text = "";
+                break;
+            case 6:
+                talkingCat.text = "";
+                break;
+            case 7:
+                talkingCat.text = "";
+                break;
+            case 8:
+                talkingCat.text = "";
+                break;
+            case 9:
+                talkingCat.text = "";
+                break;
+            case 10:
+                talkingCat.text = "";
+                break;
+            case 11:
+                talkingCat.text = "";
+                break;
+            case 12:
+                talkingCat.text = "";
+                break;
+            case 13:
+                talkingCat.text = "";
+                break;
+            case 14:
+                talkingCat.text = "";
+                break;
+            case 15:
+                talkingCat.text = "";
+                break;
+            case 16:
+                talkingCat.text = "";
+                break;
+            default:
+                talkingCat.text = "";
+                break;
         }
     }
 
