@@ -82,7 +82,8 @@ public class spawn : MonoBehaviour {
             RootUIManager.rootUIManager.uiNavigation.SetActive(true);
             //RootUIManager.rootUIManager.background.SetActive(true);
             animator.speed = 1;
-        }        
+        }
+        InGameManager.inGameManager.chkUnlockStage();
         RootUIManager.rootUIManager.ActiveUI();
     }
 

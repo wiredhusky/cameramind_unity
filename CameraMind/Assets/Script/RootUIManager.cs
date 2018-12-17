@@ -58,9 +58,10 @@ public class RootUIManager : MonoBehaviour {
     //protect double click
     public bool clicked;
 
-    public GameObject gameOverUnlockImg, gameOverBtns, levelCompleteBtns;
+    public GameObject gameOverUnlockImg, gameOverBtns, levelCompleteBtns, inGameUnlockObj;
     public TextMeshProUGUI talkingCat;
     Image unlockImg; //공통으로 사용 talking cat이랑 unlock이랑
+    Image inGameUnlockImg;
 
     System.DateTime lastDateTime;
     System.TimeSpan compareTime;
@@ -163,7 +164,8 @@ public class RootUIManager : MonoBehaviour {
         particle.SetActive(false);
         clicked = false;
         InitScene();
-        unlockImg = gameOverUnlockImg.GetComponent<Image>();        
+        unlockImg = gameOverUnlockImg.GetComponent<Image>();
+        inGameUnlockImg = inGameUnlockObj.GetComponent<Image>();
         //tutorialImg = tutorialObj.GetComponent<Image>();
     }
 
@@ -296,7 +298,7 @@ public class RootUIManager : MonoBehaviour {
             unlockDouble.SetActive(false);
             objDouble.SetActive(true);
         }
-        //Horizon
+        //Horizon        
         chkUnlock = PlayerPrefs.GetInt("unlockHorizontal");
         if (chkUnlock == 1)
         {
@@ -439,13 +441,13 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
-    void ImageChanger(int option)
+    public void ImageChanger(int option)
     {
         string objName;
         int buildIndex;
         switch (option)
         {
-            case 0: //normal
+            case 0: //pause
                 buildIndex = SceneManager.GetActiveScene().buildIndex;
                 objName = "img/" + buildIndex.ToString();
                 unlockImg.sprite = Resources.Load<Sprite>(objName);
@@ -455,9 +457,14 @@ public class RootUIManager : MonoBehaviour {
                 objName = "img/" + buildIndex.ToString();
                 unlockImg.sprite = Resources.Load<Sprite>(objName);
                 break;
-            case 2:
+            case 2: //level complete
                 objName = "img/" + "catGod";
                 unlockImg.sprite = Resources.Load<Sprite>(objName);
+                break;
+            case 3: //unlock event in game notification
+                buildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+                objName = "img/" + buildIndex.ToString();
+                inGameUnlockImg.sprite = Resources.Load<Sprite>(objName);
                 break;
         }        
     }

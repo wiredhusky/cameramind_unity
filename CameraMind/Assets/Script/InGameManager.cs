@@ -135,13 +135,15 @@ public class InGameManager : MonoBehaviour {
             Debug.Log("HERE");
             Debug.Log("Index: " + index);
             Debug.Log("unlockLevel: " + unlockLevel);
-            if (index >= unlockLevel)
+            if (index == unlockLevel)
             {
                 switch (sceneName)
                 {
                     case "Normal":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockHorizontal", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objHorizon.SetActive(true);
@@ -150,7 +152,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Flip Vertical":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockTime", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTime.SetActive(true);
@@ -159,7 +163,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Chaos":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockDance", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objDance.SetActive(true);
@@ -168,7 +174,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "DanceDance":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockAlone", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objAlone.SetActive(true);
@@ -177,7 +185,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Twins":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockVertical", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objVertical.SetActive(true);
@@ -186,7 +196,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Temptation":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockTrack", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTrack.SetActive(true);
@@ -195,7 +207,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Track":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockChaos", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objChaos.SetActive(true);
@@ -204,7 +218,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Time Attack":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockTemptation", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTemptation.SetActive(true);
@@ -213,7 +229,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Alone":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockTriple", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTriple.SetActive(true);
@@ -224,7 +242,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Double":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockTwins", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objTwins.SetActive(true);
@@ -233,7 +253,9 @@ public class InGameManager : MonoBehaviour {
                         break;
                     case "Flip Horizon":
                         chkUnlock = 1;
-                        unlockedObj.SetActive(true);
+                        RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
+                        RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
+                        //unlockedObj.SetActive(true);
                         PlayerPrefs.SetInt("unlockDouble", 1);
                         PlayerPrefs.Save();
                         RootUIManager.rootUIManager.objDouble.SetActive(true);
