@@ -71,6 +71,14 @@ public class spawn : MonoBehaviour {
                     RootSpawnManager.rootSpawnManager.InstantiateObjTwins(InGameManager.inGameManager.posList.Count);
 
                     break;
+                case "Flip Horizon":
+                    Debug.Log("Enter!!");
+                    RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.soomong_colored);
+                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
+                                                        InGameManager.inGameManager.objType);
+                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.soomong_colored,
+                                                                     InGameManager.inGameManager.posList.Count);
+                    break;
                 default:
                     RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.soomong_15);
                     RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,

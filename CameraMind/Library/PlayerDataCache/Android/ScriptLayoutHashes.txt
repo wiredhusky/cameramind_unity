@@ -308,7 +308,7 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 3e34faf075c25c43ed9fe352ec26513b Assembly-CSharp.dll:UnityEngine.UI.Extensions.CUIGraphic
 706647f1a4b1abf203538065cfdaede8 Assembly-CSharp.dll:UnityEngine.UI.Extensions.CurvedText
-e2f4fafd95e97a51eb970a2b612d83c1 Assembly-CSharp.dll:.RootUIManager
+fb9be8a08589b5112e278caea971c50a Assembly-CSharp.dll:.RootUIManager
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 707be4219a7b15d980cdda9521532afc Assembly-CSharp.dll:UnityEngine.UI.Extensions.AccordionElement
 9c4eb4ec0fc11a711fdc1c8f1117255c Assembly-CSharp.dll:TMPro.Examples.Benchmark01_UGUI

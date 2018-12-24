@@ -6,6 +6,8 @@ public class RootSpawnManager : MonoBehaviour {
 
     public static RootSpawnManager rootSpawnManager;
 
+    public List<GameObject> prefabs = new List<GameObject>();
+
     public GameObject soomong_15;
     public GameObject soomong_colored;
     public GameObject cat;
@@ -248,6 +250,11 @@ public class RootSpawnManager : MonoBehaviour {
         Debug.Log("30: " + case2);
         Debug.Log("35: " + case3);
         Debug.Log("40: " + case4);
+    }
+
+    public void prefabImgChanger()
+    {
+        //
     }
 
     public void setScale(GameObject spawnObj)
