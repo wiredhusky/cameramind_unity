@@ -4,14 +4,14 @@
     <Files>
       <File FileName="Assets/Script/PauseGameOver.cs" Line="13" Column="27" />
       <File FileName="Assets/Script/RootUIManager.cs" Line="317" Column="10" />
-      <File FileName="Assets/Script/RootSpawnManager.cs" Line="199" Column="41" />
-      <File FileName="Assets/Script/RootGameManager.cs" Line="147" Column="33" />
-      <File FileName="Assets/Script/spawn.cs" Line="51" Column="72" />
+      <File FileName="Assets/Script/RootSpawnManager.cs" Line="224" Column="19" />
+      <File FileName="Assets/Script/RootGameManager.cs" Line="393" Column="1" />
+      <File FileName="Assets/Script/spawn.cs" Line="62" Column="51" />
       <File FileName="Assets/Script/Clicked.cs" Line="33" Column="10" />
       <File FileName="Assets/Script/Timer.cs" Line="11" Column="34" />
       <File FileName="Assets/Script/MoveMove.cs" Line="16" Column="9" />
       <File FileName="Assets/Script/FPScounter.cs" Line="14" Column="1" />
-      <File FileName="Assets/Script/InGameManager.cs" Line="67" Column="23" />
+      <File FileName="Assets/Script/InGameManager.cs" Line="363" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
