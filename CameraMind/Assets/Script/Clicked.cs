@@ -5,7 +5,8 @@ using UnityEngine;
 public class Clicked : MonoBehaviour {
     
     public Animator animator;
-    public CircleCollider2D _collider;
+    
+    public PolygonCollider2D _collider;
     public Renderer _renderer;
     AnimatorStateInfo currentBaseState;
     int count = 0;

@@ -7,10 +7,8 @@ public class RootSpawnManager : MonoBehaviour {
     public static RootSpawnManager rootSpawnManager;
 
     public List<GameObject> prefabs = new List<GameObject>();
-
-    public GameObject soomong_15;
-    public GameObject soomong_colored;
-    public GameObject cat;
+        
+    public GameObject redMask;    
     public GameObject inGameUIBackground;
 
     AnimatorStateInfo currentBaseState;
@@ -19,12 +17,12 @@ public class RootSpawnManager : MonoBehaviour {
     float radious = 0.55f;
     float objRadious = 0.5f;
 
-    float localScale_20 = 0.2f;
-    float localScale_25 = 0.25f;
-    float localScale_30 = 0.3f;
-    float localScale_35 = 0.35f;
-    float localScale_40 = 0.4f;
-    float localScale_50 = 0.5f;
+    float localScale_20 = 0.15f;
+    float localScale_25 = 0.2f;
+    float localScale_30 = 0.25f;
+    float localScale_35 = 0.3f;
+    float localScale_40 = 0.35f;
+    float localScale_50 = 0.4f;
 
     float limitTop, limitBottom, limitLeft, limitRight;
 
@@ -165,11 +163,12 @@ public class RootSpawnManager : MonoBehaviour {
             //Instantiate color or not
             if(i % 2 == 0)
             {
-                _obj = Instantiate(soomong_15) as GameObject;
+                _obj = Instantiate(prefabs[3]) as GameObject;
             }
             else
             {
-                _obj = Instantiate(soomong_colored) as GameObject;
+                Debug.Log("Enter");
+                _obj = Instantiate(redMask) as GameObject;
             }
 
             switch (InGameManager.inGameManager.objType[i])
@@ -251,12 +250,7 @@ public class RootSpawnManager : MonoBehaviour {
         Debug.Log("35: " + case3);
         Debug.Log("40: " + case4);
     }
-
-    public void prefabImgChanger()
-    {
-        //
-    }
-
+    
     public void setScale(GameObject spawnObj)
     {
         Vector3 temp;
