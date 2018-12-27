@@ -52,7 +52,7 @@ public class RootSpawnManager : MonoBehaviour {
     {
         if(rootSpawnManager == null){
             rootSpawnManager = this;
-        }
+        }        
     }
 
     public void InstantiateObj(GameObject obj, int index)
@@ -119,6 +119,12 @@ public class RootSpawnManager : MonoBehaviour {
                     animator = _obj.GetComponent<Animator>();
                     InGameManager.inGameManager.animatorList.Add(animator);
                     break;
+            }
+
+            //test code
+            if(InGameManager.inGameManager.posList[i].x > 0)
+            {
+                _obj.transform.Rotate(0, 180, 0);
             }
         }
 
