@@ -5,11 +5,11 @@ using DG.Tweening;
 
 public class MoveMove : MonoBehaviour {
     
-    public bool _move = false;
+    //public bool _move = false;
     
-    float speed, currentTime, lerpTime=1.5f;
+    //float speed, currentTime, lerpTime=1.5f;
 
-    
+    /*
     public void TempMove()
     {
         currentTime += Time.deltaTime;
@@ -63,52 +63,71 @@ public class MoveMove : MonoBehaviour {
                 }
             }
         }
-    }
+    }*/
 
     public void DoMove()
     {
-        if (InGameManager.inGameManager.turnChk)
-        {
-            for (int i = 0; i <= InGameManager.inGameManager.index; i++)
-            {
-                InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(() => FlipSprite(i));
-            }
-            InGameManager.inGameManager.turnChk = false;
-            InGameManager.inGameManager.ActiveHandler();
-        }
-        else
-        {
-            for (int i = 0; i <= InGameManager.inGameManager.index; i++)
-            {
-                InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(() => FlipSprite(i));
-            }
-            InGameManager.inGameManager.turnChk = true;
-            InGameManager.inGameManager.ActiveHandler();
-        }
+        switch(InGameManager.inGameManager.sceneName){
+            case "Flip Horizon":
+                if (InGameManager.inGameManager.turnChk)
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                    }
+                    InGameManager.inGameManager.turnChk = false;
+                }
+                else
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                    }
+                    InGameManager.inGameManager.turnChk = true;
+                }
 
+                InGameManager.inGameManager.ActiveHandler();
+                break;
+            case "Flip Vertical":
+                if (InGameManager.inGameManager.turnChk)
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint);
+                    }
+                    InGameManager.inGameManager.turnChk = false;
+                }
+                else
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint);
+                    }
+                    InGameManager.inGameManager.turnChk = true;
+                }
+
+                InGameManager.inGameManager.ActiveHandler();
+                break;
+        }
     }
     
-    private void FlipSprite(int index)
+    private void FlipSprite()
     {
-        Debug.Log("Enter!!!!!");
-        if (InGameManager.inGameManager.obj[index].transform.position.x > 0)
-        {
-            Debug.Log("X > 0");
-            Debug.Log(index);
-            InGameManager.inGameManager.obj[index].transform.Rotate(0, 180, 0);
-        }
-        else
-        {
-            Debug.Log("X < 0");
-            InGameManager.inGameManager.obj[index].transform.Rotate(0, 0, 0);
+        for (int i = 0; i <= InGameManager.inGameManager.index; i++){
+            if(InGameManager.inGameManager.obj[i].transform.position.x > 0){
+                InGameManager.inGameManager.obj[i].transform.DORotate(new Vector3(0, 180, 0), 0.3f);
+            }else{
+                InGameManager.inGameManager.obj[i].transform.DORotate(new Vector3(0, 0, 0), 0.3f);
+            }
         }
     }
 
+    /*
     private void Update()
     {   
         if(_move)
         {
             //TempMove();
         }
-    }
+    }*/
 }

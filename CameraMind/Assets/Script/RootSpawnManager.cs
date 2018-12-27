@@ -120,12 +120,6 @@ public class RootSpawnManager : MonoBehaviour {
                     InGameManager.inGameManager.animatorList.Add(animator);
                     break;
             }
-
-            //test code
-            if(InGameManager.inGameManager.posList[i].x > 0)
-            {
-                _obj.transform.Rotate(0, 180, 0);
-            }
         }
 
         Debug.Log("obj count: " + InGameManager.inGameManager.objType.Count);
@@ -682,7 +676,13 @@ public class RootSpawnManager : MonoBehaviour {
         {
             InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position = tempPos;
         }
-        //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
+
+        //In Flip Horizon mode object direction is changed according to their x position
+        if(RootUIManager.rootUIManager.sceneName == "Flip Horizon"){
+            if(InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position.x >0){
+                InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.Rotate(0, 180, 0);
+            }
+        }
         InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
     }
 

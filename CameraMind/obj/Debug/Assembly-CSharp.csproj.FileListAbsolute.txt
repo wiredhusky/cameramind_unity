@@ -253,3 +253,8 @@
 /Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
 /Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/obj/Debug/Assembly-CSharp.dll
 /Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/obj/Debug/Assembly-CSharp.pdb
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTween.dll
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/UnityEngine.Purchasing.dll
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTween.dll.mdb
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTween.xml
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/UnityEngine.Purchasing.dll.mdb

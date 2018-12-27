@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class RootGameManager : MonoBehaviour {
 
@@ -9,12 +10,32 @@ public class RootGameManager : MonoBehaviour {
     public bool chkGameOver = false;
     //public Animator animator;
 
+    SpriteRenderer objRenderer;
+    Material material;
+
+    Sequence gameOverSequence;
+
     private void Awake()
     {
         if(rootGameManager == null){
             rootGameManager = this;
         }
         Application.targetFrameRate = 60;
+        gameOverSequence = DOTween.Sequence();
+    }
+
+    private void GameOver(GameObject _obj){
+        Debug.Log("GameOver Entered");
+        _obj.transform.DOMove(new Vector3(0, 0, 0), 1.0f);
+        material = _obj.GetComponent<Material>();
+        material.DOFade(0, 1.0f);
+        objRenderer.DOColor(Color.red, 1.0f);
+        objRenderer = _obj.GetComponent<SpriteRenderer>();
+        gameOverSequence.Append(objRenderer.DOFade(0, 0.17f))
+                        .Append(objRenderer.DOFade(100, 0.17f))
+                        .Append(objRenderer.DOFade(0, 0.17f))
+                        .Append(objRenderer.DOFade(100, 0.17f))
+                        .AppendCallback(() => DoTransition(1));
     }
 
     public void ComPos(Vector3 _objPos, Animator _animator)
@@ -40,8 +61,9 @@ public class RootGameManager : MonoBehaviour {
                 }
                 else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index]);
+                    //InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
+                    //chkGameOver = true;
                 }
                 break;
             case "Flip Horizon":

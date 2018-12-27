@@ -145,7 +145,7 @@ public class spawn : MonoBehaviour {
     public void MovePrefab()
     {
         move.DoMove();
-        move._move = true;
+        //move._move = true;
     }
 
 }

@@ -293,3 +293,11 @@
 /Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/obj/Debug/UnityEditor.StandardEvents.csproj.CoreCompileInputs.cache
 /Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/obj/Debug/UnityEditor.StandardEvents.dll
 /Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/obj/Debug/UnityEditor.StandardEvents.pdb
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTween.dll
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTweenEditor.dll
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/UnityEngine.Purchasing.dll
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTween.dll.mdb
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTween.xml
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTweenEditor.dll.mdb
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/DOTweenEditor.xml
+/Users/iMac/Documents/GitHub/cameramind_unity3/CameraMind/Temp/bin/Debug/UnityEngine.Purchasing.dll.mdb
