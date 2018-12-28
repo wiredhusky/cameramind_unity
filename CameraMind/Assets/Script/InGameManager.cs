@@ -314,8 +314,10 @@ public class InGameManager : MonoBehaviour {
         //LevelTransitionPanel.SetActive(true);
     }
 
+    /*
     void Update()
     {
+        /*
         if (RootGameManager.rootGameManager.chkGameOver)
         {
             switch (sceneName)
@@ -341,6 +343,7 @@ public class InGameManager : MonoBehaviour {
                     break;
             }            
             
+            
             if (currentBaseState.IsName("GameOver") || currentBaseState.IsName("GameOver0") || currentBaseState.IsName("GameOver1") || currentBaseState.IsName("GameOver2"))
             {                
                 if (currentBaseState.normalizedTime > 1.0f)
@@ -362,8 +365,9 @@ public class InGameManager : MonoBehaviour {
                     }
                 }
             }
-        }
+        }*/
 
+        /*
         //In track mode transition after tapping animation is done
         if (trackComplete)
         {
@@ -388,5 +392,5 @@ public class InGameManager : MonoBehaviour {
                 }
             }
         }
-    }
+    }*/
 }

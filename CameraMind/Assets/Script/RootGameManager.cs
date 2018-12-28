@@ -8,34 +8,19 @@ public class RootGameManager : MonoBehaviour {
     public static RootGameManager rootGameManager;    
 
     public bool chkGameOver = false;
+    SpriteRenderer trackSprite;
     //public Animator animator;
-
-    SpriteRenderer objRenderer;
-    Material material;
-
-    Sequence gameOverSequence;
 
     private void Awake()
     {
         if(rootGameManager == null){
             rootGameManager = this;
         }
-        Application.targetFrameRate = 60;
-        gameOverSequence = DOTween.Sequence();
+        Application.targetFrameRate = 60;        
     }
 
-    private void GameOver(GameObject _obj){
-        Debug.Log("GameOver Entered");
-        _obj.transform.DOMove(new Vector3(0, 0, 0), 1.0f);
-        material = _obj.GetComponent<Material>();
-        material.DOFade(0, 1.0f);
-        objRenderer.DOColor(Color.red, 1.0f);
-        objRenderer = _obj.GetComponent<SpriteRenderer>();
-        gameOverSequence.Append(objRenderer.DOFade(0, 0.17f))
-                        .Append(objRenderer.DOFade(100, 0.17f))
-                        .Append(objRenderer.DOFade(0, 0.17f))
-                        .Append(objRenderer.DOFade(100, 0.17f))
-                        .AppendCallback(() => DoTransition(1));
+    private void GameOver(GameObject _obj){        
+        _obj.transform.DOPunchScale(new Vector3(0.2f, 0.2f), 0.6f, 3, 1.0f).SetDelay(0.2f).SetLoops(3).OnComplete(() => DoTransition(1));
     }
 
     public void ComPos(Vector3 _objPos, Animator _animator)
@@ -83,22 +68,20 @@ public class RootGameManager : MonoBehaviour {
                 }
                 else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index]);                    
                 }
                 break;
             case "Track":
                 if (_objPos == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_track])
-                {
-                    ChkClicked();
+                {                    
+                    trackSprite = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<SpriteRenderer>();
+                    trackSprite.DOColor(new Color(0.90f, 0.73f, 0.73f, 1.0f), 0.5f).OnComplete(ChkClicked);
                 }
                 else
                 {
                     InGameManager.inGameManager.DeactiveHandler();
-                    RootUIManager.rootUIManager.DeactiveUI();
-                    _animator.SetTrigger("Clicked");
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_track].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    RootUIManager.rootUIManager.DeactiveUI();                    
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track]);
                 }
                 break;
             case "Twins":
@@ -121,13 +104,12 @@ public class RootGameManager : MonoBehaviour {
                 {
                     if (InGameManager.inGameManager.turnChk)
                     {
-                        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins].SetTrigger("gameOver");
+                        GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins]);                        
                     }
                     else
                     {
-                        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins + 1].SetTrigger("gameOver");
+                        GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins+1]);
                     }
-                    chkGameOver = true;
                 }
                 break;
             case "Alone":
@@ -148,8 +130,7 @@ public class RootGameManager : MonoBehaviour {
                 }
                 else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_alone].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index_alone]);
                 }
                 break;
             case "Flip Vertical": // vertical flip
@@ -170,8 +151,7 @@ public class RootGameManager : MonoBehaviour {
                 }
                 else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index]);
                 }
                 break;
             case "Time Attack":
@@ -193,8 +173,7 @@ public class RootGameManager : MonoBehaviour {
                 }
                 else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index]);
                 }
                 break;
             case "Chaos":
@@ -214,8 +193,7 @@ public class RootGameManager : MonoBehaviour {
                 }
                 else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index]);
                 }
                 break;
             case "DanceDance":
@@ -251,8 +229,7 @@ public class RootGameManager : MonoBehaviour {
                     }
                 }else
                 {
-                    InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_dance_answer].SetTrigger("gameOver");
-                    chkGameOver = true;
+                    GameOver(InGameManager.inGameManager.obj[InGameManager.inGameManager.index_dance_answer]);
                 }
                 break;
         }
@@ -408,12 +385,24 @@ public class RootGameManager : MonoBehaviour {
 
     public void ChkClicked()
     {
-        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_track].SetTrigger("Clicked");
+        //InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_track].SetTrigger("Clicked");
         InGameManager.inGameManager.index_track++;
         if (InGameManager.inGameManager.index_track == InGameManager.inGameManager.index + 1)
         {
-            InGameManager.inGameManager.trackComplete = true;
+            //InGameManager.inGameManager.trackComplete = true;
             InGameManager.inGameManager.DeactiveHandler();
+            RootUIManager.rootUIManager.DeactiveUI();
+            InGameManager.inGameManager.index++;
+        }
+
+        if (InGameManager.inGameManager.index == InGameManager.inGameManager.posList.Count)
+        {
+            DoTransition(2);            
+        }
+        else
+        {
+            InGameManager.inGameManager.index_track = 0;            
+            DoTransition(0);
         }
     }
 

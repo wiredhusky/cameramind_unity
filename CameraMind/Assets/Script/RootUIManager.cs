@@ -369,6 +369,7 @@ public class RootUIManager : MonoBehaviour {
                     gamePanel.SetActive(true);
                     break;
                 case 1: // gameOver
+                    Debug.Log("Entereeddd");
                     gameOverBtns.SetActive(true);
                     levelCompleteBtns.SetActive(false);
                     title.text = "Game Over";
