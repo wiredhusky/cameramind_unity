@@ -6,9 +6,9 @@ public class RootSpawnManager : MonoBehaviour {
 
     public static RootSpawnManager rootSpawnManager;
 
-    public List<GameObject> prefabs = new List<GameObject>();
-        
-    public GameObject redMask;    
+    public GameObject cats;
+    public GameObject flyingCat;
+    
     public GameObject inGameUIBackground;
 
     AnimatorStateInfo currentBaseState;
@@ -57,6 +57,7 @@ public class RootSpawnManager : MonoBehaviour {
 
     public void InstantiateObj(GameObject obj, int index)
     {
+        string animatorName;
         for (int i = 0; i < index; i++)
         {
             switch (InGameManager.inGameManager.objType[i])
@@ -64,62 +65,46 @@ public class RootSpawnManager : MonoBehaviour {
                 case 0:
                     _obj = Instantiate(obj) as GameObject;
                     _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();                    
-                    InGameManager.inGameManager.animatorList.Add(animator);
                     //objRenderer = _obj.GetComponent<Renderer>();
                     //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 1:
                     _obj = Instantiate(obj) as GameObject;
                     _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
+                    //_obj.transform.position = InGameManager.inGameManager.posList[i];
+                    //InGameManager.inGameManager.obj.Add(_obj);
+                    //animator = _obj.GetComponent<Animator>();
+                    //InGameManager.inGameManager.animatorList.Add(animator);
                     //objRenderer = _obj.GetComponent<Renderer>();
                     //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 2:
                     _obj = Instantiate(obj) as GameObject;
                     _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
-                    //objRenderer = _obj.GetComponent<Renderer>();
-                    //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 3:
                     _obj = Instantiate(obj) as GameObject;
-                    _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
+                    _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);                  
                     //objRenderer = _obj.GetComponent<Renderer>();
                     //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 4:
                     _obj = Instantiate(obj) as GameObject;                    
                     _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
                     //objRenderer = _obj.GetComponent<Renderer>();
                     //InGameManager.inGameManager.rendererList.Add(objRenderer);
                     break;
                 case 5:
                     _obj = Instantiate(obj) as GameObject;
                     _obj.transform.localScale = new Vector3(localScale_50, localScale_50, localScale_50);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
                     break;
             }
+            animatorName = "animation/" + RootUIManager.rootUIManager.buildIndex.ToString();
+            _obj.transform.position = InGameManager.inGameManager.posList[i];
+            InGameManager.inGameManager.obj.Add(_obj);
+            animator = _obj.GetComponent<Animator>();
+            animator.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(animatorName);
+            InGameManager.inGameManager.animatorList.Add(animator);
         }
 
         Debug.Log("obj count: " + InGameManager.inGameManager.objType.Count);
@@ -160,62 +145,46 @@ public class RootSpawnManager : MonoBehaviour {
     {
         for (int i = 0; i < index; i++)
         {
+            _obj = Instantiate(cats) as GameObject;
+            animator = _obj.GetComponent<Animator>();
             //Instantiate color or not
-            if(i % 2 == 0)
+            if (i % 2 == 0)
             {
-                _obj = Instantiate(prefabs[3]) as GameObject;
+                animator.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load("animation/4");
             }
             else
             {
-                Debug.Log("Enter");
-                _obj = Instantiate(redMask) as GameObject;
+                animator.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load("animation/4_2");
             }
 
             switch (InGameManager.inGameManager.objType[i])
             {
                 case 0:                    
                     _obj.transform.localScale = new Vector3(localScale_20, localScale_20, localScale_20);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);                    
                     break;
                 case 1:                                        
                     _obj.transform.localScale = new Vector3(localScale_25, localScale_25, localScale_25);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
+                    /*_obj.transform.position = InGameManager.inGameManager.posList[i];
                     InGameManager.inGameManager.obj.Add(_obj);
                     animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
+                    InGameManager.inGameManager.animatorList.Add(animator);*/
                     break;
                 case 2:
-                    _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
+                    _obj.transform.localScale = new Vector3(localScale_30, localScale_30, localScale_30);                    
                     break;
                 case 3:
                     _obj.transform.localScale = new Vector3(localScale_35, localScale_35, localScale_35);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
                     break;
                 case 4:
                     _obj.transform.localScale = new Vector3(localScale_40, localScale_40, localScale_40);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
                     break;
                 case 5:
                     _obj.transform.localScale = new Vector3(localScale_50, localScale_50, localScale_50);
-                    _obj.transform.position = InGameManager.inGameManager.posList[i];
-                    InGameManager.inGameManager.obj.Add(_obj);
-                    animator = _obj.GetComponent<Animator>();
-                    InGameManager.inGameManager.animatorList.Add(animator);
                     break;
             }
+            _obj.transform.position = InGameManager.inGameManager.posList[i];
+            InGameManager.inGameManager.obj.Add(_obj);
+            InGameManager.inGameManager.animatorList.Add(animator);
         }
         Debug.Log("obj count: " + InGameManager.inGameManager.objType.Count);
         case0 = 0;
@@ -534,14 +503,12 @@ public class RootSpawnManager : MonoBehaviour {
     {
         switch (RootUIManager.rootUIManager.sceneName)
         {
-            case "MainMenu":
-                break;
             case "Flip Horizon":
                 SpawnObj_Flip();
                 break;
             case "Track": // track
                 SpawnObj();
-                InGameManager.inGameManager.EventHandler();
+                InGameManager.inGameManager.SpriteColorBackToOrigin();
                 break;
             case "Twins": // twins
                 SpawnObj_Twins();
@@ -651,9 +618,10 @@ public class RootSpawnManager : MonoBehaviour {
     }
 
     public void SpawnObj()
-    {
+    {   
         //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
         InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
+        //Debug.Log("Index: " + InGameManager.inGameManager.index);
     }
 
     public void SpawnObj_Alone()

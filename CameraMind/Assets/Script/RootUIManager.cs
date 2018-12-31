@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using DG.Tweening;
 
 public class RootUIManager : MonoBehaviour {
 
@@ -47,7 +48,7 @@ public class RootUIManager : MonoBehaviour {
     public GameObject unlockAlone, unlockChaos, unlockDance, unlockDouble, unlockHorizon, unlockVertical, unlockTemptation,
         unlockTime, unlockTrack, unlockTriple, unlockTwins;
 
-    public GameObject cat;
+    //public GameObject cat;
 
     Coroutine startCoroutineHint, startCoroutineRevive;    
 
@@ -63,9 +64,21 @@ public class RootUIManager : MonoBehaviour {
     Image unlockImg; //공통으로 사용 talking cat이랑 unlock이랑
     Image inGameUnlockImg;
 
+    public int buildIndex;
+
     System.DateTime lastDateTime;
     System.TimeSpan compareTime;
-    int coroutineHintDuration = 30, coroutineReviveDuration = 30;    
+    int coroutineHintDuration = 30, coroutineReviveDuration = 30;
+
+    //level Transition
+    public GameObject levelTransition, levelTransitionImgObj;
+    Image levelTransitionImg;
+    public TextMeshProUGUI levelCount;
+    //Sequence transitionSquence;
+
+    public GameObject posCalculator;
+
+    Vector3 startPos, destPos;
 
     private void Awake()
     {
@@ -166,7 +179,19 @@ public class RootUIManager : MonoBehaviour {
         InitScene();
         unlockImg = gameOverUnlockImg.GetComponent<Image>();
         inGameUnlockImg = inGameUnlockObj.GetComponent<Image>();
+        levelTransitionImg = levelTransitionImgObj.GetComponent<Image>();
+        Debug.Log("position: " + levelTransition.transform.position);
+
+        destPos = posCalculator.transform.position;
+        startPos = levelTransition.transform.position;
         //tutorialImg = tutorialObj.GetComponent<Image>();
+    }
+
+    IEnumerator StayTransition(float pauseTime)
+    {
+        yield return new WaitForSeconds(pauseTime);
+        RootSpawnManager.rootSpawnManager.objCreator();
+        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoOutComplete);
     }
 
     IEnumerator GetReviveCounter(int totalSec)
@@ -366,10 +391,10 @@ public class RootUIManager : MonoBehaviour {
                     ImageChanger(0);
                     talkingCat.text = "take a rest!";
                     currentLevelText.text = "Level " + index.ToString();
-                    gamePanel.SetActive(true);
+                    gamePanel.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseComplete);
+                    //gamePanel.SetActive(true);
                     break;
                 case 1: // gameOver
-                    Debug.Log("Entereeddd");
                     gameOverBtns.SetActive(true);
                     levelCompleteBtns.SetActive(false);
                     title.text = "Game Over";
@@ -407,7 +432,7 @@ public class RootUIManager : MonoBehaviour {
                         ImageChanger(0);
                         GameOverChat();
                     }
-                    gamePanel.SetActive(true);
+                    gamePanel.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseComplete);
                     break;
                 case 2: // level complete
                     gameOverBtns.SetActive(false);
@@ -435,27 +460,32 @@ public class RootUIManager : MonoBehaviour {
                         ImageChanger(2);
                         talkingCat.text = "The Cat God is Pleased";
                     }
-
-                    gamePanel.SetActive(true);
+                    gamePanel.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic);
                     break;
             }
         }
     }
 
+    void PauseComplete()
+    {
+        clicked = false;
+    }
+
     public void ImageChanger(int option)
     {
         string objName;
-        int buildIndex;
+        int buildIndex_unlock;
+        //int buildIndex;
         switch (option)
         {
             case 0: //pause
-                buildIndex = SceneManager.GetActiveScene().buildIndex;
                 objName = "img/" + buildIndex.ToString();
                 unlockImg.sprite = Resources.Load<Sprite>(objName);
+                Debug.Log(objName);
                 break;
             case 1: //unlock event
-                buildIndex = SceneManager.GetActiveScene().buildIndex + 1;
-                objName = "img/" + buildIndex.ToString();
+                buildIndex_unlock = buildIndex + 1;
+                objName = "img/" + buildIndex_unlock.ToString();
                 unlockImg.sprite = Resources.Load<Sprite>(objName);
                 break;
             case 2: //level complete
@@ -463,9 +493,13 @@ public class RootUIManager : MonoBehaviour {
                 unlockImg.sprite = Resources.Load<Sprite>(objName);
                 break;
             case 3: //unlock event in game notification
-                buildIndex = SceneManager.GetActiveScene().buildIndex + 1;
-                objName = "img/" + buildIndex.ToString();
+                buildIndex_unlock = buildIndex + 1;
+                objName = "img/" + buildIndex_unlock.ToString();
                 inGameUnlockImg.sprite = Resources.Load<Sprite>(objName);
+                break;
+            case 4: //level transition img changer
+                objName = "img/" + buildIndex.ToString() + "_transition";
+                levelTransitionImg.sprite = Resources.Load<Sprite>(objName);
                 break;
         }        
     }
@@ -609,20 +643,37 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
+    /*
     public void PauseGamePanel(){
         animator.speed = 0;
     }
+    */
 
     public void Resume(){
         if(!clicked){
             clicked = true;
-            btnName = EventSystem.current.currentSelectedGameObject.name;            
-            animator.speed = 1;
-            if (sceneName == "Time Attack")
-            {
-                Timer.timerControl.setTimer = true;
-                Timer.timerControl.animator.speed = 1;
-            }
+            btnName = EventSystem.current.currentSelectedGameObject.name;
+            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseOutComplete);
+        }
+    }
+
+    void PauseOutComplete()
+    {
+        clicked = false;
+        if (sceneName == "Time Attack")
+        {
+            Timer.timerControl.setTimer = true;
+            Timer.timerControl.animator.speed = 1;
+        }
+
+        if (btnName == "Revive")
+        {
+            Debug.Log("Enter");
+            InGameManager.inGameManager.ActiveHandler();
+        }
+        if (btnName == "Restart")
+        {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
     }
 
@@ -630,14 +681,14 @@ public class RootUIManager : MonoBehaviour {
         if(!clicked){
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;            
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());            
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());        
             uiNavigation.SetActive(false);
-            animator.speed = 1;
+            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseOutComplete);
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
             RootSpawnManager.rootSpawnManager.exceptCase = 5;
         }
     }
-
+    
     public void MainMenu(){
         if(!clicked){
             clicked = true;
@@ -646,7 +697,7 @@ public class RootUIManager : MonoBehaviour {
             menus.SetActive(true);
             topBackground.SetActive(true);
             uiNavigation.SetActive(false);
-            animator.speed = 1;
+            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseComplete);
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
             RootSpawnManager.rootSpawnManager.exceptCase = 5;
         }
@@ -656,7 +707,8 @@ public class RootUIManager : MonoBehaviour {
         if (!clicked)
         {
             clicked = true;
-            btnName = EventSystem.current.currentSelectedGameObject.name;            
+            btnName = EventSystem.current.currentSelectedGameObject.name;
+            Debug.Log(btnName);
             reviveCount--;
             reviveCountText.text = "Revive x " + reviveCount.ToString();
             PlayerPrefs.SetInt("Revive", reviveCount);
@@ -681,7 +733,7 @@ public class RootUIManager : MonoBehaviour {
                 }                
             }
 
-            animator.speed = 1;
+            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseOutComplete);
 
             switch (sceneName)
             {
@@ -695,9 +747,9 @@ public class RootUIManager : MonoBehaviour {
                     break;
                 case "Time Attack":
                     Timer.timerControl.timer.transform.position = Timer.timerControl.target;
-                    Timer.timerControl.sec = 0;
+                    Timer.timerControl.sec = 12;
                     Timer.timerControl.counter = 0;
-                    Timer.timerControl.timerCounter.text = (3).ToString();
+                    Timer.timerControl.timerCounter.text = 12.ToString("N2");
                     Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
                     particle.SetActive(true);
                     particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
@@ -792,40 +844,50 @@ public class RootUIManager : MonoBehaviour {
             switch (sceneName)
             {
                 case "Normal":
-                    curHighScore = PlayerPrefs.GetInt("HighScoreNormal");                    
+                    curHighScore = PlayerPrefs.GetInt("HighScoreNormal");
+                    buildIndex = 1;
                     break;
                 case "Double":
                     curHighScore = PlayerPrefs.GetInt("HighScoreDouble");
+                    buildIndex = 3;
                     break;
                 case "Flip Horizon":
                     curHighScore = PlayerPrefs.GetInt("HighScoreHorizon");
+                    buildIndex = 2;
                     break;
                 case "Temptation":
                     curHighScore = PlayerPrefs.GetInt("HighScoreTemptation");
+                    buildIndex = 7;
                     break;
                 case "Twins":
                     curHighScore = PlayerPrefs.GetInt("HighScoreTwins");
+                    buildIndex = 4;
                     break;
                 case "Triple":
                     curHighScore = PlayerPrefs.GetInt("HighScoreTriple");
                     break;
                 case "Flip Vertical":
                     curHighScore = PlayerPrefs.GetInt("HighScoreVertical");
+                    buildIndex = 5;
                     break;
                 case "Alone":
                     curHighScore = PlayerPrefs.GetInt("HighScoreAlone");
                     break;
                 case "Track":
                     curHighScore = PlayerPrefs.GetInt("HighScoreTrack");
+                    buildIndex = 8;
                     break;
                 case "Chaos":
                     curHighScore = PlayerPrefs.GetInt("HighScoreChaos");
+                    buildIndex = 9;
                     break;
                 case "Time Attack":
                     curHighScore = PlayerPrefs.GetInt("HighScoreTimeAttack");
+                    buildIndex = 6;
                     break;
                 case "DanceDance":
                     curHighScore = PlayerPrefs.GetInt("HighScoreDance");
+                    buildIndex = 10;
                     break;
             }
             //eventSystem.SetActive(false);
@@ -971,78 +1033,177 @@ public class RootUIManager : MonoBehaviour {
 
     public void Tutorial()
     {              
-        tutorialName = EventSystem.current.currentSelectedGameObject.name;        
-        Debug.Log(tutorialName);
+        tutorialName = EventSystem.current.currentSelectedGameObject.name;       
         popUpPanel.transform.Find(tutorialName).gameObject.SetActive(true);
-        /*
-        switch (tutorialName)
-        {
-            case "NormalTuto":                
-                //tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                //tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Boy");
-                //ImageChanger.imageChanger.ChangeImage();                
-                break;
-            case "FlipHorizonTuto":
-                Debug.Log("FlipHorizon");
-                //tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                //tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Normal");
-                break;
-            case "DoubleTuto":
-                Debug.Log("DoubleTuto");
-                //tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                //tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Flip Horizon");
-                break;
-            case "TwinsTuto":
-                tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Double");
-                break;
-            case "FlipVerticalTuto":
-                tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Twins");
-                break;
-            case "TimeAttackTuto":
-                tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Flip Vertical");
-                break;
-            case "TemptationTuto":
-                tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Time Attack");
-                break;
-            case "TrackTuto":
-                tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Temptation");
-                break;
-            case "ChaosTuto":
-                tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Track");
-                break;
-            case "DanceDanceTuto":
-                tutorialImg = tutorialBackground.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/background");
-                tutorialImg = tutorialObj.GetComponent<Image>();
-                tutorialImg.sprite = Resources.Load<Sprite>("img/Chaos");
-                break;
-            default:
-                break;
-        }*/
         popUpPanel.SetActive(true);        
     }
+
+    public void DoLevelTransition()
+    {
+        levelCount.text = "Level " + (InGameManager.inGameManager.index + 1).ToString();
+        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoComplete);
+    }
+
+    void DoComplete()
+    {
+        switch (sceneName)
+        {
+            case "Double":
+                PauseAni();
+                StartCoroutine(StayTransition(1.0f));
+                break;
+            case "DanceDance":
+                break;
+            case "Chaos":
+                PauseAni();
+                StartCoroutine(StayTransition(1.0f));
+                break;
+            default:
+                PauseAni();
+                StartCoroutine(StayTransition(0.5f));
+                break;
+        }
+    }
+
+    void DoOutComplete()
+    {   
+        switch (sceneName)
+        {
+            case "Flip Vertical":
+                DoMove();
+                break;
+            case "Flip Horizon":
+                DoMove();
+                break;
+            case "Time Attack":
+                InGameManager.inGameManager.ActiveHandler();
+                Timer.timerControl.setTimer = true;
+                break;
+            case "DanceDance":
+                break;
+            default:
+                InGameManager.inGameManager.ActiveHandler();
+                break;
+        }
+        ActiveUI();
+    }
+
+    public void PauseAni()
+    {
+        clicked = false;
+        if (SceneManager.GetActiveScene().name == "SceneManager")
+        {
+            menus.SetActive(false);
+            topBackground.SetActive(false);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+        }
+
+        if (!RootSpawnManager.rootSpawnManager.allThingsDone)
+        {
+            RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.cats);
+
+            switch (sceneName)
+            {
+                case "Twins":
+                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
+                                                        InGameManager.inGameManager.objType);
+                    RootSpawnManager.rootSpawnManager.InstantiateObjTwins(InGameManager.inGameManager.posList.Count);
+
+                    break;
+                case "Flip Vertical":
+                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
+                                                        InGameManager.inGameManager.objType);
+                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.flyingCat,
+                                                                     InGameManager.inGameManager.posList.Count);
+                    break;
+                default:
+                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
+                                                        InGameManager.inGameManager.objType);
+                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.cats,
+                                                                     InGameManager.inGameManager.posList.Count);
+                    break;
+            }
+            uiNavigation.SetActive(true);
+            //RootUIManager.rootUIManager.background.SetActive(true);
+        }
+        //RootSpawnManager.rootSpawnManager.objCreator();
+        InGameManager.inGameManager.chkUnlockStage();
+    }
+
+    public void DoMove()
+    {
+        switch (InGameManager.inGameManager.sceneName)
+        {
+            case "Flip Horizon":
+                if (InGameManager.inGameManager.turnChk)
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        if (i == InGameManager.inGameManager.index)
+                        {
+                            //When only last obj is completed their MOVE, do flipSprite
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                        }
+                        else
+                        {
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint);
+                        }
+                    }
+                    InGameManager.inGameManager.turnChk = false;
+                }
+                else
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        if (i == InGameManager.inGameManager.index)
+                        {
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                        }
+                        else
+                        {
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint);
+                        }
+                    }
+                    InGameManager.inGameManager.turnChk = true;
+                }
+
+                //InGameManager.inGameManager.ActiveHandler();
+                break;
+            case "Flip Vertical":
+                if (InGameManager.inGameManager.turnChk)
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(InGameManager.inGameManager.ActiveHandler);
+                    }
+                    InGameManager.inGameManager.turnChk = false;
+                }
+                else
+                {
+                    for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+                    {
+                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(InGameManager.inGameManager.ActiveHandler);
+                    }
+                    InGameManager.inGameManager.turnChk = true;
+                }
+                break;
+        }
+    }
+
+    private void FlipSprite()
+    {
+        for (int i = 0; i <= InGameManager.inGameManager.index; i++)
+        {
+            if (InGameManager.inGameManager.obj[i].transform.position.x > 0)
+            {
+                InGameManager.inGameManager.obj[i].transform.DORotate(new Vector3(0, 180, 0), 0.3f);
+            }
+            else
+            {
+                InGameManager.inGameManager.obj[i].transform.DORotate(new Vector3(0, 0, 0), 0.3f);
+            }
+        }
+        InGameManager.inGameManager.ActiveHandler();
+    }
+
 }

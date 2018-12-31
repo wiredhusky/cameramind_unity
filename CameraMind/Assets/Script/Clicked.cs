@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Clicked : MonoBehaviour {
     
@@ -8,11 +9,11 @@ public class Clicked : MonoBehaviour {
     
     public PolygonCollider2D _collider;
     public Renderer _renderer;
+    public SpriteRenderer spriteRenderer;
     AnimatorStateInfo currentBaseState;
     int count = 0;
 
     IEnumerator WaitOneSecond(){
-        Debug.Log("Enter");
         yield return new WaitForSeconds(1.5f);
         InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
     }
@@ -31,8 +32,10 @@ public class Clicked : MonoBehaviour {
                 InGameManager.inGameManager.goMove += SetMove;
                 InGameManager.inGameManager.goRandomAni += SetRandomAni;
                 break;
+            case "Track":
+                InGameManager.inGameManager.backToOriginColor += ColorChange;
+                break;
         }
-
         gameObject.SetActive(false);
     }
 
@@ -50,6 +53,14 @@ public class Clicked : MonoBehaviour {
             {
                 animator.SetTrigger("Origin");
             }
+        }
+    }
+
+    public void ColorChange()
+    {
+        if(gameObject.activeSelf == true)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 1);
         }
     }
 
@@ -105,12 +116,18 @@ public class Clicked : MonoBehaviour {
 
     public void ActiveCol()
     {
-        _collider.enabled = true;
+        if(gameObject.activeSelf == true)
+        {
+            _collider.enabled = true;
+        }
     }
 
     public void DeActiveCol()
     {
-        _collider.enabled = false;
+        if(gameObject.activeSelf == true)
+        {
+            _collider.enabled = false;
+        }
     }
 
     public void EnableRenderer()

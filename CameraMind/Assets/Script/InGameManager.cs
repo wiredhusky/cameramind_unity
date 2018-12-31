@@ -24,6 +24,7 @@ public class InGameManager : MonoBehaviour {
     public event GoToIdle enableRenderer;
     public event GoToIdle goMove;
     public event GoToIdle goRandomAni;
+    public event GoToIdle backToOriginColor;
 
     public TextMeshProUGUI currentLevelText;    
 
@@ -36,11 +37,6 @@ public class InGameManager : MonoBehaviour {
     public int index_dance_answer = 0;
 
     public bool turnChk = true;
-    public bool trackComplete = false;
-    
-    public GameObject soomong_colored;
-
-    AnimatorStateInfo currentBaseState;
 
     //unlock Level
     int unlockLevel;
@@ -60,72 +56,62 @@ public class InGameManager : MonoBehaviour {
 
     private void Start()
     {
-        CountLevel();
+        //CountLevel();
+        RootUIManager.rootUIManager.ImageChanger(4);
         switch (sceneName)
         {
             case "Normal":
                 chkUnlock = PlayerPrefs.GetInt("unlockHorizontal");
                 Debug.Log("unlock: " + chkUnlock);
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;            
             case "Flip Vertical":
                 chkUnlock = PlayerPrefs.GetInt("unlockTime");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "Chaos":
                 chkUnlock = PlayerPrefs.GetInt("unlockDance");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "DanceDance":
                 chkUnlock = PlayerPrefs.GetInt("unlockAlone");                
                 unlockLevel = 5;
-                DanceTime.SetActive(true);
                 break;
             case "Twins":
                 chkUnlock = PlayerPrefs.GetInt("unlockVertical");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "Temptation":
                 chkUnlock = PlayerPrefs.GetInt("unlockTrack");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "Track":
                 chkUnlock = PlayerPrefs.GetInt("unlockChaos");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;            
             case "Time Attack":
                 chkUnlock = PlayerPrefs.GetInt("unlockTemptation");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "Alone":
                 chkUnlock = PlayerPrefs.GetInt("unlockTriple");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "Triple": // last stage
                 chkUnlock = 1;
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "Double":
                 chkUnlock = PlayerPrefs.GetInt("unlockTwins");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
                 break;
             case "Flip Horizon":
                 chkUnlock = PlayerPrefs.GetInt("unlockDouble");                
                 unlockLevel = 5;
-                LevelTransitionPanel.SetActive(true);
+                //LevelTransitionPanel.SetActive(true);
                 break;
         }
-        Debug.Log("unlock or not: " + chkUnlock);
+        RootUIManager.rootUIManager.DoLevelTransition();
     }
 
     public void chkUnlockStage()
@@ -267,16 +253,19 @@ public class InGameManager : MonoBehaviour {
         }        
     }
 
-    public void CountLevel()
-    {
-        currentLevelText.text = "Level " + (index + 1).ToString();
-    }    
-
     public void EventHandler()
     {
         if (goIdle != null)
         {
             goIdle();
+        }
+    }
+
+    public void SpriteColorBackToOrigin()
+    {
+        if(backToOriginColor != null)
+        {
+            backToOriginColor();
         }
     }
 

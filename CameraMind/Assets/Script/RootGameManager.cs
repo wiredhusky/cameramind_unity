@@ -6,10 +6,10 @@ using DG.Tweening;
 public class RootGameManager : MonoBehaviour {
 
     public static RootGameManager rootGameManager;    
-
-    public bool chkGameOver = false;
+    
     SpriteRenderer trackSprite;
     //public Animator animator;
+    
 
     private void Awake()
     {
@@ -19,8 +19,8 @@ public class RootGameManager : MonoBehaviour {
         Application.targetFrameRate = 60;        
     }
 
-    private void GameOver(GameObject _obj){        
-        _obj.transform.DOPunchScale(new Vector3(0.2f, 0.2f), 0.6f, 3, 1.0f).SetDelay(0.2f).SetLoops(3).OnComplete(() => DoTransition(1));
+    public void GameOver(GameObject _obj){        
+        _obj.transform.DOPunchScale(new Vector3(0.2f, 0.2f), 0.6f, 4, 1.0f).SetDelay(0.1f).SetLoops(3).OnComplete(() => DoTransition(1));
     }
 
     public void ComPos(Vector3 _objPos, Animator _animator)
@@ -75,7 +75,8 @@ public class RootGameManager : MonoBehaviour {
                 if (_objPos == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_track])
                 {                    
                     trackSprite = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<SpriteRenderer>();
-                    trackSprite.DOColor(new Color(0.90f, 0.73f, 0.73f, 1.0f), 0.5f).OnComplete(ChkClicked);
+                    trackSprite.DOColor(new Color(0.90f, 0.73f, 0.73f, 1.0f), 0.2f).OnComplete(ChkClicked);
+                    //trackSprite.DOColor(Color.magenta, 0.5f).OnComplete(ChkClicked);
                 }
                 else
                 {
@@ -393,16 +394,16 @@ public class RootGameManager : MonoBehaviour {
             InGameManager.inGameManager.DeactiveHandler();
             RootUIManager.rootUIManager.DeactiveUI();
             InGameManager.inGameManager.index++;
-        }
 
-        if (InGameManager.inGameManager.index == InGameManager.inGameManager.posList.Count)
-        {
-            DoTransition(2);            
-        }
-        else
-        {
-            InGameManager.inGameManager.index_track = 0;            
-            DoTransition(0);
+            if (InGameManager.inGameManager.index == InGameManager.inGameManager.posList.Count)
+            {
+                DoTransition(2);
+            }
+            else
+            {
+                InGameManager.inGameManager.index_track = 0;
+                DoTransition(0);
+            }
         }
     }
 
@@ -411,10 +412,11 @@ public class RootGameManager : MonoBehaviour {
         switch (type)
         {
             case 0: // InGameManager.inGameManager Transition
-                InGameManager.inGameManager.CountLevel();
+                //InGameManager.inGameManager.CountLevel();
                 //new stage is unlocked
                 //InGameManager.inGameManager.chkUnlockStage();
-                InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
+                RootUIManager.rootUIManager.DoLevelTransition();
+                //InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
                 break;
             case 1:
                 //SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);

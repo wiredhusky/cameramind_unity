@@ -7,8 +7,7 @@ public class spawn : MonoBehaviour {
     
     public MoveMove move;    
     public Animator animator;
-    int buildIndex;    
-
+    
     void objCreator(){
         RootSpawnManager.rootSpawnManager.objCreator();
     }
@@ -55,29 +54,26 @@ public class spawn : MonoBehaviour {
 
         if (!RootSpawnManager.rootSpawnManager.allThingsDone)
         {
-            buildIndex = SceneManager.GetActiveScene().buildIndex - 1;
-
             animator.speed = 0;
-
-            RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.prefabs[buildIndex]);
+            RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.cats);
 
             switch (RootUIManager.rootUIManager.sceneName){
-                case "Alone":                    
-                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
-                                                        InGameManager.inGameManager.objType);
-                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.redMask, 
-                                                                     InGameManager.inGameManager.posList.Count);
-                    break;
                 case "Twins":                    
                     RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
                                                         InGameManager.inGameManager.objType);
                     RootSpawnManager.rootSpawnManager.InstantiateObjTwins(InGameManager.inGameManager.posList.Count);
 
-                    break;                
+                    break;
+                case "Flip Vertical":
+                    RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
+                                                        InGameManager.inGameManager.objType);
+                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.flyingCat,
+                                                                     InGameManager.inGameManager.posList.Count);
+                    break;
                 default:                    
                     RootSpawnManager.rootSpawnManager.PosSearch(InGameManager.inGameManager.posList,
                                                         InGameManager.inGameManager.objType);
-                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.prefabs[buildIndex], 
+                    RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.cats, 
                                                                      InGameManager.inGameManager.posList.Count);
                     break;
             }
@@ -98,12 +94,11 @@ public class spawn : MonoBehaviour {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(RootUIManager.rootUIManager.sceneName));
         }
         if (!RootSpawnManager.rootSpawnManager.allThingsDone){
-            buildIndex = SceneManager.GetActiveScene().buildIndex - 1;
             animator.speed = 0;
-            RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.prefabs[buildIndex]);
+            RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.cats);
             RootSpawnManager.rootSpawnManager.PosSearchDance(InGameManager.inGameManager.posList, 
                                                              InGameManager.inGameManager.objType);
-            RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.prefabs[buildIndex], 
+            RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.cats, 
                                                              InGameManager.inGameManager.posList.Count);
             RootUIManager.rootUIManager.uiNavigation.SetActive(true);
             animator.speed = 1;

@@ -73,7 +73,14 @@ public class MoveMove : MonoBehaviour {
                 {
                     for (int i = 0; i <= InGameManager.inGameManager.index; i++)
                     {
-                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                        if(i == InGameManager.inGameManager.index)
+                        {
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                        }
+                        else
+                        {
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.oppCenterPos[i], 0.8f).SetEase(Ease.OutQuint);
+                        }
                     }
                     InGameManager.inGameManager.turnChk = false;
                 }
@@ -81,7 +88,14 @@ public class MoveMove : MonoBehaviour {
                 {
                     for (int i = 0; i <= InGameManager.inGameManager.index; i++)
                     {
-                        InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                        if (i == InGameManager.inGameManager.index)
+                        {
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint).OnComplete(FlipSprite);
+                        }
+                        else
+                        {
+                            InGameManager.inGameManager.obj[i].transform.DOMove(InGameManager.inGameManager.posList[i], 0.8f).SetEase(Ease.OutQuint);
+                        }
                     }
                     InGameManager.inGameManager.turnChk = true;
                 }
@@ -106,7 +120,6 @@ public class MoveMove : MonoBehaviour {
                     InGameManager.inGameManager.turnChk = true;
                 }
 
-                InGameManager.inGameManager.ActiveHandler();
                 break;
         }
     }
@@ -120,6 +133,7 @@ public class MoveMove : MonoBehaviour {
                 InGameManager.inGameManager.obj[i].transform.DORotate(new Vector3(0, 0, 0), 0.3f);
             }
         }
+        InGameManager.inGameManager.ActiveHandler();
     }
 
     /*
