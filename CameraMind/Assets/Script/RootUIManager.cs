@@ -188,6 +188,58 @@ public class RootUIManager : MonoBehaviour {
         //tutorialImg = tutorialObj.GetComponent<Image>();
     }
 
+    IEnumerator DanceStayTransition(float pauseTime){
+        yield return new WaitForSeconds(pauseTime);
+        objCreatorDance();
+        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoDanceOutComplete);
+    }
+
+    IEnumerator ReadyToPose(){
+        yield return new WaitForSeconds(3.0f);
+        InGameManager.inGameManager.SetRandomAni();
+        yield return new WaitForSeconds(1.0f);
+        DoDanceLevelTransition();
+    }
+
+    void DoDanceOutComplete(){
+        InGameManager.inGameManager.CatDance();
+        StartCoroutine("ReadyToPose");
+    }
+
+    public void objCreatorDance()
+    {
+        switch (InGameManager.inGameManager.index)
+        {
+            case 0:
+                for (int i = 0; i < 4; i++)
+                {
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+            case 5:
+                InGameManager.inGameManager.EventHandler();
+                for (int i = 4; i < 8; i++)
+                {
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+            case 10:
+                InGameManager.inGameManager.EventHandler();
+                for (int i = 8; i < 12; i++)
+                {
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+            case 15:
+                InGameManager.inGameManager.EventHandler();
+                for (int i = 12; i < 20; i++)
+                {
+                    InGameManager.inGameManager.obj[i].SetActive(true);
+                }
+                break;
+        }
+    }
+
     IEnumerator StayTransition(float pauseTime)
     {
         yield return new WaitForSeconds(pauseTime);
@@ -318,6 +370,7 @@ public class RootUIManager : MonoBehaviour {
         }
         //Dance
         chkUnlock = PlayerPrefs.GetInt("unlockDance");
+        chkUnlock = 1;
         if (chkUnlock == 1)
         {
             unlockDance.SetActive(false);
@@ -1044,13 +1097,67 @@ public class RootUIManager : MonoBehaviour {
     {              
         tutorialName = EventSystem.current.currentSelectedGameObject.name;       
         popUpPanel.transform.Find(tutorialName).gameObject.SetActive(true);
-        popUpPanel.SetActive(true);        
+        popUpPanel.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic);
+        //popUpPanel.SetActive(true);        
+    }
+
+    public void ExitTutorial(){
+        popUpPanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DeactiveTutorial);
+    }
+
+    void DeactiveTutorial(){
+        popUpPanel.transform.Find(tutorialName).gameObject.SetActive(false);
     }
 
     public void DoLevelTransition()
     {
+        switch(sceneName){
+            case "DanceDance":
+                DoDanceLevelTransition();
+                //InGameManager.inGameManager.DanceTime.SetActive(true);
+                break;
+            default:
+                levelCount.text = "Level " + (InGameManager.inGameManager.index + 1).ToString();
+                levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoComplete);
+                break;
+        }
+    }
+
+    public void DoDanceTransition(){
+        if(fakeBackground.activeSelf == true){
+            fakeBackground.SetActive(false);
+        }
+        levelCount.text = "Dance Time";
+        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoDanceComplete);
+    }
+
+    void DoDanceComplete(){
+        PauseAniDance();
+        StartCoroutine(DanceStayTransition(0.5f));
+    }
+
+    public void DoDanceLevelTransition(){
         levelCount.text = "Level " + (InGameManager.inGameManager.index + 1).ToString();
         levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoComplete);
+    }
+
+    public void PauseAniDance()
+    {
+        if (SceneManager.GetActiveScene().name == "SceneManager")
+        {
+            menus.SetActive(false);
+            topBackground.SetActive(false);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+        }
+        if (!RootSpawnManager.rootSpawnManager.allThingsDone)
+        {
+            RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.cats);
+            RootSpawnManager.rootSpawnManager.PosSearchDance(InGameManager.inGameManager.posList,
+                                                             InGameManager.inGameManager.objType);
+            RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.cats,
+                                                             InGameManager.inGameManager.posList.Count);
+            uiNavigation.SetActive(true);
+        }
     }
 
     void DoComplete()
@@ -1066,8 +1173,6 @@ public class RootUIManager : MonoBehaviour {
                 PauseAni();
                 StartCoroutine(StayTransition(1.0f));
                 break;
-            case "DanceDance":
-                break;
             case "Chaos":
                 PauseAni();
                 StartCoroutine(StayTransition(1.0f));
@@ -1081,6 +1186,7 @@ public class RootUIManager : MonoBehaviour {
 
     void DoOutComplete()
     {   
+        ActiveUI();
         switch (sceneName)
         {
             case "Flip Vertical":
@@ -1089,17 +1195,17 @@ public class RootUIManager : MonoBehaviour {
             case "Flip Horizon":
                 DoMove();
                 break;
+            case "Chaos":
+                DoMove();
+                break;
             case "Time Attack":
                 InGameManager.inGameManager.ActiveHandler();
                 Timer.timerControl.setTimer = true;
-                break;
-            case "DanceDance":
                 break;
             default:
                 InGameManager.inGameManager.ActiveHandler();
                 break;
         }
-        ActiveUI();
     }
 
     public void PauseAni()

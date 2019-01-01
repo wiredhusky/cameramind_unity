@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ef971deef0c5443993d564ffcabe5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {fileID: 0}
   animator: {fileID: 168661790}
 --- !u!95 &168661790
 Animator:
@@ -437,8 +436,7 @@ MonoBehaviour:
   index_dance: 0
   index_dance_answer: 0
   turnChk: 1
-  trackComplete: 0
-  soomong_colored: {fileID: 0}
+  unlockEvent: 0
 --- !u!4 &376660519
 Transform:
   m_ObjectHideFlags: 0
@@ -1107,7 +1105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ef971deef0c5443993d564ffcabe5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {fileID: 0}
   animator: {fileID: 1575772630}
 --- !u!95 &1575772630
 Animator:

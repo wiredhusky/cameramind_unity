@@ -111,7 +111,11 @@ public class InGameManager : MonoBehaviour {
                 //LevelTransitionPanel.SetActive(true);
                 break;
         }
-        RootUIManager.rootUIManager.DoLevelTransition();
+        if(sceneName == "DanceDance"){
+            RootUIManager.rootUIManager.DoDanceTransition();
+        }else{
+            RootUIManager.rootUIManager.DoLevelTransition();
+        }
     }
 
     public void chkUnlockStage()
@@ -302,84 +306,4 @@ public class InGameManager : MonoBehaviour {
         }
         //LevelTransitionPanel.SetActive(true);
     }
-
-    /*
-    void Update()
-    {
-        /*
-        if (RootGameManager.rootGameManager.chkGameOver)
-        {
-            switch (sceneName)
-            {
-                case "Track":
-                    currentBaseState = animatorList[index_track].GetCurrentAnimatorStateInfo(0);
-                    break;
-                case "DanceDance":
-                    currentBaseState = animatorList[index_dance_answer].GetCurrentAnimatorStateInfo(0);
-                    break;
-                case "Twins":
-                    if (InGameManager.inGameManager.turnChk)
-                    {
-                        currentBaseState = animatorList[index_twins].GetCurrentAnimatorStateInfo(0);
-                    }
-                    else
-                    {
-                        currentBaseState = animatorList[index_twins+1].GetCurrentAnimatorStateInfo(0);
-                    }
-                    break;
-                default:
-                    currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
-                    break;
-            }            
-            
-            
-            if (currentBaseState.IsName("GameOver") || currentBaseState.IsName("GameOver0") || currentBaseState.IsName("GameOver1") || currentBaseState.IsName("GameOver2"))
-            {                
-                if (currentBaseState.normalizedTime > 1.0f)
-                {                    
-                    RootGameManager.rootGameManager.chkGameOver = false;
-                    RootGameManager.rootGameManager.DoTransition(1);
-                    //idle로 돌려주지 않으면 Revive하고 다시 틀렸을 때 걔를 GameOver 애니메이션을 할 수가 없음
-                    switch (sceneName)
-                    {
-                        case "Track":
-                            animatorList[index_track].SetTrigger("Origin");
-                            break;
-                        case "DanceDance":
-                            animatorList[index_dance_answer].SetTrigger("GoBack");
-                            break;
-                        default:
-                            animatorList[index].SetTrigger("Origin");
-                            break;
-                    }
-                }
-            }
-        }*/
-
-        /*
-        //In track mode transition after tapping animation is done
-        if (trackComplete)
-        {
-            RootUIManager.rootUIManager.DeactiveUI();
-            currentBaseState = animatorList[index].GetCurrentAnimatorStateInfo(0);
-            if (currentBaseState.IsName("clicked"))
-            {
-                if (currentBaseState.normalizedTime > 1.0f)
-                {       
-                    index++;
-                    if(index == posList.Count)
-                    {
-                        RootGameManager.rootGameManager.DoTransition(2);
-                        trackComplete = false;
-                    }
-                    else
-                    {
-                        index_track = 0;
-                        trackComplete = false;
-                        RootGameManager.rootGameManager.DoTransition(0);
-                    }                    
-                }
-            }
-        }
-    }*/
 }

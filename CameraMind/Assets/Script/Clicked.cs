@@ -14,8 +14,10 @@ public class Clicked : MonoBehaviour {
     int count = 0;
 
     IEnumerator WaitOneSecond(){
-        yield return new WaitForSeconds(1.5f);
-        InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        //DoDanceLevelTransition is needed
+        //InGameManager.inGameManager.LevelTransitionPanel.SetActive(true);
+        RootUIManager.rootUIManager.DoDanceLevelTransition();
     }
     
     private void Start()
@@ -107,10 +109,13 @@ public class Clicked : MonoBehaviour {
             Debug.Log("Count: " + count);
         }else
         {
-            //animator.SetTrigger("cat_ready");
-            SetRandomAni();
+            animator.SetTrigger("cat_ready");
             count = 0;
+            SetRandomAni();
             StartCoroutine("WaitOneSecond");
+            /*SetRandomAni();
+            count = 0;
+            StartCoroutine("WaitOneSecond");*/
         }
     }
 

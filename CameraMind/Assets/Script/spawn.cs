@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class spawn : MonoBehaviour {
     
-    public MoveMove move;    
+    //public MoveMove move;    
     public Animator animator;
-    
+
+
     void objCreator(){
         RootSpawnManager.rootSpawnManager.objCreator();
     }
@@ -42,6 +43,7 @@ public class spawn : MonoBehaviour {
                 break;
         }
     }
+
 
     public void PauseAni()
     {
@@ -105,6 +107,7 @@ public class spawn : MonoBehaviour {
         }
     }
 
+    /*
     public void TimerReset()
     {        
         Timer.timerControl.timer.SetActive(true);
@@ -113,7 +116,7 @@ public class spawn : MonoBehaviour {
         //Timer.timerControl.counter = 0;
         //Timer.timerControl.timerCounter.text = (3).ToString();
         Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);           
-    }
+    }*/
 
     public void ActiveCollider()
     {
@@ -130,17 +133,19 @@ public class spawn : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+    /*
     public void SetTimerActive()
     {
         Timer.timerControl.setTimer = true;
         Timer.timerControl.animator.SetInteger("TimerState", Timer.timerControl.counter);
         Timer.timerControl.animator.speed = 1;
-    }
+    }*/
 
+    /*
     public void MovePrefab()
     {
         move.DoMove();
         //move._move = true;
-    }
+    }*/
 
 }
