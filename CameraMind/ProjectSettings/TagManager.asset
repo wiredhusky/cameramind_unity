@@ -4,25 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - soomong
-  - spawner
-  - transitionControl
-  - movement
-  - LevelCounter
-  - MainMenu
-  - startNormalTransition
-  - startCanvas
-  - background
-  - gameOverBack
-  - Pause
-  - pauseBtn
-  - Test1
-  - Test2
-  - Test3
-  - TutorialNormal
-  - Tutorials
-  - PopUp
-  - TransitionImg
+  - FakeBackground
+  - InGameBackground
+  - LevelTransitionImg
   layers:
   - Default
   - TransparentFX

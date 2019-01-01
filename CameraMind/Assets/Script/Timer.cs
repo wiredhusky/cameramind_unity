@@ -29,6 +29,7 @@ public class Timer : MonoBehaviour {
         animator.speed = 0;
         counter = 0;
         sec = 12;
+        timerCounter.text = sec.ToString("N2");
     }
 
     // Update is called once per frame

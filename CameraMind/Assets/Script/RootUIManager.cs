@@ -71,14 +71,14 @@ public class RootUIManager : MonoBehaviour {
     int coroutineHintDuration = 30, coroutineReviveDuration = 30;
 
     //level Transition
-    public GameObject levelTransition, levelTransitionImgObj;
+    public GameObject levelTransition;
     Image levelTransitionImg;
     public TextMeshProUGUI levelCount;
     //Sequence transitionSquence;
 
     public GameObject posCalculator;
     public GameObject fakeBackground;
-
+    
     Vector3 startPos, destPos;
 
     private void Awake()
@@ -180,7 +180,7 @@ public class RootUIManager : MonoBehaviour {
         InitScene();
         unlockImg = gameOverUnlockImg.GetComponent<Image>();
         inGameUnlockImg = inGameUnlockObj.GetComponent<Image>();
-        levelTransitionImg = levelTransitionImgObj.GetComponent<Image>();
+        levelTransitionImg = GameObject.FindGameObjectWithTag("LevelTransitionImg").GetComponent<Image>();
         Debug.Log("position: " + levelTransition.transform.position);
 
         destPos = posCalculator.transform.position;
@@ -191,13 +191,13 @@ public class RootUIManager : MonoBehaviour {
     IEnumerator DanceStayTransition(float pauseTime){
         yield return new WaitForSeconds(pauseTime);
         objCreatorDance();
-        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoDanceOutComplete);
+        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoDanceOutComplete);
     }
 
     IEnumerator ReadyToPose(){
         yield return new WaitForSeconds(3.0f);
         InGameManager.inGameManager.SetRandomAni();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(3.0f);
         DoDanceLevelTransition();
     }
 
@@ -243,8 +243,11 @@ public class RootUIManager : MonoBehaviour {
     IEnumerator StayTransition(float pauseTime)
     {
         yield return new WaitForSeconds(pauseTime);
-        RootSpawnManager.rootSpawnManager.objCreator();
-        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoOutComplete);
+        if(sceneName != "DanceDance")
+        {
+            RootSpawnManager.rootSpawnManager.objCreator();
+        }        
+        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoOutComplete);
     }
 
     IEnumerator PauseAndLoadScene(float pauseTime)
@@ -816,6 +819,10 @@ public class RootUIManager : MonoBehaviour {
                     particle.SetActive(true);
                     particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
                     break;
+                case "DanceDance":
+                    particle.SetActive(true);
+                    particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_dance_answer].transform.position;
+                    break;
                 default:
                     particle.SetActive(true);
                     particle.transform.position = InGameManager.inGameManager.obj[InGameManager.inGameManager.index].transform.position;
@@ -1118,7 +1125,7 @@ public class RootUIManager : MonoBehaviour {
                 break;
             default:
                 levelCount.text = "Level " + (InGameManager.inGameManager.index + 1).ToString();
-                levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoComplete);
+                levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoComplete);
                 break;
         }
     }
@@ -1128,7 +1135,7 @@ public class RootUIManager : MonoBehaviour {
             fakeBackground.SetActive(false);
         }
         levelCount.text = "Dance Time";
-        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoDanceComplete);
+        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoDanceComplete);
     }
 
     void DoDanceComplete(){
@@ -1138,7 +1145,7 @@ public class RootUIManager : MonoBehaviour {
 
     public void DoDanceLevelTransition(){
         levelCount.text = "Level " + (InGameManager.inGameManager.index + 1).ToString();
-        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoComplete);
+        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoComplete);
     }
 
     public void PauseAniDance()
@@ -1176,6 +1183,11 @@ public class RootUIManager : MonoBehaviour {
             case "Chaos":
                 PauseAni();
                 StartCoroutine(StayTransition(1.0f));
+                break;
+            case "DanceDance":
+                PauseAni();
+                RootSpawnManager.rootSpawnManager.objCreator();
+                StartCoroutine(StayTransition(0.5f));
                 break;
             default:
                 PauseAni();

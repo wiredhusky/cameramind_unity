@@ -208,15 +208,15 @@ public class RootGameManager : MonoBehaviour {
                         //this have to be fixed into NEW TRANSITION SYSTEM
                         case 5:
                             InGameManager.inGameManager.index_dance = 8;
-                            InGameManager.inGameManager.DanceTime.SetActive(true);
+                            RootUIManager.rootUIManager.DoDanceTransition();
                             break;
                         case 10:
                             InGameManager.inGameManager.index_dance = 12;
-                            InGameManager.inGameManager.DanceTime.SetActive(true);
+                            RootUIManager.rootUIManager.DoDanceTransition();
                             break;
                         case 15:
                             InGameManager.inGameManager.index_dance = 20;
-                            InGameManager.inGameManager.DanceTime.SetActive(true);
+                            RootUIManager.rootUIManager.DoDanceTransition();
                             break;
                         default:
                             if (InGameManager.inGameManager.index >= 31)
