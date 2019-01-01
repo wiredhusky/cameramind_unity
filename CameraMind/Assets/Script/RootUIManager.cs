@@ -77,6 +77,7 @@ public class RootUIManager : MonoBehaviour {
     //Sequence transitionSquence;
 
     public GameObject posCalculator;
+    public GameObject fakeBackground;
 
     Vector3 startPos, destPos;
 
@@ -191,7 +192,13 @@ public class RootUIManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(pauseTime);
         RootSpawnManager.rootSpawnManager.objCreator();
-        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoOutComplete);
+        levelTransition.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoOutComplete);
+    }
+
+    IEnumerator PauseAndLoadScene(float pauseTime)
+    {
+        yield return new WaitForSeconds(pauseTime);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
     IEnumerator GetReviveCounter(int totalSec)
@@ -660,7 +667,7 @@ public class RootUIManager : MonoBehaviour {
     void PauseOutComplete()
     {
         clicked = false;
-        if (sceneName == "Time Attack")
+        if (sceneName == "Time Attack" && btnName == "Resume")
         {
             Timer.timerControl.setTimer = true;
             Timer.timerControl.animator.speed = 1;
@@ -673,12 +680,14 @@ public class RootUIManager : MonoBehaviour {
         }
         if (btnName == "Restart")
         {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            StartCoroutine(PauseAndLoadScene(0.5f));
+            //SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
     }
 
     public void Restart(){        
         if(!clicked){
+            fakeBackground.SetActive(true);
             clicked = true;
             btnName = EventSystem.current.currentSelectedGameObject.name;            
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());        
@@ -1041,11 +1050,16 @@ public class RootUIManager : MonoBehaviour {
     public void DoLevelTransition()
     {
         levelCount.text = "Level " + (InGameManager.inGameManager.index + 1).ToString();
-        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoComplete);
+        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutQuint).OnComplete(DoComplete);
     }
 
     void DoComplete()
     {
+        if(fakeBackground.activeSelf == true)
+        {
+            fakeBackground.SetActive(false);
+        }
+
         switch (sceneName)
         {
             case "Double":
