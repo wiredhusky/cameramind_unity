@@ -56,8 +56,7 @@ public class InGameManager : MonoBehaviour {
 
     private void Start()
     {
-        //CountLevel();
-        RootUIManager.rootUIManager.ImageChanger(4);
+        //CountLevel();        
         switch (sceneName)
         {
             case "Normal":
@@ -111,12 +110,8 @@ public class InGameManager : MonoBehaviour {
                 //LevelTransitionPanel.SetActive(true);
                 break;
         }
-        if(sceneName == "DanceDance"){
-            RootUIManager.rootUIManager.DoDanceTransition();
-        }else{
-            RootUIManager.rootUIManager.DoLevelTransition();
-        }
-    }
+        RootUIManager.rootUIManager.InitScene();
+    }    
 
     public void chkUnlockStage()
     {

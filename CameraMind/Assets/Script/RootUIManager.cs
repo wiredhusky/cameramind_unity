@@ -78,6 +78,7 @@ public class RootUIManager : MonoBehaviour {
 
     public GameObject posCalculator;
     public GameObject fakeBackground;
+    Image initImg;
     
     Vector3 startPos, destPos;
 
@@ -177,12 +178,11 @@ public class RootUIManager : MonoBehaviour {
         particle = Instantiate(hintParticle) as GameObject;
         particle.SetActive(false);
         clicked = false;
-        InitScene();
+        InitUI();
         unlockImg = gameOverUnlockImg.GetComponent<Image>();
         inGameUnlockImg = inGameUnlockObj.GetComponent<Image>();
         levelTransitionImg = GameObject.FindGameObjectWithTag("LevelTransitionImg").GetComponent<Image>();
         Debug.Log("position: " + levelTransition.transform.position);
-
         destPos = posCalculator.transform.position;
         startPos = levelTransition.transform.position;
         //tutorialImg = tutorialObj.GetComponent<Image>();
@@ -314,7 +314,33 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
-    public void InitScene(){
+    public void InitScene()
+    {
+        //Image initImg;
+        string initImgName;
+        //Change InGameBackground Img        
+        initImgName = "InGameBackground" + buildIndex.ToString();
+        initImg.sprite = Resources.Load<Sprite>(initImgName);
+        //Change LevelTransitionBackground Color or Img
+
+        //Change FakeBackground Img
+        //initImg = GameObject.FindGameObjectWithTag("FakeBackground").GetComponent<Image>();
+        //use same name of InGameBackground Img
+        //initImg.sprite = Resources.Load<Sprite>(initImgName);
+        //Change LevelTransitionImg
+        ImageChanger(4);
+
+        if (sceneName == "DanceDance")
+        {
+            DoDanceTransition();
+        }
+        else
+        {
+            DoLevelTransition();
+        }
+    }
+
+    public void InitUI(){
 
         int highScore;
         int chkUnlock;
