@@ -23,7 +23,7 @@ public class RootUIManager : MonoBehaviour {
     public GameObject uiNavigation;
     public TextMeshProUGUI currentLevelText, reviveCountText, title, hintCountText, getFreeHints, getRevives;
     public string sceneName, btnName;
-    public Animator animator;
+    //public Animator animator;
     public Button reviveBtn, getReviveBtn;
     int hintCount, reviveCount;
     int curHighScore;
@@ -77,8 +77,7 @@ public class RootUIManager : MonoBehaviour {
     //Sequence transitionSquence;
 
     public GameObject posCalculator;
-    public GameObject fakeBackground;
-    Image initImg;
+    public GameObject fakeBackground;    
     
     Vector3 startPos, destPos;
 
@@ -316,17 +315,16 @@ public class RootUIManager : MonoBehaviour {
 
     public void InitScene()
     {
-        //Image initImg;
+        Image initImg;
         string initImgName;
-        //Change InGameBackground Img        
-        initImgName = "InGameBackground" + buildIndex.ToString();
-        initImg.sprite = Resources.Load<Sprite>(initImgName);
+        //Change Pause Obj
+        ImageChanger(0);
         //Change LevelTransitionBackground Color or Img
 
         //Change FakeBackground Img
-        //initImg = GameObject.FindGameObjectWithTag("FakeBackground").GetComponent<Image>();
-        //use same name of InGameBackground Img
-        //initImg.sprite = Resources.Load<Sprite>(initImgName);
+        initImgName = "InGameBackground" + buildIndex.ToString();
+        initImg = GameObject.FindGameObjectWithTag("FakeBackground").GetComponent<Image>();
+        initImg.sprite = Resources.Load<Sprite>(initImgName);
         //Change LevelTransitionImg
         ImageChanger(4);
 
@@ -477,7 +475,6 @@ public class RootUIManager : MonoBehaviour {
                     resumeBtnObj.SetActive(true);
                     reviveBtnObj.SetActive(false);
                     getReviveBtnObj.SetActive(false);
-                    ImageChanger(0);
                     talkingCat.text = "take a rest!";
                     currentLevelText.text = "Level " + index.ToString();
                     gamePanel.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseComplete);
@@ -515,11 +512,6 @@ public class RootUIManager : MonoBehaviour {
                         ImageChanger(1);
                         talkingCat.text = "is unlocked";
                         InGameManager.inGameManager.unlockEvent = false;
-                    }
-                    else
-                    {
-                        ImageChanger(0);
-                        GameOverChat();
                     }
                     gamePanel.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseComplete);
                     break;
