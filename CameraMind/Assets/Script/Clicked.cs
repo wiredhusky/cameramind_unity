@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Clicked : MonoBehaviour {
     
     public Animator animator;
     
     public PolygonCollider2D _collider;
-    public Renderer _renderer;
-    public SpriteRenderer spriteRenderer;
+    //public Renderer _renderer;
+    //public SpriteRenderer spriteRenderer;
     AnimatorStateInfo currentBaseState;
     int count = 0;
+    public Image objImg;
 
     IEnumerator WaitOneSecond(){
         yield return new WaitForSeconds(1.0f);
@@ -21,7 +23,7 @@ public class Clicked : MonoBehaviour {
     }
     
     private void Start()
-    {        
+    {
         InGameManager.inGameManager.activeCollider += ActiveCol;
         InGameManager.inGameManager.deactiveCollider += DeActiveCol;
         InGameManager.inGameManager.goIdle += SetIdle;
@@ -37,13 +39,28 @@ public class Clicked : MonoBehaviour {
             case "Track":
                 InGameManager.inGameManager.backToOriginColor += ColorChange;
                 break;
+            default:
+                break;
         }
         gameObject.SetActive(false);
     }
 
     private void OnMouseUp()
-    { 
-        RootGameManager.rootGameManager.ComPos(gameObject.transform.position, animator);
+    {
+        if(RootUIManager.rootUIManager.TouchEffectController(gameObject, Input.mousePosition))
+        {
+            objImg.color = new Color(1, 1, 1);
+            RootGameManager.rootGameManager.ComPos(gameObject.transform.position, animator);
+        }
+        else
+        {
+            objImg.color = new Color(1, 1, 1);
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        objImg.DOColor(new Color(0.5f, 0.5f, 0.5f), 0.1f);
     }
 
     public void SetIdle()
@@ -62,7 +79,8 @@ public class Clicked : MonoBehaviour {
     {
         if(gameObject.activeSelf == true)
         {
-            spriteRenderer.color = new Color(1, 1, 1, 1);
+            //spriteRenderer.color = new Color(1, 1, 1, 1);
+            objImg.color = new Color(1, 1, 1, 1);
         }
     }
 
@@ -137,6 +155,6 @@ public class Clicked : MonoBehaviour {
 
     public void EnableRenderer()
     {
-        _renderer.enabled = true;
+        //_renderer.enabled = true;
     }
 }

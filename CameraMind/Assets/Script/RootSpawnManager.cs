@@ -99,6 +99,10 @@ public class RootSpawnManager : MonoBehaviour {
                     _obj.transform.localScale = new Vector3(localScale_50, localScale_50, localScale_50);
                     break;
             }
+            Debug.Log("Local Sclae1: " + _obj.transform.localScale);
+            _obj.transform.SetParent(InGameManager.inGameManager.inGameBackground.transform);
+            Debug.Log("Local Scale" + _obj.transform.localScale);
+            //_obj.transform.parent = InGameManager.inGameManager.inGameBackground.transform;
             animatorName = "animation/" + RootUIManager.rootUIManager.buildIndex.ToString();
             _obj.transform.position = InGameManager.inGameManager.posList[i];
             InGameManager.inGameManager.obj.Add(_obj);
@@ -183,6 +187,7 @@ public class RootSpawnManager : MonoBehaviour {
                     break;
             }
             _obj.transform.position = InGameManager.inGameManager.posList[i];
+            _obj.transform.SetParent(InGameManager.inGameManager.inGameBackground.transform);
             InGameManager.inGameManager.obj.Add(_obj);
             InGameManager.inGameManager.animatorList.Add(animator);
         }
@@ -621,6 +626,7 @@ public class RootSpawnManager : MonoBehaviour {
     {   
         //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index].enabled = true;
         InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
+        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("inGame");
         //Debug.Log("Index: " + InGameManager.inGameManager.index);
     }
 
@@ -652,6 +658,7 @@ public class RootSpawnManager : MonoBehaviour {
             }
         }
         InGameManager.inGameManager.obj[InGameManager.inGameManager.index].SetActive(true);
+        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index].SetTrigger("inGame");
     }
 
     public void SpawnObj_Twins()
@@ -660,6 +667,8 @@ public class RootSpawnManager : MonoBehaviour {
         //InGameManager.inGameManager.rendererList[InGameManager.inGameManager.index+1].enabled = true;
         InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins].SetActive(true);
         InGameManager.inGameManager.obj[InGameManager.inGameManager.index_twins + 1].SetActive(true);
+        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins].SetTrigger("inGame");
+        InGameManager.inGameManager.animatorList[InGameManager.inGameManager.index_twins + 1].SetTrigger("inGame");
     }
 
     public Vector3 CenterPosCalculator(Vector3 objPos)

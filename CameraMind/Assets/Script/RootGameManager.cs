@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class RootGameManager : MonoBehaviour {
 
-    public static RootGameManager rootGameManager;    
-    
-    SpriteRenderer trackSprite;
+    public static RootGameManager rootGameManager;
+
+    //SpriteRenderer trackSprite;
+    Image trackImg;
     //public Animator animator;
     
 
@@ -20,7 +22,7 @@ public class RootGameManager : MonoBehaviour {
     }
 
     public void GameOver(GameObject _obj){        
-        _obj.transform.DOPunchScale(new Vector3(0.2f, 0.2f), 0.6f, 4, 1.0f).SetDelay(0.1f).SetLoops(3).OnComplete(() => DoTransition(1));
+        _obj.transform.DOPunchScale(new Vector3(2f, 2f), 0.6f, 4, 1.0f).SetDelay(0.1f).SetLoops(3).OnComplete(() => DoTransition(1));
     }
 
     public void ComPos(Vector3 _objPos, Animator _animator)
@@ -74,8 +76,10 @@ public class RootGameManager : MonoBehaviour {
             case "Track":
                 if (_objPos == InGameManager.inGameManager.posList[InGameManager.inGameManager.index_track])
                 {                    
-                    trackSprite = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<SpriteRenderer>();
-                    trackSprite.DOColor(new Color(0.90f, 0.73f, 0.73f, 1.0f), 0.2f).OnComplete(ChkClicked);
+                    //trackSprite = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<SpriteRenderer>();
+                    //trackSprite.DOColor(new Color(0.90f, 0.73f, 0.73f, 1.0f), 0.2f).OnComplete(ChkClicked);
+                    trackImg = InGameManager.inGameManager.obj[InGameManager.inGameManager.index_track].GetComponent<Image>();
+                    trackImg.DOColor(new Color(0.90f, 0.73f, 0.73f, 1.0f), 0.2f).OnComplete(ChkClicked);
                     //trackSprite.DOColor(Color.magenta, 0.5f).OnComplete(ChkClicked);
                 }
                 else

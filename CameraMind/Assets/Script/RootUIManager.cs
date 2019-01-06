@@ -61,8 +61,7 @@ public class RootUIManager : MonoBehaviour {
 
     public GameObject gameOverUnlockImg, gameOverBtns, levelCompleteBtns, inGameUnlockObj;
     public TextMeshProUGUI talkingCat;
-    Image unlockImg; //공통으로 사용 talking cat이랑 unlock이랑
-    Image inGameUnlockImg;
+    Animator animator;
 
     public int buildIndex;
 
@@ -80,6 +79,10 @@ public class RootUIManager : MonoBehaviour {
     public GameObject fakeBackground;    
     
     Vector3 startPos, destPos;
+
+    //Timer
+    public GameObject timer;
+    public TextMeshProUGUI timerCounter;
 
     private void Awake()
     {
@@ -178,8 +181,7 @@ public class RootUIManager : MonoBehaviour {
         particle.SetActive(false);
         clicked = false;
         InitUI();
-        unlockImg = gameOverUnlockImg.GetComponent<Image>();
-        inGameUnlockImg = inGameUnlockObj.GetComponent<Image>();
+        animator = gameOverUnlockImg.GetComponent<Animator>();
         levelTransitionImg = GameObject.FindGameObjectWithTag("LevelTransitionImg").GetComponent<Image>();
         Debug.Log("position: " + levelTransition.transform.position);
         destPos = posCalculator.transform.position;
@@ -316,17 +318,23 @@ public class RootUIManager : MonoBehaviour {
     public void InitScene()
     {
         Image initImg;
+        
         string initImgName;
         //Change Pause Obj
         ImageChanger(0);
         //Change LevelTransitionBackground Color or Img
 
         //Change FakeBackground Img
-        initImgName = "InGameBackground" + buildIndex.ToString();
-        initImg = GameObject.FindGameObjectWithTag("FakeBackground").GetComponent<Image>();
+        
+        initImgName = "img/InGameBackground_" + buildIndex.ToString();
+        initImg = fakeBackground.GetComponent<Image>();
         initImg.sprite = Resources.Load<Sprite>(initImgName);
+        
         //Change LevelTransitionImg
         ImageChanger(4);
+
+        //Change Pause Obj Img
+        ImageChanger(0);
 
         if (sceneName == "DanceDance")
         {
@@ -431,7 +439,7 @@ public class RootUIManager : MonoBehaviour {
             unlockTemptation.SetActive(false);
             objTemptation.SetActive(true);
         }
-        //Time
+        //Time attack
         chkUnlock = PlayerPrefs.GetInt("unlockTime");
         if (chkUnlock == 1)
         {
@@ -555,35 +563,35 @@ public class RootUIManager : MonoBehaviour {
     public void ImageChanger(int option)
     {
         string objName;
-        int buildIndex_unlock;
-        //int buildIndex;
         switch (option)
         {
             case 0: //pause
-                objName = "img/" + buildIndex.ToString();
-                unlockImg.sprite = Resources.Load<Sprite>(objName);
-                Debug.Log(objName);
+                objName = "animation/" + buildIndex.ToString();
+                animator.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(objName);
+                animator.SetTrigger("pause");
                 break;
-            case 1: //unlock event
-                buildIndex_unlock = buildIndex + 1;
-                objName = "img/" + buildIndex_unlock.ToString();
-                unlockImg.sprite = Resources.Load<Sprite>(objName);
+            case 1: //unlock event gameover panel
+                objName = "animation/" + (buildIndex+1).ToString();
+                animator.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(objName);
+                animator.SetTrigger("pause");
                 break;
             case 2: //level complete
-                objName = "img/" + "catGod";
-                unlockImg.sprite = Resources.Load<Sprite>(objName);
+                objName = "animation/" + "11";
+                animator.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(objName);
                 break;
-            case 3: //unlock event in game notification
-                buildIndex_unlock = buildIndex + 1;
-                objName = "img/" + buildIndex_unlock.ToString();
-                inGameUnlockImg.sprite = Resources.Load<Sprite>(objName);
+            case 3://unlock ingame
+                objName = "animation/" + (buildIndex + 1).ToString();
+                inGameUnlockObj.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(objName);
+                animator.SetTrigger("pause");
                 break;
             case 4: //level transition img changer
                 objName = "img/" + buildIndex.ToString() + "_transition";
                 levelTransitionImg.sprite = Resources.Load<Sprite>(objName);
+                Debug.Log(objName);
                 break;
-        }        
+        }
     }
+
 
     void GameOverChat()
     {
@@ -780,7 +788,7 @@ public class RootUIManager : MonoBehaviour {
             menus.SetActive(true);
             topBackground.SetActive(true);
             uiNavigation.SetActive(false);
-            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseComplete);
+            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseOutComplete);
             RootSpawnManager.rootSpawnManager.allThingsDone = false;
             RootSpawnManager.rootSpawnManager.exceptCase = 5;
         }
@@ -1356,4 +1364,30 @@ public class RootUIManager : MonoBehaviour {
         InGameManager.inGameManager.ActiveHandler();
     }
 
+    public bool TouchEffectController(GameObject obj, Vector3 pos)
+    {
+        RectTransform rt = (RectTransform)obj.transform;
+        Vector3 releasePos;
+        Vector2 leftTop, rightBottom;
+        
+        releasePos = Camera.main.ScreenToWorldPoint(pos);
+        Debug.Log(releasePos);
+
+        leftTop.x = obj.transform.position.x - (rt.rect.width * obj.transform.localScale.x * 0.04f * 0.5f);
+        leftTop.y = obj.transform.position.y + (rt.rect.height * obj.transform.localScale.y * 0.04f * 0.5f);
+        
+        rightBottom.x = obj.transform.position.x + (rt.rect.width * obj.transform.localScale.x * 0.04f * 0.5f);
+        rightBottom.y = obj.transform.position.y - (rt.rect.height * obj.transform.localScale.y * 0.04f * 0.5f);
+
+        Debug.Log("4 pos: " + leftTop.x + leftTop.y + rightBottom.x + rightBottom.y);
+
+        if(releasePos.x >= leftTop.x && releasePos.x <= rightBottom.x && releasePos.y <= leftTop.y && releasePos.y >= rightBottom.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
