@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InGameManager : MonoBehaviour {
 
@@ -40,9 +40,9 @@ public class InGameManager : MonoBehaviour {
     public bool turnChk = true;
 
     //unlock Level
-    int unlockLevel;
+    public int unlockLevel;
     public bool unlockEvent = false;
-    int chkUnlock;
+    public int chkUnlock;
 
     //int case0, case1, case2, case3, case4;
     
@@ -58,7 +58,10 @@ public class InGameManager : MonoBehaviour {
 
     private void Start()
     {
-        //CountLevel();        
+        //CountLevel();
+        ObjSpawning();
+        RootUIManager.rootUIManager.uiNavigation.SetActive(true);
+
         switch (sceneName)
         {
             case "Normal":
@@ -112,114 +115,55 @@ public class InGameManager : MonoBehaviour {
                 //LevelTransitionPanel.SetActive(true);
                 break;
         }
-        RootUIManager.rootUIManager.InitScene();
-    }    
 
-    public void chkUnlockStage()
-    {
-        if(chkUnlock == 0)
+        switch (sceneName)
         {
-            if (index == unlockLevel)
-            {
-                switch (sceneName)
-                {
-                    case "Normal":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockHorizontal", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objHorizon.SetActive(true);
-                        RootUIManager.rootUIManager.unlockHorizon.SetActive(false);
-                        break;
-                    case "Flip Vertical":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockTime", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objTime.SetActive(true);
-                        RootUIManager.rootUIManager.unlockTime.SetActive(false);
-                        break;
-                    case "Chaos":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockDance", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objDance.SetActive(true);
-                        RootUIManager.rootUIManager.unlockDance.SetActive(false);
-                        break;
-                        /*
-                    case "DanceDance":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockAlone", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objAlone.SetActive(true);
-                        RootUIManager.rootUIManager.unlockAlone.SetActive(false);
-                        break;
-                        */
-                    case "Twins":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockVertical", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objVertical.SetActive(true);
-                        RootUIManager.rootUIManager.unlockVertical.SetActive(false);
-                        break;
-                    case "Temptation":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockTrack", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objTrack.SetActive(true);
-                        RootUIManager.rootUIManager.unlockTrack.SetActive(false);
-                        break;
-                    case "Track":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockChaos", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objChaos.SetActive(true);
-                        RootUIManager.rootUIManager.unlockChaos.SetActive(false);
-                        break;
-                    case "Time Attack":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockTemptation", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objTemptation.SetActive(true);
-                        RootUIManager.rootUIManager.unlockTemptation.SetActive(false);
-                        break;
-                    case "Alone":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockTriple", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objTriple.SetActive(true);
-                        RootUIManager.rootUIManager.unlockTriple.SetActive(false);
-                        break;
-                    case "Triple":                        
-                        break;
-                    case "Double":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockTwins", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objTwins.SetActive(true);
-                        RootUIManager.rootUIManager.unlockTwins.SetActive(false);
-                        break;
-                    case "Flip Horizon":
-                        chkUnlock = 1;
-                        //unlockedObj.SetActive(true);
-                        PlayerPrefs.SetInt("unlockDouble", 1);
-                        PlayerPrefs.Save();
-                        RootUIManager.rootUIManager.objDouble.SetActive(true);
-                        RootUIManager.rootUIManager.unlockDouble.SetActive(false);
-                        break;
-                }
-                RootUIManager.rootUIManager.inGameUnlockObj.SetActive(true);
-                RootUIManager.rootUIManager.ImageChanger(3); // unlock image를 바꿈
-                unlockEvent = true;
-            }
+            case "Double":
+                StartCoroutine(RootUIManager.rootUIManager.StayTransition(1.0f));
+                break;
+            case "Chaos":
+                StartCoroutine(RootUIManager.rootUIManager.StayTransition(1.0f));
+                break;
+            case "DanceDance":
+                RootSpawnManager.rootSpawnManager.objCreator();
+                StartCoroutine(RootUIManager.rootUIManager.StayTransition(0.5f));
+                break;
+            default:
+                StartCoroutine(RootUIManager.rootUIManager.StayTransition(0.5f));
+                break;
+        }
+    }
+
+    void ObjSpawning()
+    {
+        //clicked = false;
+        if (SceneManager.GetActiveScene().name == "SceneManager")
+        {
+            RootUIManager.rootUIManager.menus.SetActive(false);
+            RootUIManager.rootUIManager.topBackground.SetActive(false);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+        }
+
+        RootSpawnManager.rootSpawnManager.setScale(RootSpawnManager.rootSpawnManager.cats);
+
+        switch (sceneName)
+        {
+            case "Twins":
+                RootSpawnManager.rootSpawnManager.PosSearch(posList, objType);
+                RootSpawnManager.rootSpawnManager.InstantiateObjTwins(posList.Count);
+                break;
+            case "Flip Vertical":
+                RootSpawnManager.rootSpawnManager.PosSearch(posList, objType);
+                RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.flyingCat, posList.Count);
+                break;
+            case "DanceDance":
+                RootSpawnManager.rootSpawnManager.PosSearchDance(posList, objType);
+                RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.cats, posList.Count);
+                break;
+            default:
+                RootSpawnManager.rootSpawnManager.PosSearch(posList, objType);
+                RootSpawnManager.rootSpawnManager.InstantiateObj(RootSpawnManager.rootSpawnManager.cats, posList.Count);
+                break;
         }        
     }
 

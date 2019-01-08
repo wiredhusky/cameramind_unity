@@ -48,13 +48,13 @@ public class Clicked : MonoBehaviour {
     private void OnMouseUp()
     {
         if(RootUIManager.rootUIManager.TouchEffectController(gameObject, Input.mousePosition))
-        {
-            objImg.color = new Color(1, 1, 1);
+        {            
             RootGameManager.rootGameManager.ComPos(gameObject.transform.position, animator);
+            objImg.DOColor(new Color(1, 1, 1), 0.1f);
         }
         else
         {
-            objImg.color = new Color(1, 1, 1);
+            objImg.DOColor(new Color(1, 1, 1), 0.1f);
         }
     }
 

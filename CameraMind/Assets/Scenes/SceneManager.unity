@@ -28815,7 +28815,6 @@ GameObject:
   - component: {fileID: 1212421877}
   - component: {fileID: 1212421882}
   - component: {fileID: 1212421881}
-  - component: {fileID: 1212421880}
   - component: {fileID: 1212421879}
   m_Layer: 5
   m_Name: Level Transition
@@ -28857,25 +28856,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!95 &1212421880
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 95777429415340654, guid: 502c7170f453f514abf98b90b38539d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1212421876}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b5816f95b94ba164d911db3e259c1a54, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1212421881
 MonoBehaviour:
   m_ObjectHideFlags: 0

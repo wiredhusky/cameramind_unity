@@ -241,7 +241,18 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
-    IEnumerator StayTransition(float pauseTime)
+    IEnumerator UnloadScene(float pauseTime)
+    {
+        SceneManager.UnloadSceneAsync(sceneName);
+        btnName = EventSystem.current.currentSelectedGameObject.name;        
+        uiNavigation.SetActive(false);
+        RootSpawnManager.rootSpawnManager.allThingsDone = false;
+        RootSpawnManager.rootSpawnManager.exceptCase = 5;
+        yield return new WaitForSeconds(pauseTime);
+        gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseOutComplete);
+    }
+
+    public IEnumerator StayTransition(float pauseTime)
     {
         yield return new WaitForSeconds(pauseTime);
         if(sceneName != "DanceDance")
@@ -331,11 +342,9 @@ public class RootUIManager : MonoBehaviour {
         initImg.sprite = Resources.Load<Sprite>(initImgName);
         
         //Change LevelTransitionImg
-        ImageChanger(4);
+        ImageChanger(4);        
 
-        //Change Pause Obj Img
-        ImageChanger(0);
-
+        /*
         if (sceneName == "DanceDance")
         {
             DoDanceTransition();
@@ -343,7 +352,8 @@ public class RootUIManager : MonoBehaviour {
         else
         {
             DoLevelTransition();
-        }
+        }*/
+        DoFirstTransition();
     }
 
     public void InitUI(){
@@ -769,28 +779,18 @@ public class RootUIManager : MonoBehaviour {
 
     public void Restart(){        
         if(!clicked){
-            fakeBackground.SetActive(true);
             clicked = true;
-            btnName = EventSystem.current.currentSelectedGameObject.name;            
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());        
-            uiNavigation.SetActive(false);
-            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseOutComplete);
-            RootSpawnManager.rootSpawnManager.allThingsDone = false;
-            RootSpawnManager.rootSpawnManager.exceptCase = 5;
+            fakeBackground.SetActive(true);
+            StartCoroutine(UnloadScene(0.2f));
         }
     }
     
     public void MainMenu(){
         if(!clicked){
             clicked = true;
-            btnName = EventSystem.current.currentSelectedGameObject.name;
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             menus.SetActive(true);
             topBackground.SetActive(true);
-            uiNavigation.SetActive(false);
-            gamePanel.transform.DOMove(startPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(PauseOutComplete);
-            RootSpawnManager.rootSpawnManager.allThingsDone = false;
-            RootSpawnManager.rootSpawnManager.exceptCase = 5;
+            StartCoroutine(UnloadScene(0.2f));
         }
     }
 
@@ -987,7 +987,8 @@ public class RootUIManager : MonoBehaviour {
             }
             //eventSystem.SetActive(false);
             //menus.SetActive(false);
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            //SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            InitScene();
         }
     }
 
@@ -1164,6 +1165,28 @@ public class RootUIManager : MonoBehaviour {
         levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoDanceComplete);
     }
 
+    void DoFirstTransition() {
+        if (fakeBackground.activeSelf == true)
+        {
+            fakeBackground.SetActive(false);
+        }
+
+        if (sceneName == "DanceDance")
+        {
+            levelCount.text = "Dance Time";
+        }
+        else
+        {
+            levelCount.text = "Level 1";
+        }
+        levelTransition.transform.DOMove(destPos, 0.5f).SetEase(Ease.OutCubic).OnComplete(DoFirstComplete);
+    }
+
+    void DoFirstComplete()
+    {
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+    }
+
     void DoDanceComplete(){
         PauseAniDance();
         StartCoroutine(DanceStayTransition(0.5f));
@@ -1246,6 +1269,7 @@ public class RootUIManager : MonoBehaviour {
         }
     }
 
+    /*
     public void PauseAni()
     {
         clicked = false;
@@ -1286,6 +1310,111 @@ public class RootUIManager : MonoBehaviour {
         }
         //RootSpawnManager.rootSpawnManager.objCreator();
         InGameManager.inGameManager.chkUnlockStage();
+    }*/
+
+    public void PauseAni()
+    {
+        clicked = false;
+        chkUnlockStage();
+    }
+
+    public void chkUnlockStage()
+    {
+        if (InGameManager.inGameManager.chkUnlock == 0)
+        {
+            if (InGameManager.inGameManager.index == InGameManager.inGameManager.unlockLevel)
+            {
+                InGameManager.inGameManager.chkUnlock = 1;
+                switch (sceneName)
+                {
+                    case "Normal":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockHorizontal", 1);
+                        PlayerPrefs.Save();
+                        objHorizon.SetActive(true);
+                        unlockHorizon.SetActive(false);
+                        break;
+                    case "Flip Vertical":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTime", 1);
+                        PlayerPrefs.Save();
+                        objTime.SetActive(true);
+                        unlockTime.SetActive(false);
+                        break;
+                    case "Chaos":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockDance", 1);
+                        PlayerPrefs.Save();
+                        objDance.SetActive(true);
+                        unlockDance.SetActive(false);
+                        break;
+                    /*
+                case "DanceDance":
+                    chkUnlock = 1;
+                    //unlockedObj.SetActive(true);
+                    PlayerPrefs.SetInt("unlockAlone", 1);
+                    PlayerPrefs.Save();
+                    RootUIManager.rootUIManager.objAlone.SetActive(true);
+                    RootUIManager.rootUIManager.unlockAlone.SetActive(false);
+                    break;
+                    */
+                    case "Twins":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockVertical", 1);
+                        PlayerPrefs.Save();
+                        objVertical.SetActive(true);
+                        unlockVertical.SetActive(false);
+                        break;
+                    case "Temptation":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTrack", 1);
+                        PlayerPrefs.Save();
+                        objTrack.SetActive(true);
+                        unlockTrack.SetActive(false);
+                        break;
+                    case "Track":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockChaos", 1);
+                        PlayerPrefs.Save();
+                        objChaos.SetActive(true);
+                        unlockChaos.SetActive(false);
+                        break;
+                    case "Time Attack":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTemptation", 1);
+                        PlayerPrefs.Save();
+                        objTemptation.SetActive(true);
+                        unlockTemptation.SetActive(false);
+                        break;
+                    case "Alone":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTriple", 1);
+                        PlayerPrefs.Save();
+                        objTriple.SetActive(true);
+                        unlockTriple.SetActive(false);
+                        break;
+                    case "Triple":
+                        break;
+                    case "Double":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockTwins", 1);
+                        PlayerPrefs.Save();
+                        objTwins.SetActive(true);
+                        unlockTwins.SetActive(false);
+                        break;
+                    case "Flip Horizon":
+                        //unlockedObj.SetActive(true);
+                        PlayerPrefs.SetInt("unlockDouble", 1);
+                        PlayerPrefs.Save();
+                        objDouble.SetActive(true);
+                        unlockDouble.SetActive(false);
+                        break;
+                }
+                inGameUnlockObj.SetActive(true);
+                ImageChanger(3); // unlock image를 바꿈
+                InGameManager.inGameManager.unlockEvent = true;
+            }
+        }
     }
 
     public void DoMove()

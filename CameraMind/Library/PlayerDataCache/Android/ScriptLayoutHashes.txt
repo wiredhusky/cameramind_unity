@@ -45,7 +45,7 @@ b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
 4b15a17d433197484efea6ef689ccc64 Assembly-CSharp.dll:UnityEngine.UI.Extensions.ColorPicker.ColorPickerTester
 7dcdc77d1e7c0ab7e1aa68e7af20efc4 Assembly-CSharp.dll:UnityEngine.UI.Extensions.InputFocus
 2511027d7b87496c81e591a6b03a6957 Assembly-CSharp.dll:UnityEngine.UI.Extensions.AutoCompleteComboBox
-f088425c588892cd284f8d28262bdf40 Assembly-CSharp.dll:.InGameManager
+2855bd39970c1ad4e7025c721b412077 Assembly-CSharp.dll:.InGameManager
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.RootGameManager
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:UnityEngine.UI.Extensions.UISoftAdditiveEffect
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:TMPro.TMP_PhoneNumberValidator
@@ -148,7 +148,7 @@ a729560f7583d3b7946293c2df68e05d Assembly-CSharp.dll:UnityEngine.UI.Extensions.R
 cd20d3ce027392164456937c511665b7 Assembly-CSharp.dll:UnityEngine.UI.Extensions.UIImageCrop
 66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
 d6709ad0274d85d1fda612b81b4d33de Assembly-CSharp.dll:UnityEngine.UI.Extensions.BestFitOutline
-bcec4c6ed6f79288b55bd19bd82d3b80 Assembly-CSharp.dll:.Clicked
+86a44bd71fced2c33c484838ba099b0e Assembly-CSharp.dll:.Clicked
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 0f27c39183b9eb95eba0a228bea28273 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -305,7 +305,7 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 3e34faf075c25c43ed9fe352ec26513b Assembly-CSharp.dll:UnityEngine.UI.Extensions.CUIGraphic
 706647f1a4b1abf203538065cfdaede8 Assembly-CSharp.dll:UnityEngine.UI.Extensions.CurvedText
-c0963f9f92d4079032591e74e83758c6 Assembly-CSharp.dll:.RootUIManager
+f9966bb383b2787f0c3dcaa5be86e2dd Assembly-CSharp.dll:.RootUIManager
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 707be4219a7b15d980cdda9521532afc Assembly-CSharp.dll:UnityEngine.UI.Extensions.AccordionElement
 9c4eb4ec0fc11a711fdc1c8f1117255c Assembly-CSharp.dll:TMPro.Examples.Benchmark01_UGUI
